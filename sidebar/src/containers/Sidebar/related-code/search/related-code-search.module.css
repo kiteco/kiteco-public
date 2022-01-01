@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.container .loading__spinner {
+    top: 30%;
+}
+
+.container .loading__spinner__text {
+    color: var(--text-color-richer);
+}
+
+.action_bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    color: var(--text-color-light);
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    padding: 0.5rem;
+}
+
+.action {
+    cursor: pointer;
+}
+
+.error_text {
+    color: var(--error-color);
+    padding-bottom: 1rem;
+}
+
+.load_icon {
+    width: 1.6rem;
+    height: 1.6rem;
+    mask-image: url(../../../../assets/icon-refresh.svg);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: var(--text-color-light);
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 1rem;
+}
+
+.no_results {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 4rem;
+    text-align: center;
+}
+
+.no_results_text {
+    padding-bottom: 1rem;
+}
+
+.no_results_text span {
+    font-family: "Hack", monospace;
+}
+
+.results_list {
+    display: flex;
+    flex-direction: column;
+}
+
+.warning_icon {
+    width: 4rem;
+    height: 4rem;
+    mask-image: url(../../assets/icon-warning.svg);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: var(--text-color-highlight);
+    display: inline-block;
+    vertical-align: middle;
+}

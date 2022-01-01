@@ -1,0 +1,3 @@
+requests==2.10.0
+pdfkit==0.6.1
+slacker==0.9.18

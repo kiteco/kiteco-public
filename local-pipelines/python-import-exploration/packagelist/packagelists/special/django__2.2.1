@@ -1,0 +1,9 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install --no-install-recommends -y libmysqlclient-dev libpq-dev
+RUN rm -rf /var/lib/apt/lists/*
+RUN pip3 install psycopg2==2.7.3.2 jinja2==2.10 mysqlclient==1.3.12 pyyaml==3.12
+
+RUN pip3 install django==2.2.1
+
+ENTRYPOINT ["/usr/bin/env", "python3", "-m", "kite.pkgexploration", "django", "2.2.1", "django__2.2.1.json", "django__2.2.1.log"]

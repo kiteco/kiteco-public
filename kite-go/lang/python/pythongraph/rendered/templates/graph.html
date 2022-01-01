@@ -1,0 +1,93 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <button id="full-graph-button">Full Graph</button>
+            <button id="backbone-button">Backbone</button>
+        </div>
+    </div>
+    <div class="row" id="programgraph"></div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector("#full-graph-button").onclick = function (ev) {
+            renderGraph(JSON.parse("{{.Graph}}"));
+        };
+        document.querySelector("#backbone-button").onclick = function (ev) {
+            var graph = JSON.parse("{{.Graph}}")
+            graph.edges = graph.edges.filter(edge => edge.label == "ast_child" || edge.label == "next_token");
+            renderGraph(graph)
+        };
+        renderGraph(JSON.parse("{{.Graph}}"));
+    });
+    function renderGraph(graph) {
+        if (!graph.nodes) {
+            var container = document.getElementById('programgraph');
+            container.appendChild(document.createTextNode("no graph"));
+            return
+        }
+        styledNodes = graph.nodes.map(function(node){
+            var colors = {
+                "ast_internal_node": "#e6d297",
+                "ast_teminal_node": "#EB6841",
+                "variable_usage_node": "#EDC951",
+                "scope_node":  "#97e6a4",
+            };
+            var color = colors[node.node_type];
+            if (color) {
+                node.color = color;
+            }
+            return node;
+        });
+
+        styledEdges = graph.edges.map(function(edge) {
+            var colors = {
+                "ast_child": "black",
+                "next_token": "darkgray",
+                "last_lexical_use": "Fuchsia",
+                "computed_from": "limegreen",
+                "data_flow": "orange",
+                "scope": "red",
+            };
+            var color = colors[edge.label];
+            if (color) {
+                edge.color = {"color": color, "highlight": color};
+            }
+            edge.arrows = "to";
+            return edge;
+        });
+
+        var nodes = new vis.DataSet(styledNodes);
+        var edges = new vis.DataSet(styledEdges);
+        var container = document.getElementById('programgraph');
+        var data = {
+            nodes: nodes,
+            edges: edges,
+        };
+        hierarchical = {
+            enabled: true,
+            levelSeparation: 100,
+            nodeSpacing: 150,
+            direction: 'UD',
+            sortMethod: 'directed',
+        };
+        var options = {
+            layout: {
+                randomSeed: 1,
+                improvedLayout: true,
+                hierarchical: hierarchical,
+            },
+            interaction:{
+                hover: true
+            },
+            physics: false,
+        };
+        var network = new vis.Network(container, data, options);
+        network.on("dragging", function (params) {
+            if (params.nodes.length == 1) {
+                var nid = params.nodes[0];
+                network.moveNode(nid, params.pointer.canvas.x, params.pointer.canvas.y);
+            }
+        });
+    }
+</script>

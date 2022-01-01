@@ -1,0 +1,189 @@
+{% for lang in langs %}
+- name: user_data_last_{{lang}}_active_date
+  label: Last {{lang}} active date (user data)
+  type: datetime
+  sql:
+    type: bigint
+    agg: max
+    delta: max(to_unixtime(from_iso8601_timestamp(timestamp)) *  if(properties__{{lang}}_edit > 0, 1, 0)) * 1000
+    transform: nullif(user_data_last_{{lang}}_active_date, 0)
+{% endfor %}
+
+- name: user_data_last_active_date
+  label: Last active date (user data)
+  type: datetime
+  sql:
+    type: bigint
+    delta: max(to_unixtime(from_iso8601_timestamp(timestamp)) *  if({% for lang in langs %}properties__{{lang}}_edit{% if not loop.last %} + {% endif %}{% endfor %}> 0, 1, 0)) * 1000
+    agg: max
+    transform: nullif(user_data_last_active_date, 0)
+
+- name: user_data_last_kite_alive_date
+  label: Last Kite alive date (user data)
+  type: datetime
+  sql:
+    type: bigint
+    agg: max
+    delta: max(to_unixtime(from_iso8601_timestamp(timestamp))) * 1000
+    transform: nullif(user_data_last_kite_alive_date, 0)
+
+{% for lang in langs %}
+- name: {{lang}}_active_1d
+  sql:
+    delta: if(sum(coalesce(properties__{{lang}}_edit, 0)) > 0, 1, 0)
+    type: bigint
+- name: {{lang}}_edit_1d
+  sql:
+    delta: sum(coalesce(properties__{{lang}}_edit, 0))
+    type: bigint
+
+{% for interval in [7, 28] %}
+- name: user_data_{{lang}}_active_{{interval}}d
+  label: Days {{lang|title}} active in last {{interval}} days (user data)
+  type: number
+  sql:
+    type: bigint
+    delta_field: {{lang}}_active_1d
+    agg: sum
+    agg_days: {{interval}}
+- name: user_data_{{lang}}_edit_{{interval}}d
+  label: {{lang|title}} edits in last {{interval}} days (user data)
+  type: number
+  sql:
+    type: bigint
+    delta_field: {{lang}}_edit_1d
+    agg: sum
+    agg_days: {{interval}}
+{% endfor %}
+
+{% endfor %}
+
+- name: any_edit_1d
+  sql:
+    delta: sum({% for lang in langs %}coalesce(properties__{{lang}}_edit, 0){% if not loop.last %} + {% endif %}{% endfor %})
+    type: bigint
+- name: any_active_1d
+  sql:
+    delta: if(sum({% for lang in langs %}coalesce(properties__{{lang}}_edit, 0){% if not loop.last %} + {% endif %}{% endfor %}) > 0, 1, 0)
+    type: bigint
+
+{% for interval in [7, 28] %}
+- name: user_data_any_active_{{interval}}d
+  label: Days any language active in last {{interval}} days (user data)
+  type: number
+  sql:
+    type: bigint
+    delta_field: any_active_1d
+    agg: sum
+    agg_days: {{interval}}
+{% endfor %}
+
+- name: any_edit_12w
+  sql:
+    type: bigint
+    delta_field: any_edit_1d
+    agg: sum
+    agg_days: 84
+
+{% for lang in langs %}
+- name: {{lang}}_edit_12w
+  type: number
+  sql:
+    type: bigint
+    delta_field: {{lang}}_edit_1d
+    agg: sum
+    agg_days: 84
+- name: {{lang}}_percentage
+  label: {{lang|title}} percentage (user data)
+  type: number
+  sql:
+    type: bigint
+    transform: cast((cast({{lang}}_edit_12w as double) / nullif(any_edit_12w, 0)) * 100 AS bigint)
+{% endfor %}
+
+{% for editor in editors %}
+- name: python_edits_in_{{editor}}
+  sql:
+    delta: sum(if(properties__python_edit > 0, properties__{{editor}}_events, 0))
+    type: bigint
+    agg: sum
+    agg_days: 84
+
+- name: user_data_{{editor}}_installed
+  label: Editor {{ editor }} installed (user data)
+  type: bool
+  options:
+  - label: True
+    value: true
+  - label: False
+    value: false
+  sql:
+    type: boolean
+    agg: latest
+    delta: bool_or(properties__{{editor}}_installed)
+{% endfor %}
+
+- name: user_data_plan
+  label: Plan type (user data)
+  type: string
+  sql:
+    type: varchar(32)
+    agg: latest
+    delta: max_by(properties__plan, from_iso8601_timestamp(timestamp))
+
+- name: user_data_server_deployment_id
+  label: Server deployment ID (user data)
+  type: string
+  sql:
+    type: varchar(64)
+    agg: latest
+    delta: max_by(properties__server_deployment_id, from_iso8601_timestamp(timestamp))
+
+- name: user_data_primary_python_editor
+  label: Primary Python editor (user data)
+  type: string
+  sql: {}
+
+- name: user_data_primary_language
+  label: Primary language (user data)
+  type: string
+  sql: {}
+
+
+{% for prefix, fields in {"properties": ["os"], "maxmind": ["country_name", "city_name", "subdivision_1_name", "time_zone"]}.items() %}
+{% for field in fields %}
+- name: {{prefix}}__{{field}}_1d
+  sql:
+    type: map<string,bigint>
+    map_delta: {{prefix}}__{{field}}, {% for lang in langs %}coalesce(properties__{{lang}}_edit, 0){% if not loop.last %} + {% endif %}{% endfor %}
+
+- name: user_data_{{field}}
+  label: Most common {{field}} (user data).
+  type: string
+  sql:
+    type: map<string,bigint>
+    transform: max_by(k, v)
+    map_agg: sum
+    agg_days: 84
+    delta_field: {{prefix}}__{{field}}_1d
+{% endfor %}
+{% endfor %}
+
+
+- name: user_data_paid_jetbrains_installed
+  label: Editor paid Jetbrains installed (user data)
+  type: bool
+  options:
+  - label: True
+    value: true
+  - label: False
+    value: false
+  sql:
+    type: boolean
+    agg: latest
+    delta: bool_or({% for prefix in ["IU", "PY", "WS", "GO"] %}properties__intellij_version LIKE '{{prefix}}%'{% if not loop.last %} OR {% endif %}{% endfor %})
+
+- name: user_data_primary_language
+  label: Primary language (user data)
+  type: string
+  sql: {}

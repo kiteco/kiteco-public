@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import argparse
+
+from kite.emr import Bundle
+from kite.emr import Path
+from kite.emr import Pipeline
+from kite.emr.constants import PIPELINE_FILE
+from kite.emr.constants import KITE_EMR_BUCKET
+
+
+def main():
+    if not os.path.exists(PIPELINE_FILE):
+        print "did not find %s, exiting" % PIPELINE_FILE
+        sys.exit(1)
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--base', default="")
+    parser.add_argument('--run', action='store_true')
+    args = parser.parse_args()
+
+    name = os.path.basename(os.getcwd())
+    path = Path(KITE_EMR_BUCKET, name)
+    if args.base != "":
+        path.path = args.base
+
+    bundle = Bundle(path)
+    pipeline = Pipeline(PIPELINE_FILE, path)
+
+    print "=== building bundle.."
+    bundle.build()
+    pipeline.describe()
+
+    if args.run:
+        print "=== uploading bundle..."
+        bundle.upload()
+        print "=== starting jobflow..."
+        pipeline.run()
+
+    bundle.clean()
+
+if __name__ == "__main__":
+    main()

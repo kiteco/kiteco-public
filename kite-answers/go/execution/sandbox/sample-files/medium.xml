@@ -1,0 +1,10 @@
+<fruits>
+   <item color="red">
+       <name>apple</name>
+       <count>1</count>
+   </item>
+   <item color="yellow">
+       <name>banana</name>
+       <count>2</count>
+   </item>
+</fruits>

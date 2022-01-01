@@ -1,0 +1,26 @@
+[
+{
+    "model": "blog.article",
+    "pk": 0,
+    "fields": {
+        "title": "Article 0",
+        "image": "media/sample1.jpg"
+    }
+},
+{
+    "model": "blog.article",
+    "pk": 1,
+    "fields": {
+        "title": "Article 1",
+        "image": "media/sample2.jpg"
+    }
+},
+{
+    "model": "blog.article",
+    "pk": 2,
+    "fields": {
+        "title": "Article 2",
+        "image": "media/sample3.jpg"
+    }
+}
+]

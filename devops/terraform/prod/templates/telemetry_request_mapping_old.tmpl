@@ -1,0 +1,11 @@
+#set($blob = $input.path('$'))
+#set($discard = $blob.put('sourceIp', $context.identity.sourceIp))
+#set($discard = $blob.put('messageId', $context.requestId))
+#set($data = $util.base64Encode("$input.json('$')
+"))
+{
+    "DeliveryStreamName": "${stream_name}",
+    "Record": {
+        "Data": "$data"
+    }
+}

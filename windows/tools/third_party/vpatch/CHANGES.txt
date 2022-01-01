@@ -1,0 +1,35 @@
+NSIS Patch Generation Utility v1.0.2
+====================================
+
+Changes:
+
+Version 1.0.2
+-------------
+
+Release Date: 10/11/2007
+
++ Now use our own version of the VPathFile Macro. 
+This fixes failures when PATCH_SOURCE_ROOT or PATCH_FILES_ROOT were absolute paths, or have spaces in them them.
+
+
+Version 1.0.1
+-------------
+
+Release Date: 02/09/2007
+
++ Modified code to work with the new version of GenPat.exe due to changes in the command line parameter syntax.
+This version of nsispatch gen requires Gen Pat 3.1. Any recent install of NSIS contains this.
+
++ Fixed bug where failure could occur if the root directories had similar names. e.g. c:\dir1 and c:\dir10
+
++ nsispatchgen can now be built with VisualStudio 2005 express. To build the unit tests qxrunner is needed as the test runner that comes with cppunit requires MFC.
+
++ NOTE: don't use Qt 4.3 to build nsispatch gen with as there is a bug where system files are not detected properly.
+
+
+Version 1.0.0
+-------------
+
+Release Date: 09/05/2006
+
+Initial Release

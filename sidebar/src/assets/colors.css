@@ -1,0 +1,153 @@
+/*
+Rules: Don’t use rgba since some of these colors will be additive (exception: shadows etc.)
+*/
+
+html[data-theme='light'] {
+  /* Normal text color. */
+  --text-color-normal: hsl(216, 77%, 17%);
+  --text-color-normal-disabled: hsla(216, 77%, 17%, 50%);
+  /* Lighter, less prominent variant. */
+  --text-color-light: hsl(216, 70%, 50%);
+  /* Slightly richer text color, used for headlines, etc. */
+  --text-color-richer: hsl(216, 77%, 25%);
+  --text-color-richer-see-through: hsla(216, 77%, 25%, 33%);
+  --text-color-richer-half-see-through: hsla(216, 77%, 25%, 60%);
+  /* Much more rich accent color for text. [Orange] */
+  --text-color-highlight: hsl(12, 74%, 50%);
+  --text-color-highlight-light: hsla(12, 74%, 50%, 0.507);
+
+  /* Color for links. */
+  --link-color: hsl(200, 100%, 42%);
+  /* Accent color for UI elements (mostly hover text). [Orange] */
+  --bright-color: hsl(12, 82%, 60%);
+  /* Color for error states. [Red] */
+  --error-color: red;
+
+  /* Button background and text colors. */
+  --button-background: var(--text-color-richer);
+  --button-background-error: hsl(13, 61%, 50%);
+  --button-background-error-highlight: var(--text-color-light);
+  --button-text: white;
+
+  /* Normal background. */
+  --background: hsl(203, 36%, 95%);
+  /* Alternating lists rows. */
+  --list-row-even-background: var(--background);
+  --list-row-odd-background: #f9faff;
+  /* Darker background, e.g. for code blocks etc. */
+  --highlight-background: #d7dfe7;
+  /* Background for pop-ups. */
+  --popup-background: white;
+
+  --banner-button-background: var(--highlight-background);
+  --banner-button-background-hover: hsl(212, 72%, 59%);
+  --banner-button-border: var(--banner-button-background);
+
+  /* Input background and text colors */
+  --input-text: var(--text-color-normal);
+  --input-background: var(--background);
+  --input-border: var(--text-color-richer);
+
+  /* Shadow for pop-ups. */
+  --shadow: 0 0.5rem 10px rgba(0, 0, 0, 0.3);
+
+  /* Colors for text and selected lines for menus (e.g. search completions) */
+  --popup-menu-text-color: var(--text-color-normal);
+  --popup-menu-selected-background: #ced5df; /* Slightly darker than --highlight-background. */
+
+  /* Gradient for the top window header. */
+  --header-gradient-start: hsl(216, 100%, 29%);
+  --header-gradient-end: hsl(216, 76%, 39%);
+
+  /*Header logo*/
+  --header-logo-color: hsl(203, 36%, 87%);
+  --avatar-logo-color: hsl(216, 77%, 17%);
+
+  --disabled-opacity: 0.3;
+}
+
+/* Default to dark theme */
+html {
+  --text-color-normal: hsl(210, 10%, 66%);
+  --text-color-normal-disabled: hsla(210, 10%, 66%, 50%);
+  --text-color-light: hsl(210, 90%, 90%);
+  --text-color-richer: hsl(210, 50%, 62%);
+  --text-color-richer-see-through: hsl(210, 50%, 62%, 33%);
+  --text-color-richer-half-see-through: hsl(210, 50%, 62%, 60%);
+  --text-color-highlight: hsl(25, 75%, 50%);
+  --text-color-highlight-light: hsla(25, 70%, 45%, 0.507);
+
+  --link-color: hsl(210, 80%, 55%);
+  --bright-color: hsl(25, 70%, 60%);
+  --error-color: rgb(240, 50, 50);
+
+  --button-background: hsl(210, 63%, 43%);
+  --button-background-error: hsl(13, 61%, 50%);
+  --button-background-error-highlight: var(--text-color-light);
+  --button-text: black;
+  --beta-button-background: var(--text-color-light);
+
+  --background: hsl(210, 20%, 12%);
+  --list-row-odd-background: hsl(210, 20%, 9%);
+  --highlight-background: hsl(210, 22%, 16%);
+  --popup-background: black;
+
+  --banner-button-background: var(--highlight-background);
+  --banner-button-background-hover: hsl(0, 0%, 83%);
+  --banner-button-border: var(--banner-button-background);
+
+  --input-text: var(--text-color-normal);
+  --input-background: var(--background);
+  --input-border: var(--text-color-normal);
+
+  --popup-menu-selected-background: hsl(210, 29%, 28%);
+
+  --header-gradient-start: black;
+  --header-gradient-end: var(--background);
+
+  --header-logo-color: hsl(210, 90%, 70%);
+  --avatar-logo-color: hsl(210, 63%, 43%);
+
+  --disabled-opacity: 0.3;
+}
+
+html[data-theme='high-contrast'] {
+  --text-color-normal: white;
+  --text-color-light: white;
+  --text-color-richer: white;
+  --text-color-richer-see-through: white;
+  --text-color-richer-half-see-through: white;
+  --text-color-highlight: white;
+  --text-color-highlight-light: white;
+
+  --link-color: white;
+  --bright-color: white;
+  --error-color: white;
+
+  --button-background: white;
+  --button-background-error: white;
+  --button-background-error-highlight: white;
+  --button-text: black;
+
+  --background: black;
+  --list-row-odd-background: black;
+  --highlight-background: black;
+  --popup-background: black;
+
+  --banner-button-background: black;
+  --banner-button-background-hover: white;
+  --banner-button-border: white;
+
+  --shadow: 0 0 5px white, 0 0 5px white;
+
+  --popup-menu-text-color: black;
+  --popup-menu-selected-background: white;
+
+  --header-gradient-start: black;
+  --header-gradient-end: black;
+
+  --header-logo-color: white;
+  --avatar-logo-color: black;
+
+  --disabled-opacity: 0;
+}

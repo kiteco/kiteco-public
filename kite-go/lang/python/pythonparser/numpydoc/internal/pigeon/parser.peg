@@ -1,0 +1,245 @@
+{
+  package pigeon
+
+  import (
+    "errors"
+  )
+}
+
+// NOTE: Rules that start with `Grammar` are entrypoints exported by the
+// python/numpydoc API. Rules that start with `Test`, if any, are entrypoints used to
+// test a subset of the grammar in isolation, not exported by the API.
+
+// From the numpydoc's documentation:
+//
+// > "The docstring consists of a number of sections separated by headings
+// > (except for the deprecation warning). Each heading should be underlined
+// > in hyphens, and the section ordering should be consistent with the
+// > description below."
+
+Grammar <-
+  #{
+    return initState(c)
+  }
+  items:( Section / Paragraph )* _ Whitespace* EOF
+  // Returns an *ast.Doc
+  {
+    return grammarAction(c, toIfaceSlice(items))
+  }
+
+Section <- Directive / UnderlineSection
+
+UnderlineSection <- header:UnderlineHeader content:UnderlineSectionContent
+  // Returns an *ast.Section
+  {
+    return underlineSectionAction(c, header.(indentedText), content.([]ast.Node))
+  }
+
+UnderlineHeader <-
+  _ header:NonBlankLine underline:UnderlineLine
+  &{
+    return underlineHeaderPredicate(c, header.(indentedText), underline.(indentedText))
+  }
+  #{
+    // store the current section's name in the state.
+    return underlineHeaderState(c, header.(indentedText))
+  }
+  // Returns an indentedText
+  {
+    return header.(indentedText), nil
+  }
+
+UnderlineLine <- Indent underline:"-"+ EOL
+  // Returns an indentedText.
+  {
+    return underlineLineAction(c, toIfaceSlice(underline))
+  }
+
+// NOTE: to properly parse definition lists, the section content needs to be aware
+// of the section's name. If it is a section that should be parsed as a definition list,
+// do not allow paragraphs/doctest/directive, and otherwise do not parse as definitions.
+// Section names that allow lists are set as global state in the parser.
+UnderlineSectionContent <-
+  &{ return underlineSectionContentDefinitionPredicate(c) } content:( !UnderlineHeader Definition )*
+  // Returns  an []ast.Node
+  {
+    return underlineSectionContentAction(c, toIfaceSlice(content))
+  }
+  /
+  !{ return underlineSectionContentDefinitionPredicate(c) } content:( !UnderlineHeader ( Doctest / Directive / Paragraph ) )*
+  // Returns  an []ast.Node
+  {
+    return underlineSectionContentAction(c, toIfaceSlice(content))
+  }
+
+Paragraph <- _ lines:NonBlankLine+
+  // Returns an *ast.Paragraph.
+  //
+  // numpydoc is not as complex as epytext, we don't store a hierarchy
+  // of paragraphs, regardless of indentation, all lines without blank
+  // lines are part of that paragraph.
+  {
+    return paragraphAction(c, toIfaceSlice(lines))
+  }
+
+Directive <- _ lead:DirectiveLead content:DirectiveContent
+  // Returns a filled *ast.Directive
+  {
+    return directiveAction(c, lead.(*ast.Directive), content.(*ast.Paragraph))
+  }
+
+// NOTE: having a state code block alters the returned value of the rule
+// (like predicate code blocks).
+DirectiveLead <- lead:( SemicolonDirectiveLead / BracketDirectiveLead )
+  #{
+    // store the current directive's indentation
+    return directiveLeadState(c)
+  }
+  // Returns an *ast.Directive
+  {
+    return lead, nil
+  }
+
+SemicolonDirectiveLead <- Indent ".." Whitespace+ name:DirectiveNameChars+ ":" ":"? Whitespace*
+  // Returns a partially-filled *ast.Directive with only the name filled.
+  {
+    return semicolonDirectiveLeadAction(c, toIfaceSlice(name))
+  }
+
+BracketDirectiveLead <- Indent ".." Whitespace+ name:( "[" DirectiveNameChars+ "]" ) Whitespace*
+  // Returns a partially-filled *ast.Directive with only the name filled.
+  {
+    return bracketDirectiveLeadAction(c, toIfaceSlice(name))
+  }
+
+DirectiveNameChars <- [\pL\pN_-] // unicode letters and numbers, underscore and dash
+
+DirectiveContent <-
+  first:RestOfLine
+  rest:( line:NonBlankLine
+         &{
+            // matches only if the indentation is bigger than the directive's lead line.
+            return directiveContentPredicate(c, line.(indentedText))
+         }
+       )*
+  // Returns an *ast.Paragraph
+  {
+    return directiveContentAction(c, first.(string), toIfaceSlice(rest))
+  }
+
+Doctest <- BlankLine+ doctest:DoctestLines
+  // Returns an *ast.Doctest
+  {
+    return doctest, nil
+  }
+
+DoctestLines <-
+  first:FirstDoctestLine
+  #{
+    // store the current doctest's indentation
+    return doctestFirstLineState(c, first.(indentedText))
+  }
+  rest:(
+    line:NonBlankLine
+    &{
+      // matches only if the indentation of the line is the same as the
+      // first line in the doctest.
+      return doctestNextLinePredicate(c, line.(indentedText))
+    }
+  )*
+  // Returns an *ast.Doctest
+  {
+    return doctestLinesAction(c, first.(indentedText), toIfaceSlice(rest))
+  }
+
+FirstDoctestLine <- Indent text:( ">>>" Whitespace ( !EOL . )* ) EOL
+  // Returns an indentedText
+  {
+    return firstDoctestLineAction(c, toIfaceSlice(text))
+  }
+
+Definition <- _ first:FirstDefinitionLine content:DefinitionContent
+  // Returns a filled *ast.Definition
+  {
+    return definitionAction(c, first.(*ast.Definition), content.([]ast.Node))
+  }
+
+DefinitionContent <- content:DefinitionParagraph*
+  // Returns an []ast.Node
+  {
+    return definitionContentAction(c, toIfaceSlice(content))
+  }
+
+DefinitionParagraph <-
+  _ lines:(
+    line:NonBlankLine
+    &{
+      return definitionParagraphPredicate(c, line.(indentedText))
+    }
+  )+
+  // Returns an *ast.Paragraph
+  {
+    return definitionParagraphAction(c, toIfaceSlice(lines))
+  }
+
+// TODO(mna): minor, but if DefinitionType spans more than one line, the rest is
+// parsed as a subsequent content paragraph. I think numpydoc handles this by
+// checking the indentation at the start of the DefinitionType, and parses the
+// continuation line(s) as part of the DefinitionType if it has the exact same
+// indentation level.
+FirstDefinitionLine <- Indent subject:DefinitionSubject typ:DefinitionType? EOL
+  #{
+    // store the indent of the lead definition line
+    return firstDefinitionLineState(c)
+  }
+  // Returns a partially-filled *ast.Definition, with Subject and Type filled.
+  {
+    var typeStr string
+    if typ != nil {
+      typeStr = typ.(string)
+    }
+    return firstDefinitionLineAction(c, subject.(string), typeStr)
+  }
+
+DefinitionSubject <- ( !EOL !DefinitionSeparator . )+
+  // Returns a string
+  {
+    return string(c.text), nil
+  }
+
+DefinitionSeparator <- Whitespace+ ":" Whitespace*
+
+DefinitionType <- DefinitionSeparator text:( !EOL . )*
+  // Returns a string
+  {
+    return definitionTypeAction(c, toIfaceSlice(text))
+  }
+
+RestOfLine <- text:( !EOL . )* EOL
+  // Returns a string
+  {
+    return restOfLineAction(c, toIfaceSlice(text))
+  }
+
+NonBlankLine <- Indent text:( !EOL . )+ EOL
+  // Returns an indentedText.
+  {
+    return nonBlankLineAction(c, toIfaceSlice(text))
+  }
+
+// Indentation, stores the level in the state.
+// See https://docs.python.org/3.5/reference/lexical_analysis.html#indentation
+Indent <- indent:IndentSpace*
+  #{
+    return indentState(c, toIfaceSlice(indent))
+  }
+
+EOL <- ( '\r' '\n' / '\r' / '\n' )
+
+IndentSpace <- [ \t]
+Whitespace <- [ \t\f]
+BlankLine <- Whitespace* EOL
+_ <- BlankLine*
+
+EOF <- !.
+

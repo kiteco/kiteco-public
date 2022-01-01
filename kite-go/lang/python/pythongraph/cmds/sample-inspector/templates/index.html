@@ -1,0 +1,149 @@
+
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css"></link>
+    <style type="text/css">
+        textarea#code {
+            height: 500px;
+            width: 100%;
+            font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+            background-color:whitesmoke;
+        }
+        .row {
+            padding: 5px;
+        }
+    </style>
+    <title>Sample inspector</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <h3 align="center">Editor</h3>
+                <textarea id="code">{{.Buffer}}</textarea>
+            </div>
+            <div class="col-2">
+                <h3 align="center">Tasks</h3>
+                <div class="row">
+                    <button id="graph" type="button" class="btn btn-primary">Graph</button>
+                </div>
+                <div class="row">
+                    <button id="attrbase" type="button" class="btn btn-primary">Attr base</button>
+                </div>
+                <div class="row">
+                    <button id="attr" type="button" class="btn btn-primary">Attr</button>
+                </div>
+                <div class="row">
+                    <button id="call" type="button" class="btn btn-primary">Call</button>
+                </div>
+                <div class="row">
+                    <button id="argtype" type="button" class="btn btn-primary">Arg Type</button>
+                </div>
+                <div class="row">
+                    <button id="kwargname" type="button" class="btn btn-primary">Kwarg Name</button>
+                </div>
+                <div class="row">
+                    <button id="argplaceholder" type="button" class="btn btn-primary">Arg Placeholder</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <h3 align="center">Links</h3>
+                <ul id="links" class="list-group"></ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h3 align="center">MetaInfo</h3>
+                <pre id="metainfo"></pre>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function clearChildren(elem) {
+            while (elem.firstChild) {
+                elem.removeChild(elem.firstChild);
+            }
+        }
+        function listElem() {
+            var li = document.createElement("li");
+            li.className += " list-group-item";
+            return li
+        }
+        function renderError(resp) {
+            resp.text()
+            .then(function(t) {
+                var links = document.querySelector("#links");
+                clearChildren(links);
+                var li = listElem();
+                li.appendChild(document.createTextNode("Fetch error: " + resp.status + ": " + t));
+                links.appendChild(li);
+            });
+        }
+        function renderLinks(ls) {
+            var links = document.querySelector("#links");
+            clearChildren(links);
+            if (ls == null) {
+                console.log("no links found")
+                return
+            }
+            ls.forEach(function(l) {
+                var url = new URL('/sample', location.origin);
+                url.search = new URLSearchParams({
+                    hash: l.hash,
+                    name: l.name,
+                    task: l.task,
+                });
+                var a = document.createElement("a");
+                a.href = url.href;
+                a.target = "_blank";
+                a.appendChild(document.createTextNode(l.name));
+                var li = listElem();
+                li.appendChild(a);
+                links.appendChild(li);
+            });
+        }
+        function renderText(elemName, text) {
+            var elem = document.querySelector("#"+elemName);
+            clearChildren(elem);
+            elem.appendChild(document.createTextNode(text));
+        }
+        function render(resp) {
+            renderLinks(resp.links);
+            renderText("metainfo", resp.metainfo);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var btns = ['graph', 'attrbase', 'attr', "call", "argtype", "kwargname", "argplaceholder"];
+            btns.forEach(function(btn) {
+                document.querySelector('#'+btn).onclick = function(ev) {
+                    var url = new URL("/build-samples", location.origin);
+                    fetch(url, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            task: btn,
+                            src: document.querySelector("#code").value, 
+                        }),
+                    })
+                    .then(function(response){
+                        if (!response.ok) {
+                            renderError(response);
+                            throw Error(response.statusText);
+                        }
+                        return response
+                    })
+                    .then(response => response.json())
+                    .then(body => render(body));
+                };
+            });
+        });
+    </script>
+</body>
+</html>

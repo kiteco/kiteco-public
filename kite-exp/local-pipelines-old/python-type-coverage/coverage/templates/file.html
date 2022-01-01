@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{.Basename}}</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <style>
+    body {
+      padding: 20px;
+    }
+    code {
+      tab-size: 4;
+    }
+    td {
+      font-family: monospace;
+    }
+    .count {
+      font-weight: bold;
+    }
+    .tooltip-inner {
+      max-width: 800px;
+      border: 2px white solid;
+    }
+    .resolved {
+      background: #58B761;
+      border: 1px solid;
+    }
+    .unresolved {
+      background: #FF9191;
+      border: 1px solid;
+    }
+    </style>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $(".ast").tooltip();
+    })
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h3>{{.Path}}</h3>
+      <pre>{{.MarkedUpSource}}</pre>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+.Page .intro {
+  padding-top: var(--padding-1);
+  padding-bottom: var(--padding-2);
+}
+
+/*Responsiveness*/
+
+/* A basic chunk of information: one function, one how to, etc. */
+.Page .item {
+  display: grid;
+  grid-column: item-start / item-end;
+
+  grid-template-columns:
+      [docs-start] var(--docs-column-width)
+      [extra-start] var(--extra-column-width) [extra-end];
+  grid-template-rows: auto;
+
+  padding-right: var(--padding-1);
+}
+.Page .item + .item {
+  /* For items stacked one below another, introduce lines in between */
+  border-top: 1px solid var(--text-very-subtle);
+}
+.Page .item .intro {
+  /* Intro inside the item deserves a slightly different treatment */
+  grid-column: docs-start / extra-end;
+  grid-row: 2 / 3;
+
+  padding-left: var(--padding-2);
+}
+
+.Page .docs { /* A column for description, often used with, alternatives, and how to */
+  grid-column: docs-start / extra-start;
+  grid-row: 3 / 4;
+  padding-left: var(--padding-2);
+}
+.Page .extra { /* A column for parameters, how others used this, and examples from your code */
+  grid-column: extra-start / extra-end;
+  grid-row: 3 / 4;
+  margin-left: var(--padding-4);
+}
+
+/* Two columns */
+.Page .often-used-with-alternatives {
+  display: flex;
+  justify-content: space-between;
+}
+.Page .often-used-with-alternatives > * {
+  flex: 1;
+}
+.Page .often-used-with-alternatives > * + * {
+  margin-left: var(--padding-2);
+}

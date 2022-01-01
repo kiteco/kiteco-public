@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .status-finished {
+            color: #2d9651;
+        }
+        .status-error {
+            color: #b71616;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <title>Run Viewer</title>
+</head>
+<body>
+
+<div class="container">
+    <h5>Runs in {{.S3Dir}}</h5>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>Pipeline</th>
+            <th>Name</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range $run := .Runs}}
+            <tr>
+                <td><a href="{{$run.URL}}">{{$run.Timestamp}}</a></td>
+                <td>{{$run.Pipeline}}</td>
+                <td>{{$run.Name}}</td>
+                <td><span class="status-{{$run.Status}}">{{$run.Status}}</span></td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

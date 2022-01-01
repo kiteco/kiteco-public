@@ -1,0 +1,107 @@
+.sandbox__social-sharing {
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+}
+
+.sandbox__social-sharing__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  z-index: 5;
+  max-width: 100rem;
+  position: relative;
+}
+
+.sandbox__social-sharing__button {
+  cursor: pointer;
+}
+
+.sandbox__social-sharing__buttons .sandbox__social-sharing__button + .sandbox__social-sharing__button {
+  margin-left: 30px;
+}
+
+.sandbox__social-sharing__collapsible {
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+  animation: growin 2s;
+}
+
+.sandbox__social-sharing__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sandbox__social-sharing__textfield {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.sandbox__social-sharing__textfield--title {
+  color: var(--sandbox-social-text-field-title);
+}
+
+.sandbox__social-sharing__textfield--area {
+  background-color: var(--sandbox-social-text-field-background);
+  border-color: var(--sandbox-social-text-field-border);
+  color: var(--sandbox-social-text-color);
+  font-family: 'Neue Frutiger W01', sans-serif;
+  font-size: 16px;
+  overflow: hidden;
+  border-radius: 5px;
+  resize: none;
+  height: 10rem;
+  width: 50rem;
+  padding: 10px;
+  resize: both;
+}
+
+.sandbox__social-sharing__textfield--area:focus {
+  border-color: var(--sandbox-social-text-field-focus-border);
+}
+
+.sandbox__social-sharing__collapse-btn {
+  color: var(--sandbox-social-collapse-btn);
+  font-size: 40px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  cursor: default;
+  z-index: 77777;
+}
+
+
+.sandbox__social-sharing__collapse-btn:hover {
+  color: var(--sandbox-social-collapse-btn-highlight);
+}
+
+@keyframes growin {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes growin {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes growin {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes growin {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes growin {
+from { opacity: 0; }
+to   { opacity: 1; }
+}

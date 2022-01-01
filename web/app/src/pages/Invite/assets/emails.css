@@ -1,0 +1,142 @@
+.invite__emails {
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  box-sizing: border-box;
+}
+
+.invite__emails > * + * {
+  margin-top: 1rem;
+}
+
+.invite__emails__from {
+  display: flex;
+  align-items: center;
+}
+
+.invite__emails__from__input {
+  flex-grow: 1;
+  margin-left: 1rem;
+  height: auto;
+  padding: 1rem;
+  font-size: 1.4rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.invite__emails__entry {
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem 1rem 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 2;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.invite__emails__selected {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.invite__emails__search {
+  display: inline-flex;
+  flex-grow: 1;
+}
+
+.invite__emails__search-input {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.invite__emails__search-input input {
+  border: none;
+  outline: none;
+  font-size: 1.3rem;
+  padding: 0.2rem 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.invite__emails__tag-component {
+  border: 1px solid cornflowerblue;
+  background: lightblue;
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.invite__emails__tag-component--invalid {
+  border: 1px solid red;
+  background: #ffdddd;
+}
+
+.invite__emails__tag-component__delete {
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  margin-left: 0.3rem;
+  outline: none;
+}
+
+.invite__emails__tag-component__delete:hover {
+  color: red;
+}
+
+.invite__emails__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.invite__emails__submit {
+  pointer-events: none;
+  cursor: not-allowed;
+  background: gray;
+  color: white;
+  padding: 1rem 2rem;
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+}
+
+
+.invite__emails__submit--active {
+  pointer-events: auto;
+  cursor: pointer;
+  background: #4bacf1;
+}
+
+.invite__emails--success {
+  background: #4bacf1;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  min-height: 30rem;
+  box-sizing: border-box;
+}
+
+.invite__emails--success__inner {
+  background: url(./check.svg) no-repeat;
+  background-size: 3rem 3rem;
+  background-position: left 0 center;
+  padding-left: 4rem;
+  font-size: 3rem;
+}

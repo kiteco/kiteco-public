@@ -1,0 +1,148 @@
+resource_types:
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+
+resources:
+- name: image-lfs-pull
+  type: docker-image
+  source: {repository: kiteco/concourse.lfs-pull}
+- name: image-build
+  type: docker-image
+  source: {repository: kiteco/concourse}
+- name: kiteco
+  type: git
+  source:
+    uri: git@github.com:kiteco/kiteco.git
+    branch: release
+    private_key: ((ssh_private))
+    disable_ci_skip: true
+    tag_filter: v2* #! this'll last for the millenium
+- name: slack-release-notifications
+  type: slack-notification
+  source:
+    url: ((slack_release-notifications))
+
+jobs:
+#@ platforms = ["windows", "linux"]
+#@ for platform in platforms:
+- name: #@ "stage-{}-release".format(platform)
+  plan:
+  - get: image-lfs-pull
+  - get: image-build
+  - get: kiteco
+    trigger: true
+    params: &kiteco_get_params
+      depth: 10
+      submodules: none
+      disable_git_lfs: true
+
+  - in_parallel:
+    - task: kiteco-lfs-pull
+      file: kiteco/concourse/tasks/lfs-pull/task.yml
+      image: image-lfs-pull
+      input_mapping: {repo: kiteco}
+      output_mapping: {repo: kiteco}
+      vars:
+        private_key: ((ssh_private))
+
+    - do:
+      - task: build-release-binary
+        file: kiteco/concourse/tasks/build-release-binary/task.yml
+        image: image-build
+
+      - task: prepare-release
+        file: kiteco/concourse/tasks/prepare-release/task.yml
+        image: image-build
+        on_success:
+          put: slack-release-notifications
+          params:
+            text_file: slack/message
+        vars:
+          platform: #@ platform
+          release_db_uri: ((release_gcp-db-uri))
+
+  - task: build-client
+    file: #@ "kiteco/concourse/tasks/build-{}-client/task.yml".format(platform)
+    #@ if platform == "linux":
+    image: image-build
+    #@ end
+    vars:
+      #@ if platform == "linux":
+      private_key: ((linux_update-signing-key))
+      aws_access_key_id: ((aws_id))
+      aws_access_key_secret: ((aws_secret))
+      #@ elif platform == "windows":
+      update_signing: ((windows_update-signing-key-password))
+      #@ end
+
+  - task: upload-client
+    file: kiteco/concourse/tasks/upload-client-build/task.yml
+    image: image-build
+    vars:
+      aws_access_key_id: ((aws_id))
+      aws_access_key_secret: ((aws_secret))
+
+  - task: stage-client
+    file: kiteco/concourse/tasks/release-client-build/task.yml
+    image: image-build
+    input_mapping: {meta: build}
+    vars:
+      release_db_uri: ((release_gcp-db-uri))
+      percentage: 100
+
+  on_failure: &fail_notif
+    put: slack-release-notifications
+    params:
+      text: #@ "{} client release <http://concourse.kite.com/builds/$BUILD_ID|build> failed <@XXXXXXX>".format(platform.capitalize())
+  on_success:
+    put: slack-release-notifications
+    params:
+      text: #@ "{} client release available on staging <@XXXXXXX>".format(platform.capitalize())
+#@ end
+
+- name: stage-backend-release
+  plan:
+  - get: image-lfs-pull
+  - get: image-build
+  - get: kiteco
+    trigger: true
+    params: *kiteco_get_params
+  - task: kiteco-lfs-pull
+    file: kiteco/concourse/tasks/lfs-pull/task.yml
+    image: image-lfs-pull
+    input_mapping: {repo: kiteco}
+    output_mapping: {repo: kiteco}
+    vars:
+      private_key: ((ssh_private))
+  - task: build-backend
+    file: kiteco/concourse/tasks/build-backend/task.yml
+    image: image-build
+  - task: upload-backend
+    file: kiteco/concourse/tasks/upload-backend-build/task.yml
+    image: image-build
+    vars:
+      aws_access_key_id: ((aws_id))
+      aws_access_key_secret: ((aws_secret))
+  on_failure:
+    put: slack-release-notifications
+    params:
+      text: "Backend build <http://concourse.kite.com/builds/$BUILD_ID|build> failed <@XXXXXXX>"
+  on_success:
+    put: slack-release-notifications
+    params:
+      text: "Backend build <http://concourse.kite.com/builds/$BUILD_ID|build> succeeded <@XXXXXXX>"
+- name: puppet
+  plan:
+  - get: image-build
+  - get: kiteco
+    params: *kiteco_get_params
+  - task: build-puppet
+    file: kiteco/concourse/tasks/build-puppet/task.yml
+  - task: upload-puppet
+    file: kiteco/concourse/tasks/upload-puppet/task.yml
+    image: image-build
+    vars:
+      aws_access_key_id: ((aws_id))
+      aws_access_key_secret: ((aws_secret))

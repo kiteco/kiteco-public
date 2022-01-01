@@ -1,0 +1,45 @@
+.container {
+  align-items: center;
+  display: flex;
+  height: 2rem;
+}
+
+.logo {
+  mask: url('../../assets/icon-logo.svg') no-repeat;
+  height: 1.75rem;
+  width: 1.3rem;
+  background: var(--text-color-light);
+}
+
+.button {
+  font-size: 1.3rem;
+  background: var(--text-color-light);
+  line-height: 2rem;
+  height: 2rem;
+  padding: 0 1rem;
+  margin-left: 0.5rem;
+  border-radius: 0.5rem;
+  color: var(--button-text);
+}
+
+.button:hover {
+  background-color: var(--bright-color);
+}
+
+.button:disabled, .button:disabled:hover {
+  pointer-events: none;
+  opacity: var(--disabled-opacity);
+  background: var(--text-color-light);
+}
+
+.error {
+  background-color: var(--button-background-error);
+}
+
+.errorWithHover {
+  background-color: var(--button-background-error);
+}
+
+.errorWithHover:hover {
+  background-color: var(--button-background-error-highlight);
+}

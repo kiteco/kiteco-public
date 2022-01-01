@@ -1,0 +1,85 @@
+/* Dracula Theme v1.2.5
+ *
+ * https://github.com/dracula/highlightjs
+ *
+ * Copyright 2016-present, All rights reserved
+ *
+ * Code licensed under the MIT license
+ *
+ * @author Denis Ciccale <dciccale@gmail.com>
+ * @author Zeno Rocha <hi@zenorocha.com>
+ */
+
+html[data-theme="dark"] .hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #282a36;
+}
+
+html[data-theme="dark"] .hljs-built_in,
+html[data-theme="dark"] .hljs-selector-tag,
+html[data-theme="dark"] .hljs-section,
+html[data-theme="dark"] .hljs-link {
+  color: #8be9fd;
+}
+
+html[data-theme="dark"] .hljs-keyword {
+  color: #ff79c6;
+}
+
+html[data-theme="dark"] .hljs,
+html[data-theme="dark"] .hljs-subst {
+  color: #f8f8f2;
+}
+
+html[data-theme="dark"] .hljs-title {
+  color: #50fa7b;
+}
+
+html[data-theme="dark"] .hljs-string,
+html[data-theme="dark"] .hljs-meta,
+html[data-theme="dark"] .hljs-name,
+html[data-theme="dark"] .hljs-type,
+html[data-theme="dark"] .hljs-attr,
+html[data-theme="dark"] .hljs-symbol,
+html[data-theme="dark"] .hljs-bullet,
+html[data-theme="dark"] .hljs-addition,
+html[data-theme="dark"] .hljs-variable,
+html[data-theme="dark"] .hljs-template-tag,
+html[data-theme="dark"] .hljs-template-variable {
+  color: #f1fa8c;
+}
+
+html[data-theme="dark"] .hljs-comment,
+html[data-theme="dark"] .hljs-quote,
+html[data-theme="dark"] .hljs-deletion,
+html[data-theme="dark"] .hljs-selector-class,
+html[data-theme="dark"] .hljs-selector-id,
+html[data-theme="dark"] .hljs-selector-attr,
+html[data-theme="dark"] .hljs-selector-pseudo {
+  color: #6272a4;
+}
+
+html[data-theme="dark"] .hljs-keyword,
+html[data-theme="dark"] .hljs-selector-tag,
+html[data-theme="dark"] .hljs-selector-class,
+html[data-theme="dark"] .hljs-selector-id,
+html[data-theme="dark"] .hljs-literal,
+html[data-theme="dark"] .hljs-title,
+html[data-theme="dark"] .hljs-section,
+html[data-theme="dark"] .hljs-doctag,
+html[data-theme="dark"] .hljs-type,
+html[data-theme="dark"] .hljs-name,
+html[data-theme="dark"] .hljs-strong {
+  font-weight: bold;
+}
+
+html[data-theme="dark"] .hljs-literal,
+html[data-theme="dark"] .hljs-number {
+  color: #bd93f9;
+}
+
+html[data-theme="dark"] .hljs-emphasis {
+  font-style: italic;
+}

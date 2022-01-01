@@ -1,0 +1,21 @@
+.d-flex {
+  display: flex;
+}
+
+.d-md {
+  &-none {
+  display: none;
+
+    @media screen and (min-width: @md) {
+      display: block;
+    }
+  }
+
+  &-block {
+    display: block;
+
+    @media screen and (min-width: @md) {
+      display: none;
+    }
+  }
+}

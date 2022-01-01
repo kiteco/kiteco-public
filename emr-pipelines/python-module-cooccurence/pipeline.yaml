@@ -1,0 +1,20 @@
+---
+config:
+    instances: 10
+    instance_type: "m3.xlarge"
+
+pipeline:
+    modules:
+        input:  "s3://kite-emr/users/juan/github-unzip-filter/2016-06-24_18-13-09-PM/python-merge/output/*"
+        mapreduce_memory_mb: 4000
+    
+    cooccurences:
+        input: modules
+        mapreduce_memory_mb: 4000
+
+    merge: 
+        identity: True
+        input: cooccurences
+        mapreduce_reduce_tasks: 1
+        # max is 11520
+        mapreduce_memory_mb: 11000

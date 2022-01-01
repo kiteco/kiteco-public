@@ -1,0 +1,76 @@
+.header__settings {
+  margin-left: 2rem;
+  position: relative;
+}
+
+.header__settings__icon {
+  background: url('./icon-settings.svg') no-repeat;
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+.header__settings__icon--light {
+  background: url('./icon-settings-light.svg') no-repeat;
+}
+
+.header__settings__modal {
+  position: absolute;
+  right: 0rem;
+  top: 3.5rem;
+  box-shadow: -2px 2px 20px -6px #1a4c9c;
+  background: white;
+  min-width: 20rem;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: all ease-in-out 125ms;
+  z-index: 9999;
+}
+
+.header__settings__modal--closed {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+.header__settings__modal > * + * {
+  border-top: 1px #ccc solid;
+}
+
+.header__settings__description {
+  font-size: 1.5rem;
+  width: auto;
+  white-space: nowrap;
+  padding: 1rem;
+  color: #0a2e64;
+}
+
+.header__settings__email {
+  font-weight: 900;
+  display: block;
+  width: 100%;
+}
+
+.header__settings__actions {
+  display: flex;
+  flex-direction: column;
+}
+
+.header__settings__actions > * {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: #0a2e64;
+  padding: 0.5rem 1rem;
+}
+
+.header__settings__actions > *:hover {
+  background-color: #eee;
+}
+
+

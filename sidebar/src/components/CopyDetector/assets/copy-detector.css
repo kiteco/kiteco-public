@@ -1,0 +1,49 @@
+.copy-detection-wrapper {
+  position: relative;
+}
+
+.copy-detection-wrapper__label {
+}
+
+.copy-detection-wrapper__label .copy-detection-wrapper__label--link {
+  color: white;
+  text-decoration: underline;
+  margin-top: 1rem;
+  display: block;
+}
+
+.copy-detection-wrapper__label .copy-detection-wrapper__label--link:hover {
+  text-decoration: none;
+}
+
+.copy-detection-wrapper__label--title {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.copy-detection-wrapper__copied-overlay {
+  position: absolute;
+  right: 1rem;
+  top: calc(50% + 1.5rem);
+  transform:translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: white;
+  text-align: right;
+  animation: 200ms copy-detection-wrapper__animation;
+  animation-fill-mode: forwards;
+}
+
+@keyframes copy-detection-wrapper__animation {
+  0% {
+    transform: translateY(calc(-50% + 2rem));
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}

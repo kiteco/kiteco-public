@@ -1,0 +1,267 @@
+.invite__gmail {
+  height: 100%;
+  width: 100%;
+  font-size: 1.3rem;
+  box-sizing: border-box;
+}
+
+.invite__gmail__loading,
+.invite__gmail__error,
+.invite__gmail__form--success {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  min-height: 30rem;
+  box-sizing: border-box;
+}
+
+.invite__gmail__form--success {
+  background-color: #14B4C3;
+}
+
+.invite__gmail__form--success__inner {
+  background: url(./check.svg) no-repeat;
+  background-size: 3rem 3rem;
+  background-position: left 0 center;
+  padding-left: 4rem;
+  font-size: 3rem;
+}
+
+.invite__gmail__loading {
+  background: #fff;
+  color: #11182F;
+  font-size: 2rem;
+  line-height: 1.6;
+}
+
+.invite__gmail__error {
+  background: #fff;
+  color: #11182F;
+  min-height: 24rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.invite__gmail__error > p {
+  font-size: 2rem;
+  line-height: 1.6;
+  margin-bottom: 4.8rem;
+  text-align: center;
+}
+
+.invite__gmail__error-btn {
+  height: 4rem;
+  width: 100%;
+  max-width: 20rem;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #14B4C3;
+  cursor: pointer;
+}
+
+.invite__gmail__error-btn:hover {
+  background-color: #5DD8E4;
+}
+
+.invite__gmail__error--small {
+  color: red;
+}
+
+.invite__gmail__error--small p {
+  margin: 0;
+}
+
+.invite__gmail__form {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.invite__gmail__form > * {
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.invite__gmail__form > * + * {
+  margin: 0;
+  padding: 0;
+}
+
+.invite__gmail__form > * + * {
+  margin-top: 1rem;
+}
+
+.invite__gmail__from {
+  display: flex;
+  align-items: center;
+}
+
+.invite__gmail__from__input {
+  flex-grow: 1;
+  height: 4.8rem;
+  padding: 0 1.6rem;
+  font-size: 1.4rem;
+  border-radius: 0.4rem;
+  border: none;
+  outline: none;
+  background-color: #fff;
+  margin-bottom: 2.4rem;
+}
+
+.invite__gmail__search {
+  padding-left: 4.4rem;
+  height: 4.8rem;
+  font-size: 1.4rem;
+  outline: none;
+  border-radius: 0.4rem;
+  border: none;
+  background-image: url(./search.svg);
+  background-repeat: no-repeat;
+  background-size: 1.6rem 1.6rem;
+  background-position: left 1.6rem center;
+  margin: 0 0 2.4rem;
+}
+
+.invite__gmail__emails {
+  list-style: none;
+  overflow: auto;
+  padding: 1rem;
+  border: none;
+  flex-grow: 1;
+  flex-shrink: 2;
+  border-radius: 0.4rem;
+  height: 100%;
+  max-height: 36rem;
+  margin: 0 0 2rem;
+  background-color: #fff;
+}
+
+.invite__gmail__emails > * + * {
+  margin-top: 0.5rem;
+}
+
+.invite__gmail__list-item {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+  margin-top: 0;
+  align-items: center;
+}
+
+.invite__gmail__list-item:hover {
+  background: #eee;
+  border-radius: 0.2rem;
+}
+
+.invite__gmail__list-item > * + * {
+  width: 40%;
+  margin-left: 1rem;
+}
+
+.invite__gmail__checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+}
+
+.invite__gmail__checkbox input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.invite__gmail__checkbox .invite__gmail__checkmark {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid #C8C8C8;
+  border-radius: 0.3rem;
+  margin-right: 1.5rem;
+}
+
+.invite__gmail__checkbox input[type='checkbox']:checked ~ .invite__gmail__checkmark {
+  border-color: #2C90FC;
+  background-color: #3B99FC;
+  background-image: url('./check.png');
+  background-size: 1.1rem 1rem;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.invite__gmail__name {
+  font-weight: 200;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  color: #11182F;
+}
+
+.invite__gmail__email {
+  text-overflow: ellipsis;
+  flex-grow: 0;
+  overflow: hidden;
+  font-size: 1.4rem;
+  font-weight: 200;
+  color: #858894;
+  text-align: right;
+}
+
+.invite__gmail__no-emails {
+  text-align: center;
+  color: #555;
+  font-size: 1.6rem;
+  font-weight: 200;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  height: 100%;
+  box-sizing: border-box;
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invite__gmail__buttons {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+}
+
+.invite__gmail__submit {
+  width: 100%;
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #14B4C3;
+  color: white;
+  height: 4rem;
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.invite__gmail__submit:hover {
+  background-color: #5DD8E4;
+}
+
+.invite__gmail__submit--active {
+  pointer-events: auto;
+  cursor: pointer;
+  background: #14B4C3;
+}

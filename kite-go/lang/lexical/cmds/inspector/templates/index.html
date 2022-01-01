@@ -1,0 +1,275 @@
+<html>
+  <style type="text/css">
+    body {
+      font-family: sans-serif;
+      font-weight: 100;
+    }
+    h1 {
+      font-size: 20;
+      font-weight: 100;
+      margin-bottom: 3;
+    }
+    input[type="submit"] {
+      height: 25;
+      width: 150;
+      border: none;
+      background-color: #def;
+      color: #048;
+    }
+    input[type="number"] {
+      width: 70;
+      height: 20;
+    }
+    textarea, .output, .attention {
+      width: 1200;
+      font: 1em monospace;
+    }
+    textarea, .output {
+      box-sizing: border-box;
+      border: none;
+      padding: 7;
+      background-color: #eee;
+    }
+    textarea {
+      height: 400;
+      white-space: pre;
+      resize: none;
+    }
+    label {
+      display: block;
+      float: left;
+      width: 100;
+      margin-top: 4;
+    }
+    table {
+      font: 0.7em monospace;
+      border-spacing: 0em;
+    }
+    tr:hover {
+      outline: thin solid;
+    }
+    .output {
+      white-space: pre-wrap;
+    }
+    .flex-container {
+      display: flex;
+    }
+    .sidebar {
+      width: 200;
+    }
+    a:link {
+      color: navy;
+    }
+    a:visited {
+      color: navy;
+    }
+  </style>
+  <body>
+    <form action="/" method="POST" name="form">
+      <div>
+        <select name="modelpath">
+          {{range .ModelPaths}}
+            {{if .Selected}}
+              <option value="{{.Path}}" selected>{{.Path}}</option>
+            {{else}}
+              <option value="{{.Path}}">{{.Path}}</option>
+            {{end}}
+          {{end}}
+        </select>
+      </div>
+      <div class="flex-container">
+        <div class="sidebar">
+          <p>
+            <label>Window:</label>
+            <input type="number" min="1" value={{printf "%d" .Config.Window}} name="window">
+          </p>
+          <p>
+            <label>Top K:</label>
+            <input type="number" min="1" value={{printf "%d" .Config.TopK}} name="topk">
+          </p>
+          <p>
+            <label>Top P:</label>
+            <input type="number" min="1" value={{printf "%d" .TopPPct}} name="topp">
+          </p>
+          <p>
+            <label>Min P:</label>
+            <input type="number" min="0" step=.00001 value={{printf "%.4f" .MinP}} name="minp">
+          </p>
+          <p>
+            <label>BeamWidth:</label>
+            <input type="number" min="1" value={{printf "%d" .Config.BeamWidth}} name="beamwidth">
+          </p>
+          <p>
+            <label>Depth:</label>
+            <input type="number" min="1" value={{printf "%d" .Config.Depth}} name="depth">
+          </p>
+          <p>
+            <label>Prefix Regularization:</label>
+            <input type="number" min="0" step=.001 value={{printf "%.4f" .PrefixRegularization}} name="prefixreg">
+          </p>
+          <p>
+            <label>FileName:</label>
+            <input type="text" value={{printf "%s" .FileName}} name="filename">
+          </p>
+          {{if .Auto}}
+          {{else}}
+            <p>
+              <input type="submit" name="mode" value="Predict">
+            </p>
+            <p>
+              <input type="submit" name="mode" value="New random sample">
+            </p>
+            <a href="/save/{{.Key}}">Save to catalog</a>
+          {{end}}
+        </div>
+        <div>
+          <h1>Code</h1>
+            <textarea name="code" class="code">{{printf "%s" .Code}}</textarea>
+          <h1>Completions</h1>
+            <div class="output">{{printf "%s" .Completions}}</div>
+          {{if .ShowDuration}}
+            <h1>Duration</h1>
+              <div class="output">{{printf "%s" .Duration}}</div>
+          {{end}}
+          <h1>Prefix</h1>
+            <div class="output">{{printf "%s" .Prefix}}</div>
+          <h1>Beams</h1>
+            <div class="output">{{printf "%s" .Beams}}</div>
+          <h1>Detailed Beams</h1>
+            <a href="/beams/{{.Key}}" target="_blank">Detailed Beams</a>
+          <h1>Context Before Attention</h1>
+            <div class="attention">
+              {{range .Before}}
+                <span style="background-color:{{.Color}}">{{.Token}}</span>
+                {{if .Break}}<br>{{end}}
+              {{end}}
+            </div>
+            <p>
+            <div>
+              <table>
+                {{range $level := .BeforeLabels}}
+                  <tr>
+                    {{range $label := $level}}
+                      <td>{{printf "%s" $label}}</td>
+                    {{end}}
+                  </tr>
+                {{end}}
+                {{range .Before}}
+                  <tr>
+                    <td>{{.Token}}</td>
+                    {{range $color := .Heads}}
+                      <td style="background-color:{{$color}}" width=10em></td>
+                    {{end}}
+                  </tr>
+                {{end}}
+                {{range $level := .BeforeLabels}}
+                  <tr>
+                    {{range $label := $level}}
+                      <td>{{printf "%s" $label}}</td>
+                    {{end}}
+                  </tr>
+                {{end}}
+              </table>
+            </div>
+          <h1>Context Predict Attention</h1>
+            <div class="attention">
+              {{range .Predict}}
+                <span style="background-color:{{.Color}}">{{.Token}}</span>
+                {{if .Break}}<br>{{end}}
+              {{end}}
+            </div>
+            <p>
+            <div>
+              <table>
+                {{range $level := .PredictLabels}}
+                  <tr>
+                    {{range $label := $level}}
+                      <td>{{printf "%s" $label}}</td>
+                    {{end}}
+                  </tr>
+                {{end}}
+                {{range .Predict}}
+                  <tr>
+                    <td>{{.Token}}</td>
+                    {{range $color := .Heads}}
+                      <td style="background-color:{{$color}}" width=10em></td>
+                    {{end}}
+                  </tr>
+                {{end}}
+                {{range $level := .PredictLabels}}
+                  <tr>
+                    {{range $label := $level}}
+                      <td>{{printf "%s" $label}}</td>
+                    {{end}}
+                  </tr>
+                {{end}}
+              </table>
+            </div>
+          <h1>Context After Attention</h1>
+            <div class="attention">
+              {{range .After}}
+                <span style="background-color:{{.Color}}">{{.Token}}</span>
+                {{if .Break}}<br>{{end}}
+              {{end}}
+            </div>
+            <p>
+            <div>
+              <table>
+                {{range $level := .AfterLabels}}
+                  <tr>
+                    {{range $label := $level}}
+                      <td>{{printf "%s" $label}}</td>
+                    {{end}}
+                  </tr>
+                {{end}}
+                {{range .After}}
+                  <tr>
+                    <td>{{.Token}}</td>
+                    {{range $color := .Heads}}
+                      <td style="background-color:{{$color}}" width=10em></td>
+                    {{end}}
+                  </tr>
+                {{end}}
+                {{range $level := .AfterLabels}}
+                  <tr>
+                    {{range $label := $level}}
+                      <td>{{printf "%s" $label}}</td>
+                    {{end}}
+                  </tr>
+                {{end}}
+              </table>
+            </div>
+        </div>
+      </div>
+    </form>
+  </body>
+  <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script type="text/javascript">
+    var freq = 100
+    var latest = {{printf "%d" .Latest}}
+    var form = document.getElementsByName("form")[0]
+    var code = document.getElementsByName("code")[0]
+    code.scrollTop = code.scrollHeight
+
+    function stayFresh(){
+      $.ajax({
+        url: "/isFresh/",
+        type: "post",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({latest}),
+        dataType: "json",
+        success: function(r) {
+          if (r != latest) {
+            form.submit()
+          }
+        }
+      });
+    };
+
+    if (location.href.includes("auto")) {
+      form.action = "/auto/"
+      setInterval(stayFresh, freq)
+    }
+
+  </script>
+</html>

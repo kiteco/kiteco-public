@@ -1,0 +1,53 @@
+{
+  "name": "kite-sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile-prod": "webpack --mode production",
+    "compile-dev": "webpack --mode development",
+    "compile": "webpack --mode none",
+    "concat-bundles": "node build/concat.js",
+    "clean-install": "rm -f package-lock.json && rm -rf node_modules && npm install",
+    "make-production": "npm run compile-prod && npm run concat-bundles",
+    "make-production-light": "npm run compile-prod -- --env.kiteTheme=kite-light && npm run concat-bundles",
+    "make-production-all": "npm run compile-prod -- --env.kiteTheme=kite-light && npm run compile-prod && npm run concat-bundles",
+    "make-production-js-only": "npm run compile-prod -- --env.jsOnly=true"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "animated": "^0.2.2",
+    "codemirror": "^5.46.0",
+    "core-js": "^3.0.1",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.11",
+    "react": "^16.8.6",
+    "react-codemirror2": "^5.1.0",
+    "react-dom": "^16.8.6",
+    "react-on-visible": "^1.6.0",
+    "react-redux": "^7.0.2",
+    "react-share": "^2.4.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "regenerator-runtime": "^0.13.2",
+    "uuid": "^3.3.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.5.1",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "terser-webpack-plugin": "^1.2.3"
+  }
+}

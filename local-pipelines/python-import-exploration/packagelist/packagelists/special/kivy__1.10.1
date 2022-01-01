@@ -1,0 +1,17 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update
+
+# do we need this?
+RUN apt install -y --no-install-recommends software-properties-common
+# https://kivy.org/doc/stable/installation/installation-linux.html#ubuntu-example
+RUN apt install -y --no-install-recommends ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev
+# optional
+RUN apt install -y --no-install-recommends libgstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good
+
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install cython
+RUN pip3 install kivy==1.10.1
+
+ENTRYPOINT ["/usr/bin/env", "python3", "-m", "kite.pkgexploration", "Kivy", "1.10.1", "kivy__1.10.1.json", "kivy__1.10.1.log", "--toplevel", "kivy"]

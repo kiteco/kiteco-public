@@ -1,0 +1,955 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "noop://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="noop://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>celery — Distributed processing — Celery 3.1.18 documentation</title>
+    
+    <link rel="stylesheet" href="celery_files/celery.css" type="text/css">
+    <link rel="stylesheet" href="celery_files/pygments.css" type="text/css">
+    <link rel="stylesheet" href="celery_files/badge_only.css" type="text/css">
+    <link rel="stylesheet" href="celery_files/readthedocs-doc-embed.css" type="text/css">
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.1.18',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="celery_files/jquery-2.js"></script>
+    <script type="text/javascript" src="celery_files/jquery-migrate-1.js"></script>
+    <script type="text/javascript" src="celery_files/underscore.js"></script>
+    <script type="text/javascript" src="celery_files/doctools.js"></script>
+    <script type="text/javascript" src="celery_files/readthedocs-doc-embed.js"></script>
+    <link rel="copyright" title="Copyright" href="noop://celery.readthedocs.org/en/latest/copyright.html">
+    <link rel="top" title="Celery 3.1.18 documentation" href="noop://celery.readthedocs.org/en/latest/index.html">
+    <link rel="up" title="API Reference" href="noop://celery.readthedocs.org/en/latest/reference/index.html">
+    <link rel="next" title="celery.app" href="noop://celery.readthedocs.org/en/latest/reference/celery.app.html">
+    <link rel="prev" title="API Reference" href="noop://celery.readthedocs.org/en/latest/reference/index.html">
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  noop://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="noop://celery.readthedocs.org/en/latest/reference/celery.html">
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "celery",
+    version: "latest",
+    language: "en",
+    page: "reference/celery",
+    builder: "sphinx",
+    theme: "celery",
+    docroot: "/docs/",
+    source_suffix: ".rst",
+    api_host: "noop://readthedocs.org",
+    commit: "b1a2b2592a3611eb6e698e179fa2532046f1cfde"
+  }
+  // Old variables
+  var doc_version = "latest";
+  var doc_slug = "celery";
+  var page_name = "reference/celery";
+  var html_theme = "celery";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('noop:' == document.location.protocol ? 'noop://ssl' : 'noop://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="noop://celery.readthedocs.org/en/latest/genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="noop://celery.readthedocs.org/en/latest/py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="noop://celery.readthedocs.org/en/latest/reference/celery.app.html" title="celery.app" accesskey="N">next</a> |</li>
+        <li class="right">
+          <a href="noop://celery.readthedocs.org/en/latest/reference/index.html" title="API Reference" accesskey="P">previous</a> |</li>
+        <li><a href="noop://celery.readthedocs.org/en/latest/index.html">Celery 3.1.18 documentation</a> »</li>
+          <li><a href="noop://celery.readthedocs.org/en/latest/reference/index.html" accesskey="U">API Reference</a> »</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+<div class="deck">
+
+    
+        <p>
+        This document describes the current stable version of Celery (3.1). For development docs,
+        <a href="noop://docs.celeryproject.org/en/master/reference/celery.html">go here</a>.
+        </p>
+    
+
+</div>
+    <div class="section" id="module-celery">
+<span id="celery-distributed-processing"></span><h1><a class="reference internal" href="#module-celery" title="celery: Distributed processing"><tt class="xref py py-mod docutils literal"><span class="pre">celery</span></tt></a> — Distributed processing<a class="headerlink" href="#module-celery" title="Permalink to this headline">¶</a></h1>
+<hr class="docutils">
+<p>This module is the main entry-point for the Celery API.
+It includes commonly needed things for calling tasks,
+and creating Celery applications.</p>
+<table class="docutils" border="1">
+<colgroup>
+<col width="29%">
+<col width="71%">
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#celery.Celery" title="celery.Celery"><tt class="xref py py-class docutils literal"><span class="pre">Celery</span></tt></a></td>
+<td>celery application instance</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#celery.group" title="celery.group"><tt class="xref py py-class docutils literal"><span class="pre">group</span></tt></a></td>
+<td>group tasks together</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#celery.chain" title="celery.chain"><tt class="xref py py-class docutils literal"><span class="pre">chain</span></tt></a></td>
+<td>chain tasks together</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#celery.chord" title="celery.chord"><tt class="xref py py-class docutils literal"><span class="pre">chord</span></tt></a></td>
+<td>chords enable callbacks for groups</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#celery.signature" title="celery.signature"><tt class="xref py py-class docutils literal"><span class="pre">signature</span></tt></a></td>
+<td>object describing a task invocation</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#celery.current_app" title="celery.current_app"><tt class="xref py py-data docutils literal"><span class="pre">current_app</span></tt></a></td>
+<td>proxy to the current application instance</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#celery.current_task" title="celery.current_task"><tt class="xref py py-data docutils literal"><span class="pre">current_task</span></tt></a></td>
+<td>proxy to the currently executing task</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="celery-application-objects">
+<h2><a class="reference internal" href="#celery.Celery" title="celery.Celery"><tt class="xref py py-class docutils literal"><span class="pre">Celery</span></tt></a> application objects<a class="headerlink" href="#celery-application-objects" title="Permalink to this headline">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 2.5.</span></p>
+</div>
+<dl class="class">
+<dt id="celery.Celery">
+<em class="property">class </em><tt class="descclassname">celery.</tt><tt class="descname">Celery</tt><big>(</big><em>main='__main__'</em>, <em>broker='amqp://localhost//'</em>, <em>…</em><big>)</big><a class="headerlink" href="#celery.Celery" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>main</strong> – Name of the main module if running as <cite>__main__</cite>.
+This is used as a prefix for task names.</li>
+<li><strong>broker</strong> – URL of the default broker used.</li>
+<li><strong>loader</strong> – The loader class, or the name of the loader class to use.
+Default is <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.loaders.app.html#celery.loaders.app.AppLoader" title="celery.loaders.app.AppLoader"><tt class="xref py py-class docutils literal"><span class="pre">celery.loaders.app.AppLoader</span></tt></a>.</li>
+<li><strong>backend</strong> – The result store backend class, or the name of the
+backend class to use. Default is the value of the
+<a class="reference internal" href="noop://celery.readthedocs.org/en/latest/configuration.html#std:setting-CELERY_RESULT_BACKEND"><tt class="xref std std-setting docutils literal"><span class="pre">CELERY_RESULT_BACKEND</span></tt></a> setting.</li>
+<li><strong>amqp</strong> – AMQP object or class name.</li>
+<li><strong>events</strong> – Events object or class name.</li>
+<li><strong>log</strong> – Log object or class name.</li>
+<li><strong>control</strong> – Control object or class name.</li>
+<li><strong>set_as_current</strong> – Make this the global current app.</li>
+<li><strong>tasks</strong> – A task registry or the name of a registry class.</li>
+<li><strong>include</strong> – List of modules every worker should import.</li>
+<li><strong>fixups</strong> – List of fixup plug-ins (see e.g.
+<tt class="xref py py-mod docutils literal"><span class="pre">celery.fixups.django</span></tt>).</li>
+<li><strong>autofinalize</strong> – If set to False a <a class="reference external" href="noop://docs.python.org/dev/library/exceptions.html#RuntimeError" title="(in Python v3.5)"><tt class="xref py py-exc docutils literal"><span class="pre">RuntimeError</span></tt></a>
+will be raised if the task registry or tasks are used before
+the app is finalized.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="celery.Celery.main">
+<tt class="descname">main</tt><a class="headerlink" href="#celery.Celery.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the <cite>__main__</cite> module.  Required for standalone scripts.</p>
+<p>If set this will be used instead of <cite>__main__</cite> when automatically
+generating task names.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.conf">
+<tt class="descname">conf</tt><a class="headerlink" href="#celery.Celery.conf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current configuration.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.user_options">
+<tt class="descname">user_options</tt><a class="headerlink" href="#celery.Celery.user_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom options for command-line programs.
+See <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/userguide/extending.html#extending-commandoptions"><em>Adding new command-line options</em></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.steps">
+<tt class="descname">steps</tt><a class="headerlink" href="#celery.Celery.steps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom bootsteps to extend and modify the worker.
+See <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/userguide/extending.html#extending-bootsteps"><em>Installing Bootsteps</em></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.current_task">
+<tt class="descname">current_task</tt><a class="headerlink" href="#celery.Celery.current_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>The instance of the task that is being executed, or <tt class="xref py py-const docutils literal"><span class="pre">None</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.amqp">
+<tt class="descname">amqp</tt><a class="headerlink" href="#celery.Celery.amqp" title="Permalink to this definition">¶</a></dt>
+<dd><p>AMQP related functionality: <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.app.amqp.html#celery.app.amqp.AMQP" title="celery.app.amqp.AMQP"><tt class="xref py py-class docutils literal"><span class="pre">amqp</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.backend">
+<tt class="descname">backend</tt><a class="headerlink" href="#celery.Celery.backend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current backend instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.loader">
+<tt class="descname">loader</tt><a class="headerlink" href="#celery.Celery.loader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current loader instance.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.control">
+<tt class="descname">control</tt><a class="headerlink" href="#celery.Celery.control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remote control: <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.app.control.html#celery.app.control.Control" title="celery.app.control.Control"><tt class="xref py py-class docutils literal"><span class="pre">control</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.events">
+<tt class="descname">events</tt><a class="headerlink" href="#celery.Celery.events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Consuming and sending events: <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.events.html#celery.events.Events" title="celery.events.Events"><tt class="xref py py-class docutils literal"><span class="pre">events</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.log">
+<tt class="descname">log</tt><a class="headerlink" href="#celery.Celery.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logging: <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.app.log.html#celery.app.log.Logging" title="celery.app.log.Logging"><tt class="xref py py-class docutils literal"><span class="pre">log</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.tasks">
+<tt class="descname">tasks</tt><a class="headerlink" href="#celery.Celery.tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Task registry.</p>
+<p>Accessing this attribute will also finalize the app.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.pool">
+<tt class="descname">pool</tt><a class="headerlink" href="#celery.Celery.pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Broker connection pool: <a class="reference external" href="noop://kombu.readthedocs.org/en/latest/reference/kombu.connection.html#kombu.connection.ConnectionPool" title="(in Kombu v3.0)"><tt class="xref py py-class docutils literal"><span class="pre">pool</span></tt></a>.
+This attribute is not related to the workers concurrency pool.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.Task">
+<tt class="descname">Task</tt><a class="headerlink" href="#celery.Celery.Task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base task class for this app.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.timezone">
+<tt class="descname">timezone</tt><a class="headerlink" href="#celery.Celery.timezone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current timezone for this app.
+This is a cached property taking the time zone from the
+<a class="reference internal" href="noop://celery.readthedocs.org/en/latest/configuration.html#std:setting-CELERY_TIMEZONE"><tt class="xref std std-setting docutils literal"><span class="pre">CELERY_TIMEZONE</span></tt></a> setting.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#celery.Celery.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close any open pool connections and do any other steps necessary
+to clean up after the application.</p>
+<p>Only necessary for dynamically created apps for which you can
+use the with statement instead:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="k">with</span> <span class="n">Celery</span><span class="p">(</span><span class="n">set_as_current</span><span class="o">=</span><span class="k">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">app</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.signature">
+<tt class="descname">signature</tt><big>(</big><big>)</big><a class="headerlink" href="#celery.Celery.signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new <tt class="xref py py-class docutils literal"><span class="pre">Signature</span></tt> bound to this app.
+See <a class="reference internal" href="#celery.signature" title="celery.signature"><tt class="xref py py-meth docutils literal"><span class="pre">signature()</span></tt></a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.bugreport">
+<tt class="descname">bugreport</tt><big>(</big><big>)</big><a class="headerlink" href="#celery.Celery.bugreport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string with information useful for the Celery core
+developers when reporting a bug.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.config_from_object">
+<tt class="descname">config_from_object</tt><big>(</big><em>obj</em>, <em>silent=False</em>, <em>force=False</em><big>)</big><a class="headerlink" href="#celery.Celery.config_from_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads configuration from object, where object is either
+an object or the name of a module to import.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>silent</strong> – If true then import errors will be ignored.</li>
+<li><strong>force</strong> – Force reading configuration immediately.
+By default the configuration will be read only when required.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">celery</span><span class="o">.</span><span class="n">config_from_object</span><span class="p">(</span><span class="s">"myapp.celeryconfig"</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">myapp</span> <span class="kn">import</span> <span class="n">celeryconfig</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">celery</span><span class="o">.</span><span class="n">config_from_object</span><span class="p">(</span><span class="n">celeryconfig</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<tt class="descname">Celery.config_from_envvar(variable_name,</tt></dt>
+<dt>
+<tt class="descname">silent=False, force=False)</tt></dt>
+<dd><p>Read configuration from environment variable.</p>
+<p>The value of the environment variable must be the name
+of a module to import.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"CELERY_CONFIG_MODULE"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"myapp.celeryconfig"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">celery</span><span class="o">.</span><span class="n">config_from_envvar</span><span class="p">(</span><span class="s">"CELERY_CONFIG_MODULE"</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.autodiscover_tasks">
+<tt class="descname">autodiscover_tasks</tt><big>(</big><em>packages</em>, <em>related_name="tasks"</em><big>)</big><a class="headerlink" href="#celery.Celery.autodiscover_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>With a list of packages, try to import modules of a specific name (by
+default ‘tasks’).</p>
+<p>For example if you have an (imagined) directory tree like this:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="n">foo</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span>
+   <span class="n">tasks</span><span class="o">.</span><span class="n">py</span>
+   <span class="n">models</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">bar</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">tasks</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">models</span><span class="o">.</span><span class="n">py</span>
+
+<span class="n">baz</span><span class="o">/</span><span class="n">__init__</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">models</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Then calling <tt class="docutils literal"><span class="pre">app.autodiscover_tasks(['foo',</span> <span class="pre">bar',</span> <span class="pre">'baz'])</span></tt> will
+result in the modules <tt class="docutils literal"><span class="pre">foo.tasks</span></tt> and <tt class="docutils literal"><span class="pre">bar.tasks</span></tt> being imported.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>packages</strong> – List of packages to search.
+This argument may also be a callable, in which case the
+value returned is used (for lazy evaluation).</li>
+<li><strong>related_name</strong> – The name of the module to find.  Defaults
+to “tasks”, which means it look for “module.tasks” for every
+module in <tt class="docutils literal"><span class="pre">packages</span></tt>.</li>
+<li><strong>force</strong> – By default this call is lazy so that the actual
+autodiscovery will not happen until an application imports the
+default modules.  Forcing will cause the autodiscovery to happen
+immediately.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.add_defaults">
+<tt class="descname">add_defaults</tt><big>(</big><em>d</em><big>)</big><a class="headerlink" href="#celery.Celery.add_defaults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add default configuration from dict <tt class="docutils literal"><span class="pre">d</span></tt>.</p>
+<p>If the argument is a callable function then it will be regarded
+as a promise, and it won’t be loaded until the configuration is
+actually needed.</p>
+<p>This method can be compared to:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">celery</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>with a difference that 1) no copy will be made and 2) the dict will
+not be transferred when the worker spawns child processes, so
+it’s important that the same configuration happens at import time
+when pickle restores the object on the other side.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.setup_security">
+<tt class="descname">setup_security</tt><big>(</big><em>…</em><big>)</big><a class="headerlink" href="#celery.Celery.setup_security" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setup the message-signing serializer.
+This will affect all application instances (a global operation).</p>
+<p>Disables untrusted serializers and if configured to use the <tt class="docutils literal"><span class="pre">auth</span></tt>
+serializer will register the auth serializer with the provided settings
+into the Kombu serializer registry.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>allowed_serializers</strong> – List of serializer names, or content_types
+that should be exempt from being disabled.</li>
+<li><strong>key</strong> – Name of private key file to use.
+Defaults to the <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/configuration.html#std:setting-CELERY_SECURITY_KEY"><tt class="xref std std-setting docutils literal"><span class="pre">CELERY_SECURITY_KEY</span></tt></a> setting.</li>
+<li><strong>cert</strong> – Name of certificate file to use.
+Defaults to the <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/configuration.html#std:setting-CELERY_SECURITY_CERTIFICATE"><tt class="xref std std-setting docutils literal"><span class="pre">CELERY_SECURITY_CERTIFICATE</span></tt></a> setting.</li>
+<li><strong>store</strong> – Directory containing certificates.
+Defaults to the <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/configuration.html#std:setting-CELERY_SECURITY_CERT_STORE"><tt class="xref std std-setting docutils literal"><span class="pre">CELERY_SECURITY_CERT_STORE</span></tt></a> setting.</li>
+<li><strong>digest</strong> – Digest algorithm used when signing messages.
+Default is <tt class="docutils literal"><span class="pre">sha1</span></tt>.</li>
+<li><strong>serializer</strong> – Serializer used to encode messages after
+they have been signed.  See <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/configuration.html#std:setting-CELERY_TASK_SERIALIZER"><tt class="xref std std-setting docutils literal"><span class="pre">CELERY_TASK_SERIALIZER</span></tt></a> for
+the serializers supported.
+Default is <tt class="docutils literal"><span class="pre">json</span></tt>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.start">
+<tt class="descname">start</tt><big>(</big><em>argv=None</em><big>)</big><a class="headerlink" href="#celery.Celery.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run <strong class="program">celery</strong> using <cite>argv</cite>.</p>
+<p>Uses <a class="reference external" href="noop://docs.python.org/dev/library/sys.html#sys.argv" title="(in Python v3.5)"><tt class="xref py py-data docutils literal"><span class="pre">sys.argv</span></tt></a> if <cite>argv</cite> is not specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.task">
+<tt class="descname">task</tt><big>(</big><em>fun</em>, <em>…</em><big>)</big><a class="headerlink" href="#celery.Celery.task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator to create a task class out of any callable.</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre>@app.task
+def refresh_feed(url):
+    return …
+</pre></div>
+</div>
+<p>with setting extra options:</p>
+<div class="highlight-python"><div class="highlight"><pre>@app.task(exchange="feeds")
+def refresh_feed(url):
+    return …
+</pre></div>
+</div>
+<div class="admonition-app-binding admonition">
+<p class="first admonition-title">App Binding</p>
+<p>For custom apps the task decorator will return a proxy
+object, so that the act of creating the task is not performed
+until the task is used or the task registry is accessed.</p>
+<p class="last">If you are depending on binding to be deferred, then you must
+not access any attributes on the returned object until the
+application is fully set up (finalized).</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.send_task">
+<tt class="descname">send_task</tt><big>(</big><em>name</em><span class="optional">[</span>, <em>args</em><span class="optional">[</span>, <em>kwargs</em><span class="optional">[</span>, <em>…</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#celery.Celery.send_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send task by name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> – Name of task to call (e.g. <cite>“tasks.add”</cite>).</li>
+<li><strong>result_cls</strong> – Specify custom result class. Default is
+using <a class="reference internal" href="#celery.Celery.AsyncResult" title="celery.Celery.AsyncResult"><tt class="xref py py-meth docutils literal"><span class="pre">AsyncResult()</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Otherwise supports the same arguments as <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.app.task.html#celery.app.task.Task.apply_async" title="celery.app.task.Task.apply_async"><tt class="xref py py-meth docutils literal"><span class="pre">Task.apply_async()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.AsyncResult">
+<tt class="descname">AsyncResult</tt><a class="headerlink" href="#celery.Celery.AsyncResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new result instance. See <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.result.html#celery.result.AsyncResult" title="celery.result.AsyncResult"><tt class="xref py py-class docutils literal"><span class="pre">AsyncResult</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.GroupResult">
+<tt class="descname">GroupResult</tt><a class="headerlink" href="#celery.Celery.GroupResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new group result instance.
+See <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.result.html#celery.result.GroupResult" title="celery.result.GroupResult"><tt class="xref py py-class docutils literal"><span class="pre">GroupResult</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.worker_main">
+<tt class="descname">worker_main</tt><big>(</big><em>argv=None</em><big>)</big><a class="headerlink" href="#celery.Celery.worker_main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run <strong class="program">celery worker</strong> using <cite>argv</cite>.</p>
+<p>Uses <a class="reference external" href="noop://docs.python.org/dev/library/sys.html#sys.argv" title="(in Python v3.5)"><tt class="xref py py-data docutils literal"><span class="pre">sys.argv</span></tt></a> if <cite>argv</cite> is not specified.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.Worker">
+<tt class="descname">Worker</tt><a class="headerlink" href="#celery.Celery.Worker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Worker application. See <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.apps.worker.html#celery.apps.worker.Worker" title="celery.apps.worker.Worker"><tt class="xref py py-class docutils literal"><span class="pre">Worker</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.WorkController">
+<tt class="descname">WorkController</tt><a class="headerlink" href="#celery.Celery.WorkController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Embeddable worker. See <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.worker.html#celery.worker.WorkController" title="celery.worker.WorkController"><tt class="xref py py-class docutils literal"><span class="pre">WorkController</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.Beat">
+<tt class="descname">Beat</tt><a class="headerlink" href="#celery.Celery.Beat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Celerybeat scheduler application.
+See <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.apps.beat.html#celery.apps.beat.Beat" title="celery.apps.beat.Beat"><tt class="xref py py-class docutils literal"><span class="pre">Beat</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.connection">
+<tt class="descname">connection</tt><big>(</big><em>url=default</em><span class="optional">[</span>, <em>ssl</em><span class="optional">[</span>, <em>transport_options={}</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#celery.Celery.connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establish a connection to the message broker.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>url</strong> – Either the URL or the hostname of the broker to use.</li>
+<li><strong>hostname</strong> – URL, Hostname/IP-address of the broker.
+If an URL is used, then the other argument below will
+be taken from the URL instead.</li>
+<li><strong>userid</strong> – Username to authenticate as.</li>
+<li><strong>password</strong> – Password to authenticate with</li>
+<li><strong>virtual_host</strong> – Virtual host to use (domain).</li>
+<li><strong>port</strong> – Port to connect to.</li>
+<li><strong>ssl</strong> – Defaults to the <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/configuration.html#std:setting-BROKER_USE_SSL"><tt class="xref std std-setting docutils literal"><span class="pre">BROKER_USE_SSL</span></tt></a> setting.</li>
+<li><strong>transport</strong> – defaults to the <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/configuration.html#std:setting-BROKER_TRANSPORT"><tt class="xref std std-setting docutils literal"><span class="pre">BROKER_TRANSPORT</span></tt></a>
+setting.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>:returns <a class="reference external" href="noop://kombu.readthedocs.org/en/latest/reference/kombu.html#kombu.Connection" title="(in Kombu v3.0)"><tt class="xref py py-class docutils literal"><span class="pre">kombu.Connection</span></tt></a>:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.connection_or_acquire">
+<tt class="descname">connection_or_acquire</tt><big>(</big><em>connection=None</em><big>)</big><a class="headerlink" href="#celery.Celery.connection_or_acquire" title="Permalink to this definition">¶</a></dt>
+<dd><p>For use within a with-statement to get a connection from the pool
+if one is not already provided.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>connection</strong> – If not provided, then a connection will be
+acquired from the connection pool.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.producer_or_acquire">
+<tt class="descname">producer_or_acquire</tt><big>(</big><em>producer=None</em><big>)</big><a class="headerlink" href="#celery.Celery.producer_or_acquire" title="Permalink to this definition">¶</a></dt>
+<dd><p>For use within a with-statement to get a producer from the pool
+if one is not already provided</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>producer</strong> – If not provided, then a producer will be
+acquired from the producer pool.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.mail_admins">
+<tt class="descname">mail_admins</tt><big>(</big><em>subject</em>, <em>body</em>, <em>fail_silently=False</em><big>)</big><a class="headerlink" href="#celery.Celery.mail_admins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends an email to the admins in the <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/configuration.html#std:setting-ADMINS"><tt class="xref std std-setting docutils literal"><span class="pre">ADMINS</span></tt></a> setting.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.select_queues">
+<tt class="descname">select_queues</tt><big>(</big><em>queues=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#celery.Celery.select_queues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select a subset of queues, where queues must be a list of queue
+names to keep.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.now">
+<tt class="descname">now</tt><big>(</big><big>)</big><a class="headerlink" href="#celery.Celery.now" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the current time and date as a <a class="reference external" href="noop://docs.python.org/dev/library/datetime.html#datetime.datetime" title="(in Python v3.5)"><tt class="xref py py-class docutils literal"><span class="pre">datetime</span></tt></a>
+object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.set_current">
+<tt class="descname">set_current</tt><big>(</big><big>)</big><a class="headerlink" href="#celery.Celery.set_current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes this the current app for this thread.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.finalize">
+<tt class="descname">finalize</tt><big>(</big><big>)</big><a class="headerlink" href="#celery.Celery.finalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finalizes the app by loading built-in tasks,
+and evaluating pending task decorators</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.Celery.on_configure">
+<tt class="descname">on_configure</tt><big>(</big><big>)</big><a class="headerlink" href="#celery.Celery.on_configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional callback for when the first time the configured is required.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="celery.Celery.Pickler">
+<tt class="descname">Pickler</tt><a class="headerlink" href="#celery.Celery.Pickler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper class used to pickle this application.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="canvas-primitives">
+<h2>Canvas primitives<a class="headerlink" href="#canvas-primitives" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/userguide/canvas.html#guide-canvas"><em>Canvas: Designing Workflows</em></a> for more about creating task workflows.</p>
+<dl class="class">
+<dt id="celery.group">
+<em class="property">class </em><tt class="descclassname">celery.</tt><tt class="descname">group</tt><big>(</big><em>task1</em><span class="optional">[</span>, <em>task2</em><span class="optional">[</span>, <em>task3</em><span class="optional">[</span>, <em>… taskN</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#celery.group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a group of tasks to be executed in parallel.</p>
+<p>Example:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">group</span><span class="p">([</span><span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)])()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="go">[4, 8]</span>
+</pre></div>
+</div>
+<p>A group is lazy so you must call it to take action and evaluate
+the group.</p>
+<p>Will return a <cite>group</cite> task that when called will then call all of the
+tasks in the group (and return a <tt class="xref py py-class docutils literal"><span class="pre">GroupResult</span></tt> instance
+that can be used to inspect the state of the group).</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="celery.chain">
+<em class="property">class </em><tt class="descclassname">celery.</tt><tt class="descname">chain</tt><big>(</big><em>task1</em><span class="optional">[</span>, <em>task2</em><span class="optional">[</span>, <em>task3</em><span class="optional">[</span>, <em>… taskN</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#celery.chain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Chains tasks together, so that each tasks follows each other
+by being applied as a callback of the previous task.</p>
+<p>If called with only one argument, then that argument must
+be an iterable of tasks to chain.</p>
+<p>Example:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">chain</span><span class="p">(</span><span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">4</span><span class="p">))()</span>
+</pre></div>
+</div>
+<p>is effectively <img class="math" src="celery_files/b8026451166b64d5c9ee6557023207258f7d4a8d.png" alt="(2 + 2) + 4)">:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+<p>Calling a chain will return the result of the last task in the chain.
+You can get to the other tasks by following the <tt class="docutils literal"><span class="pre">result.parent</span></tt>‘s:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="celery.chord">
+<em class="property">class </em><tt class="descclassname">celery.</tt><tt class="descname">chord</tt><big>(</big><em>header</em><span class="optional">[</span>, <em>body</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#celery.chord" title="Permalink to this definition">¶</a></dt>
+<dd><p>A chord consists of a header and a body.
+The header is a group of tasks that must complete before the callback is
+called.  A chord is essentially a callback for a group of tasks.</p>
+<p>Example:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span> <span class="o">=</span> <span class="n">chord</span><span class="p">([</span><span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)])(</span><span class="n">sum_task</span><span class="o">.</span><span class="n">s</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>is effectively <img class="math" src="celery_files/0cbdbeced7e18aac1f0c66d746b94f54d958ee68.png" alt="\Sigma ((2 + 2) + (4 + 4))">:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">res</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="go">12</span>
+</pre></div>
+</div>
+<p>The body is applied with the return values of all the header
+tasks as a list.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="celery.signature">
+<em class="property">class </em><tt class="descclassname">celery.</tt><tt class="descname">signature</tt><big>(</big><em>task=None</em>, <em>args=()</em>, <em>kwargs={}</em>, <em>options={}</em><big>)</big><a class="headerlink" href="#celery.signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Describes the arguments and execution options for a single task invocation.</p>
+<p>Used as the parts in a <a class="reference internal" href="#celery.group" title="celery.group"><tt class="xref py py-class docutils literal"><span class="pre">group</span></tt></a> or to safely pass
+tasks around as callbacks.</p>
+<p>Signatures can also be created from tasks:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="o">.</span><span class="n">subtask</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{},</span> <span class="n">options</span><span class="o">=</span><span class="p">{})</span>
+</pre></div>
+</div>
+<p>or the <tt class="docutils literal"><span class="pre">.s()</span></tt> shortcut:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>task</strong> – Either a task class/instance, or the name of a task.</li>
+<li><strong>args</strong> – Positional arguments to apply.</li>
+<li><strong>kwargs</strong> – Keyword arguments to apply.</li>
+<li><strong>options</strong> – Additional options to <tt class="xref py py-meth docutils literal"><span class="pre">Task.apply_async()</span></tt>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Note that if the first argument is a <a class="reference external" href="noop://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.5)"><tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt></a>, the other
+arguments will be ignored and the values in the dict will be used
+instead.</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">signature</span><span class="p">(</span><span class="s">"tasks.add"</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signature</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">{"task": "tasks.add", args=(2, 2), kwargs={}, options={}}</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="celery.signature.__call__">
+<tt class="descname">__call__</tt><big>(</big><em>*args **kwargs</em><big>)</big><a class="headerlink" href="#celery.signature.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call the task directly (in the current process).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.signature.delay">
+<tt class="descname">delay</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#celery.signature.delay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortcut to <a class="reference internal" href="#celery.signature.apply_async" title="celery.signature.apply_async"><tt class="xref py py-meth docutils literal"><span class="pre">apply_async()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.signature.apply_async">
+<tt class="descname">apply_async</tt><big>(</big><em>args=()</em>, <em>kwargs={}</em>, <em>…</em><big>)</big><a class="headerlink" href="#celery.signature.apply_async" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply this task asynchronously.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>args</strong> – Partial args to be prepended to the existing args.</li>
+<li><strong>kwargs</strong> – Partial kwargs to be merged with the existing kwargs.</li>
+<li><strong>options</strong> – Partial options to be merged with the existing
+options.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.app.task.html#celery.app.task.Task.apply_async" title="celery.app.task.Task.apply_async"><tt class="xref py py-meth docutils literal"><span class="pre">apply_async()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.signature.apply">
+<tt class="descname">apply</tt><big>(</big><em>args=()</em>, <em>kwargs={}</em>, <em>…</em><big>)</big><a class="headerlink" href="#celery.signature.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as <a class="reference internal" href="#celery.signature.apply_async" title="celery.signature.apply_async"><tt class="xref py py-meth docutils literal"><span class="pre">apply_async()</span></tt></a> but executed the task inline instead
+of sending a task message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.signature.freeze">
+<tt class="descname">freeze</tt><big>(</big><em>_id=None</em><big>)</big><a class="headerlink" href="#celery.signature.freeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finalize the signature by adding a concrete task id.
+The task will not be called and you should not call the signature
+twice after freezing it as that will result in two task messages
+using the same task id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><a class="reference internal" href="noop://celery.readthedocs.org/en/latest/reference/celery.result.html#celery.result.AsyncResult" title="celery.result.AsyncResult"><tt class="xref py py-class docutils literal"><span class="pre">app.AsyncResult</span></tt></a> instance.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.signature.clone">
+<tt class="descname">clone</tt><big>(</big><em>args=()</em>, <em>kwargs={}</em>, <em>…</em><big>)</big><a class="headerlink" href="#celery.signature.clone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of this signature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>args</strong> – Partial args to be prepended to the existing args.</li>
+<li><strong>kwargs</strong> – Partial kwargs to be merged with the existing kwargs.</li>
+<li><strong>options</strong> – Partial options to be merged with the existing
+options.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.signature.replace">
+<tt class="descname">replace</tt><big>(</big><em>args=None</em>, <em>kwargs=None</em>, <em>options=None</em><big>)</big><a class="headerlink" href="#celery.signature.replace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace the args, kwargs or options set for this signature.
+These are only replaced if the selected is not <tt class="xref py py-const docutils literal"><span class="pre">None</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.signature.link">
+<tt class="descname">link</tt><big>(</big><em>other_signature</em><big>)</big><a class="headerlink" href="#celery.signature.link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a callback task to be applied if this task
+executes successfully.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><tt class="docutils literal"><span class="pre">other_signature</span></tt> (to work with <a class="reference external" href="noop://docs.python.org/dev/library/functools.html#functools.reduce" title="(in Python v3.5)"><tt class="xref py py-func docutils literal"><span class="pre">reduce()</span></tt></a>).</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.signature.link_error">
+<tt class="descname">link_error</tt><big>(</big><em>other_signature</em><big>)</big><a class="headerlink" href="#celery.signature.link_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a callback task to be applied if an error occurs
+while executing this task.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><tt class="docutils literal"><span class="pre">other_signature</span></tt> (to work with <a class="reference external" href="noop://docs.python.org/dev/library/functools.html#functools.reduce" title="(in Python v3.5)"><tt class="xref py py-func docutils literal"><span class="pre">reduce()</span></tt></a>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.signature.set">
+<tt class="descname">set</tt><big>(</big><em>…</em><big>)</big><a class="headerlink" href="#celery.signature.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set arbitrary options (same as <tt class="docutils literal"><span class="pre">.options.update(…)</span></tt>).</p>
+<p>This is a chaining method call (i.e. it will return <tt class="docutils literal"><span class="pre">self</span></tt>).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="celery.signature.flatten_links">
+<tt class="descname">flatten_links</tt><big>(</big><big>)</big><a class="headerlink" href="#celery.signature.flatten_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gives a recursive list of dependencies (unchain if you will,
+but with links intact).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="proxies">
+<h2>Proxies<a class="headerlink" href="#proxies" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="celery.current_app">
+<tt class="descclassname">celery.</tt><tt class="descname">current_app</tt><a class="headerlink" href="#celery.current_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>The currently set app for this thread.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="celery.current_task">
+<tt class="descclassname">celery.</tt><tt class="descname">current_task</tt><a class="headerlink" href="#celery.current_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>The task currently being executed
+(only set in the worker, or when eager/apply is used).</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo"><a href="noop://celery.readthedocs.org/en/latest/index.html">
+  <img class="logo" src="celery_files/celery_128.png" alt="Logo">
+</a></p>
+<div id="donate">
+    <b>Please donate:</b>
+    <form id="paypal_donate" action="noop://www.paypal.com/cgi-bin/webscr" method="post">
+        <input name="cmd" value="_s-xclick" type="hidden">
+        <input name="hosted_button_id" value="BPCLP83DFF2N2" type="hidden">
+    </form>
+    <img onclick="$('#paypal_donate').submit();" src="celery_files/icon-paypal.png" alt="amex">
+    <iframe style="border: 0; margin: 0; padding: 0;" src="celery_files/widget.html" height="22pt" width="48pt"> </iframe>
+</div>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="noop://celery.readthedocs.org/en/latest/reference/index.html" title="previous chapter">API Reference</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="noop://celery.readthedocs.org/en/latest/reference/celery.app.html" title="next chapter">celery.app</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="noop://celery.readthedocs.org/en/latest/_sources/reference/celery.txt" rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input name="q" type="text">
+      <input value="Go" type="submit">
+      <input name="check_keywords" value="yes" type="hidden">
+      <input name="area" value="default" type="hidden">
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="noop://celery.readthedocs.org/en/latest/genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="noop://celery.readthedocs.org/en/latest/py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="noop://celery.readthedocs.org/en/latest/reference/celery.app.html" title="celery.app">next</a> |</li>
+        <li class="right">
+          <a href="noop://celery.readthedocs.org/en/latest/reference/index.html" title="API Reference">previous</a> |</li>
+        <li><a href="noop://celery.readthedocs.org/en/latest/index.html">Celery 3.1.18 documentation</a> »</li>
+          <li><a href="noop://celery.readthedocs.org/en/latest/reference/index.html">API Reference</a> »</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        © <a href="noop://celery.readthedocs.org/en/latest/copyright.html">Copyright</a> 2009-2014, Ask Solem &amp; Contributors.
+    </div>
+  
+</body></html>

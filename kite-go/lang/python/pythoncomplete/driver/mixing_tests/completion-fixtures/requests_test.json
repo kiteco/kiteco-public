@@ -1,0 +1,597 @@
+{
+    "completions": [
+        {
+            "snippet": {
+                "text": "models",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "models",
+            "documentation": {
+                "text": "***************\nrequests.models\n***************\n\nThis module contains the primary objects that power Requests."
+            },
+            "web_id": "requests.models",
+            "local_id": "python;;;;requests.models",
+            "hint": "module",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "get()",
+                "placeholders": [
+                    {
+                        "begin": 4,
+                        "end": 4
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "get(…)",
+            "documentation": {
+                "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+            },
+            "web_id": "requests.get",
+            "local_id": "python;;;;requests.get",
+            "hint": "function",
+            "smart": false,
+            "children": [
+                {
+                    "snippet": {
+                        "text": "get([url])",
+                        "placeholders": [
+                            {
+                                "begin": 4,
+                                "end": 9
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 33,
+                        "end": 33
+                    },
+                    "display": "…(\u003curl\u003e)",
+                    "documentation": {
+                        "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+                    },
+                    "web_id": "requests.get",
+                    "local_id": "python;;;;requests.get",
+                    "hint": "call",
+                    "smart": false
+                },
+                {
+                    "snippet": {
+                        "text": "get([url], headers=[dict])",
+                        "placeholders": [
+                            {
+                                "begin": 4,
+                                "end": 9
+                            },
+                            {
+                                "begin": 19,
+                                "end": 25
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 33,
+                        "end": 33
+                    },
+                    "display": "…(\u003curl\u003e, headers=\u003cdict\u003e)",
+                    "documentation": {
+                        "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+                    },
+                    "web_id": "requests.get",
+                    "local_id": "python;;;;requests.get",
+                    "hint": "call",
+                    "smart": false
+                },
+                {
+                    "snippet": {
+                        "text": "get([url], params=[dict])",
+                        "placeholders": [
+                            {
+                                "begin": 4,
+                                "end": 9
+                            },
+                            {
+                                "begin": 18,
+                                "end": 24
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 33,
+                        "end": 33
+                    },
+                    "display": "…(\u003curl\u003e, params=\u003cdict\u003e)",
+                    "documentation": {
+                        "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+                    },
+                    "web_id": "requests.get",
+                    "local_id": "python;;;;requests.get",
+                    "hint": "call",
+                    "smart": false
+                },
+                {
+                    "snippet": {
+                        "text": "get([url], timeout=[int])",
+                        "placeholders": [
+                            {
+                                "begin": 4,
+                                "end": 9
+                            },
+                            {
+                                "begin": 19,
+                                "end": 24
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 33,
+                        "end": 33
+                    },
+                    "display": "…(\u003curl\u003e, timeout=\u003cint\u003e)",
+                    "documentation": {
+                        "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+                    },
+                    "web_id": "requests.get",
+                    "local_id": "python;;;;requests.get",
+                    "hint": "call",
+                    "smart": false
+                },
+                {
+                    "snippet": {
+                        "text": "get([url], stream=[bool])",
+                        "placeholders": [
+                            {
+                                "begin": 4,
+                                "end": 9
+                            },
+                            {
+                                "begin": 18,
+                                "end": 24
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 33,
+                        "end": 33
+                    },
+                    "display": "…(\u003curl\u003e, stream=\u003cbool\u003e)",
+                    "documentation": {
+                        "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+                    },
+                    "web_id": "requests.get",
+                    "local_id": "python;;;;requests.get",
+                    "hint": "call",
+                    "smart": false
+                }
+            ]
+        },
+        {
+            "snippet": {
+                "text": "sessions",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "sessions",
+            "documentation": {
+                "text": "****************\nrequests.session\n****************\n\nThis module provides a Session object to manage and persist settings across requests (cookies, auth, proxies)."
+            },
+            "web_id": "requests.sessions",
+            "local_id": "python;;;;requests.sessions",
+            "hint": "module",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "post()",
+                "placeholders": [
+                    {
+                        "begin": 5,
+                        "end": 5
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "post(…)",
+            "documentation": {
+                "text": "Sends a POST request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *data* – (optional) Dictionary, bytes, or file-like object to send in the body of the Request ( #requests.Request ) .\n* *json* – (optional) json data to send in the body of the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+            },
+            "web_id": "requests.post",
+            "local_id": "python;;;;requests.post",
+            "hint": "function",
+            "smart": false,
+            "children": [
+                {
+                    "snippet": {
+                        "text": "post([url], data=[dict], headers=[dict])",
+                        "placeholders": [
+                            {
+                                "begin": 5,
+                                "end": 10
+                            },
+                            {
+                                "begin": 17,
+                                "end": 23
+                            },
+                            {
+                                "begin": 33,
+                                "end": 39
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 33,
+                        "end": 33
+                    },
+                    "display": "…(\u003curl\u003e, data=\u003cdict\u003e, headers=\u003cdict\u003e)",
+                    "documentation": {
+                        "text": "Sends a POST request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *data* – (optional) Dictionary, bytes, or file-like object to send in the body of the Request ( #requests.Request ) .\n* *json* – (optional) json data to send in the body of the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+                    },
+                    "web_id": "requests.post",
+                    "local_id": "python;;;;requests.post",
+                    "hint": "call",
+                    "smart": false
+                },
+                {
+                    "snippet": {
+                        "text": "post([url], data=[dict])",
+                        "placeholders": [
+                            {
+                                "begin": 5,
+                                "end": 10
+                            },
+                            {
+                                "begin": 17,
+                                "end": 23
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 33,
+                        "end": 33
+                    },
+                    "display": "…(\u003curl\u003e, data=\u003cdict\u003e)",
+                    "documentation": {
+                        "text": "Sends a POST request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *data* – (optional) Dictionary, bytes, or file-like object to send in the body of the Request ( #requests.Request ) .\n* *json* – (optional) json data to send in the body of the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+                    },
+                    "web_id": "requests.post",
+                    "local_id": "python;;;;requests.post",
+                    "hint": "call",
+                    "smart": false
+                }
+            ]
+        },
+        {
+            "snippet": {
+                "text": "exceptions",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "exceptions",
+            "documentation": {
+                "text": "*******************\nrequests.exceptions\n*******************\n\nThis module contains the set of Requests' exceptions."
+            },
+            "web_id": "requests.exceptions",
+            "local_id": "python;;;;requests.exceptions",
+            "hint": "module",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "Session()",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "Session()",
+            "documentation": {
+                "text": "A Requests session.\n\nProvides cookie persistence, connection-pooling, and configuration.\n\nBasic Usage:\n\n\u003e\u003e\u003e import requests \u003e\u003e\u003e s = requests.Session() \u003e\u003e\u003e s.get('http://httpbin.org/get') 200 auth = None\n\nDefault Authentication tuple or object to attach to Request ( #requests.Request ) .\n\ncert = None\n\nSSL certificate default.\n\nclose ( )\n\nCloses all adapters and as such the session\n\ncookies = None\n\nA CookieJar containing all currently outstanding cookies set on this session. By default it is a Req"
+            },
+            "web_id": "requests.Session",
+            "local_id": "python;;;;requests.Session",
+            "hint": "type",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "packages",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "packages",
+            "documentation": {
+                "text": "Debian and other distributions \"unbundle\" requests' vendored dependencies, and rewrite all imports to use the global versions of urllib3 and chardet . The problem with this is that not only requests itself imports those dependencies, but third-party code outside of the distros' control too.\n\nIn reaction to these problems, the distro maintainers replaced requests.packages with a magical \"stub module\" that imports the correct modules. The implementations were varying in quality and all had severe "
+            },
+            "web_id": "requests.packages",
+            "local_id": "python;;;;requests.packages",
+            "hint": "module",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "auth",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "auth",
+            "documentation": {
+                "text": "*************\nrequests.auth\n*************\n\nThis module contains the authentication handlers for Requests."
+            },
+            "web_id": "requests.auth",
+            "local_id": "python;;;;requests.auth",
+            "hint": "module",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "codes",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "codes",
+            "documentation": {
+                "text": "Dictionary lookup object."
+            },
+            "web_id": "requests.codes",
+            "local_id": "python;;;;requests.codes",
+            "hint": "requests.structures.LookupDict",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "session()",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "session()",
+            "documentation": {
+                "text": "Returns a Session ( #requests.sessions.Session ) for context-management."
+            },
+            "web_id": "requests.session",
+            "local_id": "python;;;;requests.session",
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "put()",
+                "placeholders": [
+                    {
+                        "begin": 4,
+                        "end": 4
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "put(…)",
+            "documentation": {
+                "text": "Sends a PUT request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *data* – (optional) Dictionary, bytes, or file-like object to send in the body of the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+            },
+            "web_id": "requests.put",
+            "local_id": "python;;;;requests.put",
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "request()",
+                "placeholders": [
+                    {
+                        "begin": 8,
+                        "end": 8
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "request(…)",
+            "documentation": {
+                "text": "Constructs and sends a Request ( #requests.Request ) .\n\nParameters:\n\n* *method* – method for the new Request ( #requests.Request ) object.\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* *data* – (optional) Dictionary, bytes, or file-like object to send in the body of the Request ( #requests.Request ) .\n* *json* – (optional) json data to send in the body "
+            },
+            "web_id": "requests.request",
+            "local_id": "python;;;;requests.request",
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "delete()",
+                "placeholders": [
+                    {
+                        "begin": 7,
+                        "end": 7
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "delete(…)",
+            "documentation": {
+                "text": "Sends a DELETE request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+            },
+            "web_id": "requests.delete",
+            "local_id": "python;;;;requests.delete",
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "utils",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "utils",
+            "documentation": {
+                "text": "**************\nrequests.utils\n**************\n\nThis module provides utility functions that are used within Requests that are also useful for external consumption."
+            },
+            "web_id": "requests.utils",
+            "local_id": "python;;;;requests.utils",
+            "hint": "module",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "adapters",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "adapters",
+            "documentation": {
+                "text": "*****************\nrequests.adapters\n*****************\n\nThis module contains the transport adapters that Requests uses to define and maintain connections."
+            },
+            "web_id": "requests.adapters",
+            "local_id": "python;;;;requests.adapters",
+            "hint": "module",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "ConnectionError()",
+                "placeholders": [
+                    {
+                        "begin": 16,
+                        "end": 16
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "ConnectionError(…)",
+            "documentation": {
+                "text": "A Connection error occurred."
+            },
+            "web_id": "requests.ConnectionError",
+            "local_id": "python;;;;requests.ConnectionError",
+            "hint": "type",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "Response()",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "Response()",
+            "documentation": {
+                "text": "The Response ( #requests.Response ) object, which contains a server’s response to an HTTP request.\n\napparent_encoding\n\nThe apparent encoding, provided by the chardet library\n\nclose ( )\n\nReleases the connection back to the pool. Once this method has been called the underlying raw object must not be accessed again.\n\nNote: Should not normally need to be called explicitly.\n\ncontent\n\nContent of the response, in bytes.\n\ncookies = None\n\nA CookieJar of Cookies the server sent back.\n\nelapsed = None\n\nTh"
+            },
+            "web_id": "requests.Response",
+            "local_id": "python;;;;requests.Response",
+            "hint": "type",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "Request()",
+                "placeholders": [
+                    {
+                        "begin": 8,
+                        "end": 8
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "Request(…)",
+            "documentation": {
+                "text": "A user-created Request ( #requests.Request ) object.\n\nUsed to prepare a PreparedRequest ( #requests.PreparedRequest ) , which is sent to the server.\n\nParameters:\n\n* *method* – HTTP method to use.\n* *url* – URL to send.\n* *headers* – dictionary of headers to send.\n* *files* – dictionary of {filename: fileobject} files to multipart upload.\n* *data* – the body to attach to the request. If a dictionary is provided, form-encoding will take place.\n* *json* – json for the body to attach to "
+            },
+            "web_id": "requests.Request",
+            "local_id": "python;;;;requests.Request",
+            "hint": "type",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "cookies",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "cookies",
+            "documentation": {
+                "text": "Compatibility code to be able to use cookielib.CookieJar with requests.\n\nrequests.utils imports from here, so be careful with imports."
+            },
+            "web_id": "requests.cookies",
+            "local_id": "python;;;;requests.cookies",
+            "hint": "module",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "HTTPError()",
+                "placeholders": [
+                    {
+                        "begin": 10,
+                        "end": 10
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 33,
+                "end": 33
+            },
+            "display": "HTTPError(…)",
+            "documentation": {
+                "text": "An HTTP error occurred."
+            },
+            "web_id": "requests.HTTPError",
+            "local_id": "python;;;;requests.HTTPError",
+            "hint": "type",
+            "smart": false
+        }
+    ]
+}

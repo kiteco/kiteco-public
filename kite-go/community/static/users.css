@@ -1,0 +1,99 @@
+body {
+	color: #333;
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+
+.wrapper {
+	max-width: 600px;
+	margin: 50px auto;
+	padding: 10px;
+}
+
+.logo {
+	width: 200px;
+	height: 79px;
+	opacity: 0;
+	background-image: url('/community/static/logo.png');
+	background-size: cover;
+	display: inline-block;
+	-webkit-animation: appear 750ms 200ms;
+	animation: appear 750ms 200ms;
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes appear {
+	from {
+		-webkit-transform: translateY(-30px);
+		transform: translateY(-30px);
+		opacity: 0;
+	}
+
+	to {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.header {
+	text-align: center;
+	width: 100%;
+}
+
+.description {
+	margin-top: 80px;
+	width: 100%;
+}
+
+h1 {
+	font-size: 20px;
+	font-weight: normal;
+}
+
+p, ul, form, input[type="button"] {
+	font-family: "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+label {
+	font-size: smaller;
+}
+
+input {
+	font-size: larger;
+}
+
+input[type="submit"] {
+	margin-top: 0.5em;
+}
+
+ul {
+	margin: 0;
+	padding-left: 20px;
+}
+
+ul li {
+	margin-bottom: 10px;
+}
+
+strong {
+	font-weight: normal;
+}
+
+.strongparagraph {
+	background-color: rgba(64,190,237,0.2);
+	padding: 10px;
+}
+
+.short {
+	text-align: center;
+}
+
+a {
+	color: rgba(64,190,237,1);
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+}

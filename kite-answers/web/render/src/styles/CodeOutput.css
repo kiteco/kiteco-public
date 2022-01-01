@@ -1,0 +1,31 @@
+@import url("index.css");
+
+.codeBlock .outputBlock {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.codeBlock .output {
+  background: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  white-space: pre-wrap;
+}
+
+.codeBlock .container:not(:last-child) .output {
+  margin-bottom: 1rem;
+}
+
+.codeBlock .output * {
+  color: var(--text-subtle);
+}
+
+.codeBlock .outputTitle {
+  background: var(--code-background);
+  color: var(--text-subtle);
+  font-size: small;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}

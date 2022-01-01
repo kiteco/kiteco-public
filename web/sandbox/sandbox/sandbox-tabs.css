@@ -1,0 +1,61 @@
+html {
+  --cm-tab-text-default: 13px;
+  --cm-tab-background:  #0e1214;
+  --cm-tab-border: #546E7A;
+  --cm-tab-highlight:  #263238;
+  --cm-tab-hover: #546E7A;
+  --cm-tab-font-color: rgb(143, 153, 153);
+  --cm-tab-font-color-highlight: white;
+  --cm-tab-font-color-hover: rgb(97, 158, 255);
+  --cm-tab-highlight-overlaid: rgba(138, 138, 138, 0.0);
+}
+
+.sandbox-tabs {
+  display: flex;
+  position: relative;
+  /* margin: 0 10%; */
+}
+
+.sandbox-tabs .sandbox-tabs__tab + .sandbox-tabs__tab {
+  border-left: 1px solid var(--cm-tab-border);
+}
+
+.sandbox-tabs__tab {
+  cursor: default;
+  position: relative;
+  display: flex;
+  font-family: 'Droid Sans Mono W01', monospace;
+  font-size: var(--cm-tab-text-default);
+  color: var(--cm-tab-font-color);
+  background-color: var(--cm-tab-background);
+  padding: 8px 16px;
+}
+
+.sandbox-tabs__tab.highlighted {
+  background-color: var(--cm-tab-highlight);
+  color: var(--cm-tab-font-color-highlight);
+}
+
+.sandbox-tabs__tab.highlighted.overlaid:after {
+  display: block;
+  content: "";
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color:var(--cm-tab-highlight-overlaid);
+}
+
+.sandbox-tabs__tab:hover {
+  background-color: var(--cm-tab-hover);
+  color: var(--cm-tab-font-color-hover);
+}
+
+.sandbox-tabs__tab.highlighted:hover {
+  background-color: var(--cm-tab-highlight);
+}
+
+.sandbox-tabs__tab.highlighted.overlaid:hover {
+  color: var(--cm-tab-font-color-highlight);
+}

@@ -1,0 +1,28 @@
+@import "../../../../assets/styles/less/variables.less";
+
+.inline-login-form {
+  .ant-row {
+    position: relative;
+  }
+
+  .ant-spin.validating {
+    width: initial;
+    margin: 0;
+    transform: scale(0.8);
+    position: absolute;
+    right: 13px;
+    top: 37px;
+  }
+
+  .help-message {
+    font-size: 13px;
+    font-style: italic;
+    color: @dove-gray;
+    margin: 0;
+    padding: 0 5px;
+
+    &.has-error {
+      color: @sunset-orange;
+    }
+  }
+}

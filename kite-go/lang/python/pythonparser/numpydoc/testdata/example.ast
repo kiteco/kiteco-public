@@ -1,0 +1,103 @@
+Doc
+	Paragraph
+		Text[A one-line summary that does not use variable names or the function name.]
+	Paragraph
+		Text[Several sentences providing an extended description. Refer to variables using back-ticks, e.g. ]
+		Inline[c "var"]
+		Text[.]
+	Section[Parameters]
+		Definition
+			Text[var1]
+			Text[array_like]
+			Paragraph
+				Text[Array_like means all those objects -- lists, nested lists, etc. -- that can be converted to an array.  We can also refer to variables like ]
+				Inline[c "var1"]
+				Text[.]
+		Definition
+			Text[var2]
+			Text[int]
+			Paragraph
+				Text[The type above can either refer to an actual Python type (e.g. ]
+				Inline[m "int"]
+				Text[), or describe the type of the variable in more detail, e.g. ]
+				Inline[m "(N,) ndarray"]
+				Text[ or ]
+				Inline[m "array_like"]
+				Text[.]
+		Definition
+			Text[long_var_name]
+			Text[{'hi', 'ho'}, optional]
+			Paragraph
+				Text[Choices in brackets, default first when optional.]
+	Section[Returns]
+		Definition
+			Text[type]
+			Paragraph
+				Text[Explanation of anonymous return value of type ]
+				Inline[m "type"]
+				Text[.]
+		Definition
+			Text[describe]
+			Text[type]
+			Paragraph
+				Text[Explanation of return value named ]
+				Inline[c "describe"]
+				Text[.]
+		Definition
+			Text[out]
+			Text[type]
+			Paragraph
+				Text[Explanation of ]
+				Inline[c "out"]
+				Text[.]
+		Definition
+			Text[type_without_description]
+	Section[Other Parameters]
+		Definition
+			Text[only_seldom_used_keywords]
+			Text[type]
+			Paragraph
+				Text[Explanation]
+		Definition
+			Text[common_parameters_listed_above]
+			Text[type]
+			Paragraph
+				Text[Explanation]
+	Section[Raises]
+		Definition
+			Text[BadException]
+			Paragraph
+				Text[Because you shouldn't have done that.]
+	Section[See Also]
+		Definition
+			Text[otherfunc]
+			Text[relationship (optional)]
+		Definition
+			Text[newfunc]
+			Text[Relationship (optional), which could be fairly long, in which]
+			Paragraph
+				Text[case the line wraps here.]
+		Definition
+			Text[thirdfunc, fourthfunc, fifthfunc]
+	Section[Notes]
+		Paragraph
+			Text[Notes about the implementation algorithm (if needed).]
+		Paragraph
+			Text[This can have multiple paragraphs.]
+		Paragraph
+			Text[You may include some math:]
+		Directive[math]
+			Paragraph
+				Text[X(e^{j\omega } ) = x(n)e^{ - j\omega n}]
+		Paragraph
+			Text[And even use a Greek symbol like :math:`\omega` inline.]
+	Section[References]
+		Paragraph
+			Text[Cite the relevant literature, e.g. [1]_.  You may also cite these references in the notes section above.]
+		Directive[[1]]
+			Paragraph
+				Text[O. McNoleg, "The integration of GIS, remote sensing, expert systems and adaptive co-kriging for environmental habitat modelling of the Highland Haggis using object-oriented, fuzzy-logic and neural-network techniques," Computers & Geosciences, vol. 22, pp. 585-588, 1996.]
+	Section[Examples]
+		Paragraph
+			Text[These are written in doctest format, and should illustrate how to use the function.]
+		Doctest[">>> a = [1, 2, 3]\n>>> print [x + 3 for x in a]\n[4, 5, 6]\n>>> print \"a\\n\\nb\"\na\nb"]

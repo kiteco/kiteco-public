@@ -1,0 +1,111 @@
+#codeinterest_affordance {
+	position: absolute;
+	color : white;
+	background-color : black;
+	display : none;
+	visibility : hidden;
+	cursor : pointer;
+	opacity : 0.6;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	line-height: 30px;
+	bottom : 0;
+	right : 0;
+}
+
+
+#bookmarkingWindow {
+	position : absolute;
+	background-color : white;
+	box-shadow: 0 0 10px black;
+	display : none;
+	visibility : hidden;
+	margin-top : -50px;
+	padding : 10px;
+}
+
+
+.labelInstruction {
+	font-family : "Helvetica Neue"; sans-serif;
+	font-size : 16px;
+	font-weight : 200;
+	margin-bottom : 10px;
+}
+
+.codeInput:focus, .commentInput:focus {
+	outline: none;
+	border: 0;
+	border-bottom: 5px solid teal;
+}
+
+.codeInput {
+	background-color : #555;
+	color : white;
+	width : 600px;
+	height : 150px;
+	padding : 10px;
+	box-sizing : border-box;
+	font-family : "Menlo"; monospace;
+	white-space : pre-wrap;
+	overflow : auto;
+	margin-bottom : 10px;
+	border-bottom: 5px solid #555;
+}
+
+.commentInput {
+	background-color : #555;
+	color : white;
+	width : 600px;
+	height : 50px;
+	padding : 10px;
+	box-sizing : border-box;
+	font-family : "Menlo"; monospace;
+	white-space : pre-wrap;
+	overflow : auto;
+	margin-bottom : 10px;
+	border-bottom: 5px solid #555;
+}
+
+
+.sendButton {
+	font-family : "Helvetica Neue"; sans-serif;
+	font-size : 16px;
+	font-weight : 200;
+	margin-bottom : 10px;
+	background-color : lightgrey;
+	padding : 10px;
+	display : inline-block;
+	float : right;
+	cursor: pointer;
+}
+
+.sendButton:hover {
+	background-color: black;
+	color: white;
+}
+
+#bookmarkingWindow.info .infoMessage {
+	opacity: 1;
+}
+
+
+.infoMessage {
+	background-color: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	height: 100%;
+	color: white;
+	font-weight: 100;
+	font-family: 'Helvetica Neue', sans-serif;
+	font-size: 27px;
+	align-items: center;
+	align-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	justify-content: center;
+	pointer-events: none;
+	opacity: 0;
+	display: flex;
+	transition: 500ms opacity;
+}

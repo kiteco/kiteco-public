@@ -1,0 +1,10 @@
+.wrapper-page {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    height: calc(100% - 5.25em);
+}
+
+.wrapper-page.wrapper-page--windows {
+    height: calc(100% - 4.5rem);
+}

@@ -1,0 +1,62 @@
+.playback-buttons--dev {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  margin: 0 20% 10px;
+  max-width: 100rem;
+  position: relative;
+}
+
+.playback-buttons--dev .playback-buttons__button--dev + .playback-buttons__button--dev {
+  margin-left: 10px;
+}
+
+.playback-buttons__button--dev {
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #243763;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  line-height: 2.7em;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.playback-buttons {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  align-content: center;
+  right: 0;
+  bottom: 0;
+  max-width: 100rem;
+  position: absolute;
+  z-index: 90;
+}
+
+.playback-buttons .playback-buttons__button + .playback-buttons__button {
+  margin-left: 10px;
+}
+
+.playback-buttons__button {
+  font-size: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  color: #14B4C3;
+  text-decoration: none;
+  cursor: pointer;
+  height: 1em;
+  width: 1em;
+}
+
+.playback-buttons__button:hover {
+  color: rgb(27, 236, 255);
+}

@@ -1,0 +1,676 @@
+{
+  package pigeon
+
+  import (
+    "errors"
+    "fmt"
+    "github.com/kiteco/kiteco/kite-go/lang/python/pythonast"
+    "github.com/kiteco/kiteco/kite-go/lang/python/pythonscanner"
+  )
+}
+
+// NOTE: Rules that start with `Grammar` are entrypoints exported by the
+// python/calls API. Rules that start with `Test` are entrypoints used to
+// test a subset of the grammar in isolation, not exported by the API.
+
+Grammar <-
+  #{
+    return initState(c)
+  }
+  _ call:AtomExpr?
+
+  // Entry point parses a single call expression and returns the *CallExpr.
+  //
+  // It returns ErrNoCallExpr if a single call expression could not
+  // be parsed.
+  {
+    // AtomExpr returns a pythonast.Expr. Here we make sure it is
+    // actually a *pythonast.CallExpr.
+    ce, ok := call.(*pythonast.CallExpr)
+    if !ok {
+      return nil, ErrNoCallExpr
+    }
+    return ce, nil
+  }
+
+GrammarArgsOnly <-
+  #{
+    return initState(c)
+  }
+  ct:CallTrailer
+
+  // Returns a partially-filled *CallExpr, with Func set to an empty
+  // *NameExpr.
+  {
+    return grammarArgsOnlyAction(c, ct.(*pythonast.CallExpr))
+  }
+
+GrammarStmt <-
+	#{
+		return initState(c)
+	}
+	_ stmt:( ClassDef / FunctionDef / IfStmt / WithStmt / WhileStmt / ForStmt / AssignStmt )
+
+	// Returns a (possibly partially-filled) Stmt
+	{
+		return stmt.(pythonast.Stmt), nil
+	}
+
+TestID <-
+  #{
+    return initState(c)
+  }
+  _ id:ID _ EOF
+  {
+    return id, nil
+  }
+
+TestAttr <-
+  #{
+    return initState(c)
+  }
+  _ atom:AtomExpr _ EOF
+  {
+    // returns either *NameExpr (no dot) or an *AttributeExpr
+    return atom, nil
+  }
+
+TestNumber <-
+  #{
+    return initState(c)
+  }
+  _ i:( Imaginary / Float / Integer ) _ EOF
+  {
+    return i, nil
+  }
+
+TestStrings <-
+  #{
+    return initState(c)
+  }
+  _ s:Strings _ EOF
+  {
+    return s, nil
+  }
+
+TestList <-
+  #{
+    return initState(c)
+  }
+  _ list:ListExpr _ EOF
+  {
+    return list, nil
+  }
+
+TestDictSet <-
+  #{
+    return initState(c)
+  }
+  _ dictSet:DictOrSetExpr _ EOF
+  {
+    return dictSet, nil
+  }
+
+TestTuple <-
+  #{
+    return initState(c)
+  }
+  _ tuple:TupleExpr _ EOF
+  {
+    return tuple, nil
+  }
+
+ClassDef <- class:Class _ id:ID _ args:CallTrailer? _ Colon?
+	// returns a partially-filled *ClassDefStmt
+	{
+		var argsExpr *pythonast.CallExpr
+		if args != nil {
+			argsExpr = args.(*pythonast.CallExpr)
+		}
+		return classDefAction(c, class.(*pythonscanner.Word), id.(*pythonast.NameExpr), argsExpr)
+	}
+
+// TODO: support typed parameters? (e.g. name:int = default)
+FunctionDef <- def:Def _ id:ID _ params:CallTrailer? _ Colon?
+	// returns a partially-filled *FunctionDefStmt
+	//
+	// Uses the CallTrailer to parse parameters, and replaces any invalid
+	// expression in the context of a function definition by a BadExpr.
+	// This allows reusing the robust parsing of the CallTrailer, namely
+	// vararg, kwarg, missing arg and synchronization to the next matching
+	// closing paren.
+	{
+		var callTrailer *pythonast.CallExpr
+		if params != nil {
+			callTrailer = params.(*pythonast.CallExpr)
+		}
+		return functionDefAction(c, def.(*pythonscanner.Word), id.(*pythonast.NameExpr), callTrailer)
+	}
+
+// currently, only AtomExpr is supported, no operator/lambda (see 'test' rule in official python grammar)
+IfStmt <- ifWord:If _ expr:AtomExpr? _ Colon?
+	// returns a partially-filled *IfStmt
+	{
+		var cond pythonast.Expr
+		if expr != nil {
+			cond = expr.(pythonast.Expr)
+		}
+		return ifStmtAction(c, ifWord.(*pythonscanner.Word), cond)
+	}
+
+WhileStmt <- whileWord:While _ expr:MaybeAtomExpr _ Colon?
+	// returns a partially-filled *WhileStmt
+	{
+		return whileStmtAction(c, whileWord.(*pythonscanner.Word), expr.(pythonast.Expr))
+	}
+
+WithStmt <- withWord:With _ items:MaybeWithItems _ Colon?
+	// returns a partially-filled *WithStmt
+	{
+		return withStmtAction(c, withWord.(*pythonscanner.Word), items.([]*pythonast.WithItem))
+	}
+
+MaybeWithItems <- first:MaybeWithItem rest:( _ Comma _ MaybeWithItem )*
+	// returns a []*WithItem
+	{
+		return maybeWithItemsAction(c, first.(*pythonast.WithItem), toIfaceSlice(rest))
+	}
+
+MaybeWithItem <- value:MaybeAtomExpr target:( _ As _ MaybeAtomExpr )?
+	// returns a partially-filled *WithItem
+	{
+		return maybeWithItemAction(c, value.(pythonast.Expr), toIfaceSlice(target))
+	}
+
+ForStmt <- forWord:For _ targets:MaybeIDList in:( _ In _ ExprList )? _ Colon?
+	// returns a partially-filled *ForStmt
+	{
+		return forStmtAction(c, forWord.(*pythonscanner.Word), targets.([]*pythonast.NameExpr), toIfaceSlice(in))
+	}
+
+MaybeIDList <- first:MaybeID rest:( _ Comma _ MaybeID )* _ Comma?
+	// returns a []*NameExpr
+	{
+		return maybeIDListAction(c, first.(*pythonast.NameExpr), toIfaceSlice(rest))
+	}
+
+ExprList <- first:MaybeAtomExpr rest:( _ Comma _ MaybeAtomExpr )* _ comma:Comma?
+	// returns a []Expr
+	{
+		var lastComma *pythonscanner.Word
+		if comma != nil {
+			lastComma = comma.(*pythonscanner.Word)
+		}
+		return exprListAction(c, first.(pythonast.Expr), toIfaceSlice(rest), lastComma)
+	}
+
+// Parses a simplified form of assignment statements (single left-hand side,
+// single assign op, simple AtomExpr on the rhs).
+AssignStmt <- lhs:( ID DotTrailer* ) _ op:AssignOp _ expr:MaybeAtomExpr
+	// Returns a Stmt which is either *AssignStmt or *AugAssignStmt
+	{
+		return assignStmtAction(c, toIfaceSlice(lhs), op.(*pythonscanner.Word), expr.(pythonast.Expr))
+	}
+
+AssignOp <- Equals / AugAssignOp
+
+AtomExpr <- stars:( ( "**" / "*" ) _ )? ( "await" _ )? atom:Atom trail:Trailer*
+  // returns an Expr
+  // the grammar's entrypoint makes sure it is a *CallExpr,
+  // otherwise ErrNoCallExpr is returned.
+  {
+    return atomExprAction(c, stars, atom.(pythonast.Expr), toIfaceSlice(trail))
+  }
+
+Trailer <- CallTrailer / DotTrailer
+
+MaybeAtomExpr <- atom:AtomExpr?
+  // returns an Expr
+  // if atom is missing, returns a *BadExpr.
+  {
+    var atomExpr pythonast.Expr
+    if atom != nil {
+      atomExpr = atom.(pythonast.Expr)
+    }
+    return maybeAtomExprAction(c, atomExpr)
+  }
+
+DotTrailer <- _ dot:Period _ id:MaybeID
+  // returns a partially-filled *AttributeExpr:
+  // - Dot
+  // - Attribute
+  // - Usage
+  {
+    return dotTrailerAction(c, dot.(*pythonscanner.Word), id.(*pythonast.NameExpr))
+  }
+
+CallTrailer <- _ lp:LParen _ args:MaybeArgList _ rp:RParen?
+  // returns a partially-filled *CallExpr:
+  // - LeftParen
+  // - Args
+  // - Commas
+  // - Vararg
+  // - Kwarg
+  // - RightParen
+  {
+    var right *pythonscanner.Word
+    if rp != nil {
+      right = rp.(*pythonscanner.Word)
+    }
+    return callTrailerAction(c, lp.(*pythonscanner.Word), args.(*pythonast.CallExpr), right)
+  }
+
+MaybeArgList <- first:MaybeArgument rest:( _ Comma _ MaybeArgument )*
+  // returns a partially-filled *CallExpr:
+  // - Args
+  // - Commas
+  {
+    return maybeArgListAction(c, first.(*pythonast.Argument), toIfaceSlice(rest))
+  }
+
+// A valid argument is a (possibly empty) valid atom that is either:
+// - followed by a Comma
+// - followed by an RParen
+// - followed by EOF (unclosed call)
+// Anything else is parsed as a BadExpr until the next Comma,
+// RParen or EOL.
+MaybeArgument <- kw:Keyword? atom:MaybeAtomExpr &ValidArgumentTrailer
+
+  // returns an *Argument, always non-nil even if the rule
+  // matches an empty string (because it may be a missing argument
+  // in an argument list).
+  //
+  // - If Keyword matches, Name and Equals will be non-nil.
+  // - If MaybeAtomExpr matches, Value will be set to this expression.
+  // - If MaybeAtomExpr does not match, Value will be set to a *BadExpr.
+  {
+    var kwArg *pythonast.Argument
+    var atomExpr pythonast.Expr
+
+    if kw != nil {
+      kwArg = kw.(*pythonast.Argument)
+    }
+    if atom != nil {
+      atomExpr = atom.(pythonast.Expr)
+    }
+    return maybeArgumentKeywordAtomAction(c, kwArg, atomExpr)
+  }
+
+  // LParen must be explicitly listed instead of just the dot here, in order to properly
+  // increment the paren depth. The initial paren depth is saved before starting the parse
+  // of the BadExpr, so that closing paren that balance opening ones inside the BadExpr
+  // are consumed as part of the BadExpr (same for commas within bad parens).
+  / #{
+    return enterArgumentBadExprState(c)
+  }
+  (
+      ( &{ return rparenPredicate(c) } ( Comma / RParen ) )
+    / ( !( Comma / RParen ) ( LParen / . ) )
+  )+
+
+  // returns an *Argument with Value set to a *BadExpr.
+  {
+    return maybeArgumentBadExprAction(c)
+  }
+
+ValidArgumentTrailer <- ( _ Comma / _ RParen / _ EOF )
+
+Keyword <- id:ID _ eq:Equals _
+  // returns a partially-filled *Argument:
+  // - Name
+  // - Equals
+  {
+    return keywordAction(c, id.(*pythonast.NameExpr), eq.(*pythonscanner.Word))
+  }
+
+// TODO: this is the subset of the atom token from the python
+// grammar that we are supporting at the moment.
+//
+// NOTE: method calls on literals work, with some special cases:
+// - "a".upper()
+// - 3.14.is_integer()
+// - .1.is_integer()
+// - 1..is_integer()
+// - (3).bit_length() <- Integer requires parentheses
+//   which makes sense since "3." would be parsed as Float
+//   and then "bit_length()" is unparsable.
+// - imaginary?
+//
+Atom <- Strings
+      / ID
+      / Imaginary
+      / Float
+      / Integer
+      / Ellipsis       // ellipsis must be after numbers, may start with '.'
+      / ListExpr       // starts with '['
+      / DictOrSetExpr  // starts with '{'
+      / TupleExpr      // starts with '('
+  // returns a *StringExpr, *NameExpr, *EllipsisExpr, *NumberExpr for simple types,
+  // or a *ListExpr, *DictExpr, *SetExpr or *TupleExpr for aggregates.
+  // NOTE: order is important, Strings may start with a letter, so must
+  // come before ID. Imaginary before Float before Integer.
+
+/*
+ * Aggregate Literals.
+*/
+
+TupleExpr <- lp:LParen _ list:AtomExprList? _ rp:RParen
+  // returns a *TupleExpr or an Expr if there is a single expression
+  // and no comma.
+  {
+    var items *exprListAndCommas
+    if list != nil {
+      items = list.(*exprListAndCommas)
+    }
+    return tupleExprAction(c, lp.(*pythonscanner.Word), items, rp.(*pythonscanner.Word))
+  }
+
+// TODO: support varargs in list literal?
+ListExpr <- lb:LBrack _ list:AtomExprList? _ rb:RBrack
+  // returns a *ListExpr.
+  {
+    var items *exprListAndCommas
+    if list != nil {
+      items = list.(*exprListAndCommas)
+    }
+    return listExprAction(c, lb.(*pythonscanner.Word), items, rb.(*pythonscanner.Word))
+  }
+
+// TODO: support kwargs in set literal?
+DictOrSetExpr <- lb:LBrace _ items:( DictList / AtomExprList )? _ rb:RBrace
+  // returns an Expr that is either a *DictExpr or a *SetExpr.
+  {
+    return dictOrSetExprAction(c, lb.(*pythonscanner.Word), items, rb.(*pythonscanner.Word))
+  }
+
+DictList <- first:DictKeyVal rest:( _ ',' _ DictKeyVal )* _ ','?
+  // returns a []*KeyValuePair.
+  {
+    return dictListAction(c, first.(*pythonast.KeyValuePair), toIfaceSlice(rest))
+  }
+
+// TODO: support kwargs in dict literal?
+DictKeyVal <- key:AtomExpr _ ':' _ val:AtomExpr
+  // returns a *KeyValuePair.
+  {
+    return dictKeyValAction(c, key.(pythonast.Expr), val.(pythonast.Expr))
+  }
+
+AtomExprList <- first:AtomExpr rest:( _ Comma _ AtomExpr )* _ comma:Comma?
+  // returns exprListAndCommas, which contains the []Expr and []*Word (commas).
+  {
+    var lastComma *pythonscanner.Word
+    if comma != nil {
+      lastComma = comma.(*pythonscanner.Word)
+    }
+    return exprListAction(c, first.(pythonast.Expr), toIfaceSlice(rest), lastComma)
+  }
+
+/*
+ * Identifiers
+ * https://docs.python.org/3/reference/lexical_analysis.html#identifiers
+*/
+ID <- id:( IDStart IDContinue* ) !{ return isKeywordPredicate(c, toIfaceSlice(id)) }
+  // returns a *NameExpr
+  {
+    return idAction(c)
+  }
+
+MaybeID <- id:ID?
+  // returns a *NameExpr, possibly with an empty literal
+  {
+    if id == nil {
+      // create a *NameExpr with the correct position, but empty literal
+      return idAction(c)
+    }
+    return id, nil
+  }
+
+IDStart <- [\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}_] / OtherIDStart
+OtherIDStart <- [\u1885-\u1886\u2118\u212E\u309B-\u309C]
+IDContinue <- IDStart / [\p{Mn}\p{Mc}\p{Nd}\p{Pc}] / OtherIDContinue
+OtherIDContinue <- [\u00B7\u0387\u1369-\u1371\u19DA]
+
+/*
+ * Integer Literal
+ * https://docs.python.org/3/reference/lexical_analysis.html#integer-literals
+ *
+ * Python 2.x supports the 'L' suffix to denote a long integer.
+ * https://docs.python.org/2/library/stdtypes.html#numeric-types-int-float-long-complex
+*/
+Integer <- ( BinInteger / OctInteger / HexInteger / DecInteger ) long:'L'i?
+  // returns a *NumberExpr
+  {
+    return integerAction(c, long)
+  }
+
+DecInteger <- NonZeroDigit ( '_'? Digit )* / '0' ( '_'? '0' )*
+BinInteger <- '0' 'b'i ( '_'? BinDigit )+
+OctInteger <- '0' 'o'i ( '_'? OctDigit )+
+HexInteger <- '0' 'x'i ( '_'? HexDigit )+
+NonZeroDigit <- [1-9]
+Digit <- [0-9]
+BinDigit <- [01]
+OctDigit <- [0-7]
+HexDigit <- Digit / [a-f]i
+
+/*
+ * Floating-point Literal
+ * https://docs.python.org/3/reference/lexical_analysis.html#floating-point-literals
+*/
+Float <- ( ExpFloat / PointFloat )
+  // returns a *NumberExpr
+  {
+    return floatAction(c)
+  }
+
+ExpFloat <- ( PointFloat / DigitPart ) Exponent
+PointFloat <- ( DigitPart? Fraction ) / ( DigitPart '.' )
+DigitPart <- Digit ( '_'? Digit )*
+Fraction <- '.' DigitPart
+Exponent <- 'e'i [+-]? DigitPart
+
+/*
+ * Imaginary Literal
+ * https://docs.python.org/3/reference/lexical_analysis.html#imaginary-literals
+*/
+Imaginary <- ( Float / DigitPart ) 'j'i
+  // returns a *NumberExpr
+  {
+    return imaginaryAction(c)
+  }
+
+/*
+ * String Literal
+ * https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals
+ *
+ * TODO: support formatted string literals?
+ * https://docs.python.org/3/reference/lexical_analysis.html#formatted-string-literals
+*/
+Strings <- first:StringLiteral rest:( _ StringLiteral )*
+  // returns a *StringExpr
+  {
+    return stringsAction(c, first.(*pythonscanner.Word), toIfaceSlice(rest))
+  }
+
+StringLiteral <- ( Bytes / String )
+  // returns a *Word
+  {
+    return makeLiteralWord(c, pythonscanner.String), nil
+  }
+
+String <- StringPrefix? ( LongString / ShortString )
+StringPrefix <- StringPrefix2 / StringPrefix1
+StringPrefix1 <- [ruf]i
+StringPrefix2 <- "fr"i / "rf"i
+
+// support unclosed short string literals that end with unescaped EOL or EOF
+ShortString <- '\'' ShortStringSingleQuoteItem* ( '\'' / &EOL / EOF ) / '"' ShortStringDoubleQuoteItem* ( '"' / &EOL / EOF )
+ShortStringSingleQuoteItem <- ShortStringSingleQuoteChar / StringEscapeSeq
+ShortStringDoubleQuoteItem <- ShortStringDoubleQuoteChar / StringEscapeSeq
+ShortStringSingleQuoteChar <- [^\\\n\r']
+ShortStringDoubleQuoteChar <- [^\\\n\r"]
+
+// support unclosed long string literals that end with EOF
+LongString <- "'''" LongStringSingleQuoteItem* ( "'''" / EOF ) / "\"\"\"" LongStringDoubleQuoteItem* ( "\"\"\"" / EOF )
+LongStringSingleQuoteItem <- LongStringSingleQuoteChar / StringEscapeSeq
+LongStringDoubleQuoteItem <- LongStringDoubleQuoteChar / StringEscapeSeq
+LongStringSingleQuoteChar <- [^\\'] / !"'''" '\''
+LongStringDoubleQuoteChar <- [^\\"] / !"\"\"\"" '"'
+
+StringEscapeSeq <- '\\' .
+
+/*
+ * Bytes Literal
+ * https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals
+ * NOTE: bytes with a numeric value of 128 or greater must be expressed with escapes
+*/
+Bytes <- BytesPrefix ( LongBytes / ShortBytes )
+BytesPrefix <- "br"i / "rb"i / 'b'i
+
+// support unclosed short bytes literals that end with unescaped EOL or EOF
+ShortBytes <- '\'' ShortBytesSingleQuoteItem* ( '\'' / &EOL / EOF ) / '"' ShortBytesDoubleQuoteItem* ( '"' / &EOL / EOF )
+ShortBytesSingleQuoteItem <- ShortBytesSingleQuoteChar / BytesEscapeSeq
+ShortBytesDoubleQuoteItem <- ShortBytesDoubleQuoteChar / BytesEscapeSeq
+ShortBytesSingleQuoteChar <- [\x00-\x09\x0b-\x0c\x0e-\x26\x28-\x5b\x5d-\x7f] // all except "\n", "\r", "'", "\"
+ShortBytesDoubleQuoteChar <- [\x00-\x09\x0b-\x0c\x0e-\x21\x23-\x5b\x5d-\x7f] // all except "\n", "\r", "\"", "\"
+
+// support unclosed long bytes literals that end with EOF
+LongBytes <- "'''" LongBytesSingleQuoteItem* ( "'''" / EOF ) / "\"\"\"" LongBytesDoubleQuoteItem* ( "\"\"\"" / EOF )
+LongBytesSingleQuoteItem <- LongBytesSingleQuoteChar / BytesEscapeSeq
+LongBytesDoubleQuoteItem <- LongBytesDoubleQuoteChar / BytesEscapeSeq
+LongBytesSingleQuoteChar <- [\x00-\x26\x28-\x5b\x5d-\x7f] // all except "\" and "'"
+                            / !"'''" '\''
+LongBytesDoubleQuoteChar <- [\x00-\x21\x23-\x5b\x5d-\x7f] // all except "\" and "\""
+                            / !"\"\"\"" '"'
+
+BytesEscapeSeq <- '\\' [\x00-\x7f]
+
+Ellipsis <- dots:( Period Period Period )
+  // Returns an *EllipsisExpr.
+  {
+    return ellipsisAction(c, toIfaceSlice(dots))
+  }
+
+
+/*
+ * Punctuation and keywords
+ * Generates *Word
+*/
+Period <- '.'
+  {
+    return makeNonLiteralWord(c, pythonscanner.Period), nil
+  }
+
+LParen <- '('
+  #{
+    return lparenState(c)
+  }
+  {
+    return makeNonLiteralWord(c, pythonscanner.Lparen), nil
+  }
+
+RParen <- ')'
+  #{
+    return rparenState(c)
+  }
+  {
+    return makeNonLiteralWord(c, pythonscanner.Rparen), nil
+  }
+
+LBrack <- '['
+  {
+    return makeNonLiteralWord(c, pythonscanner.Lbrack), nil
+  }
+
+RBrack <- ']'
+  {
+    return makeNonLiteralWord(c, pythonscanner.Rbrack), nil
+  }
+
+LBrace <- '{'
+  {
+    return makeNonLiteralWord(c, pythonscanner.Lbrace), nil
+  }
+
+RBrace <- '}'
+  {
+    return makeNonLiteralWord(c, pythonscanner.Rbrace), nil
+  }
+
+Comma <- ','
+  {
+    return makeNonLiteralWord(c, pythonscanner.Comma), nil
+  }
+
+Equals <- '='
+  {
+    return makeNonLiteralWord(c, pythonscanner.Assign), nil
+  }
+
+AugAssignOp <- ( "<<" / ">>" / "**" / "//" / [-+*@/%&|^] ) '='
+  {
+    return makeNonLiteralWord(c, pythonscanner.ByName(string(c.text))), nil
+  }
+
+Colon <- ':'
+	{
+    return makeNonLiteralWord(c, pythonscanner.Colon), nil
+	}
+
+Class <- "class" &W
+	{
+    return makeNonLiteralWord(c, pythonscanner.Class), nil
+	}
+
+Def <- "def" &W
+	{
+    return makeNonLiteralWord(c, pythonscanner.Def), nil
+	}
+
+If <- "if" &W
+	{
+		return makeNonLiteralWord(c, pythonscanner.If), nil
+	}
+
+With <- "with" &W
+	{
+		return makeNonLiteralWord(c, pythonscanner.With), nil
+	}
+
+As <- "as" &W
+	{
+		return makeNonLiteralWord(c, pythonscanner.As), nil
+	}
+
+While <- "while" &W
+	{
+		return makeNonLiteralWord(c, pythonscanner.While), nil
+	}
+
+For <- "for" &W
+	{
+		return makeNonLiteralWord(c, pythonscanner.For), nil
+	}
+
+In <- "in" &W
+	{
+		return makeNonLiteralWord(c, pythonscanner.In), nil
+	}
+
+/*
+ * Comments, newlines and whitespace
+*/
+EOL <- ( '\r' '\n' / '\r' / '\n' )
+Comment <- '#' ( !EOL . )*
+ExplicitLineJoining <- '\\' EOL
+
+// whitespace - as far as we're concerned for call-expr, whitespace is
+// mostly ignored (no INDENT/DEDENT significant whitespace).
+// It matters as a separator between e.g. keywords and other syntax.
+Whitespace <- [ \t\f]
+_ <- ( Whitespace / ExplicitLineJoining / EOL / Comment )*
+W <- Whitespace / ExplicitLineJoining / EOF
+
+EOF <- !.
+

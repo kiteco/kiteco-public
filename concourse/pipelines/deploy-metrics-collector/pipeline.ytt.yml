@@ -1,0 +1,114 @@
+resource_types:
+  - name: terraform
+    type: docker-image
+    source:
+      repository: ljfranklin/terraform-resource
+      tag: latest
+
+resources:
+  - name: kiteco
+    type: git
+    source:
+      uri: git@github.com:kiteco/kiteco.git
+      branch: release
+      private_key: ((ssh_private))
+      disable_ci_skip: true
+      fetch_tags: true
+      tag_filter: v2* #! this'll last for the millenium
+  - name: puppet
+    type: s3
+    source:
+      bucket: kite-deploys
+      regexp: puppet/puppet-v(.*).tar.gz
+      region_name: us-west-1
+      access_key_id: ((aws_id))
+      secret_access_key: ((aws_secret))
+  - name: terraform
+    type: terraform
+    source:
+      backend_type: s3
+      env_name: us-east-1
+      terraform_source: kiteco/devops/terraform/cloud/deployments/metrics/
+      vars:
+        region: us-east-1
+      backend_config:
+        access_key: ((aws_id))
+        bucket: kite-terraform-state
+        key: terraform.tfstate
+        region: us-west-1
+        secret_key: ((aws_secret))
+        workspace_key_prefix: deployments/metrics-collector
+      env:
+        AWS_ACCESS_KEY_ID: ((aws_id))
+        AWS_SECRET_ACCESS_KEY: ((aws_secret))
+
+jobs:
+- name: stage-plan
+  plan:
+  - get: kiteco
+    params: &kiteco_get_params
+      depth: 10
+      submodules: none
+      disable_git_lfs: true
+  - get: puppet
+  - task: tfvars
+    file: kiteco/concourse/tasks/tf-vars/task.yml
+    vars:
+      build: puppet
+      versions: '{"green": "VERSION", "blue": "blue"}'
+  - put: terraform
+    params:
+      plan_only: true
+      var_files: [tfvars/terraform.tfvars]
+
+- name: stage-apply
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [stage-plan]
+  - put: terraform
+    params:
+      plan_run: true
+
+- name: switch-plan
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [stage-apply]
+    trigger: true
+  - put: terraform
+    params:
+      plan_only: true
+      vars:
+        versions:
+          green: blue
+          blue: green
+
+- name: switch-apply
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [switch-plan]
+  - put: terraform
+    params:
+      plan_run: true
+
+- name: cleanup-plan
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+  - put: terraform
+    params:
+      plan_only: true
+      vars:
+        versions:
+          blue: blue
+
+- name: cleanup-apply
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [cleanup-plan]
+  - put: terraform
+    params:
+      plan_run: true

@@ -1,0 +1,26 @@
+version: "3"
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - "9094:9094"
+    depends_on:
+      - redis
+  redis:
+    image: redis:4.0.14-buster
+    ports:
+      - "6379"
+  convcohort:
+    build: ./convcohort
+    volumes:
+    - ./convcohort/build:/opt/svc
+    environment:
+      AWS_ACCESS_KEY_ID: "${RC_KITE_COM_AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${RC_KITE_COM_AWS_SECRET_ACCESS_KEY_ID}"
+      CUSTOMER_IO_API_KEY: "${RC_KITE_COM_CUSTOMER_IO_API_KEY}"
+  metricbeat:
+    build: ./metricbeat
+    environment:
+      SVC_NAME: rc-local.kite.com
+      CLOUD_ID: ${RC_KITE_COM_ELASTIC_CLOUD_ID}
+      CLOUD_AUTH: ${RC_KITE_COM_ELASTIC_CLOUD_AUTH}

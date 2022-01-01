@@ -1,0 +1,49 @@
+.loading__spinner {
+  width: 180px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.loading__spinner__text {
+  position: relative;
+  color: var(--bright-color);
+  margin-bottom: 10%;
+  font-size: 1.5rem;
+}
+
+.loading__spinner--dark > div {
+  background-color: var(--text-color-richer);
+}
+
+.loading__spinner--light > div {
+  background-color: var(--text-color-light);
+}
+
+.loading__spinner > div {
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  display: inline-block;
+  animation: sk-bouncedelay 0.75s infinite ease-in-out both;
+}
+
+.loading__spinner .bounce1 {
+  animation-delay: -0.32s;
+}
+
+.loading__spinner .bounce2 {
+  animation-delay: -0.16s;
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}

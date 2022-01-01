@@ -1,0 +1,3 @@
+//go:generate go-bindata -pkg sublime3 -prefix ../../../../../../plugins/ ../../../../../../plugins/KiteSublime/...
+
+package sublime3

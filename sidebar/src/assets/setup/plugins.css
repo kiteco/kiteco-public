@@ -1,0 +1,137 @@
+/* TODO: Not using color variables yet, doesn’t have to be themed. */
+
+.setup__plugins {
+  height: 100%;
+}
+
+.setup__plugins > * + * {
+  margin: 0;
+  margin-top: 2rem;
+}
+
+.setup__plugins--loading {
+  opacity: 0.1;
+  position: relative;
+  pointer-events: none;
+}
+
+.setup__plugins__plugin {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+
+.setup__plugins__plugin > * + * {
+  margin-left: 2rem;
+}
+
+.setup__plugins__checkbox {
+  font-size: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0;
+  text-align: center;
+  padding: 0;
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.setup__plugins__editor-list {
+  flex-grow: 1;
+}
+
+.setup__plugins__editor-list > * {
+  margin: 0;
+}
+
+.setup__plugins__editor-list > * + * {
+  margin-top: 1rem;
+}
+
+.setup__plugins__checkbox--installed-null, .setup__plugins__checkbox--installed-undefined {
+  color: transparent;
+}
+
+.setup__plugins__checkbox--installed-null:hover, .setup__plugins__checkbox--installed-undefined:hover {
+  color: transparent;
+}
+
+.setup__plugins__checkbox:hover {
+  background-color: #2967e0;
+}
+
+.setup__plugins__icon {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.setup__plugins__list {
+  max-height: 55vh;
+  overflow: auto;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.05);
+  position: relative;
+  min-height: 7rem;
+}
+
+.setup__plugins__install-disclaimer {
+  color: #cac4dd;
+}
+
+.setup__plugins__detail {
+  opacity: 0.7;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.setup__plugin__compatibility {
+  color: orange;
+}
+
+.setup__plugins__list > * + * {
+  margin-top: 1.5rem;
+}
+
+.setup__header {
+  text-align: center;
+  padding: 1rem 0;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.setup__subtitle {
+  font-size: 1.7rem;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
+}
+
+.setup__plugins__warning {
+  font-size: 1.2rem;
+  color: rgb(255, 165, 0);
+}
+
+.setup__plugins__try-again {
+  color: white;
+  text-decoration: underline;
+}
+
+.setup__plugins__checkbox--disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.setup__flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.setup__flex > * + * {
+  margin: 0;
+  margin-top: 1rem;
+}

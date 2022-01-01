@@ -1,0 +1,27 @@
+@import "../../../../assets/styles/less/variables.less";
+
+.StripeElement {
+  border: 1px solid @alto;
+  border-radius: 4px;
+  padding: 13.6px;
+  width: 100%;
+  background: @white;
+
+  &::placeholder {
+    color: rgba(@black, 0.5);
+  }
+
+  &--focus {
+    border-color: @java;
+    box-shadow: 0 0 0 2px rgba(@java, 0.2);
+  }
+
+  &--invalid {
+    border-color: @sunset-orange;
+    box-shadow: 0 0 0 2px rgba(@sunset-orange, 0.2);
+  }
+
+  + .card-error-message {
+    color: @sunset-orange;
+  }
+}

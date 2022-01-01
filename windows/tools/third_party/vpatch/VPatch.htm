@@ -1,0 +1,119 @@
+<html>
+<title>VPatch readme</title>
+<body bgcolor="#FFFFFF" text="#000000" link="#0000FF">
+<h1>VPatch v3.2</h1>
+<h4>(c) 2001-2008 Van de Sande Productions</h4>
+<p>Some notes about this readme: this file contains extra information not found 
+  in the <a href="Readme.html">readme from the NSIS distribution</a>, specifically 
+  about the User Interface of VPatch (the GUI) and the VAppend command line utility 
+  to create standalone patches.</p>
+<h2>Using the interface</h2>
+<p> <b>Step 1.</b> Start the interface (VPatchGUI.exe).</p>
+<p><b>Step 2.</b> Hit the &quot;Add new version&quot; button. Now, select the 
+  latest version of your file. Right after that, another file selection screen 
+  pops up. Now, select all older versions of your file (which need to be updated).</p>
+<p><b>Step 3.</b> You're set, you can add more files if you want through the &quot;Add 
+  new version&quot; button.</p>
+<p><b>Step 4.</b> Configuration: By default a &quot;Block size&quot; of 64 is 
+  configured. If you make it smaller, you will get smaller patch files. You can 
+  set this to 16 to squeeze out even that last byte, but applying the patch file 
+  can get slower when using such small block sizes. Also, memory usage during 
+  patch generation will be higher.</p>
+<p><b>Step 5.</b> Hit &quot;Generate patches&quot; from the Action menu. Your 
+  patches are now being generated.</p>
+<p><b>Step 6.</b> If you select &quot;Create patch file&quot; now, the program 
+  will create an PAT which contains the information needed to update all old files 
+  to new versions. This PAT file can be used to update files. If you want to do 
+  this with NSIS, see the other readme file. If you want to use it standalone, 
+  you should create an EXE file instead of a PAT file. However, the recommended 
+  way to use patches with NSIS now uses plugins, see the other readme for info 
+  about that.</p>
+<ul>
+  <li>The 'Create PAT' option is for creating a patch for use with <a href="http://nsis.sourceforge.net">NSIS 
+    2</a></li>
+  <li>The 'Create EXE' option is for creating a patch attached to a stand-alone 
+    EXE. Read below for steps on how to use this command-line patch.</li>
+  <li>The 'Create DLL' option is for creating a patch attached to a stand-alone 
+    DLL (useful for <a href="http://www.jrsoftware.org/isinfo.php">Inno Setup</a>)</li>
+</ul>
+<h2>Using command-line utilities</h2>
+<h3>Step 1: Creating the patch file(s)</h3>
+<p>Make sure you have the source file (original version) and the target file (version 
+  to update to). For example, I have DATA.DTA (currently on user system) and DATA_20.DTA 
+  (v2.0 of this data file). Now call GenPat.exe:</p>
+<blockquote>
+  <p> <font face="Courier New, Courier, mono">GENPAT (sourcefile) (targetfile) 
+    (patchfile)</font></p>
+</blockquote>
+<p>In my example, I use the following call:</p>
+<blockquote>
+  <p> <font face="Courier New, Courier, mono">GENPAT data.dta data_20.dta data.pat</font></p>
+</blockquote>
+<p>Now, the patch will be generated. This will take some time. You can repeat<br>
+  this step for multiple different files:</p>
+<blockquote>
+  <p> <font face="Courier New, Courier, mono">GENPAT title.pcx title2.pcx data.pat</font></p>
+</blockquote>
+<p>Note: GenPat returns an error code if something went wrong as of v2.1. Please 
+  see the other readme for a description of these error codes.</p>
+<p></p>
+<h3>Step 2: Piecing things together</h3>
+<p>The patch files created in step 1 should now be attached to the VPatch runtime. 
+  <i>Or</i> read the alternative step 2 below.
+  Once attached, you can run this file on the target system and it will update 
+  the files. In order to piece the patch files together, use VAppend.exe:</p>
+<blockquote>
+  <p> <font face="Courier New, Courier, mono">VAPPEND (patchfile) [output file] 
+    [runtime] </font></p>
+</blockquote>
+<p>This will create a file called VPatch.exe by default, which is the actual patch. 
+  The default runtime is VPatch.bin. In my example:</p>
+<blockquote>
+  <p> <font face="Courier New, Courier, mono">VAPPEND data.pat</font></p>
+</blockquote>
+<p>So this is the same call as:</p>
+<blockquote> 
+  <p><font face="Courier New, Courier, mono">VAPPEND data.pat vpatch.exe vpatch.bin</font></p>
+</blockquote>
+<p>Note that &quot;vpatch.bin&quot; corresponds to &quot;Create EXE&quot; in the 
+  GUI and that &quot;vpatchdll.bin&quot; corresponds to &quot;Create DLL&quot; 
+  in the GUI. The stand-alone patch (which is not attached to a runtime) is the 
+  one you get if you use &quot;Create PAT&quot; in the GUI.</p>
+<h3>Step 3: How to use it (the command-line EXE version)</h3>
+<p><i>If you want to use your patch in NSIS, please read the other readme</i>. 
+  This description is about the stand-alone EXE version.</p>
+<p>Now that the patch is ready, you (could) use it. You can call VPatch.exe in 
+  the following way:</p>
+<blockquote>
+  <p> <font face="Courier New, Courier, mono">VPATCH.EXE (sourcefile) (outputfile)</font></p>
+</blockquote>
+<p><b>IMPORTANT</b>: You must specify the full filename of VPatch, so VPatch.exe. 
+  If you call it using just &quot;VPatch&quot; then you will get an error.</p>
+<p>In the example this would be:</p>
+<blockquote>
+  <p> <font face="Courier New, Courier, mono">VPATCH.EXE data.dta data.new</font></p>
+</blockquote>
+<p>This way, VPatch will use data.dta and patch it. It will create data.new, which 
+  contains the new version. The original data.dta isn't touched. If the file data.new 
+  isn't created, an error must have occured.</p>
+<p>If you have multiple files attached, you can make multiple calls to VPatch. 
+  The program will automatically choose the correct patch for the file:</p>
+<blockquote>
+  <p> <font face="Courier New, Courier, mono">VPATCH.EXE data.dta data.new<br>
+    VPATCH.EXE title.pcx title.out</font></p>
+</blockquote>
+<h3>Step 2 (alternative): stand-alone runtime and patch</h3>
+<p>If you do not want to attach your patch file to a runtime, you can also use
+  it in a more stand-alone manner using the VPatchPrompt.exe runtime. This runtime
+  will first check if it has a patch attached and, if it does not, it will take
+  the patch file as the first command-line argument:</p>
+<blockquote>
+  <p><font face="Courier New, Courier, mono">VPATCHPROMPT.EXE (patchfile) (sourcefile) (outputfile)</font></p>
+</blockquote>
+<p>Another feature of this runtime is that it will prompt the user for a filename, 
+  if a command-line argument is not specified. Therefore, if you call VPatchPrompt
+  without arguments, you will be prompted for all three command-line options (or,
+  if you have attached a patch to the VPatchPrompt runtime using VAppend, it will
+  only prompt for the source and output files).</p>
+</body>
+</html>

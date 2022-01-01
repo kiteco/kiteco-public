@@ -1,0 +1,29 @@
+@import url("index.css");
+
+.tableOfContents {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.tableOfContents a {
+  margin: 0.25rem 0;
+  padding: 0 1rem;
+  border-left: 2px solid whitesmoke;
+  text-decoration-color: var(--headline);
+}
+
+.tableOfContents a:hover {
+  color: var(--hover);
+  text-decoration-color: var(--hover);
+}
+
+.tableOfContents a:last-child {
+  border-right: 2px solid whitesmoke;
+}
+
+.tableOfContents a * {
+  color: var(--headline);
+  margin: 0;
+}

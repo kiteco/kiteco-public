@@ -1,0 +1,8 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install --no-install-recommends -y libaugeas0 augeas-lenses
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN pip2 install python-augeas==1.0.3
+
+ENTRYPOINT ["/usr/bin/env", "python2", "-m", "kite.pkgexploration", "python-augeas", "1.0.3", "python-augeas__1.0.3.json", "python-augeas__1.0.3.log"]

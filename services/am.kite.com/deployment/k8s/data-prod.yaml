@@ -1,0 +1,8 @@
+#@data/values
+---
+env: prod
+hostname: am.kite.com
+user_mux_cpu: 1000m
+user_mux_mem: 4Gi
+user_node_mem: 1Gi
+user_node_cpu: 100m

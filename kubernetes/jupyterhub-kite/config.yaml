@@ -1,0 +1,16 @@
+proxy:
+  secretToken: "XXXXXXX"
+
+singleuser:
+  image:
+    name: kiteco/jupyterhub-kite
+    tag: XXXXXXX
+  defaultUrl: "/lab"
+  extraEnv:
+    KITE_USER: "demo_jlab@kite.com"
+    KITE_PASSWORD: "kite_in_a_lab"
+
+hub:
+  extraConfig:
+    jupyterlab: |
+      c.Spawner.cmd = "/usr/share/kite/run_kite.sh"

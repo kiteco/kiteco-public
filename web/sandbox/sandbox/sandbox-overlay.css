@@ -1,0 +1,48 @@
+html {
+  --sandbox-overlay-z-index: 100;
+}
+.sandbox-overlay {
+  position: absolute;
+  z-index: var(--sandbox-overlay-z-index);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(138, 138, 138, 0.0);
+  padding: 10rem 2rem;
+  text-align: center;
+  cursor: default;
+}
+
+.sandbox-overlay.cursor-default {
+  cursor: default;
+}
+
+.sandbox-overlay__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  max-width: 100rem;
+  position: relative;
+}
+
+.sandbox-overlay__button {
+  background-color: var(--sandbox-overlay-button-color);
+  color: var(--sandbox-overlay-text-color);
+  z-index: calc(var(--sandbox-overlay-z-index) + 1);
+}
+
+.sandbox-overlay__button:hover {
+  background: var(--sandbox-overlay-button-hover);
+}
+
+.sandbox-overlay__buttons .sandbox-overlay__button + .sandbox-overlay__button {
+  margin-left: 10px;
+}

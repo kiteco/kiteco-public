@@ -1,0 +1,91 @@
+/* TODO: Not using color variables yet, doesn’t have to be themed. */
+
+/* .setup-main is parent of .setup */
+.setup-main {
+  min-height: 100vh;
+  background: linear-gradient(to top, #3f61f5, #251172);
+
+  --header-height: 0;
+}
+
+/* make space for the titlebar elements on mac os*/
+.darwin .setup-main {
+  --header-height: 3.7em;
+}
+
+.setup {
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2rem;
+  box-sizing: border-box;
+  color: white;
+  font: caption;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeSpeed;
+}
+
+.setup__header--invisible {
+  height: var(--header-height);
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.setup__title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.setup__text {
+  font-weight: 200;
+  font-size: 1.6rem;
+  color: #edeaf7;
+  line-height: 2rem;
+}
+
+button.setup__button {
+  font: caption;
+  color: white;
+  background-color: #1fb0ff;
+  width: 100%;
+  margin: 1rem auto .75rem;
+  display: block;
+  font-size: 1.7rem;
+  padding: 1rem 2rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+div.setup__links-container {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 1rem);
+  margin: 0;
+}
+
+.setup__button:hover {
+  background-color: #72cdff;
+}
+
+.setup__button--semi {
+  font: caption;
+  color: white;
+  background-color: #2967e0;
+  width: 100%;
+  max-width: 40rem;
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.setup__sync__pic {
+  width: 12rem;
+  height: 12rem;
+  margin: 3rem auto;
+  background-image: url(./icon-logo-sync.svg);
+}

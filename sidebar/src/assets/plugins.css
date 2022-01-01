@@ -1,0 +1,297 @@
+.plugins {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 0;
+}
+
+.plugins__list {
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.plugins__list .loading__spinner--compact {
+  position: absolute;
+  left: auto;
+  right: -2rem;
+  top: 1rem;
+  flex: 0 !important;
+}
+
+.plugins__list > * {
+  flex-shrink: 0;
+}
+
+.plugins__keys {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--highlight-background);
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+
+.plugins__key {
+  display: flex;
+  align-items: center;
+}
+
+.plugins__plugin {
+  background-color: var(--highlight-background);
+  padding: 0.65rem 1rem;
+  border-radius: 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.plugins__plugin > * + * {
+  margin-top: 0.5rem;
+}
+
+.plugins__plugin__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.plugins__plugin:last-child {
+  margin-bottom: 3rem;
+}
+
+.plugins__plugin--manual {
+  font-size: 1.4rem;
+}
+
+.plugins__warning {
+  color: var(--error-color);
+  font-size: 1.2rem;
+  padding: 0.5rem 3rem;
+}
+
+.plugins__note {
+  font-size: 1.2rem;
+  padding: 0.5rem 3rem;
+}
+
+.plugins__plugin--expanded-true {
+  display: block;
+}
+
+.plugins__plugin__title {
+  display: flex;
+  align-items: center;
+  line-height: 1.6;
+  width: 100%;
+  min-height: 4rem;
+}
+
+.plugins__plugin__title__h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+  flex-grow: 2;
+}
+
+.plugins__plugin-icon {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+.plugins__plugin--not-installed .plugins__plugin-icon {
+  filter: saturate(0);
+  opacity: 0.5;
+}
+
+.plugins__try-again, .plugins__more-info {
+  color: var(--text-color-highlight);
+  text-decoration: underline;
+  transition: 250ms all;
+}
+
+.plugins__try-again:hover, .plugins__more-info:hover {
+  color: var(--text-color-highlight);
+}
+
+.plugins__single {
+  justify-self: right;
+}
+
+.plugins__install {
+  font-size: 1.4rem;
+  padding: 0.75rem 1.25rem;
+  min-width: 9rem;
+  min-height: 1.6rem;
+  margin-left: 1rem;
+  border: 1px solid transparent;
+}
+
+.plugins__install--disabled {
+  opacity: var(--disabled-opacity);
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.plugins__install--installed-false {
+  background-color: var(--button-background);
+}
+.plugins__install--installed-false:disabled {
+  opacity: var(--disabled-opacity);
+}
+.plugins__install--installed-false:not([disabled]):hover {
+  background-color: var(--bright-color);
+  color: var(--button-text);
+}
+
+.plugins__install--installed-true {
+  background-color: transparent;
+  color: var(--text-color-light);
+  border-color: var(--text-color-light);
+}
+.plugins__install--installed-true:disabled {
+  opacity: var(--disabled-opacity);
+}
+.plugins__install--installed-true:not([disabled]):hover {
+  background-color: var(--text-color-light);
+  color: var(--highlight-background);
+}
+.plugins__install[data-clicked='true'] {
+  background: transparent;
+  border-color: transparent;
+  position: relative;
+  opacity: 1;
+}
+
+.plugins__editor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.plugins__editor--multiple {
+  padding: 1rem 0;
+}
+
+.plugins__editor + .plugins__editor {
+  padding-top: 1rem;
+  border-top: 1px solid var(--highlight-background);
+}
+
+.plugins__indicator {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 1rem;
+  background: var(--text-color-richer);
+  margin-right: 1rem;
+  flex-shrink: 0;
+  flex-grow: 0;
+  opacity: 0.3;
+}
+
+.plugins__indicator--installed {
+  background: var(--text-color-richer);
+  opacity: 1;
+}
+
+.plugins__indicator--incompatible {
+  background: var(--error-color);
+  opacity: 1;
+}
+
+.plugins__editor-list > * {
+  margin: 0;
+}
+
+.plugins__editor-list > * + * {
+  margin-top: 1rem;
+}
+
+.plugins__editor-detail {
+  flex-grow: 1;
+  font-size: 1.3rem;
+}
+
+.plugins__editor-detail > * {
+  margin: 0;
+}
+
+.plugins__editor-detail > * + * {
+  margin-top: 0.5rem;
+}
+
+.plugins__compatibility-message {
+  color: var(--error-color);
+}
+
+.plugins__error {
+  font-size: 1.2rem;
+  color: var(--error-color);
+  padding: 1rem;
+  border: 1px solid var(--error-color);
+  transition: all 0.5s ease;
+}
+
+.plugins__error--hide {
+  height: 0;
+  opacity: 0;
+  display: none;
+}
+
+.plugins__error > * {
+  margin: 0;
+}
+
+.plugins__error > * + * {
+  margin-top: 1rem;
+}
+
+.section__title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 1rem 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.plugins__also {
+  --error-color: var(--text-color-normal);
+
+  font-size: 1.4rem;
+  margin: 1rem 0 2rem;
+}
+
+.plugins__also a, .plugins__plugin--manual a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.plugins__also p:first-child {
+  margin-top: 0;
+}
+
+.plugins__terminal-command {
+  border: 1px solid var(--text-color-normal);
+  color: var( --link-color);
+  cursor: pointer;
+  font-family: Hack, monospace;
+  font-size: 1.3rem;
+  padding: 1rem;
+  position: relative;
+}
+
+.plugins__terminal-command__copied {
+  background: var(--highlight-background);
+  bottom: 0;
+  color: var(--text-color-richer);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-style: italic;
+  padding: 0.5rem;
+  position: absolute;
+  right: 0;
+}

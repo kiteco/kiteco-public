@@ -1,0 +1,83 @@
+<html>
+	<head>
+		<title>{{.Number}}</title>
+		<link rel="stylesheet" type="text/css" href="/server/static/style.css">
+	</head>
+	<body>
+
+		<p class=header>
+			<a href="https://github.com/kiteco/kiteco/pull/{{.Number}}" target="_blank">{{.Number}}</a>
+		<table>
+			<tr>
+				<td>File F1
+				<td>{{.Stats.F1}}
+			<tr>
+				<td>File Precision
+				<td>{{.Stats.Precision}}
+			<tr>
+				<td>File Recall
+				<td>{{.Stats.Recall}}
+		</table>
+
+		<p>Edited files:
+		<ul>
+			{{range $base := .Bases}}
+			<li class=edited>{{$base.Path}}
+			{{end}}
+		</ul>
+
+		{{range $base := .Bases}}
+		<p class=header>Base: {{$base.Path}}, Line: {{$base.Line}}
+		<table>
+			<tr>
+				<td>File F1
+				<td>{{.Stats.F1}}
+			<tr>
+				<td>File Precision
+				<td>{{.Stats.Precision}}
+			<tr>
+				<td>File Recall
+				<td>{{.Stats.Recall}}
+		</table>
+
+		<p>Recommended:
+		<table>
+			<tr>
+				<td>
+				<td>
+				<td>Probability
+				<td>Block F1
+			{{range $retrieved := $base.Retrieved}}
+				{{if $retrieved.IsHit}}
+				<tr class=hit>
+				{{else}}
+				<tr class=miss>
+				{{end}}
+					<td>{{if $retrieved.IsHit}}★{{end}}
+					<td><a href="/codenav/validate-blocks/{{$retrieved.ID}}">{{$retrieved.Path}}</a>
+					<td>{{$retrieved.Probability}}
+					<td>{{$retrieved.Stats.F1}}
+			{{end}}
+		</table>
+
+		<p>Relevant:
+		<table>
+			<tr>
+				<td>
+				<td>
+				<td>Block F1
+			{{range $relevant := $base.Relevant}}
+				{{if $relevant.IsHit}}
+				<tr class=hit>
+				{{else}}
+				<tr class=miss>
+				{{end}}
+					<td>{{if $relevant.IsHit}}★{{end}}
+					<td><a href="/codenav/validate-blocks/{{$relevant.ID}}">{{$relevant.Path}}</a>
+					<td>{{$relevant.Stats.F1}}
+			{{end}}
+		</table>
+		{{end}}
+
+	</body>
+</html>

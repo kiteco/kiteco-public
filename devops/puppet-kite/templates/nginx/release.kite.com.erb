@@ -1,0 +1,17 @@
+upstream release_app {
+        server localhost:9093;
+}
+
+server {
+        listen 443;
+        server_name <%= @hostname %>;
+
+        ssl on;
+        ssl_certificate /etc/ssl/server.crt;
+        ssl_certificate_key /etc/ssl/server.key;
+
+        location / {
+                proxy_pass http://release_app;
+                proxy_http_version 1.1;
+        }
+}

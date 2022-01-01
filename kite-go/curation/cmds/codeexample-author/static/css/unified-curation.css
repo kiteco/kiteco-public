@@ -1,0 +1,738 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,300);
+html {
+  font-size: 10px;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+/* Mixins and others */
+/* --- End Mixins --- */
+#referenceTool {
+  width: 40%;
+  background-color: #ADCBE6;
+  height: 100%;
+  float: left;
+  position: relative;
+  overflow: hidden;
+  border-right: 5px solid #3D73A4;
+  box-sizing: border-box;
+}
+#referenceTool .referenceToolTitle {
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 300;
+  background-color: #3D73A4;
+  padding-left: 10px;
+  display: block;
+  color: white;
+  margin-bottom: 5px;
+  height: 40px;
+  line-height: 40px;
+}
+#referenceTool h2 {
+  font-family: "Roboto";
+  font-size: 15px;
+  font-weight: 400;
+  color: #3B74AA;
+  padding-left: 10px;
+}
+#referenceTool h3 {
+  font-family: "Roboto";
+  font-size: 15px;
+  font-weight: 500;
+  color: #1A4265;
+  margin: 5px 0;
+}
+#referenceTool h4 {
+  font-family: "Roboto";
+  font-size: 14px;
+  font-weight: 500;
+  color: #1A4265;
+  margin: 10px 0;
+}
+#referenceTool .scrollableContainer {
+  height: calc(100% - 40px);
+  overflow: auto;
+}
+#referenceTool .stackoverflowViewer {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: calc(100% - 30px);
+  height: 100%;
+  background-color: white;
+  box-sizing: border-box;
+  border-left: 10px solid #F17A2F;
+  border-top: 10px solid #F17A2F;
+  z-index: 999;
+  transition: 150ms transform;
+}
+#referenceTool .stackoverflowViewer:not([data-open="true"]) {
+  transform: translateX(100%);
+}
+#referenceTool .stackoverflowViewer:not([data-open="true"]) .stackoverflowContainer {
+  display: none;
+}
+#referenceTool .stackoverflowViewer[data-open="true"] {
+  transform: translate(0);
+}
+#referenceTool .stackoverflowViewer .tab {
+  width: 30px;
+  height: 30px;
+  background-color: #F17A2F;
+  position: absolute;
+  top: -10px;
+  left: -40px;
+  cursor: pointer;
+  background-image: url('../img/icon-stackoverflow.png');
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+#referenceTool .stackoverflowViewer .tab:hover {
+  background-color: #e49403;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .heading {
+  padding: 10px;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer h3 {
+  color: #E67937;
+  font-weight: 300;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults {
+  padding: 10px;
+  overflow: auto;
+  height: calc(100vh - 150px);
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult {
+  padding: 5px 0;
+  border-bottom: 1px solid lightgray;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult pre {
+  padding: 5px;
+  background-color: #454545;
+  color: white;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult .question {
+  padding: 5px;
+  cursor: pointer;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult .question .questionTitle {
+  font-family: "Roboto";
+  font-size: 17px;
+  font-weight: 500;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult .question .questionTitle:before {
+  content: 'Q: ';
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult .question .questionBody {
+  font-family: "Roboto";
+  font-size: 13px;
+  font-weight: 300;
+  margin: 5px 0 5px 22px;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult .question:hover {
+  background-color: #e8e8e8;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult .answers {
+  padding-left: 50px;
+  padding-right: 5px;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult .answers .answer {
+  position: relative;
+  border-left: 1px solid lightgray;
+  padding-left: 5px;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult .answers .answer .answerBody {
+  font-family: "Roboto";
+  font-size: 13px;
+  font-weight: 300;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult .answers .answer:before {
+  content: 'A: ';
+  position: absolute;
+  left: -25px;
+  font-family: "Roboto";
+  font-size: 18px;
+  font-weight: 500;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult.open {
+  background-color: rgba(251, 229, 212, 0.35);
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult.open .question {
+  background-color: #FBE5D4;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult:not(.open) .question .questionBody {
+  max-height: 100px;
+  overflow: hidden;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult:not(.open) .question .questionBody p {
+  white-space: pre-wrap;
+  margin: 0;
+  display: inline;
+}
+#referenceTool .stackoverflowViewer .stackoverflowContainer .stackoverflowResults .stackoverflowResult:not(.open) .answers {
+  display: none;
+  visibility: hidden;
+}
+#referenceTool .stackoverflowViewer .searchbox {
+  background-color: #FBE5D4;
+  color: black;
+  padding: 10px;
+  margin-top: 10px;
+  border-bottom: 5px solid white;
+  transition: 250ms border-bottom;
+  font-family: "Roboto";
+  font-size: 15px;
+  font-weight: 400;
+  background-image: url('../img/icon-search.png');
+  background-size: 25px;
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+}
+#referenceTool .stackoverflowViewer .searchbox:focus {
+  border-bottom: 5px solid #F17A2F;
+  outline: none;
+}
+#referenceTool .referenceContainer {
+  height: 100%;
+}
+#referenceTool .referenceContainer .breadcrumb {
+  display: flex;
+  padding: 10px;
+}
+#referenceTool .referenceContainer .breadcrumb .section {
+  font-family: "Roboto";
+  font-size: 17px;
+  font-weight: 300;
+  color: white;
+  background-color: #3D73A4;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+}
+#referenceTool .referenceContainer .breadcrumb .section:not(:first-of-type) {
+  margin-left: 40px;
+}
+#referenceTool .referenceContainer .breadcrumb .section:not(:first-of-type):before {
+  content: '►';
+  position: absolute;
+  left: -25px;
+  overflow: visible;
+  color: #3d73a4;
+}
+#referenceTool .referenceContainer .examplesContainer {
+  margin-top: 5px;
+  width: 95%;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+#referenceTool .referenceContainer .examplesContainer .exampleBucket {
+  width: 100%;
+  display: block;
+}
+#referenceTool .referenceContainer .examplesContainer .exampleBucket .exampleTitle {
+  display: flex;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#referenceTool .referenceContainer .examplesContainer .exampleBucket .exampleTitle .titleLabel {
+  font-family: 'Menlo', monospace;
+  padding: 10px;
+  color: white;
+  flex-grow: 1;
+}
+#referenceTool .referenceContainer .examplesContainer .exampleBucket .exampleTitle .frequency {
+  background-color: rgba(202, 202, 202, 0.5);
+  padding: 10px;
+  color: white;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+#referenceTool .referenceContainer .examplesContainer .exampleBucket .exampleTitle:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+#referenceTool .referenceContainer .examplesContainer .exampleBucket .snippetContainer {
+  background-color: white;
+}
+#referenceTool .referenceContainer .examplesContainer .exampleBucket .snippetContainer .snippet {
+  background-color: #555555;
+  padding: 10px;
+  color: white;
+  margin-bottom: 5px;
+  max-height: 200px;
+  overflow: auto;
+}
+#referenceTool .referenceContainer .examplesContainer .exampleBucket .snippetContainer .snippet pre {
+  margin: 0;
+}
+#referenceTool .referenceContainer .examplesContainer .exampleBucket:not(.open) .snippetContainer {
+  display: none;
+  visibility: hidden;
+}
+#referenceTool .referenceContainer .examplesContainer .exampleBucket.open .snippetContainer {
+  display: block;
+  visibility: visible;
+}
+#referenceTool .referenceContainer .suggestions {
+  margin: 10px 10px 13px;
+  margin-top: 10px;
+  width: 95%;
+}
+#referenceTool .referenceContainer .suggestions .suggestionList {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  max-height: 160px;
+  overflow: auto;
+}
+#referenceTool .referenceContainer .suggestions .suggestionList:not(:empty) {
+  min-height: 100px;
+}
+#referenceTool .referenceContainer .suggestions .suggestionList .suggestion {
+  display: flex;
+  padding: 3px;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-weight: 400;
+  color: #1B3F60;
+  cursor: pointer;
+}
+#referenceTool .referenceContainer .suggestions .suggestionList .suggestion:hover {
+  background-color: #CFE2F0;
+}
+#referenceTool .referenceContainer .scrollableContainer > ul {
+  padding-left: 0 !important;
+}
+#referenceTool .referenceContainer ul {
+  padding-left: 30px;
+  list-style-type: none;
+  margin: 0;
+  position: relative;
+}
+#referenceTool .referenceContainer ul li.menuItem .label {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  display: flex;
+  background-color: #96BADA;
+  font-family: "Roboto";
+  font-size: 17px;
+  font-weight: 400;
+  padding: 15px;
+  color: #194367;
+  cursor: pointer;
+}
+#referenceTool .referenceContainer ul li.menuItem .label .title {
+  flex-grow: 1;
+}
+#referenceTool .referenceContainer ul li.menuItem .label .title .disclosure-arrow {
+  padding-right: 10px;
+}
+#referenceTool .referenceContainer ul li.menuItem .label:hover {
+  background-color: #689FD0;
+}
+#referenceTool .referenceContainer ul li.menuItem[data-type="method"] > .label {
+  background-color: #a9e0c3;
+}
+#referenceTool .referenceContainer ul li.menuItem[data-type="method"]:hover > .label {
+  background-color: #2e905c;
+}
+#referenceTool .referenceContainer ul li.menuItem[data-open="true"][data-type="method"] {
+  margin-bottom: 20px;
+}
+#referenceTool .referenceContainer ul li.menuItem[data-open="true"][data-type="method"] > .label {
+  background-color: #2e905c;
+  color: white;
+  margin-bottom: 10px;
+}
+#referenceTool .referenceContainer ul li.menuItem[data-open="true"][data-type="module"] {
+  margin-bottom: 20px;
+}
+#referenceTool .referenceContainer ul li.menuItem[data-open="true"][data-type="module"] > .label {
+  background-color: #3D73A4;
+  color: white;
+  margin-bottom: 10px;
+}
+#referenceTool .referenceContainer ul li.menuItem[data-open="true"][data-type="submodule"] {
+  margin-bottom: 20px;
+}
+#referenceTool .referenceContainer ul li.menuItem[data-open="true"][data-type="submodule"] > .label {
+  background-color: #3D73A4;
+  color: white;
+  margin-bottom: 10px;
+}
+#codeAuthoringTool {
+  width: 60%;
+  height: 100%;
+  float: left;
+  background-color: white;
+}
+#codeAuthoringTool .authoring-wrapper {
+  height: 100%;
+}
+#codeAuthoringTool p {
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+  margin: 1em;
+}
+#codeAuthoringTool h1 {
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 300;
+  background-color: #17446B;
+  padding-left: 10px;
+  display: block;
+  color: white;
+  margin: 0;
+  height: 40px;
+  line-height: 40px;
+}
+#codeAuthoringTool h1 .edit-state {
+  margin-right: 1em;
+  float: right;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+}
+#codeAuthoringTool .scroll-container {
+  height: calc(100% - 40px);
+  overflow: auto;
+}
+#codeAuthoringTool .breadcrumbs {
+  margin-top: 20px;
+  padding: 10px;
+}
+#codeAuthoringTool .breadcrumbs span {
+  font-family: "Roboto";
+  font-size: 17px;
+  font-weight: 300;
+  color: white;
+  background-color: #3D73A4;
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+}
+#codeAuthoringTool .breadcrumbs span:not(:first-of-type) {
+  margin-left: 40px;
+}
+#codeAuthoringTool .breadcrumbs span:not(:first-of-type):before {
+  content: '►';
+  position: absolute;
+  left: -25px;
+  overflow: visible;
+  color: #3d73a4;
+}
+#codeAuthoringTool .new-code-example {
+  display: block;
+  width: calc(100% - 20px);
+  border: none;
+  padding: 20px 0;
+  margin: 20px 10px 80px;
+  background-color: #EDF7FF;
+  text-align: center;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 300;
+  color: #14436C;
+  cursor: pointer;
+}
+#codeAuthoringTool .new-code-example .icon {
+  font-family: Helvetica Neue;
+  margin: 0 auto 10px;
+  border: 1px solid #14436C;
+  width: 20px;
+  height: 20px;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 50%;
+}
+#codeAuthoringTool .new-code-example:hover {
+  background-color: #E0EDF9;
+}
+#codeAuthoringTool .new-code-example:active {
+  outline: none;
+  background-color: #C9DDEE;
+}
+#codeAuthoringTool .new-code-example:focus {
+  outline: none;
+}
+#codeAuthoringTool .footer {
+  margin-bottom: 80px;
+}
+#codeAuthoringTool .footer p {
+  text-align: center;
+}
+#codeAuthoringTool .footer p .glyph-icon {
+  font-size: 36px;
+}
+.moderation-tool header {
+  margin: 10px;
+  margin-bottom: 20px;
+  font-family: Helvetica Neue, Helvetica, sans-serif;
+}
+.checkbox-filter {
+  margin: 10px 10px 10px 5px;
+  font-family: "Roboto";
+  font-size: 13px;
+  font-weight: 300;
+}
+.checkbox-filter label {
+  margin-right: 15px;
+  padding: 5px;
+}
+.checkbox-filter label:hover {
+  background-color: #eef;
+}
+.workflow-pane {
+  float: right;
+  margin-right: 10px;
+  width: 120px;
+}
+.example-editor {
+  max-width: 900px;
+  background-color: #000;
+  margin: 10px 10px 0;
+  border: 5px solid;
+  border-color: #000;
+}
+.example-editor label.title {
+  display: flex;
+  padding-left: 5px;
+  color: #fff;
+  align-items: baseline;
+  font-family: Helvetica Neue;
+}
+.example-editor label.title span {
+  font-family: "Roboto";
+  font-size: 13px;
+  font-weight: 300;
+}
+.example-editor label.title input,
+.example-editor label.title input:focus {
+  background: transparent;
+  color: inherit;
+  font-family: "Roboto";
+  font-size: 18px;
+  font-weight: 300;
+  padding: 5px 0 10px 15px;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.example-editor .lint-warnings {
+  border: 2px solid #FF7E00;
+  color: #D77400;
+  background-color: #ECCFA9;
+  padding: 5px;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+}
+.example-editor .ace-wrapper {
+  width: 100%;
+  min-height: 35px;
+  font: 12px / normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  color: #fff;
+  white-space: pre;
+}
+.example-editor .ace-wrapper.prelude,
+.example-editor .ace-wrapper.postlude {
+  background-color: #4C4C4C;
+}
+.example-editor .ace-wrapper.prelude:before,
+.example-editor .ace-wrapper.code:before,
+.example-editor .ace-wrapper.postlude:before {
+  color: white;
+  display: block;
+  position: relative;
+  z-index: 10;
+  float: right;
+  margin: 5px;
+  font-family: "Helvetica Neue";
+  font-size: 12px;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+}
+.example-editor .ace-wrapper.prelude:before {
+  content: 'PRELUDE';
+}
+.example-editor .ace-wrapper.postlude:before {
+  content: 'POSTLUDE';
+}
+.example-editor .ace-wrapper.code:before {
+  content: 'CODE';
+}
+.example-editor .ace-wrapper.code {
+  background-color: #000;
+}
+.example-editor .output-wrapper {
+  display: flex;
+}
+.example-editor .output-wrapper .console {
+  width: 100%;
+  overflow-x: auto;
+  background-color: #C9C9C9;
+  white-space: pre;
+  font-size: 12px;
+  font-family: Monaco, Menlo, "Ubuntu Mono", "Consolas", monospace;
+  padding: 10px;
+}
+.example-editor .output-wrapper .run-button {
+  margin: 0;
+  border: none;
+  padding: 10px 20px;
+  flex: none;
+  background-color: #767676;
+  color: #fff;
+  font-family: "Helvetica Neue";
+  font-size: 12px;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+}
+.example-editor .output-wrapper .run-button:hover {
+  background-color: #838383;
+}
+.example-editor .output-wrapper .run-button:focus {
+  outline: none;
+}
+.example-editor .output-wrapper .run-button:active {
+  outline: none;
+  background-color: #666;
+}
+.example-editor .save-indicator {
+  font-family: Helvetica Neue;
+  font-weight: 300;
+  font-size: 12px;
+  color: white;
+}
+.example-editor.deleting {
+  opacity: 0.5;
+}
+.example-editor.execution-error {
+  border-color: #CF232F;
+}
+.example-editor .comment {
+  padding: 5px;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  color: white;
+  font-weight: 200;
+  -webkit-font-smoothing: antialiased;
+  border-bottom: 1px solid #333;
+}
+.example-editor .comment textarea {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  border: none;
+  padding: 0;
+  outline: none;
+  width: calc(100% - 10px);
+  background-color: transparent;
+}
+.example-editor .comment textarea:focus {
+  background-color: #003168;
+}
+.example-editor .comment .metadata {
+  color: #ddd;
+}
+.example-editor .comment .metadata cite {
+  font-weight: normal;
+  font-style: normal;
+}
+.example-editor .comment .metadata time {
+  font-size: smaller;
+}
+.example-editor .comment .metadata button.dismiss {
+  float: right;
+}
+.example-editor .comment.dismissed {
+  opacity: 0.6;
+}
+.editor-toolbar {
+  margin: 0 10px 10px;
+  width: calc(100% - 20px);
+  max-width: 900px;
+  min-height: 20px;
+}
+.editor-toolbar button {
+  color: #ddd;
+  font-family: Helvetica Neue;
+  border: none;
+  background-color: #555;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+.editor-toolbar button:hover {
+  background-color: #666;
+}
+.editor-toolbar button:active {
+  background-color: #444;
+  color: #999;
+}
+.editor-toolbar button:focus,
+.editor-toolbar button:active {
+  outline: none;
+}
+.editor-toolbar .save-indicator {
+  font-family: Helvetica Neue;
+  font-size: 12px;
+  display: block;
+  float: right;
+  margin-right: 5px;
+}
+.ace_active-line,
+.ace_cursor {
+  display: none;
+}
+.ace_focus .ace_active-line,
+.ace_focus .ace_cursor {
+  display: block;
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin-top: 20px;
+  margin-left: -20px;
+  background-color: #333;
+  position: absolute;
+  left: 50%;
+  border-radius: 100%;
+  -webkit-animation: scaleout 1s infinite ease-in-out;
+  animation: scaleout 1s infinite ease-in-out;
+}
+@-webkit-keyframes scaleout {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+@keyframes scaleout {
+  0% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+.example-editor .annotated-example {
+  margin: 0;
+}

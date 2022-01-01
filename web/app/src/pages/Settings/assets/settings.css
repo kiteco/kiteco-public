@@ -1,0 +1,530 @@
+@import url('https://fast.fonts.net/cssapi/7be4c701-0970-4613-8de6-052db449636b.css');
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  position: relative;
+}
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2rem;
+  height: 2rem;
+  margin-top: -1rem;
+  margin-left: -1rem;
+  border-radius: 50%;
+  border-top: 2px solid #363b44;
+  border-right: 2px solid transparent;
+  animation: spinner 0.6s linear infinite;
+}
+.spinner__bundle {
+  position: relative;
+  min-height: 5rem;
+  width: 100%;
+}
+.spinner__bundle:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2rem;
+  height: 2rem;
+  margin-top: -1rem;
+  margin-left: -1rem;
+  border-radius: 50%;
+  border-top: 2px solid #363b44;
+  border-right: 2px solid transparent;
+  animation: spinner 0.6s linear infinite;
+}
+/* Code theme */
+.code-theme code,
+.code-theme code[class*='language-'],
+.code-theme pre[class*='language-'] {
+  color: #333;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  tab-size: 2;
+  hyphens: none;
+  font-family: 'Droid Sans Mono W01', monospace;
+  direction: ltr;
+  cursor: text;
+  font-size: 1.3rem;
+}
+.code-theme pre[class*='language-'] {
+  overflow: auto;
+  margin: 1em 0;
+  padding: 1.2em;
+  border-radius: 3px;
+  font-size: 85%;
+}
+.code-theme p code,
+.code-theme li code,
+.code-theme table code {
+  margin: 0;
+  border-radius: 3px;
+  padding: 0.2em 0;
+  font-size: 85%;
+}
+.code-theme p code:before,
+.code-theme p code:after,
+.code-theme li code:before,
+.code-theme li code:after,
+.code-theme table code:before,
+.code-theme table code:after {
+  letter-spacing: -0.2em;
+  content: '\00a0';
+}
+.code-theme :not(pre) > code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+}
+.code-theme .token.comment,
+.code-theme .token.prolog,
+.code-theme .token.doctype,
+.code-theme .token.cdata {
+  color: #969896;
+}
+.code-theme .token.punctuation,
+.code-theme .token.string,
+.code-theme .token.atrule,
+.code-theme .token.attr-value {
+  color: #183691;
+}
+.code-theme .token.property,
+.code-theme .token.tag {
+  color: #63a35c;
+}
+.code-theme .token.boolean,
+.code-theme .token.number {
+  color: #0086b3;
+}
+.code-theme .token.selector,
+.code-theme .token.attr-name,
+.code-theme .token.attr-value .punctuation:first-child,
+.code-theme .token.keyword,
+.code-theme .token.regex,
+.code-theme .token.important {
+  color: #a71d5d;
+}
+.code-theme .token.operator,
+.code-theme .token.entity,
+.code-theme .token.url,
+.code-theme .language-css .token.string {
+  color: #a71d5d;
+}
+.code-theme .token.function {
+  color: #795da3;
+}
+.code-theme .token.entity {
+  cursor: help;
+}
+.code-theme .namespace {
+  opacity: 0.7;
+}
+.code-theme .triple-quoted-string {
+  color: #183691;
+}
+.settings h1 {
+  margin: 4rem 2rem 2rem 2rem;
+  font-weight: 300;
+  font-size: 2.5rem;
+}
+.settings button.link {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #0a90d7;
+}
+.settings button.flat {
+  font-size: 1.5rem;
+  font-family: 'Neue Frutiger W01', sans-serif;
+  font-weight: 300;
+  padding: 1rem;
+  border: 1px solid #09234c;
+  cursor: not-allowed;
+  background: none;
+}
+.settings button.flat.enabled {
+  background: #09234c;
+  color: white;
+  cursor: pointer;
+}
+.settings button.flat:focus {
+  outline: none;
+}
+.settings input {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-family: 'Neue Frutiger W01', sans-serif;
+  border-bottom: 1px solid #363b44;
+  padding: 0rem 1rem 0.3rem 1rem;
+  margin-bottom: 1rem;
+  color: #363b44;
+  box-sizing: border-box;
+}
+.settings input:focus {
+  outline: none;
+}
+.settings a {
+  text-decoration: none;
+  color: #0a90d7;
+}
+.settings a:hover {
+  text-decoration: underline;
+}
+.settings .settings-container {
+  display: flex;
+  flex-direction: column;
+}
+@media only screen and (min-width: 40em) {
+  .settings .settings-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+.settings .settings-container .settings-nav {
+  margin: 0 2rem;
+  margin-bottom: 3rem;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.7rem;
+  justify-content: space-between;
+  border-bottom: 0.2rem solid #363b44;
+  flex-grow: 2;
+  overflow-x: auto;
+}
+@media only screen and (min-width: 40em) {
+  .settings .settings-container .settings-nav {
+    flex-direction: column;
+    border: 0;
+    border-right: 0.2rem solid #eee;
+    width: 15rem;
+    margin-bottom: 0;
+    margin-right: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    min-height: 50rem;
+    justify-content: flex-start;
+  }
+}
+.settings .settings-container .settings-nav li {
+  margin-right: 1rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 5rem;
+  justify-content: space-between;
+}
+.settings .settings-container .settings-nav li a {
+  text-decoration: none;
+  color: #8aa4ca;
+  display: inline-block;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+@media only screen and (min-width: 40em) {
+  .settings .settings-container .settings-nav li a {
+    padding-left: 0;
+  }
+}
+.settings .settings-container .settings-nav li.selected a {
+  background: #363b44;
+  color: white;
+}
+@media only screen and (min-width: 40em) {
+  .settings .settings-container .settings-nav li.selected a {
+    background: none;
+    color: #363b44;
+  }
+}
+@media only screen and (min-width: 40em) {
+  .settings .settings-container .settings-nav li.selected::after {
+    content: '›';
+    font-size: 3rem;
+    height: 3rem;
+    line-height: 2.5rem;
+  }
+}
+.settings .settings-container .settings-content {
+  margin: 0 2rem;
+  flex-grow: 1;
+  font-size: 1.5rem;
+  max-width: 120rem;
+}
+.settings .settings-container .settings-content .settings-header {
+  width: 100%;
+  margin: 1rem 0 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.settings .settings-container .settings-content .settings-header h3 {
+  font-weight: 500;
+  font-size: 2rem;
+  margin: 0 2rem 0 0;
+}
+.settings .settings-container .settings-content .settings-header button {
+  font-size: 1.4rem;
+  border: none;
+  font-family: 'Neue Frutiger W01', sans-serif;
+}
+.settings .settings-container .settings-content .settings-header button:hover {
+  text-decoration: underline;
+}
+.settings .settings-container .settings-content .settings-section {
+  overflow: auto;
+  padding-bottom: 4rem;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid #e6e6e6;
+}
+.settings .settings-container .settings-content .settings__section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  margin: 2rem 0;
+}
+.settings .settings-container .settings-content .settings__section--non-justified {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+}
+.settings .settings-container .settings-content button.settings__button {
+  font-size: 1.5rem;
+  font-family: 'Neue Frutiger W01', sans-serif;
+  font-weight: 300;
+  padding: 1rem;
+  text-align: left;
+  margin-left: 1rem;
+  margin-top: 3rem;
+  cursor: not-allowed;
+  background: #c6daf1;
+  border: 1px solid #c6daf1;
+  border-radius: 0.25rem;
+  transition: background-color 250ms;
+}
+.settings .settings-container .settings-content button.settings__button.enabled {
+  background: #1e96f3;
+  border: 1px solid #1e96f3;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+.settings .settings-container .settings-content button.settings__button.enabled:hover {
+  border: 1px solid #0d6cb5;
+  background-color: #0d6cb5;
+}
+.settings .settings-container .settings-content button.settings__button.cancel {
+  background: white;
+  color: #363b44;
+  border: 1px solid #363b44;
+  cursor: pointer;
+}
+.settings .settings-container .settings-content button.settings__button.cancel:hover {
+  background-color: #f6f6f6;
+}
+.settings .settings-container .settings-content button.settings__button:focus {
+  outline: none;
+}
+.settings .settings-container .settings-content .settings__right-aligned {
+  text-align: right;
+}
+.settings .settings-container .settings-content .settings__sub-section {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+.settings .settings-container .settings-content .settings__sub-section .inner-section {
+  padding: 1rem;
+  border: solid 1px #90b1e8;
+}
+.settings .settings-container .settings-content .settings__sub-section .inner-section p {
+  margin-top: 0;
+}
+.settings .settings-container .settings-content .error {
+  color: red;
+  font-size: 1.3rem;
+  line-height: 2rem;
+}
+.settings .settings-container .settings-content .error.hide {
+  display: none;
+}
+.settings .settings-container .settings-content .error:first-letter {
+  text-transform: capitalize;
+}
+.settings .settings-container .settings-content .success {
+  display: block;
+  color: green;
+  font-size: 1.3rem;
+}
+.settings .settings-container .settings-content .success.hide {
+  display: none;
+}
+.settings .settings-container .settings-content .success:first-letter {
+  text-transform: uppercase;
+}
+.settings__copyright {
+  font-size: 1.2rem;
+  color: #666;
+  margin-right: 2rem;
+}
+.settings__invoices {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.settings__invoices > * + * {
+  margin-top: 1rem;
+}
+a.settings__invoices__link {
+  border: 1px solid #eee;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  color: #363b44;
+  justify-content: space-between;
+  align-items: center;
+}
+a.settings__invoices__link > * + * {
+  margin-left: 1rem;
+}
+a.settings__invoices__link:hover {
+  border: 1px solid #0a90d7;
+  color: #0a90d7;
+  text-decoration: none;
+}
+.settings__invoices__id {
+  color: #ccc;
+  flex-shrink: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 1.2rem;
+  font-family: 'Droid Sans Mono W01', monospace;
+}
+.settings__invoices__date {
+  font-weight: 700;
+}
+.settings__payment-period {
+  display: flex;
+  flex-direction: column;
+}
+.settings__payment-period__choice {
+  border: 1px solid #ccc;
+  outline: none;
+  background: none;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  padding: 1rem;
+  font-family: inherit;
+  margin-bottom: 1rem;
+  color: #ccc;
+  cursor: pointer;
+}
+.settings__payment-period__choice:hover {
+  color: #1e96f3;
+  border: 1px solid #1e96f3;
+}
+.settings__payment-period__choice--selected {
+  border: 1px solid #1e96f3;
+  background: #1e96f3;
+  color: white;
+}
+.settings__payment-period__choice--selected:hover {
+  color: white;
+}
+.settings__fine-print {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  color: #888;
+}
+.settings__cancel__modal > * {
+  margin: 0;
+}
+.settings__cancel__modal > * + * {
+  margin-top: 2rem;
+}
+.settings__cancel__confirm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.settings__cancel__button {
+  outline: none;
+  border: 1px solid gray;
+  background: none;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  color: gray;
+}
+.settings__cancel__button:hover {
+  color: black;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.settings__cancel__button--danger {
+  background: red;
+  color: white;
+  border: 1px solid red;
+}
+.settings__cancel__button--danger:hover {
+  background: red;
+  color: white;
+  border: 1px solid red;
+}
+.settings__cancel__reasons {
+  list-style: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+}
+.settings__cancel__reasons > * {
+  margin: 0;
+}
+.settings__cancel__reasons > * + * {
+  margin-top: 1rem;
+}
+.settings__cancel__reason {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+.settings__cancel__reason > * {
+  margin: 0;
+}
+.settings__cancel__reason > * + * {
+  margin-left: 1rem;
+}
+.settings .settings__cancel__reason input {
+  margin-bottom: 0;
+}
+.settings__cancel__other-reason {
+  flex-grow: 2;
+}
+@media print {
+  .settings__wrapper .header {
+    display: none;
+  }
+  .settings__wrapper h1 {
+    display: none;
+  }
+  .settings__wrapper .settings-nav {
+    display: none !important;
+  }
+}

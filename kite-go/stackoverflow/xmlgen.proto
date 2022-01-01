@@ -1,0 +1,55 @@
+package stackoverflow;
+
+message Post {
+    required int64 Id = 1;
+    required int64 PostTypeId = 2;
+    required int64 ParentId = 3;
+    required int64 AcceptedAnswerId = 4;
+    required string CreationDate = 5;
+    required int64 Score = 6;
+    required int64 ViewCount = 7;
+    required string Body = 8;
+    required int64 OwnerUserId = 9;
+    required int64 LastEditorUserId = 10;
+    required string LastEditorDisplayName = 11;
+    required string LastEditDate = 12;
+    required string LastActivityDate = 13;
+    required string Title = 14;
+    required string Tags = 15;
+    required int64 AnswerCount = 16;
+    required int64 CommentCount = 17;
+    required int64 FavoriteCount = 18;
+    required string CommunityOwnedDate = 19;
+};
+
+message User {
+    required uint64 Id = 1;
+    required int64 Reputation = 2;
+    required string CreationDate = 3;
+    required string DisplayName = 4;
+    required string LastAccessDate = 5;
+    required string WebsiteUrl = 6;
+    required string Location = 7;
+    required string AboutMe = 8;
+    required int64 Views = 9;
+    required int64 UpVotes = 10;
+    required int64 DownVotes = 11;
+    required int64 Age = 12;
+    required int64 AccountId = 13;
+};
+
+message Vote {
+    required int64 Id = 1;
+    required int64 PostId = 2;
+    required int64 VoteTypeId = 3;
+    required string CreationDate = 4;
+};
+
+message PostLink {
+    required int64 Id = 1;
+    required string CreationDate = 2;
+    required int64 PostId = 3;
+    required int64 RelatedPostId = 4;
+    required int64 LinkTypeId = 5;
+};
+

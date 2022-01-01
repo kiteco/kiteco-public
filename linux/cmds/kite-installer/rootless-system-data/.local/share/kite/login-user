@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# This script takes an optional username, asks for the password and sends a login request to kited.
+# kited has to be running on the local machine
+set -e
+
+if ! command -v curl >/dev/null 2>&1; then
+    echo >&2 "Sorry! The curl command is needed to run this script."
+    exit 1
+fi
+
+if [[ "$1" = "--help" ]]; then
+  echo "Usage: $0 [EMAIL]"
+  exit 1
+fi
+
+USER="$1"
+if [ -z "$USER" ]; then
+  read -rp "User: " USER
+fi
+
+read -rsp "Password: " PASSWORD
+echo
+
+echo "Logging in to Kite with user $USER..."
+IFS=
+response="$(curl --silent -w "\n%{http_code}\n" -X POST -F "email=$USER" -F "password=$PASSWORD" "http://localhost:46624/clientapi/login" 2>&1)"
+http_body="$(echo "$response" | head -n1)"
+http_status="$(echo "$response" | tail -n1)"
+if [[ $? -eq 0 && "$http_status" -eq 200 ]]; then
+  echo "Successfully logged in to Kite with $USER."
+else
+  echo "Failed to login to Kite, HTTP status code $http_status. The server response follows:"
+  echo "$http_body"
+fi

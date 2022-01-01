@@ -1,0 +1,43 @@
+package stackoverflow;
+
+import "xmlgen.proto";
+
+message StackOverflowPost {
+    required Post post = 1;
+    optional User user = 2;
+    repeated Vote votes = 3;
+    repeated PostLink postLinks = 4;
+};
+
+message StackOverflowPage {
+    required StackOverflowPost question = 1;
+    repeated StackOverflowPost answers = 2;
+}
+
+// --
+
+message PostFeatures {
+    required int64 id = 1;
+    optional int64 score = 2;
+    optional int64 viewCount = 3;
+    optional int64 favoriteCount = 4;
+    optional int64 userReputation = 5;
+    optional int64 userUpVotes = 6;
+    optional int64 userDownVotes = 7;
+    optional int64 postVotes = 8;
+    optional int64 postUpVotes = 9;
+    optional int64 postDownVotes = 10;
+    optional int64 postSpamVotes = 11;
+    optional int64 answerId = 12;
+};
+
+message TermFeatures {
+    required string term = 1;
+    repeated int64 positions = 2;
+};
+
+message PageFeatures {
+    required PostFeatures question = 1;
+    repeated PostFeatures answers = 2;
+    repeated TermFeatures terms = 3;
+};

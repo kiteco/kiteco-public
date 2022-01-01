@@ -1,0 +1,23 @@
+[
+{
+    "model": "blog.article",
+    "pk": 0,
+    "fields": {
+        "title": "Article 0"
+    }
+},
+{
+    "model": "blog.article",
+    "pk": 1,
+    "fields": {
+        "title": "Article 1"
+    }
+},
+{
+    "model": "blog.article",
+    "pk": 2,
+    "fields": {
+        "title": "Article 2"
+    }
+}
+]

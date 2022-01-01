@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="raw-buffer" content="{{.RawBuffer}}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <title>Example - {{.Idx}} / {{.Count}}</title>
+    <style>
+        .correct {
+            background-color: #98fb98;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <pre>
+                {{.Code}}
+            </pre>
+        </div>
+        <div class="col-md-7">
+            <div id="spacer"></div>
+            <h3>
+                <a href="{{.PlaygroundURL}}" target="_blank">
+                    <button type="button" class="btn btn-primary">Playground</button>
+                </a>
+                {{if eq .ViewMode "ast"}}
+                    <a href="/example?idx={{.Idx}}&view=completions">
+                        <button type="button" class="btn btn-primary">Completions</button>
+                    </a>
+                {{else}}
+                    <a href="/example?idx={{.Idx}}&view=ast">
+                        <button type="button" class="btn btn-primary">AST</button>
+                    </a>
+                {{end}}
+                <button type="button" class="btn btn-primary" id="copy-buffer-btn">Copy buffer</button>
+                {{.Idx}} / {{.Count}} Example: {{.Example.Symbol}}.{{.Example.Expected}}
+            </h3>
+            {{.View}}
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+       $("#copy-buffer-btn").click(function() {
+          copyText($('meta[name="raw-buffer"]').attr("content"));
+       });
+    });
+
+    document.addEventListener('keydown', function(e) {
+        switch (e.key) {
+            case "ArrowLeft":
+                window.location.replace("{{.PrevURL}}");
+                break;
+            case "ArrowRight":
+                window.location.replace("{{.NextURL}}");
+                break;
+        }
+    });
+
+    function copyText(text) {
+        console.log("copying text:", text);
+        var el = document.createElement('textarea');
+        el.value = text;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+    }
+</script>
+</body>
+</html>

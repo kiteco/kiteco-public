@@ -1,0 +1,128 @@
+.sign-in-form {
+  margin: 0 auto;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+
+.sign-in-form__main > * + * {
+  margin-top: 2rem;
+}
+
+.sign-in-form__fields {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -2rem;
+  top: -2rem;
+  margin-bottom: -2rem;
+  position: relative;
+}
+
+.sign-in-form__fields > * {
+  flex-grow: 1;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+.sign-in-form__label {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 300;
+  display: block;
+  white-space: nowrap;
+}
+
+.sign-in-form__input {
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 300;
+  font-family: 'Avenir Next Rounded W01', sans-serif;
+  border: 1px solid #09234c;
+  padding: 1rem;
+  color: #09234c;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  min-width: 20rem;
+  background: none;
+}
+
+.sign-in-form__logout {
+  background: none;
+  border: none;
+  color:  #0a90d7;
+  display: inline-block;
+  float: none;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1.4rem;
+  outline: none;
+}
+
+.sign-in-form__button {
+  font-size: 1.5rem;
+  font-family: 'Avenir Next Rounded W01', sans-serif;
+  font-weight: 300;
+  min-width: 7rem;
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid #09234c;
+  outline: none;
+}
+
+.sign-in-form__button--disabled {
+  background: white;
+  pointer-events: none;
+}
+
+.sign-in-form__button--enabled {
+  background: #eeeeff;
+  cursor: pointer;
+}
+
+.sign-in-form__button--enabled:hover {
+  background: #ddddff;
+  cursor: pointer;
+}
+
+.sign-in-form__header{
+  margin:0 0 0 10px;
+  font-size: 24px;
+  white-space: nowrap;
+  word-spacing: 2px;
+}
+
+.sign-in-form__extra {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  margin-left:10px;
+}
+
+.sign-in-form__toggle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #777;
+  text-align: right;
+}
+
+.sign-in-form__error {
+  color: red;
+  font-size: 1.3rem;
+}
+
+.sign-in-form__error:first-letter {
+  text-transform: capitalize;
+}
+
+.sign-in-form__password--hide, .sign-in-form__password--hide > * {
+  border: none;
+  height: 0;
+  visibility: hidden;
+  margin: 0;
+}
+
+.sign-in-form__wrapper > * + * {
+  margin-top: 3rem;
+}

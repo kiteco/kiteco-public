@@ -1,0 +1,7 @@
+>>> from multiply import multiply
+>>> multiply(10, 2)
+20
+>>> multiply(0.5, 20.0)
+10.0
+>>> multiply(3, 4)
+12

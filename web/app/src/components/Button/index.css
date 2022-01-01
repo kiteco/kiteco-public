@@ -1,0 +1,16 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #243763;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  line-height: 24px;
+  padding: 0 20px;
+}
+.btn.small {
+   font-size: 14px;
+   height:30px;
+ }

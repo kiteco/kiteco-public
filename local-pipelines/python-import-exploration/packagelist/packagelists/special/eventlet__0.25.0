@@ -1,0 +1,8 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install --no-install-recommends -y netbase
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN pip2 install eventlet==0.25.0
+
+ENTRYPOINT ["/usr/bin/env", "python2", "-m", "kite.pkgexploration", "eventlet", "0.25.0", "eventlet__0.25.0.json", "eventlet__0.25.0.log"]

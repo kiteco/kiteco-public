@@ -1,0 +1,7 @@
+FROM kiteco/python-import-exploration
+
+# scipy constraint not necessary once the next version of statsmodels is out: https://github.com/statsmodels/statsmodels/issues/5759
+RUN python -m pip install scipy\<1.3.0
+RUN python -m pip install statsmodels==0.9.0
+
+ENTRYPOINT ["/usr/bin/env", "python", "-m", "kite.pkgexploration", "statsmodels", "0.9.0", "statsmodels__0.9.0.json", "statsmodels__0.9.0.log"]

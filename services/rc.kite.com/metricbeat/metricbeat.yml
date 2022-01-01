@@ -1,0 +1,11 @@
+---
+cloud.id: ${CLOUD_ID}
+cloud.auth: ${CLOUD_AUTH}
+
+metricbeat.config:
+
+metricbeat.modules:
+- module: nginx
+  period: 10s
+  service.name: ${SVC_NAME:?Set SVC_NAME environment variable.}
+  hosts: ["http://nginx:9095"]

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Signature Pattern Diff</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <style>
+    body {
+      padding: 20px;
+    }
+    .search-row {
+      margin-bottom: 30px;
+    }
+    td {
+      font-family: monospace;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="table">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th colspan="3">Package</th>
+            <th colspan="3">Graph</th>
+            <th colspan="3">Missing In Candidate Patterns</th>
+            <th colspan="3">Total In Master Patterns</th>
+            <th colspan="3">% Missing In Candidate Patterns</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range $_, $missing := .Missing}}
+            <tr>
+              <td colspan="3"><a href="{{$missing | missURL}}">{{$missing.Name}}</a></td>
+              <td colspan="3"><a href="{{$missing.AnyName | nodeURL}}">{{$missing.Name}}</a></td>
+              <td colspan="3">{{$missing.Missing | comma}}</td>
+              <td colspan="3">{{$missing.Total | comma}}</td>
+              <td colspan="3">{{$missing.PctMissing | ftoa}}</td>
+            </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

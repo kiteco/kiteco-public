@@ -1,0 +1,65 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/0ctobat/octobat-beanie.js@latest/dist/octobat-beanie.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+
+    <style>
+        textarea#code {
+            fontmily: Menlo, Monaco, Consolas, "Courier New", monospace;
+        }
+        td.prop-name {
+            color: #666;
+        }
+        table {
+            font-size: 14px;
+        }
+    </style>
+    <title>Stripe integration test</title>
+</head>
+<body>
+<div class="container-fluid">
+
+    <h4>Stripe test interface</h4>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            Current user
+        </div>
+        <div class="panel-body">
+            <p class="card-text">{{.CurrentUser}}</p>
+            <a href="/selectUser?user=userA" class="btn btn-primary">Log in as User A</a>
+            <a href="/selectUser?user=userB" class="btn btn-primary">Log in as User B</a>
+            <a href="/selectUser?user=userStudent" class="btn btn-primary">Log in as Student</a>
+        </div>
+    </div>
+
+
+    <div>
+        Go to checkout:<br>
+        <a href="/web/account/checkout/start?subscription=monthly" class="btn btn-primary">Subscribe to monthly plan</a>
+        <a href="/web/account/checkout/start?subscription=yearly" class="btn btn-primary">Subscribe to yearly plan</a>
+    </div>
+
+    <div>Go to checkout with a Trial:<br>
+        <a href="/web/account/checkout/start?subscription=monthly&trial-duration=2m" class="btn btn-primary">Subscribe to monthly plan with 2 min trial</a>
+        <a href="/web/account/checkout/start?subscription=monthly&trial-duration=168h" class="btn btn-primary">Subscribe to monthly plan with 7 days trial</a>
+        <a href="/web/account/checkout/start?subscription=yearly&trial-duration=672h" class="btn btn-primary">Subscribe to yearly plan with 28 days trial</a>
+    </div>
+
+    <div id="div-error"></div>
+    {{if ne .Message ""}}
+        <div class="panel panel-warning">
+            <div class="panel-heading">Message</div>
+            <div class="panel-body" id="display-error">
+                {{.Message}}
+            </div>
+        </div>
+    {{end}}
+</div>
+</body>
+</html>
+
+
+
+

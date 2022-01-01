@@ -1,0 +1,54 @@
+.plan-gate {
+  margin-top: 1rem;
+  padding: 2rem 3rem;
+  display: block;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #09234c;
+  background: linear-gradient(#ecf0f5, #f1f3f3);
+  border-radius: 1rem;
+  border: 1px solid #ecf0f5;
+}
+
+.plan-gate > * + *{
+  margin-top: 1rem;
+}
+
+.plan-gate__pro-logo {
+  /*background: url('../../Pro/assets/pro-logo.svg') no-repeat;*/
+  width: 10rem;
+  height: 4rem;
+  transition: background-color 0.5s;
+}
+
+.plan-gate .plan-gate__call-to-action--button,
+.plan-gate .plan-gate__call-to-action--link {
+  padding: 1rem;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  font-size: 1.4rem;
+  outline: none;
+}
+
+.plan-gate .plan-gate__call-to-action--button {
+  margin-right: 3rem;
+  background-color: #09234c;
+  color: white;
+  border: none;
+  transition: background-color 0.5s;
+}
+
+.plan-gate .plan-gate__call-to-action--button:hover {
+  background-color: #0973E1;
+  text-decoration: none;
+}
+
+.plan-gate .plan-gate__call-to-action--link {
+  background: none;
+  border: none;
+  text-decoration: underline;
+  padding: 0.5rem;
+  color: #09234c;
+}

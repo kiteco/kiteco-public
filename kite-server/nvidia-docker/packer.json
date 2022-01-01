@@ -1,0 +1,59 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": ""
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "name": "gcp-nvidia-docker",
+
+      "project_id": "kite-dev-XXXXXXX",
+      "zone": "us-west1-a",
+      "source_image_family": "ubuntu-2004-lts",
+      "image_name": "nvidia-docker",
+      "ssh_username": "ubuntu"
+    },
+    {
+      "type": "googlecompute",
+      "name": "gcp-prod-nvidia-docker-puppet",
+      "project_id": "kite-prod-XXXXXXX",
+      "zone": "us-west1-a",
+      "source_image_family": "ubuntu-2004-lts",
+      "image_name": "nvidia-docker-puppet-{{timestamp}}",
+      "ssh_username": "ubuntu"
+    },
+    {
+      "box_name": "kite/nvidia-docker-puppet",
+      "name": "vbox-nvidia-docker-puppet",
+      "communicator": "ssh",
+      "source_path": "bento/ubuntu-20.04",
+      "provider": "virtualbox",
+      "add_force": true,
+      "type": "vagrant"
+
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "configure_ubuntu2004.sh"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt-get update",
+        "sudo apt-get install -y curl awscli",
+        "curl -O https://apt.puppetlabs.com/puppet6-release-focal.deb",
+        "sudo dpkg -i puppet6-release-focal.deb",
+        "sudo apt-get update",
+        "sudo apt-get install -y puppet-agent",
+        "sudo /opt/puppetlabs/bin/puppet config set node_name_fact node_name"
+      ],
+      "environment_vars": [
+        "DEBIAN_FRONTEND=noninteractive"
+      ],
+      "only": ["gcp-prod-nvidia-docker-puppet", "vbox-nvidia-docker-puppet"]
+    }
+  ]
+}

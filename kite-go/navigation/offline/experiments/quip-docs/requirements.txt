@@ -1,0 +1,3 @@
+mypy==0.790
+PyGithub==1.51
+requests==2.25.1

@@ -1,0 +1,117 @@
+@import url("../../../../assets/index.css");
+
+.sign-in-popup {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: var(--background);
+  box-shadow: var(--popup-shadow);
+  border-radius: var(--border-radius);
+  z-index: 10000;
+  transform: translateY(-120%);
+  transition: transform 300ms;
+}
+
+.sign-in-popup.visible {
+  transform: translateY(0%);
+}
+
+.sign-in-popup__main {
+  display: flex;
+  margin: var(--inner-padding-4);
+}
+
+.sign-in-popup__main-form {
+}
+
+.sign-in-popup__fields {
+  /* margin-top: var(--inner-padding-1); */
+  padding: var(--inner-padding-1) 0;
+}
+
+.sign-in-popup__fields input {
+  border: 1px solid var(--external-text-subtle);
+  color: var(--headline);
+  background: var(--background);
+  box-sizing: border-box;
+  padding: var(--inner-padding-1) var(--inner-padding-2);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-normal);
+}
+
+.sign-in-popup__password-reset {
+  font-size: var(--font-size-smaller);
+  color: var(--link-underline) !important;
+  padding-left: var(--inner-padding-2);
+  margin-top: 0;
+}
+
+.sign-in-popup__password-reset__btn {
+  background: var(--background) !important;
+  color: var(--text);
+}
+
+.sign-in-popup__password-reset__btn:hover {
+  color: var(--hover);
+}
+
+.sign-in-popup__toggle-type {
+  padding-bottom: var(--inner-padding-2);
+}
+
+.sign-in-popup__toggle-btn {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  padding-top: var(--inner-padding-1) !important;
+  padding-bottom: var(--inner-padding-1) !important;
+  border-radius: 0 !important;
+  font-size: var(--font-size-smaller) !important;
+  background: var(--external-headline) !important;
+  color: var(--text);
+  width: 50%;
+}
+
+.sign-in-popup__toggle-btn.unselected {
+  background: var(--background) !important;
+}
+
+.sign-in-popup__toggle-btn.unselected:hover {
+  background: var(--external-headline-subtle) !important;
+}
+
+.sign-in-popup__submit {
+}
+
+.sign-in-popup__submit__btn {
+  width: 100%;
+  background: var(--internal-link) !important;
+  color: var(--text);
+}
+
+.sign-in-popup__submit__btn:hover {
+  background: var(--internal-link-highlight) !important;
+}
+
+.sign-in-popup__toggle-btn.unselected.disabled:hover
+.sign-in-popup__submit__btn.disabled:hover,
+.sign-in-popup__submit__btn.disabled,
+.sign-in-popup__toggle-btn.disabled {
+  background: var(--text-very-subtle) !important;
+}
+
+.sign-in-popup__toggle-btn.unselected {
+  color: var(--text-subtle);
+}
+
+.sign-in-popup__email {
+  margin-bottom: var(--inner-padding-1);
+}
+
+.sign-in-popup__error {
+  width: 300px;
+  white-space: nowrap;
+  color: var(--text-error);
+  font-size: var(--font-size-smaller);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

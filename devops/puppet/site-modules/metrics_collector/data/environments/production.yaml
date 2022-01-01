@@ -1,0 +1,3 @@
+---
+metrics_collector::stdout_output: false
+metrics_collector::kinesis_output:  "<%= $stream %>"

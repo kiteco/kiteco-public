@@ -1,0 +1,147 @@
+.help__title {
+  background-color: var(--background);
+  padding: 1rem;
+  padding-top: 1.85rem;
+  padding-bottom: 1.5rem;
+}
+
+.help__title__h4 {
+  margin: 0;
+  font-weight: 300;
+  font-size: 2.5rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.help__title__back {
+  width: 1.3rem;
+  height: 2rem;
+  mask-image: url(./icon-back.svg);
+  mask-position: center center;
+  mask-repeat: no-repeat;
+  mask-size: 1rem;
+  margin-right: 1.55rem;
+  display: inline-block;
+  vertical-align: middle;
+  transition: 250ms opacity;
+  background: var(--link-color);
+}
+
+.help__body {
+  padding: 1rem;
+}
+
+.help__body h4 {
+  margin: 0 0 1rem;
+  font-size: 2.25rem;
+  font-weight: 300;
+}
+
+.help__title__back:hover {
+  background: var(--bright-color);
+}
+
+.help__banner {
+  /* Differs for the high contrast theme. */
+  background-color: var(--banner-button-background);
+  border-color: var(--banner-button-border);
+  border-width: 1px;
+  border-style: solid;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding-left: 4.7rem;
+  padding-top: 0.255rem;
+  padding-block: 0.255rem;
+  margin-bottom: 1rem;
+  font-weight: 400;
+  font-size: 1.8rem;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+}
+
+.help__banner:hover {
+  background-color: var(--banner-button-background-hover);
+  border-color: var(--banner-button-background-hover);
+  color: var(--button-text);
+}
+
+.help__banner__text {
+  padding: 1.5rem;
+  font-size: 1.8rem;
+}
+
+html[data-theme='light'] {
+  --question-default: url(./icon-question-dark.svg);
+  --question-hover: url(./icon-question-white.svg);
+  --github-default: url(./icon-github-dark.svg);
+  --github-hover: url(./icon-github-white.svg);
+  --star-default: url(./icon-star-dark.svg);
+  --star-hover: url(./icon-star-white.svg);
+  --outlink-default: url(./icon-outlink-dark.svg);
+  --outlink-hover: url(./icon-outlink-white.svg);
+}
+
+/* Default theme is dark theme */
+html {
+  --question-default: url(./icon-question-white.svg);
+  --question-hover: url(./icon-question-dark.svg);
+  --github-default: url(./icon-github-white.svg);
+  --github-hover: url(./icon-github-dark.svg);
+  --star-default: url(./icon-star-white.svg);
+  --star-hover: url(./icon-star-dark.svg);
+  --outlink-default: url(./icon-outlink-white.svg);
+  --outlink-hover: url(./icon-outlink-dark.svg);
+}
+
+html[data-theme='high-contrast'] {
+  --question-default: url(./icon-question-white.svg);
+  --question-hover: url(./icon-question-dark.svg);
+  --github-default: url(./icon-github-white.svg);
+  --github-hover: url(./icon-github-dark.svg);
+  --star-default: url(./icon-star-white.svg);
+  --star-hover: url(./icon-star-dark.svg);
+  --outlink-default: url(./icon-outlink-white.svg);
+  --outlink-hover: url(./icon-outlink-dark.svg);
+}
+
+.help__banner__icon--question {
+  background-size: 1.6rem;
+  background-position: left 2rem top 50%;
+  background-image: var(--question-default);
+}
+
+.help__banner__icon--question:hover {
+  background-image: var(--question-hover);
+}
+
+.help__banner__icon--github {
+  background-size: 2.45rem;
+  background-position: left 1.6rem top 50%;
+  background-image: var(--github-default);
+}
+
+.help__banner__icon--github:hover {
+  background-image: var(--github-hover);
+}
+
+.help__banner__icon--star {
+  background-size: 2.45rem;
+  background-position: left 1.6rem top 50%;
+  background-image: var(--star-default);
+}
+
+.help__banner__icon--star:hover {
+  background-image: var(--star-hover);
+}
+
+.help__banner__icon--outlink {
+  background-size: 2.45rem;
+  background-position: left 1.6rem top 50%;
+  background-image: var(--outlink-default);
+}
+
+.help__banner__icon--outlink:hover {
+  background-image: var(--outlink-hover);
+}
+

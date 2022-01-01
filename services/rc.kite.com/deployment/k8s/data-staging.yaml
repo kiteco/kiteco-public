@@ -1,0 +1,8 @@
+#@data/values
+---
+env: staging
+hostname: rc.staging.kite.com
+nginx_cpu: 25m
+nginx_mem: 2Gi
+convcohort_mem: 1Gi
+convcohort_cpu: 100m

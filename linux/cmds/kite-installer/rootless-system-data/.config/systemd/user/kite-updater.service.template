@@ -1,0 +1,7 @@
+[Unit]
+Description=Kite Updater
+
+[Service]
+Type=oneshot
+StandardOutput=null
+ExecStart={{.HomeDir}}/.local/share/kite/current/kite-update "update" "silent"

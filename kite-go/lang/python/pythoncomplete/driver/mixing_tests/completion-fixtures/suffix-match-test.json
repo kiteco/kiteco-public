@@ -1,0 +1,272 @@
+{
+    "completions": [
+        {
+            "snippet": {
+                "text": "foods",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 57,
+                "end": 60
+            },
+            "display": "foods",
+            "documentation": {
+                "text": ""
+            },
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "foobar",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 57,
+                "end": 59
+            },
+            "display": "foobar",
+            "documentation": {
+                "text": ""
+            },
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "format",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 57,
+                "end": 59
+            },
+            "display": "format",
+            "documentation": {
+                "text": "Convert a value to a “formatted” representation, as controlled by format_spec . The interpretation of format_spec will depend on the type of the value argument, however there is a standard formatting syntax that is used by most built-in types: Format Specification Mini-Language .\n\nNote\n\nformat(value, format_spec) merely calls value.__format__(format_spec) .\n\nNew in version 2.6."
+            },
+            "web_id": "__builtin__.format",
+            "local_id": "python;;;;__builtin__.format",
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "for ",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 57,
+                "end": 59
+            },
+            "display": "for ",
+            "documentation": {
+                "text": ""
+            },
+            "hint": "keyword",
+            "smart": false
+        }
+    ]
+}
+ction returns true. iterable may be either a sequence, a container which supports iteration, or an iterator. If iterable is a string or a tuple, the result also has that type; otherwise it is always a list. If function is None , the identity function is assumed, that is, all elements of iterable that are false are removed.\n\nNote that filter(function, iterable) is equivalent to [item for item in iterable if function(item)] if function "
+            },
+            "web_id": "__builtin__.filter",
+            "local_id": "python;;;;__builtin__.filter",
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "float",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "float",
+            "documentation": {
+                "text": "Convert a string or a number to floating point. If the argument is a string, it must contain a possibly signed decimal or floating point number, possibly embedded in whitespace. The argument may also be [+|-]nan or [+|-]inf. Otherwise, the argument may be a plain or long integer or a floating point number, and a floating point number with the same value (within Python’s floating point precision) is returned. If no argument is given, returns 0.0 .\n\nNote\n\nWhen passing in a string, values for NaN"
+            },
+            "web_id": "__builtin__.float",
+            "local_id": "python;;;;__builtin__.float",
+            "hint": "type",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "format",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "format",
+            "documentation": {
+                "text": "Convert a value to a “formatted” representation, as controlled by format_spec . The interpretation of format_spec will depend on the type of the value argument, however there is a standard formatting syntax that is used by most built-in types: Format Specification Mini-Language .\n\nNote\n\nformat(value, format_spec) merely calls value.__format__(format_spec) .\n\nNew in version 2.6."
+            },
+            "web_id": "__builtin__.format",
+            "local_id": "python;;;;__builtin__.format",
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "frozenset",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "frozenset",
+            "documentation": {
+                "text": "frozenset() -\u003e empty frozenset object frozenset(iterable) -\u003e frozenset object\n\nBuild an immutable unordered collection of unique elements."
+            },
+            "web_id": "__builtin__.frozenset",
+            "local_id": "python;;;;__builtin__.frozenset",
+            "hint": "type",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "function",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "function",
+            "documentation": {
+                "text": ""
+            },
+            "web_id": "__builtin__.function",
+            "local_id": "python;;;;__builtin__.function",
+            "hint": "type",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "for ",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "for ",
+            "documentation": {
+                "text": ""
+            },
+            "hint": "keyword",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "from ",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "from ",
+            "documentation": {
+                "text": ""
+            },
+            "hint": "keyword",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "False",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "False",
+            "documentation": {
+                "text": ""
+            },
+            "local_id": "python;;;;__builtin__.False",
+            "hint": "bool",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "FileExistsError",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "FileExistsError",
+            "documentation": {
+                "text": ""
+            },
+            "web_id": "__builtin__.FileExistsError",
+            "local_id": "python;;;;__builtin__.FileExistsError",
+            "hint": "type",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "FileNotFoundError",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "FileNotFoundError",
+            "documentation": {
+                "text": ""
+            },
+            "web_id": "__builtin__.FileNotFoundError",
+            "local_id": "python;;;;__builtin__.FileNotFoundError",
+            "hint": "type",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "FloatingPointError",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "FloatingPointError",
+            "documentation": {
+                "text": "Raised when a floating point operation fails. This exception is always defined, but can only be raised when Python is configured with the --with-fpectl option, or the WANT_SIGFPE_HANDLER symbol is defined in the pyconfig.h file."
+            },
+            "web_id": "__builtin__.FloatingPointError",
+            "local_id": "python;;;;__builtin__.FloatingPointError",
+            "hint": "type",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "FutureWarning",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 56,
+                "end": 57
+            },
+            "display": "FutureWarning",
+            "documentation": {
+                "text": "Base class for warnings about constructs that will change semantically in the future."
+            },
+            "web_id": "__builtin__.FutureWarning",
+            "local_id": "python;;;;__builtin__.FutureWarning",
+            "hint": "type",
+            "smart": false
+        }
+    ]
+}

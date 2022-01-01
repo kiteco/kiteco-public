@@ -1,0 +1,64 @@
+---
+config:
+    instances: 10
+    instance_type: "m3.2xlarge"
+
+pipeline:
+    extract_snippets:
+        input: "s3://kite-data/source-code/py_files_pulled_from_github_crawl/attempt1/part-00000"
+    filter_resolvable:
+        input: extract_snippets
+        mapreduce_memory_mb: 5120
+
+    node_context:
+        input: extract_snippets
+        mapreduce_memory_mb: 5120
+    merge_node_context:
+        input: node_context 
+        identity: True
+        mapred_reduce_tasks: 1
+    
+    token_frequency:
+        input: extract_snippets
+    merge_token_frequency:
+        input: token_frequency
+        identity: True
+        mapred_reduce_tasks: 1
+
+    package_stats:
+        input: filter_resolvable
+    merge_package_stats:
+        identity: True
+        input: package_stats
+        mapred_reduce_tasks: 1
+
+    grouped_stats:
+        input: filter_resolvable
+    merge_grouped_stats:
+        identity: True
+        input: grouped_stats
+        mapred_reduce_tasks: 1
+
+    signature_patterns:
+        input: filter_resolvable
+        mapreduce_memory_mb: 5120
+    merge_signature_patterns:
+        identity: True
+        input: signature_patterns
+        mapred_reduce_tasks: 1
+
+    cooccurrent_patterns:
+        input: filter_resolvable
+    merge_cooccurrent_patterns:
+        identity: True
+        input: cooccurrent_patterns
+        mapred_reduce_tasks: 1
+
+    extract_obj_usages:
+        input: "s3://kite-data/source-code/py_files_pulled_from_github_crawl/attempt1/part-00000"
+    group_obj_usages:
+        input: extract_obj_usages
+    merge_group_obj_usages:
+        identity: True
+        input: group_obj_usages
+        mapred_reduce_tasks: 1

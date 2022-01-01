@@ -1,0 +1,36 @@
+.navigation__history {
+  display: flex;
+  margin-left: 1rem;
+}
+
+.navigation__history__back, .navigation__history__forward {
+  width: 2rem;
+  height: 2rem;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 1rem;
+  opacity: var(--disabled-opacity);
+  pointer-events: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: 250ms all;
+  background-color: var(--link-color);
+}
+
+.navigation__history__back {
+  mask-image: url(../../assets/icon-back.svg);
+}
+.navigation__history__forward {
+  mask-image: url(../../assets/icon-forward.svg);
+}
+
+.navigation__history__button--enabled {
+  opacity: 1;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.navigation__history__button--enabled:hover {
+  background-color: var(--bright-color);
+}

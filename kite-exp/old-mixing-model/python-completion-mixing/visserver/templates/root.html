@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <title>Example - {{.Locator.Hash}} - {{.Locator.Cursor}}</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <pre>
+                {{.Source}}
+            </pre>
+        </div>
+        <div class="col-md-4">
+            <div id="spacer"></div>
+            <h5>{{.CurIdx}} / {{.Count}} Hash: {{.Locator.Hash}} Cursor: {{.Locator.Cursor}}</h5>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Completion</th>
+                    <th>Prob</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{range $comp := .Completions}}
+                <tr>
+                    <td>{{$comp.Name}}</td>
+                    <td>{{$comp.Prob}}</td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    var detectScroll = setInterval(function() {
+        var st = document.documentElement.scrollTop;
+        if (st != 0) {
+            clearInterval(detectScroll);
+            st -= 400;
+            if (st < 0) {
+                st = 0;
+            }
+            document.documentElement.scrollTop = st;
+            document.getElementById("spacer").style.marginTop = "" + st + "px";
+        }
+    }, 10);
+
+    document.addEventListener('keydown', function(e) {
+        switch (e.key) {
+            case "ArrowLeft":
+                window.location.replace("{{.PrevURL}}");
+                break;
+            case "ArrowRight":
+                window.location.replace("{{.NextURL}}");
+                break;
+        }
+    });
+</script>
+</body>
+</html>

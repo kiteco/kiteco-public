@@ -1,0 +1,5 @@
+tmp/*
+out/*
+trained_model/*
+bin/*
+tensorboard/*

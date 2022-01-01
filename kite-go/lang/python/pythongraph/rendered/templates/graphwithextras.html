@@ -1,0 +1,195 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <pre id="code">{{.Buffer}}</pre>
+        </div>
+        <div class="col-6">
+            <pre id="ast-text">{{.AST}}</pre>
+        </div>
+    </div>
+    <div class="row">
+        <div id="heatmap" style='height: 400px'></div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button id="full-graph-button">Full Graph</button>
+            <button id="backbone-button">Backbone</button>
+            <div id="slider">Min Weight
+                <input class="bar" type="range" id="rangeinput" min="0.0" max="1.0" value="0.0" step="0.01" onchange="rangevalue.value=value"/>
+                <output id="rangevalue">0</output>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="programgraph"></div>
+</div>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector("#full-graph-button").onclick = function (ev) {
+            renderGraph(JSON.parse("{{.Graph}}"));
+        };
+        document.querySelector("#backbone-button").onclick = function (ev) {
+            var graph = JSON.parse("{{.Graph}}");
+            graph.edges = graph.edges.filter(edge => edge.label == "ast_child" || edge.label == "next_token");
+            renderGraph(graph);
+        };
+        var rangeInput = document.getElementById("rangeinput");
+        rangeInput.onchange = function (ev) {
+            document.getElementById("rangevalue").textContent = rangeInput.value;
+            var graph = JSON.parse("{{.Graph}}");
+            graph.edges = graph.edges.map(function(edge){
+                // Filter out the edges with values below the slider value, make a dummy edge so that the graph structure doesn't change
+                if (edge.value && Math.abs(edge.value) < rangeInput.value) {
+                    edge.label = "";
+                    edge.value = 0;
+                }
+                return edge;
+            });
+            renderGraph(graph);
+        };
+        renderGraph(JSON.parse("{{.Graph}}"));
+        showHeatMap(JSON.parse("{{.Weights}}"));
+    });
+
+    function showHeatMap(weights) {
+        if (!weights.content) {
+            return
+        }
+        var data = [
+            {
+                z: weights.content,
+                x: weights.xlabels,
+                y: weights.ylabels,
+                type: 'heatmap',
+                colorscale: 'Portland',
+            }
+        ];
+        var layout = {
+            title: 'Context Weights',
+            xaxis: {
+                side: 'top',
+                automargin: true,
+            },
+            yaxis: {
+                automargin: true,
+            },
+            font: {
+                family: 'Monaco, monospace',
+                size: 14,
+            },
+            height: 400,
+            autosize: true,
+        };
+        var container = document.getElementById('heatmap');
+        Plotly.newPlot(container, data, layout, {showSendToCloud: true});
+    }
+
+    function renderGraph(graph) {
+        if (!graph.nodes) {
+            var container = document.getElementById('programgraph');
+            container.appendChild(document.createTextNode("no graph"));
+            return
+        }
+        styledNodes = graph.nodes.map(function(node){
+            var colors = {
+                "ast_internal_node": "#e6d297",
+                "ast_teminal_node": "#EB6841",
+                "variable_usage_node": "#EDC951",
+                "scope_node":  "#97e6a4",
+            };
+            var color = colors[node.node_type];
+            if (color) {
+                node.color = color;
+            }
+            if (node.level < 0) {
+                delete node.level;
+            }
+            return node;
+        });
+
+        styledEdges = graph.edges.map(function(edge) {
+            var colors = {
+                "ast_child": "black",
+                "next_token": "darkgray",
+                "last_lexical_use": "Fuchsia",
+                "computed_from": "limegreen",
+                "data_flow": "orange",
+                "scope": "red",
+                "": "whitesmoke",
+            };
+
+            var positives = {
+                1: "#ffff8c",
+                2: "#f9d057",
+                3: "#f29e2e",
+                4: "#e76818",
+                5: "#d7191c",
+            };
+
+            var negatives = {
+                1: "#ffff8c",
+                2: "#90eb9d",
+                3: "#00ccbc",
+                4: "#00a6ca",
+                5: "#2c7bb6",
+            };
+
+            var color = colors[edge.label];
+            if (edge.value) {
+                if (edge.value > 0) {
+                    var bucket = Math.ceil(edge.value / 0.2);
+                    color = positives[bucket];
+                } else {
+                    var bucket = Math.ceil(Math.abs(edge.value) / 0.2);
+                    color = negatives[bucket];
+                }
+                // Override edge value for consistent width
+                edge.value = 1;
+                edge.title = edge.info;
+                edge.hoverWidth = function (width) {return width * 1.2;};
+            }
+            if (color) {
+                edge.color = {"color": color, "highlight": color, "hover":color};
+            }
+            edge.arrows = "to";
+            edge.scaling = {"min": 0, "max": 10};
+            return edge;
+        });
+
+        var nodes = new vis.DataSet(styledNodes);
+        var edges = new vis.DataSet(styledEdges);
+        var container = document.getElementById('programgraph');
+        var data = {
+            nodes: nodes,
+            edges: edges,
+        };
+
+
+        hierarchical = {
+            enabled: true,
+            levelSeparation: 150,
+            nodeSpacing: 150,
+            direction: 'UD',
+            sortMethod: 'directed',
+        };
+        var options = {
+            layout: {
+                randomSeed: 1,
+                improvedLayout: true,
+                hierarchical: hierarchical,
+            },
+            interaction:{
+                hover: true
+            },
+            physics: false,
+        };
+        var network = new vis.Network(container, data, options);
+        network.on("dragging", function (params) {
+            if (params.nodes.length == 1) {
+                var nid = params.nodes[0];
+                network.moveNode(nid, params.pointer.canvas.x, params.pointer.canvas.y);
+            }
+        });
+    }
+</script>
+

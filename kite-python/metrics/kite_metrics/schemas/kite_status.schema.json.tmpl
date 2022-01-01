@@ -1,0 +1,37 @@
+{%- macro objPropertyValue(value, path) -%}
+{
+  "type": "object",
+  {% if path == ".properties" %}
+  "additionalProperties": {
+    "$ref": "types.schema.json#/int"
+  },
+  {% else %}
+  "additionalProperties": false,
+  {% endif %}
+  "properties": {
+    {{properties(value.properties, path)}}
+  }
+}
+{%- endmacro %}
+
+{%- macro property(key, value, path) -%}
+  "{{key}}":
+  {%- if value.json_schema %}
+    {{value.json_schema|tojson}}
+  {%- elif value.type == "object" %}
+    {{objPropertyValue(value, path + "." + key)}}
+  {%- else %}
+    {
+      "$ref": "types.schema.json#/{{value.type}}"
+    }
+  {%- endif %}
+{%- endmacro %}
+
+{%- macro properties(schema, path) -%}
+{%- for key, value in schema.items() if not (path == ".properties" and not full_validation and value.type == "int") %}
+  {{property(key, value, path)}}
+  {% if not loop.last %},{% endif %}
+{%- endfor %}
+{%- endmacro %}
+
+{{objPropertyValue(schema, "")}}

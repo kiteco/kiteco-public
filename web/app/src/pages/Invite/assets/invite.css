@@ -1,0 +1,370 @@
+.invite-wrapper {
+  min-height: 100%;
+  background-color: #11182F;
+}
+
+.invite-header {
+  text-align: center;
+  background-color: #11182F;
+  padding-top: 4rem;
+}
+
+.invite-header .header__wrapper {
+  justify-content: center;
+}
+
+.invite > * {
+  margin: 0;
+  padding: 0 1rem;
+}
+
+.invite > *:last-child {
+  padding-bottom: 1rem;
+}
+
+.invite > * + * {
+  margin-top: 3rem;
+}
+
+.invite__header {
+  font-size: 4rem;
+  text-align: center;
+  font-family: 'Droid Sans Mono W01', monospace;
+  background: #0a2e64;
+  color: white;
+  padding: 6rem 0;
+}
+
+.invite__header-logo {
+  margin: 1rem auto 0;
+  display: block;
+  width: 90%;
+  max-width: 45.6rem;
+  padding: 0;
+}
+
+.invite__tagline {
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 5.6rem;
+  line-height: 1;
+  font-weight: 200;
+  color: #5DD8E4;
+  margin-top: 6.5rem;
+}
+
+.invite__tagline--h3 {
+  font-size: 2rem;
+}
+
+.invite__explanation {
+  font-size: 1.75rem;
+  margin: 2rem auto 3rem;
+  opacity: 0.6;
+  max-width: 100rem;
+  line-height: 1.75;
+  text-align: center;
+}
+
+.invite__explanation--center {
+  text-align: center;
+}
+
+.invite__code {
+  max-width: 45.6rem;
+  margin: 2rem 0 auto;
+}
+
+.invite__code .invite__top-text {
+  font-size: 1.6rem;
+  font-weight: 200;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto 1.6rem;
+}
+
+.invite__link {
+  display: block;
+}
+
+.invite__upgrade__link {
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.invite__upgrade__link:hover {
+  text-decoration: none;
+}
+
+.invite__code__input {
+  outline: none;
+  border: none;
+  color: #11182F;
+  font-family: 'Neue Frutiger W01', sans-serif;
+  flex-grow: 1;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  padding: 0.8rem 1.6rem 2.8rem;
+  width: 100%;
+  max-width: 45.6rem;
+  background-color: #fff;
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.invite__message--hidden {
+  left: -1000px;
+  position: absolute;
+  top: -1000px;
+}
+
+.invite__code__input > div {
+  margin-top: 1.5rem;
+}
+
+.invite__code__input video {
+  width: 100%;
+}
+
+.invite__code__input > div:first-child {
+  margin-top: 0;
+}
+
+.invite__button__countdown {
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.invite__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 4rem;
+  background-color: #14B4C3;
+  color: #fff;
+  outline: none;
+  font-size: 1.4rem;
+  font-weight: 200;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.invite__button:not(.invite__button--copied):hover {
+  background-color: #5DD8E4;
+}
+
+.invite__button--copied {
+  background-color: #00AF7D;
+  cursor: default;
+}
+
+.invite__social__buttons {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.invite__button__social {
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: opacity 250ms;
+  margin: 0 2rem;
+  transition: all 250ms;
+  transform: scale(1);
+}
+
+.invite__button__social:hover {
+  transform: scale(1.3);
+}
+
+.invite__button__twitter {
+  width: 4.5rem;
+  height: 4.5rem;
+  background-image: url('../../../assets/images/icon-twitter.png');
+}
+
+.invite__button__facebook {
+  width: 4rem;
+  height: 4rem;
+  background-image: url('../../../assets/images/icon-facebook.png');
+}
+
+
+.invite__appear {
+  animation-name: appear;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+  margin-top: 5rem;
+}
+
+.invite__delay-1 {
+  animation-delay: 300ms;
+  opacity: 0;
+}
+
+.invite__logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  background-image: url('../../../assets/images/icon-logo-light.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  vertical-align: text-bottom;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(4rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.invite__options {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 100rem;
+  margin-top: 8rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invite-option {
+  margin-bottom: 4.8rem;
+}
+
+.invite-option.gmail-option {
+  width: 100%;
+  max-width: 45.6rem;
+}
+
+.invite-option .invite__appear {
+  margin-top: 0;
+}
+
+.invite__options__button {
+  background: #14B4C3;
+  outline: none;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29.6rem;
+  height: 6.4rem;
+  font-size: 2rem;
+  font-weight: 200;
+  text-decoration: none;
+  flex-shrink: 0;
+  font-family: 'Neue Frutiger W01', sans-serif;
+  padding: 0;
+}
+
+.invite__options__button:hover {
+  background: #5DD8E4;
+}
+
+.invite-option .invite-option__bottom-text {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  font-weight: 200;
+  font-style: normal;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 0;
+  margin-top: 1.5rem;
+}
+
+.invite__options__gmail {
+  padding: 1rem 1rem 1rem 3rem;
+  background-image: url(./gmail.svg);
+  background-repeat: no-repeat;
+  background-size: 2rem 1.5rem;
+  background-position: left 0 center;
+}
+
+.invite__options__slack {
+  padding: 1rem 1rem 1rem 3rem;
+  background-image: url(./slack.svg);
+  background-repeat: no-repeat;
+  background-size: 2.4rem 2.4rem;
+  background-position: left 0 center;
+}
+
+.invite__options__twitter {
+  padding: 1rem 1rem 1rem 3rem;
+  background-image: url(./twitter.svg);
+  background-repeat: no-repeat;
+  background-size: 2.4rem 2rem;
+  background-position: left 0 center;
+}
+
+.invite__options__link {
+  padding: 1rem 1rem 1rem 4rem;
+  background-image: url(./link.svg);
+  background-repeat: no-repeat;
+  background-size: 3rem 2.5rem;
+  background-position: left 0 center;
+}
+
+.invite__more-options {
+  color: #14B4C3;
+  font-size: 2rem;
+  line-height: 1.6;
+  font-weight: 200;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.invite__more-options:hover {
+  color: #5DD8E4;
+}
+
+.invite__gmail__wrapper {
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.invite__show-gmail__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.invite__emails__wrapper {
+  margin: 0 auto;
+  margin-top: 2rem;
+  max-width: 40rem;
+  max-height: 40rem;
+}
+
+.invite__emails__error {
+  color: red;
+}
+
+.slack__copy-message .invite__button--copied {
+  cursor: pointer;
+}
+
+.slack__copy-message .invite__button--copied:hover {
+  background-color: #00d598;
+}

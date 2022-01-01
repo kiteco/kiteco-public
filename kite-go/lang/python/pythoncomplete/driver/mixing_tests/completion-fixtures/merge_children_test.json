@@ -1,0 +1,127 @@
+{
+    "completions": [
+        {
+            "snippet": {
+                "text": "loads()",
+                "placeholders": [
+                    {
+                        "begin": 6,
+                        "end": 6
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 59,
+                "end": 61
+            },
+            "display": "loads(…)",
+            "documentation": {
+                "text": "Deserialize s (a str or unicode instance containing a JSON document) to a Python object using this conversion table .\n\nIf s is a str instance and is encoded with an ASCII based encoding other than UTF-8 (e.g. latin-1), then an appropriate encoding name must be specified. Encodings that are not ASCII based (such as UCS-2) are not allowed and should be decoded to unicode first.\n\nThe other arguments have the same meaning as in load() ( #json.load ) ."
+            },
+            "web_id": "json.loads",
+            "local_id": "python;;;;json.loads",
+            "hint": "function",
+            "smart": false,
+            "children": [
+                {
+                    "snippet": {
+                        "text": "loads([s])",
+                        "placeholders": [
+                            {
+                                "begin": 6,
+                                "end": 9
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 59,
+                        "end": 61
+                    },
+                    "display": "…(\u003cs\u003e)",
+                    "documentation": {
+                        "text": "Deserialize s (a str or unicode instance containing a JSON document) to a Python object using this conversion table .\n\nIf s is a str instance and is encoded with an ASCII based encoding other than UTF-8 (e.g. latin-1), then an appropriate encoding name must be specified. Encodings that are not ASCII based (such as UCS-2) are not allowed and should be decoded to unicode first.\n\nThe other arguments have the same meaning as in load() ( #json.load ) ."
+                    },
+                    "web_id": "json.loads",
+                    "local_id": "python;;;;json.loads",
+                    "hint": "call",
+                    "smart": false
+                }
+            ]
+        },
+        {
+            "snippet": {
+                "text": "load()",
+                "placeholders": [
+                    {
+                        "begin": 5,
+                        "end": 5
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 59,
+                "end": 61
+            },
+            "display": "load(…)",
+            "documentation": {
+                "text": "Deserialize fp (a .read() -supporting file-like object containing a JSON document) to a Python object using this conversion table .\n\nIf the contents of fp are encoded with an ASCII based encoding other than UTF-8 (e.g. latin-1), then an appropriate encoding name must be specified. Encodings that are not ASCII based (such as UCS-2) are not allowed, and should be wrapped with codecs.getreader(encoding)(fp) , or simply decoded to a unicode object and passed to loads() ( #json.loads ) .\n\nobject_hook"
+            },
+            "web_id": "json.load",
+            "local_id": "python;;;;json.load",
+            "hint": "function",
+            "smart": false,
+            "children": [
+                {
+                    "snippet": {
+                        "text": "load(foo, bar)",
+                        "placeholders": [
+                            {
+                                "begin": 5,
+                                "end": 8
+                            },
+                            {
+                                "begin": 10,
+                                "end": 13
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 59,
+                        "end": 61
+                    },
+                    "display": "…(\u003cfoo\u003e, \u003cbar\u003e)",
+                    "documentation": {
+                        "text": "Deserialize fp (a .read() -supporting file-like object containing a JSON document) to a Python object using this conversion table .\n\nIf the contents of fp are encoded with an ASCII based encoding other than UTF-8 (e.g. latin-1), then an appropriate encoding name must be specified. Encodings that are not ASCII based (such as UCS-2) are not allowed, and should be wrapped with codecs.getreader(encoding)(fp) , or simply decoded to a unicode object and passed to loads() ( #json.loads ) .\n\nobject_hook"
+                    },
+                    "web_id": "json.load",
+                    "local_id": "python;;;;json.load",
+                    "hint": "call",
+                    "smart": true
+                },
+                {
+                    "snippet": {
+                        "text": "load(foo)",
+                        "placeholders": [
+                            {
+                                "begin": 5,
+                                "end": 8
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 59,
+                        "end": 61
+                    },
+                    "display": "…(\u003cfoo\u003e)",
+                    "documentation": {
+                        "text": "Deserialize fp (a .read() -supporting file-like object containing a JSON document) to a Python object using this conversion table .\n\nIf the contents of fp are encoded with an ASCII based encoding other than UTF-8 (e.g. latin-1), then an appropriate encoding name must be specified. Encodings that are not ASCII based (such as UCS-2) are not allowed, and should be wrapped with codecs.getreader(encoding)(fp) , or simply decoded to a unicode object and passed to loads() ( #json.loads ) .\n\nobject_hook"
+                    },
+                    "web_id": "json.load",
+                    "local_id": "python;;;;json.load",
+                    "hint": "call",
+                    "smart": true
+                }
+            ]
+        }
+    ]
+}

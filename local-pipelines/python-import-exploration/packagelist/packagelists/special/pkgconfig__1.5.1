@@ -1,0 +1,5 @@
+FROM kiteco/python-import-exploration
+
+RUN python -m pip install pkgconfig==1.5.1
+
+ENTRYPOINT ["/usr/bin/env", "python", "-m", "kite.pkgexploration", "pkgconfig", "1.5.1", "pkgconfig__1.5.1.json", "pkgconfig__1.5.1.log", "--toplevel", "pkgconfig"]

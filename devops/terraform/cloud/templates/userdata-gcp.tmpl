@@ -1,0 +1,47 @@
+#!/bin/bash
+
+export AWS_ACCESS_KEY_ID=${aws_acces_key_id}
+export AWS_SECRET_ACCESS_KEY=`gcloud secrets versions access latest --secret=${gcp_aws_secret_access_key}`
+
+mkdir /opt/puppet
+aws s3 cp s3://kite-deploys/v${release_version}/puppet.tar.gz /opt/puppet
+cd /opt/puppet && tar zxvf puppet.tar.gz
+
+/opt/puppetlabs/bin/puppet config set certname `hostname`
+/opt/puppetlabs/bin/puppet config set hiera_config /opt/puppet/hiera.yaml
+
+cat << 'EOF' > /opt/puppetlabs/facter/facts.d/local.json
+{"kiteco_version":"${release_version}", "kite_env": "production", "aws_access_key_id": "${aws_acces_key_id}", "gcp_aws_secret_access_key": "${gcp_aws_secret_access_key}"}
+EOF
+
+%{ if ubuntu_release == "bionic" }
+# Pause some system startup tasks so they don't conflict with our provisioning
+# Fixed in Focal
+function killService() {
+    service=$1
+    sudo systemctl stop $service
+    sudo systemctl kill --kill-who=all $service
+
+    # Wait until the status of the service is either exited or killed.
+    while ! (sudo systemctl status "$service" | grep -q "Main.*code=\(exited\|killed\)")
+    do
+        sleep 10
+    done
+}
+
+systemctl disable apt-daily.timer
+systemctl disable apt-daily-upgrade.timer
+killService unattended-upgrades.service
+killService apt-daily.service
+killService apt-daily-upgrade.service
+# End startup tasks
+%{ endif }
+
+cd /opt/puppet && sudo /opt/puppetlabs/bin/puppet apply --modulepath=/opt/puppet/modules:/opt/puppet/site-modules site.pp
+
+%{ if ubuntu_release == "bionic" }
+# More startup
+systemctl enable apt-daily.timer
+systemctl enable apt-daily-upgrade.timer
+# End startup tasks
+%{ endif }

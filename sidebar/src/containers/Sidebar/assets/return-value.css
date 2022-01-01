@@ -1,0 +1,8 @@
+.docs__return-value__label {
+  display: inline-block;
+}
+.docs__return-value__type {
+  display: inline-block;
+  margin-left: var(--sidebar-left-indent);
+  opacity: 0.6;
+}

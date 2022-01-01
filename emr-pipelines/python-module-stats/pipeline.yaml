@@ -1,0 +1,22 @@
+---
+config:
+    instances: 10
+    instance_type: "m3.2xlarge"
+
+pipeline:
+    extract:
+        input:  "s3://kite-emr/users/juan/github-unzip-filter/2016-06-24_18-13-09-PM/python-merge/output/*"
+        mapreduce_map_memory_mb: 12000
+        mapreduce_reduce_memory_mb: 5000
+
+    module-stats:
+        input: extract
+        mapreduce_memory_mb: 5000
+        mapreduce_reduce_tasks: 8
+    
+    in-graph:
+        input: module-stats
+        mapreduce_map_memory_mb: 12000
+        # max is 23040
+        mapreduce_reduce_memory_mb: 23000
+        mapreduce_reduce_tasks: 1

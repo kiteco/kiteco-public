@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <title>Examples - {{.Path}}</title>
+    <style>
+        table {
+            width: auto !important;
+        }
+        .correct {
+            background-color: #74ed74;
+        }
+        .best {
+            background-color: #c9fcc9;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h4>{{.Count}} out of {{.TotalCount}} Examples in {{.Path}}</h4>
+        {{if .Symbol}}
+            <h4>Showing for symbol: {{.Symbol}} (<a href="{{.SymbolURL}}">all</a>) (<a href="/">by symbol</a>)</h4>
+        {{else}}
+            <h4>Showing all examples (<a href="/">by symbol</a>)</h4>
+        {{end}}
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Provider</th>
+                <th>Best</th>
+                <th>Correct</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $pb := .ByProvider}}
+                <tr>
+                    <td>{{$pb.Provider}}</td>
+                    <td {{if $pb.IsBest}}class="best"{{end}}>
+                        <a href="{{$.ProvURL}}{{$pb.Provider}}">{{$pb.Best}} ({{printf "%.2f" $pb.BestPercent}}%)</a>
+                    </td>
+                    <td>{{$pb.Correct}} ({{printf "%.2f" $pb.CorrectPercent}}%)</td>
+                    <td>{{$pb.Total}}</td>
+                </tr>
+            {{end}}
+            </tbody>
+        </table>
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th><a href="{{$.ProvURL}}">Example</a></th>
+                <th>Symbol</th>
+                <th>Expected</th>
+                {{range $provider := .Listings.Providers}}
+                    <th><a href="{{$.ProvURL}}{{$provider}}">{{$provider}}</a></th>
+                {{end}}
+            </tr>
+            </thead>
+            <tbody>
+            {{range $listing := .Listings.Listings}}
+                <tr>
+                    <td><a href="/example?idx={{$listing.ID}}">Example {{$listing.ID}}</a></td>
+                    <td><a href="{{$.SymbolURL}}{{$listing.Symbol}}">{{$listing.Symbol}}</a></td>
+                    <td>{{$listing.Expected}}</td>
+                    {{range $res := $listing.Results}}
+                        <td {{if $res.Correct}}class="correct"{{else if $res.Best}}class="best"{{end}}>
+                        {{if $res.Found}}
+                            {{$res.Rank}}
+                        {{else}}
+                            N/A
+                        {{end}}
+                        </td>
+                    {{end}}
+                </tr>
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

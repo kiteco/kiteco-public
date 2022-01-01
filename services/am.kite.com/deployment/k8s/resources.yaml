@@ -1,0 +1,225 @@
+#@ load("@ytt:data", "data")
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: #@ data.values.namespace
+  labels:
+    name: #@ data.values.namespace
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: service
+  namespace: #@ data.values.namespace
+  annotations:
+    iam.gke.io/gcp-service-account: #@ "svc-am-kite-com-{}@{}.iam.gserviceaccount.com".format(data.values.env, data.values.project)
+    amazonaws.com/role-arn: #@ "arn:aws:iam::XXXXXXX:role/svc-am-kite-com-{}".format(data.values.env)
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: am-kite-com
+  namespace: #@ data.values.namespace
+spec:
+  domains:
+    - #@ data.values.hostname
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: #@ data.values.namespace
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: #@ "am-kite-com-{}".format(data.values.env)
+    networking.gke.io/managed-certificates: am-kite-com
+spec:
+  rules:
+  - host: #@ data.values.hostname
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: user-mux
+          servicePort: #@ data.values.user_mux_port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-mux
+  namespace: #@ data.values.namespace
+  annotations:
+    cloud.google.com/backend-config: '{"default": "user-mux-hc-config"}'
+spec:
+  ports:
+  - name: target
+    protocol: TCP
+    port: #@ data.values.user_mux_port
+    targetPort: #@ data.values.user_mux_port
+  - name: debug
+    protocol: TCP
+    port: #@ data.values.user_mux_debug_port
+    targetPort: #@ data.values.user_mux_debug_port
+  selector:
+    app: user-mux
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-mux
+  namespace: #@ data.values.namespace
+  labels:
+    tag: #@ data.values.tag
+spec:
+  selector:
+    matchLabels:
+      app: user-mux
+  template:
+    metadata:
+      labels:
+        app: user-mux
+        tag: #@ data.values.tag
+    spec:
+      serviceAccountName: service
+      containers:
+        - name: user-mux
+          image: #@ "gcr.io/kite-dev-XXXXXXX/am-kite-com-user-mux:{}".format(data.values.tag)
+          resources:
+            limits:
+              memory: #@ data.values.user_mux_mem
+              cpu: #@ data.values.user_mux_cpu
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: #@ data.values.user_mux_port
+            initialDelaySeconds: 300
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: #@ data.values.user_mux_port
+            initialDelaySeconds: 300
+          ports:
+            - containerPort: #@ data.values.user_mux_port
+          env:
+          #@ for/end key in data.values.user_mux_keys:
+            - name: #@ key
+              valueFrom:
+                secretKeyRef:
+                  name: am-kite-com-user-mux
+                  key: #@ key
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: user-mux
+  namespace: #@ data.values.namespace
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: user-mux
+  minReplicas: 1
+  maxReplicas: 2
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 75
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 75
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-node
+  namespace: #@ data.values.namespace
+spec:
+  ports:
+  - name: target
+    protocol: TCP
+    port: #@ data.values.user_node_port
+    targetPort: #@ data.values.user_node_port
+  - name: debug
+    protocol: TCP
+    port: #@ data.values.user_node_debug_port
+    targetPort: #@ data.values.user_node_debug_port
+  selector:
+    app: user-node
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-node
+  namespace: #@ data.values.namespace
+  labels:
+    tag: #@ data.values.tag
+spec:
+  selector:
+    matchLabels:
+      app: user-node
+  template:
+    metadata:
+      labels:
+        app: user-node
+        tag: #@ data.values.tag
+    spec:
+      serviceAccountName: service
+      containers:
+        - name: user-node
+          image: #@ "gcr.io/kite-dev-XXXXXXX/am-kite-com-user-node:{}".format(data.values.tag)
+          resources:
+            limits:
+              memory: #@ data.values.user_node_mem
+              cpu: #@ data.values.user_node_cpu
+          ports:
+            - containerPort: #@ data.values.user_node_port
+          env:
+            #@ for/end key in data.values.user_node_keys:
+            - name: #@ key
+              valueFrom:
+                secretKeyRef:
+                  name: am-kite-com-user-node
+                  key: #@ key
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: user-node
+  namespace: #@ data.values.namespace
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: user-node
+  minReplicas: 1
+  maxReplicas: 2
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 75
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 75
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: user-mux-hc-config
+  namespace: #@ data.values.namespace
+spec:
+  healthCheck:
+    requestPath: /ping
+---

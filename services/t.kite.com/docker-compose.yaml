@@ -1,0 +1,27 @@
+version: "3"
+services:
+  webserver:
+    build: .
+    deploy:
+      restart_policy:
+        condition: any
+    ports:
+      - "9000:9000"
+    environment:
+      FLUENT_HOST: fluentd
+      FLUENT_PORT: 5170
+    depends_on:
+      - fluentd
+    volumes:
+      - ./build:/opt/svc
+  fluentd:
+    build: ./fluentd
+    restart: always
+    environment:
+      METRICS_DELIVERY_STREAM: 'kite_status_test'
+      ELASTIC_CONN_STR:
+    ports:
+      - "5170:5170"
+    entrypoint: fluentd -c /fluentd/etc/dev.conf
+    volumes:
+      - ./fluentd/conf/:/fluentd/etc/

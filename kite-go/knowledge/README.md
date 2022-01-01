@@ -1,0 +1,4 @@
+- Set up an environment variable `GITHUB_AUTH_TOKEN` with a personal access token from https://github.com/settings/tokens
+- Run `make extract` to get data about pull requests from GitHub API.
+- Run `make app` to start the app.
+- Open `localhost:8080` in a browser.

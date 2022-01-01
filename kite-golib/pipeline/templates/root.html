@@ -1,0 +1,86 @@
+<html>
+<head>
+    <title>{{.PipeName}} - Pipeline Status</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <style>
+        table {
+            width: unset !important;
+        }
+        td.stat-val {
+            text-align: right;
+        }
+        td.first-stat {
+            background-color: #e1eaf2;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h2>{{.PipeName}}</h2>
+
+    <dl class="dl-horizontal">
+        <dt>Role</dt>
+        <dd>{{.Role}}</dd>
+        <dt>Started at</dt>
+        <dd>{{.Status.StartedAt}}</dd>
+        <dt>Finished at</dt>
+        <dd>{{.Status.FinishedAt}}</dd>
+        <dt>Run time</dt>
+        <dd>{{.RunTime}}</dd>
+        <dt>State</dt>
+        <dd>{{.Status.State}}</dd>
+        {{if .Status.Err}}
+            <dt>Error</dt>
+            <dd>{{renderError .Status.Err}}</dd>
+        {{end}}
+    </dl>
+
+    <h4>Feed Stats</h4>
+    {{if .FeedStatsErr}}
+        Error getting feed stats: {{renderError .FeedStatsErr}}
+    {{else}}
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Feed</th>
+            <th>Count</th>
+            <th>Stat</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range $s := .FeedStats}}
+            <tr>
+                <td rowspan="{{$s.Rows}}"><strong>{{$s.Feed}}</strong></td>
+                <td class="stat-val first-stat">{{$s.In}}</td>
+                <td class="first-stat">In</td>
+            </tr>
+            <tr>
+                <td class="stat-val">{{$s.Out}}</td>
+                <td>Out</td>
+            </tr>
+            {{range $e := $s.Errors}}
+                <tr>
+                    <td class="stat-val">{{$e.Count}}</td>
+                    <td><a href="/feed-errors?feed={{$s.Feed}}&reason={{$e.Reason}}">Error ({{$e.Reason}})</a></td>
+                </tr>
+            {{end}}
+        {{end}}
+        </tbody>
+    </table>
+    {{end}}
+
+    <h4>Params</h4>
+    <table class="table table-striped">
+        <tbody>
+        {{range $p := .Params}}
+            <tr>
+                <td>{{$p.Name}}</td>
+                <td>{{$p.Value}}</td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

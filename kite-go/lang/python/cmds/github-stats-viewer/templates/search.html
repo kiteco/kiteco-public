@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+      <title>Import graph</title>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+      <style>
+      body {
+        padding: 20px;
+        width: 800px;
+      }
+      td {
+        font-family: monospace;
+      }
+      </style>
+    </head>
+    <body>
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Count</td>
+            </tr>
+          </thead>
+          <tbody>
+            {{range $r := .Results}}
+              <tr>
+                <td><a href="{{$r.Stats | statsURL}}">{{$r.Label}}</a></td>
+                <td>{{$r.Stats.Count | comma}}</td>
+              </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+    </body>
+  </div>
+</html>

@@ -1,0 +1,45 @@
+#!/bin/bash
+
+cd /home/ubuntu
+chmod +x configure.sh
+sudo su ubuntu
+./configure.sh
+
+export AWS_ACCESS_KEY_ID=${aws_acces_key_id}
+export AWS_SECRET_GCP_SECRET_ID=${gcp_aws_secret_access_key}
+
+echo gcloud secrets versions access latest --secret=$AWS_SECRET_GCP_SECRET_ID
+SECRET_KEY=`gcloud secrets versions access latest --secret=$AWS_SECRET_GCP_SECRET_ID`
+
+export AWS_SECRET_ACCESS_KEY=$SECRET_KEY
+
+# Configure AWS access key
+cat <<EOF > /home/ubuntu/.credentials
+export AWS_ACCESS_KEY_ID=${aws_acces_key_id}
+export AWS_SECRET_GCP_SECRET_ID=${gcp_aws_secret_access_key}
+export AWS_SECRET_ACCESS_KEY=$SECRET_KEY
+EOF
+
+cat <<EOF >> /home/ubuntu/.bashrc
+source /home/ubuntu/.credentials
+EOF
+
+mkdir .aws
+cat <<EOF > .aws/credentials
+[default]
+aws_access_key_id=$AWS_ACCESS_KEY_ID
+aws_secret_access_key=$SECRET_KEY
+EOF
+
+# Setting up metricbeat secret now that we have access to AWS
+aws --region=us-west-1 --query=SecretString --out=text secretsmanager get-secret-value --secret-id beats_elastic_auth_str | sudo metricbeat keystore add cloud_auth --stdin --force
+sudo service metricbeat restart
+
+# Can be used to download manully a file (or folder with --recursive) from s3
+# sudo docker run --rm -v /home/ubuntu/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli s3 cp $MODEL_FILE_S3_PATH .
+
+
+cd tfserving
+chmod +x run.sh
+sudo ./run.sh
+touch /home/ubuntu/PROVISIONING_DONE

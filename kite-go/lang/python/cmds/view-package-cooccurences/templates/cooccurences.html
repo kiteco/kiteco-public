@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Github Package Stats</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+        <style>
+        body {
+            padding: 20px;
+        }
+        td {
+            font-family: monospace;
+        }
+        </style>
+    </head>
+    <body>
+      <div class="table">
+        <table class="table table-striped">
+          <tbody>
+          <tr>
+              <td colspan="3"><b>{{.Package}}</b></td>
+              <td colspan="3"><b>{{if .InGraph}}In Graph{{else}}Not In Graph{{end}}</b></td>
+              <td colspan="3">{{if .InGraph}}<a href="{{.Node | nodeURL}}">{{.Package}}</a>{{end}}</td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>Cooccuring Package</b></td>
+            <td colspan="3"><b>Graph</b></td>
+            <td colspan="3"><b>Cooccurence Count</b></td>
+          </tr>  
+          {{range $c := .Cooccurences}}
+            <tr>
+              <td colspan="3"><a style="color:{{$c.Node | color}}" href="{{$c.Package | cooccurencesURL}}">{{$c.Package}}</a></td>
+              <td colspan="3">{{if $c.InGraph}}<a href="{{$c.Node | nodeURL}}">{{$c.Package}}</a>{{end}}</td>
+              <td colspan="3">{{$c.Count | comma}}</td>
+            </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </body>
+  </div>
+</html>

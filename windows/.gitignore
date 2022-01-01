@@ -1,0 +1,24 @@
+# Visual Studio build artifacts
+[Dd]ebugPublic/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Oo]bj/
+[Ll]og/
+*.vshost.exe
+*.vshost.exe.config
+*.vshost.exe.manifest
+*.pdb
+
+# Build outputs
+installer/builds
+installer/current_build_bin
+installer/patchFiles
+installer/patchFiles.nsi
+
+# Temp
+kited.exe
+Kite.exe
+win-unpacked
+/tensorflow.dll

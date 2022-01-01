@@ -1,0 +1,3 @@
+requests==2.8.1
+websocket-client==0.29.0
+iso8601==0.1.10

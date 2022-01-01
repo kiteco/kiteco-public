@@ -1,0 +1,65 @@
+version: "3.8"
+services:
+  tunable-models:
+    image: kiteco/kite-server-tunable-models:v0.6.0
+    volumes:
+      - ./repositories:/repositories
+      - ./tuned-models:/tuned-models
+    deploy:
+      mode: replicated
+      replicas: 1
+      endpoint_mode: dnsrr
+      resources:
+        reservations:
+          memory: 4G
+          generic_resources:
+            - discrete_resource_spec:
+                kind: 'NVIDIA-GPU'
+                value: 1
+    expose:
+      - "8500" # gRPC tfsreving
+      - "8502" # HTTP REST for assets & tuning ctl
+
+  models-ingress:
+    image: kiteco/kite-server-models-ingress:v0.6.0
+    # volumes: # for development
+    #   - ./models-ingress/envoy.yaml:/etc/envoy/envoy.yaml:ro
+    expose:
+      - "8500" # gRPC tfserving
+      - "9901" # Envoy admin
+    ports:
+      - "9901:9901" # Envoy admin
+
+  models-stats-proxy:
+    image: kiteco/kite-server-models-stats-proxy:v0.6.0
+    init: true
+    command: -forward-to=models-ingress:8500 -log-all
+    expose:
+      - "8600" # gRPC tfserving
+    ports:
+      - "8601:8601" # status
+
+  metadata:
+    image: kiteco/kite-server-metadata:v0.6.0
+    init: true
+    secrets:
+      - kite-server-deployment-token
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+
+  edge-ingress:
+    image: kiteco/kite-server-edge-ingress:v0.6.0
+    # volumes: # for development
+    #   - ./edge-ingress/envoy.yaml:/etc/envoy/envoy.yaml:ro
+    #   - ./edge-ingress/ssl:/etc/envoy/ssl:ro
+    ports:
+      - "8500:8500" # gRPC tfserving, HTTP model assets
+      - "9500:9500" # TLS gRPC tfserving, HTTP model assets
+      - "8501:8501" # HTTP tuning API
+      - "9902:9901" # Envoy admin
+
+secrets:
+  kite-server-deployment-token:
+    external: true

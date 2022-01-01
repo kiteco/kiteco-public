@@ -1,0 +1,640 @@
+type:
+  object
+properties:
+  userId:
+    type: string
+    elastic: true
+  timestamp:
+    type: string
+    elastic: true
+  originalTimestamp:
+    type: string
+  event:
+    type: string
+  messageId:
+    type: string
+    elastic: true
+  sourceIp:
+    type: string
+    elastic: true
+  version:
+    type: int
+  properties:
+    type: object
+    properties:
+      active_cpu_samples_list:
+        type: "array<double>"
+      active_cpu_samples:
+        type: string
+      anonymous_id:
+        type: string
+      atom_ksg_google_opened:
+        type: int
+      atom_ksg_opened:
+        type: int
+      atom_ksg_query_searched:
+        type: int
+      atom_ksg_query_started:
+        type: int
+      atom_ksg_snippet_selected:
+        type: int
+      atom_ksg_so_opened:
+        type: int
+      battery_discharging:
+        type: boolean
+        elastic: true
+      client_version:
+        type: string
+        elastic: true
+      completions_at_least_one_shown:
+        type: int
+        elastic: true
+      completions_at_least_one_new_shown:
+        type: int
+      completions_at_least_one_new_shown_by_source:
+        type: "map<string,int>"
+      completions_at_least_one_shown_by_source:
+        type: "map<string,int>"
+      completions_chars_inserted:
+        type: int
+        elastic: true
+      completions_completed_by_source:
+        type: "map<string,int>"
+        elastic: true
+      completions_disabled:
+        type: boolean
+        elastic: true
+      completions_duration_hist:
+        type: "map<string,int>"
+      completions_num_completed:
+        type: int
+        elastic: true
+      completions_num_selected:
+        type: int
+        elastic: true
+      completions_requested:
+        type: int
+        elastic: true
+      completions_requested_expected:
+        type: int
+        elastic: true
+      completions_requested_unexpected:
+        type: int
+        elastic: true
+      completions_requested_error:
+        type: int
+        elastic: true
+      completions_requested_error_raw:
+        type: int
+        elastic: true
+      completions_requested_raw:
+        type: int
+        elastic: true
+      completions_selected_by_source:
+        type: "map<string,int>"
+        elastic: true
+      completions_selected_2_by_source:
+        type: "map<string,int>"
+      completions_shown:
+        type: int
+        elastic: true
+      completions_shown_by_source:
+        type: "map<string,int>"
+        elastic: true
+      completions_timeout:
+        type: int
+        elastic: true
+      completions_triggered:
+        type: int
+        elastic: true
+      completions_used:
+        type: int
+        elastic: true
+      cpu_mhz:
+        type: double
+      cpu_samples:
+        type: string
+      cpu_samples_list:
+        type: "array<double>"
+      cpu_threads:
+        type: bigint
+      event_value:
+        type: boolean
+      events_with_index:
+        type: int
+      events_without_index:
+        type: int
+      fan_speeds:
+        type: "array<double>"
+      focus_away_from_editor:
+        type: int
+      focus_editor_to_browser:
+        type: int
+      focus_total_changes:
+        type: int
+      forgetful_metrics_id:
+        type: string
+      ggnn_subtoken_enabled:
+        type: boolean
+      git_found:
+        type: boolean
+      golang_requests:
+        type: int
+      has_proxy:
+        type: boolean
+      index_loaded:
+        type: boolean
+      intellij_kite_go_completions_inserted:
+        type: int
+      intellij_kite_javascript_completions_inserted:
+        type: int
+      intellij_kite_python_completions_inserted:
+        type: int
+      intellij_native_go_completions_inserted:
+        type: int
+      intellij_native_javascript_completions_inserted:
+        type: int
+      intellij_native_python_completions_inserted:
+        type: int
+      install_id:
+        type: string
+      js_beta:
+        type: boolean
+      js_enabled:
+        type: boolean
+      kite_go_completions_inserted:
+        type: int
+      kite_javascript_completions_inserted:
+        type: int
+      kite_python_completions_inserted:
+        type: int
+      lexical_enabled:
+        type: boolean
+      license_expire:
+        type: string
+        elastic: true
+        json_schema: {"oneOf": [{"type": "string"}, {"type": "integer"}]}
+      load_avg:
+        type: "array<array<double>>"
+      local:
+        type: boolean
+      logged_in:
+        type: boolean
+        elastic: true
+      mac_address:
+        type: string
+        elastic: true
+      machine_id:
+        type: string
+      memory_available:
+        type: bigint
+        elastic: true
+      memory_total:
+        type: bigint
+        elastic: true
+      memory_usage:
+        type: bigint
+        elastic: true
+      menubar_visible:
+        type: boolean
+      nav_batch_count:
+        type: int
+        elastic: true
+      nav_batch_duration_ms:
+        type: bigint
+        elastic: true
+      nav_batch_num_files:
+        type: int
+        elastic: true
+      nav_index_count:
+        type: int
+        elastic: true
+      nav_index_duration_ms:
+        type: bigint
+        elastic: true
+      nav_index_num_files:
+        type: int
+        elastic: true
+      nav_rank_count:
+        type: int
+        elastic: true
+      nav_rank_duration_ms:
+        type: bigint
+        elastic: true
+      nav_rank_num_files:
+        type: int
+        elastic: true
+      nav_rank_num_refreshed_files:
+        type: int
+        elastic: true
+      num_gc_cycles:
+        type: int
+      os:
+        type: string
+        elastic: true
+      os_version:
+        type: string
+        elastic: true
+      package:
+        type: string
+      partial:
+        type: boolean
+      ping_ms:
+        type: bigint
+        elastic: true
+      plan:
+        type: string
+        elastic: true
+      plan_end:
+        type: string
+        elastic: true
+        json_schema: {"oneOf": [{"type": "string"}, {"type": "integer"}]}
+      pro_status:
+        type: string
+      product:
+        type: string
+      python_events_in_git_repo:
+        type: int
+      python_events_not_in_git_repo:
+        type: int
+      region:
+        type: string
+      repo_stats:
+        type: "map<string,map<string,int>>"
+      sent_at:
+        type: int
+        kite_status_normalized: false
+      server_deployment_id:
+        type: string
+        elastic: true
+      server_user_hash:
+        type: string
+        elastic: true
+      sidebar_autosearch_disabled:
+        type: int
+      sidebar_autosearch_enabled:
+        type: int
+      sidebar_focused:
+        type: int
+      sidebar_hidden_python_coding_time:
+        type: int
+      sidebar_hidden_slacking_time:
+        type: int
+      sidebar_hidden_time:
+        type: int
+      sidebar_new_docs_loaded:
+        type: int
+      sidebar_running:
+        type: boolean
+      sidebar_search_query_started:
+        type: int
+      sidebar_search_result_selected:
+        type: int
+      sidebar_settings_home_opened:
+        type: int
+      sidebar_settings_permissions_opened:
+        type: int
+      sidebar_settings_plugins_opened:
+        type: int
+      sidebar_hidden_coding_time:
+        type: int
+      sidebar_visible_coding_time:
+        type: int
+      sidebar_visible_python_coding_time:
+        type: int
+      sidebar_visible_slacking_time:
+        type: int
+      sidebar_visible_time:
+        type: int
+      signatures_shown:
+        type: int
+      signatures_triggered:
+        type: int
+      source:
+        type: string
+      spyder_suboptimal_settings:
+        type: boolean
+      temperatures:
+        type: "array<double>"
+      tfserving_connectionclosed:
+        type: int
+        elastic: true
+      tfserving_connectionrefused:
+        type: int
+        elastic: true
+      tfserving_otherconnerr:
+        type: int
+        elastic: true
+      tfserving_othererrs:
+        type: int
+        elastic: true
+      tfserving_otherunavailable:
+        type: int
+        elastic: true
+      tfserving_queuefull:
+        type: int
+        elastic: true
+      tfserving_requests:
+        type: int
+        elastic: true
+      tfserving_success:
+        type: int
+        elastic: true
+      tfserving_timeouts:
+        type: int
+        elastic: true
+      uptime:
+        type: bigint
+        elastic: true
+      user_id:
+        type: string
+        json_schema: {"oneOf": [{"type": "string"}, {"type": "integer"}]}
+      vscode_kite_go_completions_inserted:
+        type: int
+      vscode_kite_javascript_completions_inserted:
+        type: int
+      vscode_kite_python_completions_inserted:
+        type: int
+      watch_count:
+        type: int
+
+  {% for lang in languages %}
+      {{ lang }}_select:
+        type: int
+        elastic: true
+      {{ lang }}_edit:
+        type: int
+        elastic: true
+      {{ lang }}_events:
+        type: int
+        elastic: true
+      {{ lang }}_completions_at_least_one_shown:
+        type: int
+        kite_status_normalized: false
+        elastic: false
+      {{ lang }}_completions_at_least_one_new_shown:
+        type: int
+        kite_status_normalized: false
+        elastic: false
+      {{ lang }}_completions_at_least_one_shown_by_source:
+        type: "map<string,int>"
+        kite_status_normalized: false
+        elastic: false
+      {{ lang }}_completions_at_least_one_new_shown_by_source:
+        type: "map<string,int>"
+        kite_status_normalized: false
+        elastic: false
+      {{ lang }}_completions_duration_hist:
+        type: "map<string,int>"
+        kite_status_normalized: false
+      {{ lang }}_completions_request_received:
+        type: int
+        elastic: true
+      {{ lang }}_completions_request_accepted:
+        type: int
+        elastic: true
+      {{ lang }}_completions_requested:
+        type: int
+      {{ lang }}_completions_requested_error:
+        type: int
+      {{ lang }}_completions_requested_error_raw:
+        type: int
+      {{ lang }}_completions_requested_raw:
+        type: int
+      {{ lang }}_completions_starting_request_accepted:
+        type: int
+        elastic: true
+      {{ lang }}_completions_request_fulfilled:
+        type: int
+        elastic: true
+      {{ lang }}_completions_selected_by_source:
+        type: "map<string,int>"
+        kite_status_normalized: false
+        elastic: false
+      {{ lang }}_completions_selected_2_by_source:
+        type: "map<string,int>"
+        kite_status_normalized: false
+        elastic: false
+      {{ lang }}_completions_shown_by_source:
+        type: "map<string,int>"
+        kite_status_normalized: false
+        elastic: false
+      {{ lang }}_completions_starting_request_fulfilled:
+        type: int
+        elastic: true
+      {{ lang }}_completions_matched:
+        type: int
+        elastic: true
+      {{ lang }}_completions_num_selected:
+        type: int
+      {{ lang }}_completions_selected:
+        type: int
+        elastic: true
+      {{ lang }}_completions_shown:
+        type: int
+        elastic: true
+      {{ lang }}_completions_triggered:
+        type: int
+        elastic: true
+      {{ lang }}_completions_words_inserted:
+        type: int
+        elastic: true
+
+      kite_{{ lang }}_completions_inserted:
+        type: int
+      vscode_kite_{{ lang }}_completions_inserted:
+        type: int
+
+      indel_{{ lang }}_multiline_deletes:
+        type: int
+      indel_{{ lang }}_multiline_inserts:
+        type: int
+      indel_{{ lang }}_multiline_whitespace_deletes:
+        type: int
+      indel_{{ lang }}_multiline_whitespace_inserts:
+        type: int
+      indel_{{ lang }}_occurences_difftype_none:
+        type: int
+      indel_{{ lang }}_occurences_no_diffs:
+        type: int
+      indel_{{ lang }}_total_deletes:
+        type: int
+      indel_{{ lang }}_total_inserts:
+        type: int
+      indel_{{ lang }}_whitespace_deletes:
+        type: int
+      indel_{{ lang }}_whitespace_inserts:
+        type: int
+
+  {% for provider in lexical_providers + (python_providers if lang == "python" else []) %}
+      {{ lang }}_{{ provider }}_completions_request_accepted:
+        type: int
+        kite_status_normalized: false
+      {{ lang }}_{{ provider }}_completions_starting_request_accepted:
+        type: int
+        kite_status_normalized: false
+      {{ lang }}_{{ provider }}_completions_request_fulfilled:
+        type: int
+        kite_status_normalized: false
+      {{ lang }}_{{ provider }}_completions_starting_request_fulfilled:
+        type: int
+        kite_status_normalized: false
+      {{ lang }}_{{ provider }}_completions_matched:
+        type: int
+        kite_status_normalized: false
+      {{ lang }}_{{ provider }}_completions_selected:
+        type: int
+        kite_status_normalized: false
+      {{ lang }}_{{ provider }}_completions_words_inserted:
+        type: int
+        kite_status_normalized: false
+  {% endfor %}
+
+  {% for editor in editors %}
+      {{ editor }}_{{ lang }}_completions_selected:
+        type: int
+        elastic: true
+  {% endfor %}
+  {% endfor %}
+
+  {% for editor in editors %}
+      pro_selected_{{ editor }}:
+        type: int
+        elastic: true
+      {{ editor }}_events:
+        type: int
+        elastic: true
+      {{ editor }}_installed:
+        type: boolean
+        elastic: true
+      {{ editor }}_plugin_installed:
+        type: boolean
+        elastic: true
+      {{ editor }}_plugin_version:
+        type: string
+        elastic: true
+      {{ editor }}_running:
+        type: boolean
+        elastic: true
+      {{ editor }}_starting_fulfilled:
+        type: int
+      {{ editor }}_starting_requested:
+        type: int
+      {{ editor }}_stopping_fulfilled:
+        type: int
+      {{ editor }}_stopping_requested:
+        type: int
+      {{ editor }}_version:
+        type: string
+        elastic: true
+  {% endfor %}
+
+  {% for editor in editors_unused %}
+      {{ editor }}_events:
+        type: int
+        elastic: false
+        kite_status_normalized: false
+      {{ editor }}_installed:
+        type: boolean
+        elastic: false
+        kite_status_normalized: false
+      {{ editor }}_plugin_installed:
+        type: boolean
+        elastic: false
+        kite_status_normalized: false
+      {{ editor }}_running:
+        type: boolean
+        elastic: false
+        kite_status_normalized: false
+  {% endfor %}
+
+  {% for lang in languages_unused %}
+      {{ lang }}_events:
+        type: int
+        elastic: false
+        kite_status_normalized: false
+      {{ lang }}_select:
+        type: int
+        elastic: false
+        kite_status_normalized: false
+      {{ lang }}_edit:
+        type: int
+        elastic: false
+        kite_status_normalized: false
+  {% endfor %}
+
+  {# One-offs and experimnets #}
+      intellij_action_findInPath_fulfilled:
+        type: int
+      intellij_action_findInPath_requested:
+        type: int
+      intellij_action_goToClass_fulfilled:
+        type: int
+      intellij_action_goToClass_requested:
+        type: int
+      intellij_action_goToFile_fulfilled:
+        type: int
+      intellij_action_goToFile_requested:
+        type: int
+      intellij_action_searchEverywhere_fulfilled:
+        type: int
+      intellij_action_searchEverywhere_requested:
+        type: int
+      intellij_file_focus_fulfilled:
+        type: int
+      intellij_ipynb_file_focused:
+        type: int
+      intellij_ipynb_file_requested:
+        type: int
+      intellij_save_all_fulfilled:
+        type: int
+      intellij_save_all_requested:
+        type: int
+      intellij_save_file_requested:
+        type: int
+      intellij_save_user_interaction_requested:
+        type: int
+      intellij_save_file_fulfilled:
+        type: int
+      intellij_signature_panel_fulfilled:
+        type: int
+      intellij_signature_panel_requested:
+        type: int
+      intellij_terminating_requested:
+        type: int
+      intellij_terminating_fulfilled:
+        type: int
+      intellij_file_focus_requested:
+        type: int
+      intellij_file_focus_fulfilled:
+        type: int
+      intellij_save_user_interaction_requested:
+        type: int
+      intellij_save_user_interaction_fulfilled:
+        type: int
+      intellij_settings_fulfilled:
+        type: int
+      intellij_settings_requested:
+        type: int
+      intellij_status_panel_fulfilled:
+        type: int
+      intellij_status_panel_requested:
+        type: int
+      atom_hover_fulfilled:
+        type: int
+      atom_hover_requested:
+        type: int
+      atom_status_panel_requested:
+        type: int
+      atom_status_panel_requested:
+        type: int
+      vscode_kite_css_completions_inserted:
+        type: int
+      vscode_kite_typescript_completions_inserted:
+        type: int
+      vscode_kite_vue_completions_inserted:
+        type: int
+      vscode_settings_fulfilled:
+        type: int
+      vscode_settings_requested:
+        type: int

@@ -1,0 +1,222 @@
+{
+    "cache": [
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 6
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 57,
+                            "end": 59
+                        },
+                        "score": 0.012011903033822036,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "foobar"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "NameExpr"
+                        }
+                    },
+                    "target": "def foods(arg):\n    return arg\n\ndef foobar(x):\n    pass\n\nfoobars\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 6
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 57,
+                            "end": 60
+                        },
+                        "score": 0.011939323559297431,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "foods"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "NameExpr"
+                        }
+                    },
+                    "target": "def foods(arg):\n    return arg\n\ndef foobar(x):\n    pass\n\nfoods\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 6
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 57,
+                            "end": 59
+                        },
+                        "score": 0.004028160836115548,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "format"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "NameExpr"
+                        }
+                    },
+                    "target": "def foods(arg):\n    return arg\n\ndef foobar(x):\n    pass\n\nformats\n"
+                }
+            ],
+            "provider": {
+                "type": 6
+            },
+            "source": {
+                "selection": {
+                    "begin": 59,
+                    "end": 59
+                },
+                "text": "def foods(arg):\n    return arg\n\ndef foobar(x):\n    pass\n\nfos\n"
+            }
+        },
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": true,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 7
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 57,
+                            "end": 59
+                        },
+                        "score": 0.39577716588974,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "for "
+                        },
+                        "source": "traditional",
+                        "traditional_meta": null
+                    },
+                    "target": "def foods(arg):\n    return arg\n\ndef foobar(x):\n    pass\n\nfor s\n"
+                }
+            ],
+            "provider": {
+                "type": 7
+            },
+            "source": {
+                "selection": {
+                    "begin": 59,
+                    "end": 59
+                },
+                "text": "def foods(arg):\n    return arg\n\ndef foobar(x):\n    pass\n\nfos\n"
+            }
+        },
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 2
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 62,
+                            "end": 62
+                        },
+                        "score": 1,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 1
+                                }
+                            ],
+                            "text": "()"
+                        },
+                        "source": "empty_call",
+                        "traditional_meta": null
+                    },
+                    "target": "def foods(arg):\n    return arg\n\ndef foobar(x):\n    pass\n\nfoods()\n"
+                }
+            ],
+            "provider": {
+                "type": 2
+            },
+            "source": {
+                "selection": {
+                    "begin": 62,
+                    "end": 62
+                },
+                "text": "def foods(arg):\n    return arg\n\ndef foobar(x):\n    pass\n\nfoods\n"
+            }
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+[Unit]
+Description=Kite Release Server
+After=syslog.target network.target
+
+[Service]
+Type=simple
+Restart=always
+StartLimitInterval=0
+RestartSec=30
+ExecStart=/var/kite/bin/run.sh
+LimitNOFILE=1048576
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,73 @@
+html[data-theme="high-contrast"] .hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: var(--background);
+}
+
+html[data-theme="high-contrast"] .hljs-built_in,
+html[data-theme="high-contrast"] .hljs-selector-tag,
+html[data-theme="high-contrast"] .hljs-section,
+html[data-theme="high-contrast"] .hljs-link {
+  color: var(--text-color-richer);
+}
+
+html[data-theme="high-contrast"] .hljs-keyword {
+  color: var(--text-color-richer);
+}
+
+html[data-theme="high-contrast"] .hljs,
+html[data-theme="high-contrast"] .hljs-subst {
+  color: var(--text-color-richer);
+}
+
+html[data-theme="high-contrast"] .hljs-title {
+  color: var(--text-color-richer);
+}
+
+html[data-theme="high-contrast"] .hljs-string,
+html[data-theme="high-contrast"] .hljs-meta,
+html[data-theme="high-contrast"] .hljs-name,
+html[data-theme="high-contrast"] .hljs-type,
+html[data-theme="high-contrast"] .hljs-attr,
+html[data-theme="high-contrast"] .hljs-symbol,
+html[data-theme="high-contrast"] .hljs-bullet,
+html[data-theme="high-contrast"] .hljs-addition,
+html[data-theme="high-contrast"] .hljs-variable,
+html[data-theme="high-contrast"] .hljs-template-tag,
+html[data-theme="high-contrast"] .hljs-template-variable {
+  color: var(--text-color-richer);
+}
+
+html[data-theme="high-contrast"] .hljs-comment,
+html[data-theme="high-contrast"] .hljs-quote,
+html[data-theme="high-contrast"] .hljs-deletion,
+html[data-theme="high-contrast"] .hljs-selector-class,
+html[data-theme="high-contrast"] .hljs-selector-id,
+html[data-theme="high-contrast"] .hljs-selector-attr,
+html[data-theme="high-contrast"] .hljs-selector-pseudo {
+  color: var(--text-color-richer);
+}
+
+html[data-theme="high-contrast"] .hljs-keyword,
+html[data-theme="high-contrast"] .hljs-selector-tag,
+html[data-theme="high-contrast"] .hljs-selector-class,
+html[data-theme="high-contrast"] .hljs-selector-id,
+html[data-theme="high-contrast"] .hljs-literal,
+html[data-theme="high-contrast"] .hljs-title,
+html[data-theme="high-contrast"] .hljs-section,
+html[data-theme="high-contrast"] .hljs-doctag,
+html[data-theme="high-contrast"] .hljs-type,
+html[data-theme="high-contrast"] .hljs-name,
+html[data-theme="high-contrast"] .hljs-strong {
+  font-weight: bold;
+}
+
+html[data-theme="high-contrast"] .hljs-literal,
+html[data-theme="high-contrast"] .hljs-number {
+  color: var(--text-color-richer);
+}
+
+html[data-theme="high-contrast"] .hljs-emphasis {
+  font-style: italic;
+}

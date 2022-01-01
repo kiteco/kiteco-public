@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{.Pkg.Name}}</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+        <style>
+        body {
+            padding: 20px;
+        }
+        td {
+            font-family: monospace;
+        }
+        </style>
+    </head>
+    <body>
+      <div class="table">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <td colspan="3"><b>Name</b></td>
+              <td colspan="3"><b>Graph</b></td>
+            </tr>
+            <tr>
+              <td colspan="3">{{.Pkg.Name}}</td>
+              <td colspan="3"><a href="{{.Pkg.AnyName | nodeURL}}">{{.Pkg.AnyName}}</a></td>
+            </tr>
+            <tr>
+              <td colspan="3"><b>Popularity</b></td>
+              <td colspan="3"><b>Num Functions</b></td>
+              <td colspan="3"><b>Num Arg Specs</b></td>
+              <td colspan="3"><b>Pct Arg Specs</b></td>
+              <td colspan="3"><b>Num Patterns</b></td>
+              <td colspan="3"><b>Pct Patterns</b></td>
+              <td colspan="3"><b>Num Docs</b></td>
+              <td colspan="3"><b>Pct Docs</b></td>
+              <td colspan="3"><b>Num **kwargs Data</b></td>
+              <td colspan="3"><b>Pct **kwargs Data</b></td>
+              <td colspan="3"><b>Num Source Definitions</b></td>
+              <td colspan="3"><b>Pct Source Definitions</b></td>
+            </tr>
+            <tr>
+              <td colspan="3">{{.Pkg.Popularity | comma}}</td>
+              <td colspan="3">{{.Pkg.Methods | len}}</td>
+              <td colspan="3">{{.Pkg.NumSpecs | comma}}</td>
+              <td colspan="3">{{mult 100.0 .Pkg.PctSpecs | ftoa}}</td>
+              <td colspan="3">{{.Pkg.NumPatterns | comma}}</td>
+              <td colspan="3">{{mult 100.0 .Pkg.PctPatterns | ftoa}}</td>
+              <td colspan="3">{{.Pkg.NumDocs | comma}}</td>
+              <td colspan="3">{{mult 100.0 .Pkg.PctDocs | ftoa}}</td>
+              <td colspan="3">{{.Pkg.NumKwargs | comma}}</td>
+              <td colspan="3">{{mult 100.0 .Pkg.PctKwargs | ftoa }}</td>
+              <td colspan="3">{{.Pkg.NumSource | comma}}</td>
+              <td colspan="3">{{mult 100.0 .Pkg.PctSource | ftoa }}</td>
+            </tr>
+            <tr>
+              <td colspan="3"><b>Methods</b></td>
+            </tr>
+            {{range $i,$m := .Pkg.Methods | sortMethods}}
+            <tr>
+              <td colspan="3">{{add $i 1}}) <a href="{{$m.AnyName | methodURL}}">{{$m.Name}}</a></td>
+              <td colspan="3"><a href="{{$m.AnyName | nodeURL}}">{{$m.AnyName}}</a></td>
+              <td colspan="3">{{$m.Popularity}} (Popularity)</td>
+              <td colspan="3"><div style='color:{{color $m "spec"}}'>{{if $m.HaveArgSpec}}Have Arg Spec{{else}}No Arg Spec{{end}}</div></td>
+              <td colspan="3"><div style='color:{{color $m "patterns"}}'>{{if $m.HavePatterns}}Have Patterns{{else}}No Patterns{{end}}</div></td>
+              <td colspan="3"><div style='color:{{color $m "docs"}}'>{{if $m.HaveDoc}}Have Doc{{else}}No Doc{{end}}</div></td>
+              <td colspan="3"><div style='color:{{color $m "kwargs"}}'>{{if $m.HaveKwargs}}Have **kwargs Data{{else}}No **kwargs Data{{end}}</div></td>
+              <td colspan="3"><div style='color:{{color $m "source"}}'>{{if $m.HaveSource}}Have Source Definition{{else}}No Source Definition{{end}}</div></td>
+            </tr>
+            {{end}}
+            <tr>
+              <td colspan="3"><b>Popularity Children</b></td>
+              <td colspan="3"><b>Num Functions Children</b></td>
+              <td colspan="3"><b>Num Arg Specs Children</b></td>
+              <td colspan="3"><b>Pct Arg Specs Children</b></td>
+              <td colspan="3"><b>Num Patterns Children</b></td>
+              <td colspan="3"><b>Pct Patterns Children</b></td>
+              <td colspan="3"><b>Num Docs Children</b></td>
+              <td colspan="3"><b>Pct Docs Children</b></td>
+              <td colspan="3"><b>Num **kwargs Data Children</b></td>
+              <td colspan="3"><b>Pct **kwargs Data Children</b></td>
+              <td colspan="3"><b>Num Source Definitions Children</b></td>
+              <td colspan="3"><b>Pct Source Definitions Children</b></td>
+            </tr>
+            <tr>
+              <td colspan="3">{{.Pkg.PopularityChildren | comma}}</td>
+              <td colspan="3">{{.Pkg.NumFuncsChildren | comma}}</td>
+              <td colspan="3">{{.Pkg.NumSpecsChildren | comma}}</td>
+              <td colspan="3">{{mult 100.0 .Pkg.PctSpecsChildren | ftoa}}</td>
+              <td colspan="3">{{.Pkg.NumPatternsChildren | comma}}</td>
+              <td colspan="3">{{mult 100.0 .Pkg.PctPatternsChildren | ftoa}}</td>
+              <td colspan="3">{{.Pkg.NumDocsChildren | comma}}</td>
+              <td colspan="3">{{mult 100.0 .Pkg.PctDocsChildren | ftoa}}</td>
+              <td colspan="3">{{.Pkg.NumKwargsChildren | comma}}</td>
+              <td colspan="3">{{mult 100.0 .Pkg.PctKwargsChildren | ftoa}}</td>
+              <td colspan="3">{{.Pkg.NumSourceChildren | comma}}</td>
+              <td colspan="3">{{mult 100.0 .Pkg.PctSourceChildren | ftoa}}</td>
+            </tr>
+            <tr>
+              <td colspan="3"><b>Members</b></td>
+            </tr>
+            <tr>
+              <td colspan="3"><b>Member</b></td>
+              <td colspan="3"><b>Graph</b></td>
+              <td colspan="3"><b>Popularity</b></td>
+              <td colspan="3"><b>Num Functions</b></td>
+              <td colspan="3"><b>Num Arg Specs</b></td>
+              <td colspan="3"><b>Pct Arg Specs</b></td>
+              <td colspan="3"><b>Num Patterns</b></td>
+              <td colspan="3"><b>Pct Patterns</b></td>
+              <td colspan="3"><b>Num Docs</b></td>
+              <td colspan="3"><b>Pct Docs</b></td>
+              <td colspan="3"><b>Num **kwargs Data</b></td>
+              <td colspan="3"><b>Pct **kwargs Data</b></td>
+              <td colspan="3"><b>Num Source Definitions</b></td>
+              <td colspan="3"><b>Pct Source Definitions</b></td>
+            </tr>
+            {{range $i,$ps := .Pkg.Members | sortMembers}}
+            <tr>
+              <td colspan="3">{{add $i 1}}) <a href="{{$ps.AnyName | pkgURL}}">{{$ps.Name}}</a></td>
+              <td colspan="3"><a href="{{$ps.AnyName | nodeURL}}">{{$ps.AnyName}}</a></td>
+              <td colspan="3">{{$ps.PopularityChildrenAndCurrent | comma}}</td>
+              <td colspan="3">{{$ps.NumFuncsChildrenAndCurrent | comma}}</td>
+              <td colspan="3">{{$ps.NumSpecsChildrenAndCurrent | comma}}</td>
+              <td colspan="3">{{mult 100.0 $ps.PctSpecsChildrenAndCurrent | ftoa}}</td>
+              <td colspan="3">{{$ps.NumPatternsChildrenAndCurrent | comma}}</td>
+              <td colspan="3">{{mult 100.0 $ps.PctPatternsChildrenAndCurrent | ftoa}}</td>
+              <td colspan="3">{{$ps.NumDocsChildrenAndCurrent | comma}}</td>
+              <td colspan="3">{{mult 100.0 $ps.PctDocsChildrenAndCurrent | ftoa}}</td>
+              <td colspan="3">{{$ps.NumKwargsChildrenAndCurrent | comma}}</td>
+              <td colspan="3">{{mult 100.0 $ps.PctKwargsChildrenAndCurrent | ftoa}}</td>
+              <td colspan="3">{{$ps.NumSourceChildrenAndCurrent | comma}}</td>
+              <td colspan="3">{{mult 100.0 $ps.PctSourceChildrenAndCurrent | ftoa}}</td>
+            </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+    </body>
+</html>

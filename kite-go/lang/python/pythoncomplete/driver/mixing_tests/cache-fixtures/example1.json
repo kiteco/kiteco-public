@@ -1,0 +1,178 @@
+{
+    "cache": [
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 6
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 177,
+                            "end": 180
+                        },
+                        "score": 0.01125998195729894,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "my_func"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "NameExpr"
+                        }
+                    },
+                    "target": "import re as my_pkg\n\nclass Foo:\n    attr = \"test\"\n\n    def func():\n        return 1\n\ndef my_func(x, y):\n    return x + y\n\nfoo = 1\nbar = 10\nbaz = 3\nqux = -1\n\nmy_obj = Foo()\n\nx = my_func\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 6
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 177,
+                            "end": 180
+                        },
+                        "score": 0.011193157138561262,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "my_obj"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "NameExpr"
+                        }
+                    },
+                    "target": "import re as my_pkg\n\nclass Foo:\n    attr = \"test\"\n\n    def func():\n        return 1\n\ndef my_func(x, y):\n    return x + y\n\nfoo = 1\nbar = 10\nbaz = 3\nqux = -1\n\nmy_obj = Foo()\n\nx = my_obj\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 6
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 177,
+                            "end": 180
+                        },
+                        "score": 0.011126332319823582,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "my_pkg"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "NameExpr"
+                        }
+                    },
+                    "target": "import re as my_pkg\n\nclass Foo:\n    attr = \"test\"\n\n    def func():\n        return 1\n\ndef my_func(x, y):\n    return x + y\n\nfoo = 1\nbar = 10\nbaz = 3\nqux = -1\n\nmy_obj = Foo()\n\nx = my_pkg\n"
+                }
+            ],
+            "provider": {
+                "type": 6
+            },
+            "source": {
+                "selection": {
+                    "begin": 180,
+                    "end": 180
+                },
+                "text": "import re as my_pkg\n\nclass Foo:\n    attr = \"test\"\n\n    def func():\n        return 1\n\ndef my_func(x, y):\n    return x + y\n\nfoo = 1\nbar = 10\nbaz = 3\nqux = -1\n\nmy_obj = Foo()\n\nx = my_\n"
+            }
+        },
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "empty_call_meta": {
+                            "is_type_kind": false
+                        },
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 2
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 184,
+                            "end": 184
+                        },
+                        "score": 1,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 1
+                                }
+                            ],
+                            "text": "()"
+                        },
+                        "source": "empty_call",
+                        "traditional_meta": null
+                    },
+                    "target": "import re as my_pkg\n\nclass Foo:\n    attr = \"test\"\n\n    def func():\n        return 1\n\ndef my_func(x, y):\n    return x + y\n\nfoo = 1\nbar = 10\nbaz = 3\nqux = -1\n\nmy_obj = Foo()\n\nx = my_func()\n"
+                }
+            ],
+            "provider": {
+                "type": 2
+            },
+            "source": {
+                "selection": {
+                    "begin": 184,
+                    "end": 184
+                },
+                "text": "import re as my_pkg\n\nclass Foo:\n    attr = \"test\"\n\n    def func():\n        return 1\n\ndef my_func(x, y):\n    return x + y\n\nfoo = 1\nbar = 10\nbaz = 3\nqux = -1\n\nmy_obj = Foo()\n\nx = my_func\n"
+            }
+        }
+    ]
+}

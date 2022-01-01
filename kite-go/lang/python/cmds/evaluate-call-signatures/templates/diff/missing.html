@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+      <title>Signature Patterns</title>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+      <style>
+      body {
+          padding: 20px;
+      }
+      td {
+          font-family: monospace;
+      }
+      </style>
+  </head>
+  <body>
+    <div class="table">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td colspan="3"><b>Name</b></td>
+            <td colspan="3"><div style="color:{{.Missing | color}}">{{.Missing.Name}}</div></td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>Graph</b></td>
+            <td colspan="3"><a href="{{.Missing.AnyName | nodeURL}}">{{.Missing.AnyName}}</a></td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>Members</b></td>
+          </tr>
+          {{range $m := .Missing.Members}}
+            <tr>
+              {{$color := $m | color}}
+              <td colspan="3"><a style="color:{{$color}}" href="{{$m | missURL}}">{{$m.Name}}</a></td>
+              <td colspan="3"><a style="color:{{$color}}" href="{{$m.AnyName | nodeURL}}">{{$m.AnyName}}</a></td>
+            </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </div>  
+  </body>
+</html>

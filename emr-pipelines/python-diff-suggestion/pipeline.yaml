@@ -1,0 +1,24 @@
+---
+config:
+    instances: 10
+    instance_type: "m3.2xlarge"
+
+pipeline:
+    extract_files:
+        input: "s3://kite-data/source-code/py_files_pulled_from_github_crawl/attempt1/part-00000"
+
+    decorator_stats:
+        input: extract_files 
+        mapreduce_memory_mb: 5120
+    merge_decorator_stats:
+        input: decorator_stats 
+        identity: True
+        mapred_reduce_tasks: 1
+
+    decorator_style:
+        input: extract_files 
+        mapreduce_memory_mb: 5120
+    merge_decorator_style:
+        input: decorator_style
+        identity: True
+        mapred_reduce_tasks: 1

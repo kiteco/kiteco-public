@@ -1,0 +1,179 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: hsl(203, 36%, 95%);
+  color: hsl(216, 77%, 25%);
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  font-size: 16px;
+}
+
+pre, .code {
+  font-family: Hack, monospace;
+  font-size: 16px;
+}
+
+pre {
+  font-size: 0.8rem;
+  line-height: 1.33;
+  max-width: 100%;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+.link {
+  color: hsl(200, 100%, 42%);
+}
+
+.link:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+img.link {
+  filter: invert(38%) sepia(85%) saturate(826%) hue-rotate(164deg) brightness(97%) contrast(109%);
+}
+
+.header {
+  background: linear-gradient(to bottom, hsl(216, 100%, 29%), hsl(216, 76%, 39%));
+}
+
+.header__content {
+  align-items: center;
+  color: hsl(203, 36%, 87%);
+  display: flex;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  width: 768px;
+}
+
+.header__icon {
+  filter: invert(94%) sepia(6%) saturate(514%) hue-rotate(170deg) brightness(92%) contrast(100%);
+  height: 1.5rem;
+  margin-right: 1rem;
+}
+
+.header__dir {
+  font-size: 1.1rem;
+}
+
+.header__file {
+  font-size: 1.4rem;
+}
+
+.files {
+  margin: 0 auto;
+  width: 768px;
+}
+
+.files__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 0 0.5rem 0;
+}
+
+.file {
+  padding: 1.5rem 0;
+}
+
+.file__name {
+  align-items: center;
+  display: flex;
+}
+
+.file__name__path {
+  max-width: 90%;
+  word-break: break-all;
+}
+
+.file__name__actions {
+  margin-left: 1rem;
+  display: inline-block;
+}
+
+.file__name__actions__icon {
+  height: 1.33rem;
+  width: 1.33rem;
+}
+
+.file__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.file__score {
+  color: hsla(216, 77%, 17%, 0.67);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: right;
+}
+
+.file__block {
+  margin-top: 0.5rem
+}
+
+.file__block__contents {
+  align-items: stretch;
+  display: flex;
+  padding: 1rem 0 0 0;
+}
+
+.file__block__actions {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0rem 1rem 0 0.5rem;
+}
+
+.file__block__actions__score {
+  color: hsla(216, 77%, 17%, 0.67);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+  width: 2.5rem;
+}
+
+.file__block__actions__icon {
+  height: 1.25rem;
+  margin-top: 0.5rem;
+  width: 1.25rem;
+}
+
+.file__block__lines,
+.file__block__source {
+  padding: 0.5rem 0.75rem;
+}
+
+.file__block__lines {
+  background: hsla(216, 77%, 17%, 0.6);
+  color: rgba(215, 223, 231, 0.9);
+  width: 4.5ch;
+}
+
+.file__block__source {
+  background: rgb(215, 223, 231);
+  color: hsl(216, 77%, 17%);
+  flex-basis: 100%;
+  min-width: 0;
+}
+
+.file__block__source pre {
+  background: rgb(215, 223, 231);
+  padding: 0;
+}
+
+.more {
+  padding: 1rem 0 3rem 0;
+  text-align: right;
+}

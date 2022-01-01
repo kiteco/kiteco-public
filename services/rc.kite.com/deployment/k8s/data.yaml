@@ -1,0 +1,14 @@
+#@data/values
+---
+tag:
+namespace:
+hostname:
+env:
+project:
+nginx_port: 9094
+nginx_status_port: 9095
+convcohort_port: 9000
+nginx_cpu:
+nginx_mem:
+convcohort_mem:
+convcohort_cpu:

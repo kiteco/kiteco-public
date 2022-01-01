@@ -1,0 +1,9 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install -y --no-install-recommends python-qt4=4.11.4+dfsg-1build4
+RUN rm -rf /var/lib/apt/lists/*
+
+# since we're installing with apt, we must use the system python; TODO(naman) can we install this in our pyenv Python?
+RUN pyenv global system
+
+ENTRYPOINT ["/usr/bin/env", "python", "-m", "kite.pkgexploration", "PyQt4", "4.11.4", "pyqt4__4.11.4.json", "pyqt4__4.11.4.log", "--toplevel", "PyQt4"]

@@ -1,0 +1,41 @@
+<html>
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="/server/static/style.css">
+	</head>
+
+	<body>
+
+		<form action="/codenav/search/" method="POST" name="form">
+			<input type="search" name="query" required value="{{.Query}}" class=search>
+			<p><input type="submit" name="mode" value="Files" class=selected>
+			<input type="submit" name="mode" value="Pull Requests" class=alternative>
+		</form>
+
+		<hr>
+
+		{{if .HasFiles}}
+
+			{{range $file := .Files}}
+				<div class=file>
+					<a href="{{$file.URL}}">{{$file.URL}}</a>
+				</div>
+				<table class=lines>
+					{{range $line := $file.Lines}}
+						<tr>
+							<td class=linenumber>
+								<a href="{{$file.URL}}#L{{$line.Number}}">{{$line.Number}}</a>
+							</td>
+							<td>
+								{{$line.Content}}
+							</td>
+						</tr>
+					{{end}}
+				</table>
+			{{end}}
+
+		{{else}}
+			<div>No matching files found.</div>
+		{{end}}
+	</body>
+</html>

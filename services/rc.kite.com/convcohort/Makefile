@@ -1,0 +1,13 @@
+KITECO=$${PWD%/kiteco/**}/kiteco
+CWD_RELATIVE=$${PWD\#/**/kiteco}
+GO_IMAGE=golang:1.15.3-buster
+
+build/convcohort: build main.go
+	docker run --rm -e "GOPRIVATE=github.com/kiteco/*" \
+		-v $(KITECO):/go/src/github.com/kiteco/kiteco \
+		-v $(PWD)/build:/build \
+		-w /go/src/github.com/kiteco/$(CWD_RELATIVE) \
+		$(GO_IMAGE) go build -o /build/convcohort .
+
+build:
+	mkdir -p build

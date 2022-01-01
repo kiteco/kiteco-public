@@ -1,0 +1,25 @@
+{
+  "exact_match": {
+    "recalls": [
+      0.44768855,
+      0.56009614,
+      0.58413464,
+      0.5885168,
+      0.5914489
+    ],
+    "absolute_threshold": 0.05,
+    "relative_threshold": 0.1
+  },
+  "placeholder_match": {
+    "recalls": [
+      0.18381618,
+      0.23776224,
+      0.25674325,
+      0.25974026,
+      0.26273727
+    ],
+    "absolute_threshold": 0.05,
+    "relative_threshold": 0.2
+  },
+  "timestamp": "2020-03-12T22:37:54.965545186-07:00"
+}

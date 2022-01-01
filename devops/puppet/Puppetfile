@@ -1,0 +1,17 @@
+mod 'puppetlabs/apt', '7.4.1'
+mod 'puppetlabs/docker', '3.12.0'
+mod 'puppetlabs/stdlib', '6.2.0'
+mod 'puppetlabs/translate', '2.2.0'
+mod 'puppet-logrotate', '5.0.0'
+mod 'puppetlabs-aws_inventory', '0.5.0'
+mod 'puppet/archive', '4.4.0'
+mod 'konstantin/fluentd', '0.10.0'
+mod 'camptocamp/systemd', '2.9.0'
+mod 'puppetlabs/accounts', '6.1.1'
+mod 'eyp/initscript', '0.1.11' # For services in Docker
+mod 'coreyh/metricbeat',
+    :git => 'https://github.com/corey-hammerton/puppet-metricbeat'
+mod 'elastic/elastic_stack', '7.0.0'
+mod 'puppetlabs/postgresql', '6.5.0'
+mod 'puppetlabs/concat', '6.2.0'
+mod 'pcfens/filebeat', '4.3.1'

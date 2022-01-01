@@ -1,0 +1,46 @@
+@import "../variables.less";
+
+.page-error {
+  background-color: rgba(@bittersweet, 0.05);
+  border: 1px solid @bittersweet;
+  border-radius: 4px;
+  padding: 15px;
+  flex-wrap: wrap;
+  display: flex;
+  color: @bittersweet;
+  margin-top: 25px;
+
+  @media screen and (min-width: @sm) {
+    padding: 20px 50px 20px 30px;
+    flex-wrap: nowrap;
+  }
+
+  .title,
+  .desc {
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-weight: 300;
+    min-width: 260px;
+    color: @bittersweet;
+  }
+
+  .desc {
+    font-weight: 200;
+    margin-top: 10px;
+  
+    &::first-letter {
+      text-transform: uppercase;
+    }
+
+    @media screen and (min-width: @sm) {
+      margin-top: 0;
+    }
+  }
+
+  a {
+    color: @bittersweet;
+    border-bottom: 1px dotted @bittersweet;
+  }
+}

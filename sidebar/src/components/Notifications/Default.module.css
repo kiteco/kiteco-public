@@ -1,0 +1,82 @@
+@keyframes notificationAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notification {
+  width: 100%;
+  background-color: var(--popup-background);
+  padding: 0.5rem;
+  box-sizing: border-box;
+  color: var(--popup-text);
+  transition: all 250ms;
+  opacity: 0;
+  box-shadow: var(--shadow);
+  animation-name: notificationAnimation;
+  animation-fill-mode: forwards;
+  animation-duration: 750ms;
+}
+
+.notification header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.notification header h1 {
+  margin: 0;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.notification header button {
+  display: inline;
+  margin: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--text-color-light);
+  font-size: 1.2rem;
+}
+
+.notification header button:hover {
+  background-color: inherit;
+  color: var(--bright-color);
+}
+
+.notification > div {
+  margin: 0 0.5rem 0 0.5rem;
+}
+
+.notification > div p {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  flex-grow: 0;
+  opacity: 0.7;
+}
+
+.notification > div button {
+  width: 100%;
+  margin: 0.5rem 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+  border-radius: 0.5rem;
+  background-color: var(--button-background);
+  color: var(--button-text);
+  cursor: pointer;
+  transition: all 250ms;
+}
+
+.notification > div button:hover {
+  background-color: var(--bright-color);
+}

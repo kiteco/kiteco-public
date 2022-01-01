@@ -1,0 +1,220 @@
+@font-face {
+  font-family: "Hack Regular";
+  src: local("Hack Regular"),
+    url(./fonts/hack-regular-subset.woff2) format("woff2");
+  font-style: normal;
+}
+
+.answersPage {
+  --hue: 210; /* Blue */
+  --alt-hue: 130; /* Green */
+  --accent-hue: 20; /* Orange */
+
+  --text-subtle: hsl(var(--hue), 20%, 60%);
+  --text-error: hsl(var(--accent-hue), 90%, 50%);
+  --headline: hsl(var(--hue), 95%, 45%);
+  --headline-border: hsl(var(--hue), 95%, 85%);
+
+  --link-underline: hsl(0, 0%, 50%);
+  --hover: hsl(var(--accent-hue), 100%, 50%);
+
+  --external-link-underline: hsl(var(--hue), 20%, 60%);
+
+  --internal-link: hsl(var(--alt-hue), 50%, 50%);
+  --internal-link-subtle: hsl(var(--alt-hue), 50%, 90%);
+  --internal-link-highlight: hsl(var(--alt-hue), 70%, 50%);
+
+  --inner-padding-1: 6px;
+
+  --color-background: hsl(var(--hue), 65%, 95%);
+
+  --code: hsl(0, 0%, 30%);
+  --code-syntax-normal: hsl(var(--alt-hue), 60%, 30%);
+  --code-syntax-keyword: hsl(var(--hue), 75%, 45%);
+  --code-syntax-punctuation: hsl(var(--alt-hue), 40%, 50%);
+  --code-syntax-literals: hsl(var(--accent-hue), 80%, 50%);
+
+  --code-background: var(--color-background);
+  --code-syntax-underline: hsl(var(--alt-hue), 30%, 55%);
+}
+
+.answersPage {
+  font-size: 16px;
+  margin: 0;
+  font-family: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.answersPage h1 {
+  border-bottom: thin solid whitesmoke;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.answersPage h2,
+.answersPage h3,
+.answersPage h4,
+.answersPage h5,
+.answersPage h6 {
+  border-top: 1px solid var(--headline-border);
+  color: var(--headline);
+  font-size: small;
+  font-weight: normal;
+  letter-spacing: 0.2em;
+  margin-bottom: 2em;
+  margin-top: 3.5em;
+  padding-top: var(--inner-padding-1);
+  text-transform: uppercase;
+}
+
+.answersPage h2 code,
+.answersPage h3 code,
+.answersPage h4 code,
+.answersPage h5 code,
+.answersPage h6 code {
+  text-transform: none;
+}
+
+.answersPage h2 a[href],
+.answersPage h3 a[href],
+.answersPage h4 a[href],
+.answersPage h5 a[href],
+.answersPage h6 a[href] {
+  color: var(--headline);
+}
+
+.answersPage pre,
+.answersPage code {
+  font-family: "Hack Regular";
+  font-feature-settings: "zero";
+  line-height: 25px;
+  letter-spacing: 0;
+}
+
+.answersPage p code {
+  font-size: 15px;
+}
+
+.answersPage p a[href] {
+  color: black;
+  text-decoration-color: var(--link-underline);
+}
+
+.answersPage a[href]:hover {
+  color: var(--hover);
+  text-decoration-color: var(--hover);
+}
+
+.answersPage blockquote {
+  background: var(--color-background);
+  border-radius: 15px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.answersPage pre code,
+.answersPage code {
+  font-size: 15px;
+}
+
+.answersPage code[class$="language-python"],
+.answersPage pre[class$="language-python"] {
+  color: var(--code-syntax-normal);
+}
+
+.answersPage code[class*="language-"],
+.answersPage pre[class*="language-"] {
+  background: var(--code-background);
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+/* Inline code */
+.answersPage :not(pre) > code[class*="language-"] {
+  padding: 0.1rem;
+  border-radius: 0.3rem;
+  white-space: normal;
+}
+
+.answersPage .token.comment,
+.answersPage .token.prolog,
+.answersPage .token.doctype,
+.answersPage .token.cdata {
+  color: var(--text-subtle);
+}
+
+.answersPage .token.punctuation {
+  color: var(--code-syntax-punctuation);
+}
+
+.answersPage .namespace {
+  opacity: 0.7;
+}
+
+.answersPage .token {
+  color: var(--code-syntax-normal);
+}
+
+.answersPage .token url {
+  text-decoration-color: var(--code-syntax-underline);
+}
+
+.answersPage .token.punctuation {
+  color: var(--code-syntax-punctuation);
+}
+
+.answersPage .token.keyword,
+.answersPage .token.operator,
+.answersPage .token.function,
+.answersPage .token.class-name {
+  color: var(--code-syntax-keyword);
+}
+
+.answersPage .token.keyword {
+  font-weight: bold;
+}
+
+.answersPage .token.literal,
+.answersPage .token.number,
+.answersPage .token.string,
+.answersPage .token.triple-quoted-string,
+.answersPage .token.boolean {
+  color: var(--code-syntax-literals);
+}
+
+.answersPage .token.comment {
+  color: var(--text-subtle);
+}
+
+.answersPage .token.important,
+.answersPage .token.bold {
+  font-weight: bold;
+}
+.answersPage .token.italic {
+  font-style: italic;
+}
+
+.answersPage .token.entity {
+  cursor: help;
+}

@@ -1,0 +1,91 @@
+.setupEngineButton:hover {
+    background-color: #2967e0;
+}
+
+.setupEngineButton:first-of-type {
+    margin-top: 2.5rem;
+}
+
+.setupEngineButton {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.setupEngineLabel:first-of-type {
+    margin: 0rem 0 0 1rem;
+    display: inline-block;
+}
+
+.setupEngineLabel {
+    display: inline-block;
+    font-size: 2rem;
+}
+
+.setupEngineHeader {
+    display: flex;
+    align-items: center;
+    margin: 2rem 1rem 0 1rem;
+}
+
+.setupEngineChoice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.chooseEngineEmoji {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    display: inline-block;
+}
+
+.chevronEmoji {
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    margin-top: 0.2rem;
+}
+
+.setupEngineBack {
+    display: block;
+    padding: 0.75rem 0.25rem;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.setupEngineBack:hover {
+    text-decoration: none;
+}
+
+.setupEngineList {
+    list-style: none;
+    margin-left: 20px;
+    padding-left: 0;
+}
+
+.setupEngineList li + li {
+    margin-top: .75rem;
+}
+
+.setupEngineList li:before {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: solid transparent;
+    border-bottom: solid transparent;
+    border-left: solid white;
+    border-width: 5px;
+    content: ' ';
+    margin: 0 10px 0 -15px;
+}
+
+.setupEngineCenter {
+    text-align: center;
+}

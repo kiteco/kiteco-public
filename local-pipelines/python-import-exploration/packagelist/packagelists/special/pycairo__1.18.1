@@ -1,0 +1,8 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install -y --no-install-recommends libcairo2-dev pkg-config
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install pycairo==1.18.1
+
+ENTRYPOINT ["/usr/bin/env", "python3", "-m", "kite.pkgexploration", "pycairo", "1.18.1", "pycairo__1.18.1.json", "pycairo__1.18.1.log", "--toplevel", "cairo"]

@@ -1,0 +1,23 @@
+/* Override CSS from .Documentation in newDocs/.../index.css.
+   Passing in auto in the first parameter of minmax causes
+   the answers content to expand too much.
+*/
+@media only screen and (max-width: 1440px) {
+  .Documentation#KiteAnswers {
+    --docs-column-width: minmax(0, 600fr);
+  }
+}
+
+/* Copied from .docs in newDocs/.../index.css */
+.answersPage {
+  grid-column: docs-start / extra-start;
+  grid-row: 3 / 4;
+  padding-left: var(--padding-2);
+}
+
+/* Copied from .docs in newDocs/.../index.css */
+@media only screen and (max-width: 768px) {
+  .answersPage {
+    grid-row: 5 / 6;
+  }
+}

@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+if [ ! -z "<%= $facts['gce'] ? {undef => '', default => 'gce'} %>" ]; then
+  export AWS_ACCESS_KEY_ID=<%= $facts['aws_access_key_id'] %>
+  export AWS_SECRET_ACCESS_KEY=`gcloud secrets versions access latest --secret=<%= $facts['gcp_aws_secret_access_key'] %>`
+fi
+
+exec aws "$@"
+
+

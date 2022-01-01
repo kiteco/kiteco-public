@@ -1,0 +1,138 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <style>
+        .container-fluid {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        pre .line-numbers {
+            float: left;
+            display: block;
+            border-right: 1px solid #ddd;
+            padding-right: 5px;
+            margin-right: 5px;
+            text-align: right;
+        }
+        pre .line-numbers a {
+            color: #759db5;
+        }
+        pre .line-numbers span {
+            color: #888;
+        }
+        pre code {
+            display: block;
+            white-space: pre;
+        }
+        pre .resolved {
+            color: #1fa81f;
+        }
+        pre .unresolved {
+            color: #d33d3d;
+        }
+        pre .selected {
+            font-weight: bold; background-color: #d1e2ff;
+        }
+        pre .cursor {
+            background-color: #e49403;
+        }
+        td {
+            font-size: 14px;
+            padding: 6px !important;
+        }
+        td.prop-name {
+            color: #666;
+        }
+    </style>
+    <title>Event - {{.Event.MessageID}} - inspector</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <h2>Event ({{.Event.Type}})</h2>
+            <table class="table">
+                <tbody>
+                {{range $prop := .Properties}}
+                <tr>
+                    <td class="prop-name">{{$prop.Name}}</td>
+                    <td>{{$prop.Value}}</td>
+                </tr>
+                {{end}}
+                <tr>
+                    <td class="prop-name">Line</td>
+                    <td><a href="#{{.LineID}}">{{.Event.LineNumber}}</a></td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+    <div class="row">
+        <h2>Files</h2>
+        <h4>Buffer - {{.Event.Filename}} <button type="button" class="btn btn-primary" id="copy-buffer-btn">Copy</button></h4>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <pre>{{.Buffer}}</pre>
+        </div>
+        <div class="col-md-4">
+            <table class="table">
+                <tbody>
+                {{range $prop := .ExprProps}}
+                <tr>
+                    <td class="prop-name">{{$prop.Name}}</td>
+                    <td>{{$prop.Value}}</td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+            <h4>Resolved value:</h4>
+            <table class="table">
+                <tbody>
+                {{range $prop := valToProps .Event.ExprDetail.ResolvedValue}}
+                <tr>
+                    <td class="prop-name">{{$prop.Name}}</td>
+                    <td>{{$prop.Value}}</td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        {{range $val := .Event.ExprDetail.ResolvedValue.Constituents}}
+            <h5>Constituent</h5>
+            <table class="table">
+                <tbody>
+                {{range $prop := valToProps $val}}
+                <tr>
+                    <td class="prop-name">{{$prop.Name}}</td>
+                    <td>{{$prop.Value}}</td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        {{end}}
+        </div>
+    </div>
+    <div class="row">
+        <textarea id="raw-buffer" style="display: none;">{{.Event.Buffer}}</textarea>
+        {{range $indexedFile := .IndexedFiles}}
+          <h4>{{$indexedFile.Filename}}</h4>
+          <pre>{{$indexedFile.Buffer}}</pre>
+        {{end}}
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    $("#copy-buffer-btn").click(function() {
+        var el = document.createElement('textarea');
+        el.value = $("#raw-buffer").val();
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+    });
+</script>
+</body>
+</html>

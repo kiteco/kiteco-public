@@ -1,0 +1,192 @@
+@import "../../assets/styles/less/variables";
+
+h1.page-title {
+  font-weight: 200;
+  color: @ebony;
+  margin-bottom: 0;
+  font-size: 40px;
+  line-height: 48px;
+
+  @media screen and (min-width: @md) {
+    font-size: 50px;
+    line-height: 68px;
+  }
+}
+
+.checkout-content {
+  margin-top: 30px;
+
+  @media screen and (min-width: @md) {
+    margin-top: 40px;
+  }
+}
+
+.checkout-steps {
+  font-size: 26px;
+  font-weight: 300;
+}
+
+.checkout-step {
+  margin: 35px 0 10px;
+
+  @media screen and (min-width: @md) {
+    margin: 50px 0 10px;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-top: 35px;
+  }
+}
+
+h2.step-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(@cod-gray, 0.8);
+  margin: 0 0 10px;
+
+  @media screen and (min-width: @md) {
+    font-size: 26px;
+    line-height: 30px;
+  }
+}
+
+.step-desc {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 22px;
+  color: @cod-gray;
+}
+
+.package-selector {
+  margin-top: 10px;
+
+  label {
+    display: block;
+
+    @media screen and (min-width: @md) {
+      display: inline-block;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 25px;
+
+      @media screen and (min-width: @md) {
+        margin-right: 55px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.detail-card {
+  box-shadow: 0px 5px 35px rgba(@black, 0.1);
+  border-radius: 4px;
+  padding: 20px 15px;
+  margin-top: 20px;
+
+  @media screen and (min-width: @md) {
+    margin-top: 0;
+    padding: 30px 40px;
+  }
+}
+
+h3.detail-title {
+  font-size: 30px;
+  line-height: 35px;
+  font-weight: 300;
+  color: @cod-gray;
+  display: none;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: @md) {
+    display: block;
+  }
+}
+
+.bill-calculation {
+  table {
+    width: 100%;
+    font-size: 14px;
+    line-height: 22px;
+    color: @cod-gray;
+  }
+
+  tr {
+    border-left: 2px solid rgba(@java, 0.2);
+
+    td {
+      padding: 0 6px;
+
+      &:nth-child(2) {
+        text-align: right;
+      }
+    }
+
+    &:last-child {
+      border-left: none;
+      font-weight: bold;
+
+      td {
+        padding-top: 15px;
+      }
+    }
+  }
+}
+
+div.bill-desc {
+  font-size: 12px;
+  line-height: 16px;
+  color: @dove-gray;
+  margin: 20px 0 0;
+  padding: 6px;
+}
+
+.kite-pro-detail {
+  margin-top: 25px;
+
+  @media screen and (min-width: @md) {
+    margin-top: 35px;
+    padding: 0 40px;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+h3.kite-pro-title {
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.kite-pro-features {
+  padding: 0;
+  list-style: none;
+  margin: 15px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    font-size: 12px;
+    flex-basis: 50%;
+    letter-spacing: -0.4px;
+    margin-top: 10px;
+
+    svg {
+      margin-right: 8px;
+    }
+  }
+}

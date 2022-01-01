@@ -1,0 +1,11 @@
+platform: linux
+image_resource:
+  type: docker-image
+  source: {repository: kiteco/concourse}
+inputs:
+- name: kiteco
+run:
+  path: kiteco/concourse/tasks/promote-lambda/run.bash
+params:
+  AWS_ACCESS_KEY_ID: ((aws_access_key_id))
+  AWS_SECRET_ACCESS_KEY: ((aws_access_key_secret))

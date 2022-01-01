@@ -1,0 +1,64 @@
+DATA_DIR := ./data
+TMP_DIR := ./tmp
+OUT_DIR := ./out
+OUT_SERVE_DIR := ./out/serve
+TMP_DATA_DIR := ./tmp/data
+TRAINDATA_FILE := traindata.json
+GTDATA_FILE := gt_data.json
+PARAMS_FILE := params.json
+METRIC_DATA_FILE := metric_data.json
+SHARDS_FILE :=
+RUNDB :=
+
+DIRS_TO_CREATE := $(DATA_DIR) $(TMP_DIR) $(OUT_DIR) $(OUT_SERVE_DIR) $(TMP_DATA_DIR)
+
+SAVED_MODEL_PATH := saved_model
+FROZEN_MODEL_PATH := call_prob_model.frozen.pb
+
+KITE_ML_PATH := /var/kite/bundle/kiteco/kite-python/kite_ml/
+MAX_FILES_GT := 1000000
+
+ifeq ($(DRY_RUN),1)
+	MAX_FILES := 5000
+else
+	MAX_FILES := 100000
+endif
+
+$(shell mkdir -p $(DIRS_TO_CREATE))
+
+clean:
+	rm -rf $(DATA_DIR)
+	rm -rf $(TMP_DIR)
+	rm -rf $(OUT_DIR)
+	rm -rf $(OUT_SERVE_DIR)
+	rm -rf $(TMP_DATA_DIR)
+
+traindata: $(DATA_DIR)/$(TRAINDATA_FILE)
+
+train: $(OUT_SERVE_DIR)/$(FROZEN_MODEL_PATH)
+
+gtdata: $(OUT_DIR)/$(GTDATA_FILE)
+
+threshold: $(OUT_SERVE_DIR)/$(FROZEN_MODEL_PATH) $(OUT_SERVE_DIR)/$(PARAMS_FILE)
+
+$(DATA_DIR)/$(TRAINDATA_FILE):
+	traindata --outdir=$(TMP_DATA_DIR) --maxfiles=$(MAX_FILES) --exprshards=$(SHARDS_FILE) --rundbpath=$(RUNDB)
+	cat $(TMP_DATA_DIR)/*.json > $(DATA_DIR)/$(TRAINDATA_FILE)
+
+$(OUT_SERVE_DIR)/$(FROZEN_MODEL_PATH): $(DATA_DIR)/$(TRAINDATA_FILE)
+	PYTHONPATH=$(KITE_ML_PATH) python python-call-prob/train/train.py \
+			--traindata=$(DATA_DIR)/$(TRAINDATA_FILE) \
+			--out_dir=$(TMP_DIR)/$(SAVED_MODEL_PATH) \
+			--frozen_model=$(TMP_DIR)/$(FROZEN_MODEL_PATH)
+	mv $(TMP_DIR)/$(SAVED_MODEL_PATH) $(OUT_DIR)
+	mv $(TMP_DIR)/$(FROZEN_MODEL_PATH) $(OUT_SERVE_DIR)/$(FROZEN_MODEL_PATH)
+
+$(OUT_DIR)/$(GTDATA_FILE):
+	gtdata --out=$(TMP_DATA_DIR)/$(GTDATA_FILE) --maxfiles=$(MAX_FILES_GT) --exprshards=$(SHARDS_FILE)
+	mv $(TMP_DATA_DIR)/$(GTDATA_FILE) $(OUT_DIR)/$(GTDATA_FILE)
+
+$(OUT_SERVE_DIR)/$(PARAMS_FILE): $(DATA_DIR)/$(GTDATA_FILE)
+	threshold --input=$(OUT_DIR)/$(GTDATA_FILE) --modelpath=$(OUT_SERVE_DIR) --exprshards=$(SHARDS_FILE) \
+	--outanalytic=$(TMP_DATA_DIR)/$(METRIC_DATA_FILE) --outparams=$(TMP_DATA_DIR)/$(PARAMS_FILE)
+	mv $(TMP_DATA_DIR)/$(PARAMS_FILE) $(OUT_SERVE_DIR)/$(PARAMS_FILE)
+	mv $(TMP_DATA_DIR)/$(METRIC_DATA_FILE) $(OUT_DIR)/$(METRIC_DATA_FILE)

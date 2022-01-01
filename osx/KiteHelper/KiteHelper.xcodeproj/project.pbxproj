@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		46D42BDF2526114A00E2697F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46D42BDE2526114A00E2697F /* Sparkle.framework */; };
+		46D42BE02526115400E2697F /* Sparkle.framework in Copy Sparkle */ = {isa = PBXBuildFile; fileRef = 46D42BDE2526114A00E2697F /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		773BCA2525372A61001ADB2E /* Rollbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 773BCA2425372A61001ADB2E /* Rollbar.framework */; };
+		773BCA2625372A61001ADB2E /* Rollbar.framework in Copy Sparkle */ = {isa = PBXBuildFile; fileRef = 773BCA2425372A61001ADB2E /* Rollbar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		773BCA2825372A7B001ADB2E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 773BCA2725372A7B001ADB2E /* libc++.tbd */; };
+		F7C756F71BC3397600531F34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C756F61BC3397600531F34 /* AppDelegate.m */; };
+		F7C756FA1BC3397600531F34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C756F91BC3397600531F34 /* main.m */; };
+		F7C757111BC33A8C00531F34 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7C757101BC33A8C00531F34 /* Images.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		464E2CCD1CEA45B90041AE8B /* Copy Sparkle */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				46D42BE02526115400E2697F /* Sparkle.framework in Copy Sparkle */,
+				773BCA2625372A61001ADB2E /* Rollbar.framework in Copy Sparkle */,
+			);
+			name = "Copy Sparkle";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		46D42BDE2526114A00E2697F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		773BCA2425372A61001ADB2E /* Rollbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rollbar.framework; sourceTree = "<group>"; };
+		773BCA2725372A7B001ADB2E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		ED50C9A123CE5383007E13D7 /* KiteHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KiteHelper.entitlements; sourceTree = "<group>"; };
+		F7C756F21BC3397600531F34 /* KiteHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KiteHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7C756F51BC3397600531F34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F7C756F61BC3397600531F34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F7C756F91BC3397600531F34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F7C757001BC3397600531F34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7C757101BC33A8C00531F34 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F7C756EF1BC3397600531F34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46D42BDF2526114A00E2697F /* Sparkle.framework in Frameworks */,
+				773BCA2825372A7B001ADB2E /* libc++.tbd in Frameworks */,
+				773BCA2525372A61001ADB2E /* Rollbar.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		464E2CCF1CEA45C50041AE8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46D42BDE2526114A00E2697F /* Sparkle.framework */,
+				773BCA2725372A7B001ADB2E /* libc++.tbd */,
+				773BCA2425372A61001ADB2E /* Rollbar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F7C756E91BC3397600531F34 = {
+			isa = PBXGroup;
+			children = (
+				464E2CCF1CEA45C50041AE8B /* Frameworks */,
+				F7C756F41BC3397600531F34 /* KiteHelper */,
+				F7C756F31BC3397600531F34 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F7C756F31BC3397600531F34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F7C756F21BC3397600531F34 /* KiteHelper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F7C756F41BC3397600531F34 /* KiteHelper */ = {
+			isa = PBXGroup;
+			children = (
+				ED50C9A123CE5383007E13D7 /* KiteHelper.entitlements */,
+				F7C756F51BC3397600531F34 /* AppDelegate.h */,
+				F7C756F61BC3397600531F34 /* AppDelegate.m */,
+				F7C757101BC33A8C00531F34 /* Images.xcassets */,
+				F7C757001BC3397600531F34 /* Info.plist */,
+				F7C756F81BC3397600531F34 /* Supporting Files */,
+			);
+			path = KiteHelper;
+			sourceTree = "<group>";
+		};
+		F7C756F81BC3397600531F34 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F7C756F91BC3397600531F34 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F7C756F11BC3397600531F34 /* KiteHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7C757031BC3397600531F34 /* Build configuration list for PBXNativeTarget "KiteHelper" */;
+			buildPhases = (
+				F7C756EE1BC3397600531F34 /* Sources */,
+				F7C756EF1BC3397600531F34 /* Frameworks */,
+				F7C756F01BC3397600531F34 /* Resources */,
+				464E2CCD1CEA45B90041AE8B /* Copy Sparkle */,
+				460345F31D0B4C9900F87E00 /* Rollbar Upload dSYM */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KiteHelper;
+			productName = KiteHelper;
+			productReference = F7C756F21BC3397600531F34 /* KiteHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F7C756EA1BC3397600531F34 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Tarak Upadhyaya";
+				TargetAttributes = {
+					F7C756F11BC3397600531F34 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = A92TXSM8EL;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = F7C756ED1BC3397600531F34 /* Build configuration list for PBXProject "KiteHelper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+			);
+			mainGroup = F7C756E91BC3397600531F34;
+			productRefGroup = F7C756F31BC3397600531F34 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F7C756F11BC3397600531F34 /* KiteHelper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F7C756F01BC3397600531F34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7C757111BC33A8C00531F34 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		460345F31D0B4C9900F87E00 /* Rollbar Upload dSYM */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Rollbar Upload dSYM";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/python;
+			shellScript = "\"\"\"\nPython script that zips and uploads a dSYM file package to Rollbar\nduring an iOS app's build process.\n\nFor instructions on setting up this script for your app in Xcode, see\nthe README at https://github.com/rollbar/rollbar-ios/blob/master/README.md.\n\"\"\"\n\nimport os\nimport subprocess\nimport zipfile\n\nif (os.environ.get('DEBUG_INFORMATION_FORMAT') != 'dwarf-with-dsym' or\n        os.environ.get('EFFECTIVE_PLATFORM_NAME') == '-iphonesimulator'):\n    exit(0)\n\nACCESS_TOKEN = '2fe92cbe259f4fe8b42d4e4a6831491b'\n\ndsym_file_path = os.path.join(os.environ['DWARF_DSYM_FOLDER_PATH'],\n                              os.environ['DWARF_DSYM_FILE_NAME'])\nzip_location = '%s.zip' % (dsym_file_path)\n\nos.chdir(os.environ['DWARF_DSYM_FOLDER_PATH'])\nwith zipfile.ZipFile(zip_location, 'w', zipfile.ZIP_DEFLATED) as zipf:\n    for root, dirs, files in os.walk(os.environ['DWARF_DSYM_FILE_NAME']):\n        zipf.write(root)\n\n        for f in files:\n            zipf.write(os.path.join(root, f))\n\n# You may need to change the following path to match your application\n# settings and Xcode version\nplist_command = '/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"%s\"'\np = subprocess.Popen(plist_command % os.environ['PRODUCT_SETTINGS_PATH'],\n                     stdout=subprocess.PIPE, shell=True)\nstdout, stderr = p.communicate()\nversion = stdout.strip()\n\ncurl_command = ('curl -X POST \"https://api.rollbar.com/api/1/dsym\" '\n                '-F access_token=%s -F version=%s -F bundle_identifier=\"%s\" '\n                '-F dsym=@\"%s\"')\np = subprocess.Popen(curl_command % (ACCESS_TOKEN, version,\n                     os.environ['PRODUCT_BUNDLE_IDENTIFIER'], zip_location),\n                     shell=True)\np.communicate()\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F7C756EE1BC3397600531F34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7C756FA1BC3397600531F34 /* main.m in Sources */,
+				F7C756F71BC3397600531F34 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F75D7D331ECA82F10090BE17 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = enterprise.kite.KiteHelper;
+				SDKROOT = macosx;
+			};
+			name = Enterprise;
+		};
+		F75D7D341ECA82F10090BE17 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APP_VERSION = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_DISPLAY_NAME = "Kite Helper (Enterprise)";
+				CODE_SIGN_ENTITLEMENTS = KiteHelper/KiteHelper.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A92TXSM8EL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = KiteHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = enterprise.kite.KiteHelper;
+				PRODUCT_NAME = KiteHelper;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Enterprise;
+		};
+		F7C757011BC3397600531F34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kite.KiteHelper;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F7C757021BC3397600531F34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kite.KiteHelper;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F7C757041BC3397600531F34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APP_VERSION = 9999;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_DISPLAY_NAME = "Kite Helper";
+				CODE_SIGN_ENTITLEMENTS = KiteHelper/KiteHelper.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A92TXSM8EL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = KiteHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kite.KiteHelper;
+				PRODUCT_NAME = KiteHelper;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Debug;
+		};
+		F7C757051BC3397600531F34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APP_VERSION = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_DISPLAY_NAME = "Kite Helper";
+				CODE_SIGN_ENTITLEMENTS = KiteHelper/KiteHelper.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A92TXSM8EL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = KiteHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kite.KiteHelper;
+				PRODUCT_NAME = KiteHelper;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F7C756ED1BC3397600531F34 /* Build configuration list for PBXProject "KiteHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7C757011BC3397600531F34 /* Debug */,
+				F7C757021BC3397600531F34 /* Release */,
+				F75D7D331ECA82F10090BE17 /* Enterprise */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F7C757031BC3397600531F34 /* Build configuration list for PBXNativeTarget "KiteHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F7C757041BC3397600531F34 /* Debug */,
+				F7C757051BC3397600531F34 /* Release */,
+				F75D7D341ECA82F10090BE17 /* Enterprise */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F7C756EA1BC3397600531F34 /* Project object */;
+}

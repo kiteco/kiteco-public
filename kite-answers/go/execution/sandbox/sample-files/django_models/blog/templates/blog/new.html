@@ -1,0 +1,9 @@
+<h1>New Article</h1>
+
+<form action="{% url 'blog:create' %}" method="post">
+	{% csrf_token %}
+	<label for="title">Title</label>
+	<input type="text" name="title"/> <br/>
+
+	<input type="submit" value="Submit" />
+</form>

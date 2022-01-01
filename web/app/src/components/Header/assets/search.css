@@ -1,0 +1,28 @@
+.header-search {
+  position: relative;
+}
+
+.header-search__modal {
+  position: absolute;
+  right: -1rem;
+  top: -0.9rem;
+  width: 40vw;
+  max-width: 60rem;
+  min-width: 20rem;
+  box-shadow: -2px 2px 20px -6px #1a4c9c;
+  padding: 1rem 1rem 0.5rem 1rem;
+  background: white;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: all ease-in-out 125ms;
+  font-family: 'Droid Sans Mono W01', monospace;
+  z-index: 9999;
+}
+
+.header-search__modal--closed {
+  opacity: 0;
+  pointer-events: none;
+}
+

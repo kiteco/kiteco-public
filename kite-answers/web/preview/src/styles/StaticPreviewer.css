@@ -1,0 +1,11 @@
+.staticAnswersContainer {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.staticAnswersContainer h2 > code,
+.staticAnswersContainer p > code,
+.staticAnswersContainer h2 a:not([href]) code,
+.staticAnswersContainer p a:not([href]) code {
+  color: red;
+}

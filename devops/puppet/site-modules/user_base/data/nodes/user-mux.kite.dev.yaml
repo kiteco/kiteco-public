@@ -1,0 +1,5 @@
+fluentd::package_ensure: false
+fluentd::service_ensure: false
+fluentd::plugin_ensure: false
+
+user_base::process_name: user-mux

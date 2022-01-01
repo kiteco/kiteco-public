@@ -1,0 +1,7 @@
+[kited] 2020/09/30 23:13:07.365411 plugins.go:228: activated GoTick in plugin manager
+Exception 0xc0000005 0x0 0xc003818f60 0x7ffa24904e10
+PC=0x7ffa24904e10
+signal arrived during external code execution
+
+syscall.Syscall(0x7ffa2558b4a0, 0x2, 0xc003818f60, 0xc00380b7b0, 0x0, 0x0, 0x0, 0x0)
+	c:/go/src/runtime/syscall_windows.go:188 +0xe9

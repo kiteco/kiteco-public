@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+    <head>
+      <title>Call Signatures</title>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+      <style>
+      body {
+        padding: 20px;
+      }
+      td {
+        font-family: monospace;
+      }
+      </style>
+    </head>
+    <body>
+      <div class="table">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <td colspan="3"><b>Total Packages</b></td>
+              <td colspan="3"><b>Total Num Functions</b></td>
+              <td colspan="3"><b>Total Num Arg Specs</b></td>
+              <td colspan="3"><b>Total Pct Arg Specs</b></td>
+              <td colspan="3"><b>Total Num Patterns</b></td>
+              <td colspan="3"><b>Total Pct Patterns</b></td>
+              <td colspan="3"><b>Total Num Docs</b></td>
+              <td colspan="3"><b>Total Pct Docs</b></td>
+              <td colspan="3"><b>Total Num **kwargs Data</b></td>
+              <td colspan="3"><b>Total Pct **kwargs Data</b></td>
+              <td colspan="3"><b>Total Num Source Defintions</b></td>
+              <td colspan="3"><b>Total Pct Source Definitions</b></td>
+            </tr>
+            <tr>
+              <td colspan="3">{{.Total | comma}}</td>
+              <td colspan="3">{{.NumFuncs | comma}}</td>
+              <td colspan="3">{{.NumSpecs | comma}}</td>
+              <td colspan="3">{{mult 100.0 .PctSpecs | ftoa}}</td>
+              <td colspan="3">{{.NumPatterns | comma}}</td>
+              <td colspan="3">{{mult 100.0 .PctPatterns | ftoa}}</td>
+              <td colspan="3">{{.NumDocs | comma}}</td>
+              <td colspan="3">{{mult 100.0 .PctDocs | ftoa}}</td>
+              <td colspan="3">{{.NumKwargs | comma}}</td>
+              <td colspan="3">{{mult 100.0 .PctKwargs | ftoa}}</td>
+              <td colspan="3">{{.NumSource | comma}}</td>
+              <td colspan="3">{{mult 100.0 .PctSource | ftoa}}</td>
+            </tr>
+            <tr>
+              <td colspan="3"><b>Package</b></td>
+              <td colspan="3"><b>Popularity</b></td>
+              <td colspan="3"><b>Num Functions</b></td>
+              <td colspan="3"><b>Num Arg Specs</b></td>
+              <td colspan="3"><b>Pct Arg Specs</b></td>
+              <td colspan="3"><b>Num Patterns</b></td>
+              <td colspan="3"><b>Pct Patterns</b></td>
+              <td colspan="3"><b>Num Docs</b></td>
+              <td colspan="3"><b>Pct Docs</b></td>
+              <td colspan="3"><b>Num **kwargs Data</b></td>
+              <td colspan="3"><b>Pct **kwargs Data</b></td>
+              <td colspan="3"><b>Num Source Definitions</b></td>
+              <td colspan="3"><b>Pct Source Definitions</b></td>
+            </tr>
+            {{range $i,$ps := .Pkgs}}
+            <tr>
+              <td colspan="3">{{add $i 1}}) <a href="{{$ps.AnyName | pkgURL}}">{{$ps.AnyName}}</a></td>
+              <td colspan="3">{{$ps.PopularityChildrenAndCurrent | comma}}</td>
+              <td colspan="3">{{$ps.NumFuncsChildren | comma}}</td>
+              <td colspan="3">{{$ps.NumSpecsChildren | comma}}</td>
+              <td colspan="3">{{mult 100.0 $ps.PctSpecsChildren | ftoa}}</td>
+              <td colspan="3">{{$ps.NumPatternsChildren | comma}}</td>
+              <td colspan="3">{{mult 100.0 $ps.PctPatternsChildren | ftoa}}</td>
+              <td colspan="3">{{$ps.NumDocsChildren | comma}}</td>
+              <td colspan="3">{{mult 100.0 $ps.PctDocsChildren | ftoa}}</td>
+              <td colspan="3">{{$ps.NumKwargsChildren | comma}}</td>
+              <td colspan="3">{{mult 100.0 $ps.PctKwargsChildren | ftoa}}</td>
+              <td colspan="3">{{$ps.NumSourceChildren | comma}}</td>
+              <td colspan="3">{{mult 100.0 $ps.PctSourceChildren | ftoa}}</td>
+            </tr>
+            {{end}}
+          </tbody>
+        </table>
+      </div>
+    </body>
+</html>

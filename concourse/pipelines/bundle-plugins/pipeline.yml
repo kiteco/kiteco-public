@@ -1,0 +1,85 @@
+resource_types:
+- name: slack-notification
+  type: docker-image
+  source:
+    repository: cfcommunity/slack-notification-resource
+
+resources:
+- name: time.8am
+  type: time
+  source:
+    start: 7:00 AM
+    stop: 8:00 AM
+    location: America/Los_Angeles
+    days: [Monday, Tuesday, Wednesday, Thursday, Friday]
+
+- name: git.kiteco.intellij-plugin-private
+  type: git
+  source:
+    uri: git@github.com:kiteco/intellij-plugin-private.git
+    branch: master
+    private_key: ((ssh_private))
+    disable_ci_skip: true
+
+- name: image-build
+  type: docker-image
+  source: {repository: kiteco/concourse}
+
+- name: slack-deep-intellij
+  type: slack-notification
+  source:
+    url: ((slack_deep-intellij))
+
+jobs:
+- name: stage-intellij-release
+  plan:
+
+  - get: time.8am
+    trigger: true
+
+  - get: intellij-plugin-private
+    resource: git.kiteco.intellij-plugin-private
+
+  - get: image-build
+
+  - task: version-bump-intellij
+    image: image-build
+    config:
+      platform: linux
+      inputs:
+      - name: intellij-plugin-private
+      outputs:
+      - name: intellij-plugin-private
+      run:
+        path: intellij-plugin-private/release_version.bash
+
+  - put: intellij-plugin-private
+    resource: git.kiteco.intellij-plugin-private
+    params:
+      repository: intellij-plugin-private
+      tag: intellij-plugin-private/pluginVersion.txt
+      tag_prefix: v
+
+  - task: intellij-build-binaries
+    image: image-build
+    config:
+      platform: linux
+      params:
+        AWS_ACCESS_KEY_ID: ((aws_id))
+        AWS_SECRET_ACCESS_KEY: ((aws_secret))
+
+      inputs:
+      - name: intellij-plugin-private
+
+      run:
+        path: intellij-plugin-private/concourse/stage-plugin.bash
+
+  on_failure:
+    put: slack-deep-intellij
+    params:
+      text: "IntelliJ <http://concourse.kite.com/builds/$BUILD_ID|build> failed! <@XXXXXXX> <@XXXXXXX>"
+
+  on_success:
+    put: slack-deep-intellij
+    params:
+      text: "IntelliJ <http://concourse.kite.com/builds/$BUILD_ID|build> succeeded!"

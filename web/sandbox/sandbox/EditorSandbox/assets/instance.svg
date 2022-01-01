@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="32" height="32">
+  <style>.icon-canvas-transparent{opacity:0;fill:#f6f6f6}.icon-vs-out{fill:#f6f6f6}.icon-vs-fg{fill:#f0eff1}.icon-vs-action-blue{fill:#853bbed2}</style>
+  <path class="icon-vs-action-blue" d="M9 1L1 5v5l6 3 8-4V4L9 1zM7 6.882L3.236 5 9 2.118 12.764 4 7 6.882z" id="iconBg"/>
+</svg>

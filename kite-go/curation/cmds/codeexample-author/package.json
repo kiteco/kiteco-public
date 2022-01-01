@@ -1,0 +1,42 @@
+{
+  "name": "kite-curation-frontend",
+  "version": "0.0.0",
+  "description": "Kite curation frontend",
+  "license": "UNLICENSED",
+  "private": "true",
+  "repository": "https://github.com/kiteco/kiteco/tree/master/kite-go/curation/cmds/codeexample-author",
+  "main": "static/js/init.js",
+  "dependencies": {
+    "react": "0.14.0",
+    "react-dom": "0.14.0",
+    "jquery": "^2.1.4",
+    "jquery-ui": "^1.10.5"
+  },
+  "devDependencies": {
+    "browserify": "^11.0.0",
+    "reactify": "^1.1.1",
+    "watchify": "^3.3.1",
+    "uglify-js": "^2.4.24",
+    "envify": "^3.4.0",
+    "less": "^2.5.1",
+    "watch-less": "^0.0.x",
+    "marked": "^0.3.5",
+    "shelljs": "^0.5.3",
+    "highlight.js": "^8.7.0",
+    "mustache": "^2.1.3"
+  },
+  "scripts": {
+    "watch-js": "watchify -v -d ./unified-frontend/jsx/init.js -o ./static/js/bundle.js",
+    "watch-css": "watch-less -d ./unified-frontend/less/ -r ./static/css/ -e css",
+    "build": "npm run build-js && npm run build-css && npm run build-docs",
+    "build-js": "browserify -t [envify --NODE_ENV production] unified-frontend/jsx/init.js | uglifyjs -cm --screw-ie8 > static/js/bundle.min.js",
+    "build-css": "lessc unified-frontend/less/unified-curation.less static/css/unified-curation.css",
+    "build-docs": "shjs ./docs/build-docs.js"
+  },
+  "browserify": {
+    "transform": [
+      ["reactify", {"harmony": true}],
+      "envify"
+    ]
+  }
+}

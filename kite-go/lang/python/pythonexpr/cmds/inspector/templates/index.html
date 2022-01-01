@@ -1,0 +1,227 @@
+
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css"></link>
+    <style type="text/css">
+        textarea#code {
+            height: 500px;
+            width: 100%;
+            font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+            background-color:whitesmoke;
+        }
+        .row {
+            padding: 5px;
+        }
+    </style>
+    <title>Expr inspector</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <textarea id="code">{{.Buffer}}</textarea>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <button id="predict" type="button" class="btn btn-primary">Predict</button>
+                </div>
+                <div class="row">
+                    <button id="metainfobtn" type="button" class="btn btn-primary">Metainfo</button>
+                </div>
+            </div>
+            <div class="col-4" id="status">Place $ in code to run prediction at that point</div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 align="center">MetaInfo</h3>
+                <pre id="metainfo"></pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 align="center">Predictions</h3>
+                <pre id="predictiontree"></pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 align="center">Search Graph</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" id="searchgraph"></div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 align="center">Trace</h3>
+                <pre id="trace"></pre>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function renderGraph(graph) {
+            if (!graph) {
+                var container = document.getElementById('searchgraph');
+                container.appendChild(document.createTextNode("no graph"));
+                return
+            }
+            styledNodes = graph.nodes.map(function(node){
+                node.color = "#e6d297";
+                if (node.level < 0) {
+                    delete node.level;
+                }
+                return node;
+            });
+
+            styledEdges = graph.edges.map(function(edge) {
+                edge.color = {"color": "darkgray"};
+                edge.arrows = "to";
+                return edge;
+            });
+
+            var nodes = new vis.DataSet(styledNodes);
+            var edges = new vis.DataSet(styledEdges);
+            var container = document.getElementById('searchgraph');
+            var data = {
+                nodes: nodes,
+                edges: edges,
+            };
+
+
+            hierarchical = {
+                enabled: true,
+                levelSeparation: 100,
+                nodeSpacing: 150,
+                direction: 'UD',
+                sortMethod: 'directed',
+            };
+            var options = {
+                layout: {
+                    randomSeed: 1,
+                    improvedLayout: true,
+                    hierarchical: hierarchical,
+                },
+                interaction:{
+                    hover: true
+                },
+                physics: false,
+            };
+            var network = new vis.Network(container, data, options);
+            network.on("dragging", function (params) {
+                if (params.nodes.length == 1) {
+                    var nid = params.nodes[0];
+                    network.moveNode(nid, params.pointer.canvas.x, params.pointer.canvas.y);
+                }
+            });
+            network.on("selectNode", function(params) {
+                if (params.nodes.length == 1) {
+                    var nid = params.nodes[0];
+                    var node = graph.nodes[nid];
+                    var url = new URL('/searchnode', location.origin);
+                    url.search = new URLSearchParams({
+                        hash: node.link.hash,
+                        node: node.link.node,
+                    });
+                    console.log(url.href);
+                    window.open(url.href);
+                }
+            });
+        }
+        function clearChildren(elem) {
+            while (elem.firstChild) {
+                elem.removeChild(elem.firstChild);
+            }
+        }
+        function listElem() {
+            var li = document.createElement("li");
+            li.className += " list-group-item";
+            return li
+        }
+        function renderText(elemName, text) {
+            var elem = document.querySelector("#"+elemName);
+            clearChildren(elem);
+            elem.appendChild(document.createTextNode(text));
+        }
+        function renderError(resp) {
+            resp.text()
+            .then(function(t) {
+                renderText("status", "Fetch error: " + resp.status + ": " + t);
+            });
+        }
+        function renderModelMeta(meta) {
+            renderText("metainfo", meta);
+        }
+        function renderPredictionTree(pt) {
+            renderText("predictiontree", pt);
+        }
+        function renderTrace(t) {
+            renderText("trace", t);
+        }
+        function render(body, metaonly) {
+            renderText("status", "done!");
+            renderModelMeta(body.meta);
+            if (metaonly) {
+                return
+            }
+            renderPredictionTree(body.prediction_tree);
+            renderTrace(body.trace);
+            renderGraph(body.graph);
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector("#predict").onclick = function(ev) {
+                renderText("status", "predicting...");
+                var url = new URL("/predict", location.origin);
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        buffer: document.querySelector("#code").value,
+                    }),
+                })
+                .then(function(response){
+                    if (!response.ok) {
+                        renderError(response);
+                        throw Error(response.statusText);
+                    }
+                    return response
+                })
+                .then(response => response.json())
+                .then(body => render(body, false));
+            };
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector("#metainfobtn").onclick = function(ev) {
+                renderText("status", "getting meta info...");
+                var url = new URL("/predict", location.origin);
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        buffer: document.querySelector("#code").value,
+                        metaonly: true,
+                    }),
+                })
+                .then(function(response){
+                    if (!response.ok) {
+                        renderError(response);
+                        throw Error(response.statusText);
+                    }
+                    return response
+                })
+                .then(response => response.json())
+                .then(body => render(body, true));
+            };
+        });
+    </script>
+</body>
+</html>

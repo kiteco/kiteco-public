@@ -1,0 +1,29 @@
+#! /usr/bin/env bash
+
+COVERFILE=coverage.txt
+COVERTMP=coverage.tmp
+
+if [ -f "$COVERFILE" ]; then
+    rm $COVERFILE
+fi
+
+if [ -f "$COVERTMP" ]; then
+    rm $COVERTMP
+fi
+
+STATUS=0
+
+for root_pkg in $@
+do
+  packages=$(go list $root_pkg | grep -v /vendor)
+  while read -r pkg; do
+      go test ${GO_ARGS} -covermode=atomic -coverprofile=$COVERTMP -json -p 1 -coverpkg ${packages//$'\n'/,} $pkg 2> >(grep -v "warning: no packages being tested depend on matches for pattern" >&2)
+      (( STATUS = $STATUS || $? ))
+      if [ -f "$COVERTMP" ]; then
+        tail -n +2 $COVERTMP >> $COVERFILE
+        rm $COVERTMP
+      fi
+  done <<< "$packages"
+done
+
+exit $STATUS

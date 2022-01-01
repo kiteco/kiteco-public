@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "tfserving-kite.fullname" . }}
+  labels:
+    {{- include "tfserving-kite.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 8500
+  selector:
+    {{- include "tfserving-kite.selectorLabels" . | nindent 4 }}

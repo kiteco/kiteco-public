@@ -1,0 +1,21 @@
+<%- | String $executable,
+      Hash  $env_config,
+      Array  $secret_keys,
+| -%>
+#! /usr/bin/env bash
+
+export AWS_ACCESS_KEY_ID=<%= $facts[aws_access_key_id] %>
+export AWS_SECRET_ACCESS_KEY=`gcloud secrets versions access latest --secret=<%= $facts[gcp_aws_secret_access_key] %>`
+
+AWS_OPTS='--region=us-west-1 --output text'
+CMD='<%= $executable %>'
+
+<% $env_config.each |String $index, String $value| { -%>
+CMD="env <%= $index %>=<%= $value %> $CMD"
+<% } -%>
+
+<% $secret_keys.each |String $secret_name| { -%>
+CMD="env <%= $secret_name %>=`aws $AWS_OPTS --query 'SecretString' secretsmanager get-secret-value --secret-id <%= $secret_name %> ` $CMD"
+<% } -%>
+
+exec $CMD

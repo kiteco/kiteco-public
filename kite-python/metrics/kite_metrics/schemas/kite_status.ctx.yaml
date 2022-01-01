@@ -1,0 +1,97 @@
+editors:
+  - atom
+  - intellij
+  - jupyter
+  - spyder
+  - sublime3
+  - vim
+  - vscode
+
+editors_unused:
+  - neovim
+  - pycharm
+  - clion
+  - rider
+  - jupyterlab
+  - rubymine
+  - android-studio
+  - goland
+  - webstorm
+  - phpstorm
+  - appcode
+
+python_providers:
+  - PythonAttributesProvider
+  - PythonCallPatternsProvider
+  - PythonDictKeysProvider
+  - PythonEmptyCallsProvider
+  - PythonImportsProvider
+  - PythonKeywordsProvider
+  - PythonKWArgsProvider
+  - PythonNamesProvider
+
+lexical_providers:
+  - LexicalGolangProvider
+  - LexicalJavascriptProvider
+  - LexicalTextCCProvider
+  - LexicalTextCProvider
+  - LexicalTextCPPProvider
+  - LexicalTextCSProvider
+  - LexicalTextCSSProvider
+  - LexicalTextGolangProvider
+  - LexicalTextHProvider
+  - LexicalTextHPPProvider
+  - LexicalTextHTMLProvider
+  - LexicalTextJAVAProvider
+  - LexicalTextJSProvider
+  - LexicalTextJSXProvider
+  - LexicalTextKTProvider
+  - LexicalTextLESSProvider
+  - LexicalTextMProvider
+  - LexicalTextPHPProvider
+  - LexicalTextProvider
+  - LexicalTextRBProvider
+  - LexicalTextSCALAProvider
+  - LexicalTextSHProvider
+  - LexicalTextTSProvider
+  - LexicalTextTSXProvider
+  - LexicalTextVUEProvider
+  - PythonLexicalProvider
+  - UnknownProvider
+
+  #   - lexicaltextgolangprovider
+  # objectivec: ['lexicaltexthprovider', 'lexicaltextmprovider']
+  # php:
+  # python:
+  # ruby:
+  # scala: ['lexicaltextscalaprovider']
+  # tsx: ['LexicalTextTSXProvider']
+  # typescript: ['LexicalTextProvider', ]
+  # vue:
+  #   -
+
+languages:
+  - bash
+  - c
+  - cpp
+  - csharp
+  - css
+  - go
+  - html
+  - java
+  - javascript
+  - jsx
+  - kotlin
+  - less
+  - objectivec
+  - php
+  - python
+  - ruby
+  - scala
+  - tsx
+  - typescript
+  - unknown
+  - vue
+
+languages_unused:
+  - perl

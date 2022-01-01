@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "noop://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="noop://www.w3.org/1999/xhtml"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Celery - Distributed Task Queue — Celery 3.1.18 documentation</title>
+    
+    <link rel="stylesheet" href="OtherCanonical_files/celery.css" type="text/css">
+    <link rel="stylesheet" href="OtherCanonical_files/pygments.css" type="text/css">
+    <link rel="stylesheet" href="OtherCanonical_files/badge_only.css" type="text/css">
+    <link rel="stylesheet" href="OtherCanonical_files/readthedocs-doc-embed.css" type="text/css">
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.1.18',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="OtherCanonical_files/jquery-2.js"></script>
+    <script type="text/javascript" src="OtherCanonical_files/jquery-migrate-1.js"></script>
+    <script type="text/javascript" src="OtherCanonical_files/underscore.js"></script>
+    <script type="text/javascript" src="OtherCanonical_files/doctools.js"></script>
+    <script type="text/javascript" src="OtherCanonical_files/readthedocs-doc-embed.js"></script>
+    <link rel="copyright" title="Copyright" href="noop://docs.celeryproject.org/en/latest/copyright.html">
+    <link rel="top" title="Celery 3.1.18 documentation" href="#">
+    <link rel="next" title="Copyright" href="noop://docs.celeryproject.org/en/latest/copyright.html">
+ 
+<!-- RTD Extra Head -->
+
+
+
+<!-- 
+Read the Docs is acting as the canonical URL for your project. 
+If you want to change it, more info is available in our docs:
+  noop://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="noop://celery.readthedocs.org/en/latest/">
+
+<script type="text/javascript">
+  // This is included here because other places don't have access to the pagename variable.
+  var READTHEDOCS_DATA = {
+    project: "celery",
+    version: "latest",
+    language: "en",
+    page: "index",
+    builder: "sphinx",
+    theme: "celery",
+    docroot: "/docs/",
+    source_suffix: ".rst",
+    api_host: "noop://readthedocs.org",
+    commit: "6efba62c04f25a9665ad8901a5073cf45e3a94b4"
+  }
+  // Old variables
+  var doc_version = "latest";
+  var doc_slug = "celery";
+  var page_name = "index";
+  var html_theme = "celery";
+</script>
+<!-- RTD Analytics Code -->
+<!-- Included in the header because you don't have a footer block. -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'noop://ssl' : 'noop://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!-- end RTD Analytics Code -->
+<!-- end RTD <extrahead> -->
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="noop://docs.celeryproject.org/en/latest/genindex.html" title="General Index" accesskey="I">index</a></li>
+        <li class="right">
+          <a href="noop://docs.celeryproject.org/en/latest/py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="noop://docs.celeryproject.org/en/latest/copyright.html" title="Copyright" accesskey="N">next</a> |</li>
+        <li><a href="#">Celery 3.1.18 documentation</a> »</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+<div class="deck">
+
+    
+        <p>
+        This document describes the current stable version of Celery (3.1). For development docs,
+        <a href="noop://docs.celeryproject.org/en/master/index.html">go here</a>.
+        </p>
+    
+
+</div>
+    <div class="section" id="celery-distributed-task-queue">
+<h1>Celery - Distributed Task Queue<a class="headerlink" href="#celery-distributed-task-queue" title="Permalink to this headline">¶</a></h1>
+<p>Celery is a simple, flexible and reliable distributed system to
+process vast amounts of messages, while providing operations with
+the tools required to maintain such a system.</p>
+<p>It’s a task queue with focus on real-time processing, while also
+supporting task scheduling.</p>
+<p>Celery has a large and diverse community of users and contributors,
+you should come join us <a class="reference internal" href="noop://docs.celeryproject.org/en/latest/getting-started/resources.html#irc-channel"><em>on IRC</em></a>
+or <a class="reference internal" href="noop://docs.celeryproject.org/en/latest/getting-started/resources.html#mailing-list"><em>our mailing-list</em></a>.</p>
+<p>Celery is Open Source and licensed under the <a class="reference external" href="noop://www.opensource.org/licenses/BSD-3-Clause">BSD License</a>.</p>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>If you are new to Celery you can get started by following
+the <a class="reference internal" href="noop://docs.celeryproject.org/en/latest/getting-started/first-steps-with-celery.html#first-steps"><em>First Steps with Celery</em></a> tutorial.</li>
+<li>You can also check out the <a class="reference internal" href="noop://docs.celeryproject.org/en/latest/faq.html#faq"><em>FAQ</em></a>.</li>
+</ul>
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/copyright.html">Copyright</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/getting-started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/getting-started/introduction.html">Introduction to Celery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/getting-started/brokers/index.html">Brokers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/getting-started/first-steps-with-celery.html">First Steps with Celery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/getting-started/next-steps.html">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/getting-started/resources.html">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/index.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/application.html">Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/tasks.html">Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/calling.html">Calling Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/canvas.html">Canvas: Designing Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/workers.html">Workers Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/periodic-tasks.html">Periodic Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/remote-tasks.html">HTTP Callback Tasks (Webhooks)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/routing.html">Routing Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/monitoring.html">Monitoring and Management Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/optimizing.html">Optimizing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/concurrency/index.html">Concurrency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/signals.html">Signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/userguide/extending.html">Extensions and Bootsteps</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/configuration.html">Configuration and defaults</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/django/index.html">Django</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/community.html">Community Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/changelog.html">Change history</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/whatsnew-3.1.html">What’s new in Celery 3.1 (Cipater)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/whatsnew-3.0.html">What’s new in Celery 3.0 (Chiastic Slide)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/whatsnew-2.5.html">What’s new in Celery 2.5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/reference/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/internals/index.html">Internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/history/index.html">History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/glossary.html">Glossary</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="noop://docs.celeryproject.org/en/latest/search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><p class="logo"><a href="#">
+  <img class="logo" src="OtherCanonical_files/celery_128.png" alt="Logo">
+</a></p>
+<div id="donate">
+    <b>Please donate:</b>
+    <form id="paypal_donate" action="noop://www.paypal.com/cgi-bin/webscr" method="post">
+        <input name="cmd" value="_s-xclick" type="hidden">
+        <input name="hosted_button_id" value="BPCLP83DFF2N2" type="hidden">
+    </form>
+    <img onclick="$('#paypal_donate').submit();" src="OtherCanonical_files/icon-paypal.png" alt="amex">
+    <iframe style="border: 0; margin: 0; padding: 0;" src="OtherCanonical_files/widget.html" height="22pt" width="48pt"> </iframe>
+</div>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="noop://docs.celeryproject.org/en/latest/_sources/index.txt" rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input name="q" type="text">
+      <input value="Go" type="submit">
+      <input name="check_keywords" value="yes" type="hidden">
+      <input name="area" value="default" type="hidden">
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="noop://docs.celeryproject.org/en/latest/genindex.html" title="General Index">index</a></li>
+        <li class="right">
+          <a href="noop://docs.celeryproject.org/en/latest/py-modindex.html" title="Python Module Index">modules</a> |</li>
+        <li class="right">
+          <a href="noop://docs.celeryproject.org/en/latest/copyright.html" title="Copyright">next</a> |</li>
+        <li><a href="#">Celery 3.1.18 documentation</a> »</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        © <a href="noop://docs.celeryproject.org/en/latest/copyright.html">Copyright</a> 2009-2014, Ask Solem &amp; Contributors.
+    </div>
+  
+</body></html>

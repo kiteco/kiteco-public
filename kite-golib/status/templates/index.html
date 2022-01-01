@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+    <head>
+      <title>status</title>
+      <meta http-equiv="refresh" content="30">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+      <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      ul.quicknav {
+        font-size: 14px;
+        list-style: none;
+      }
+      a {
+        color: #375EAB;
+        cursor: auto;
+      }
+      h2 {
+        color: #375EAB;
+        font-size: 20px;
+        background: #E0EBF5;
+        padding: 8px;
+        line-height: 1.25;
+        font-weight: normal;
+        margin: 20px 0 20px;
+        display: block;
+      }
+      h4 {
+        color: #375EAB;
+        font-size: 16px;
+        margin: 20px 5px;
+        padding: 0;
+        font-weight: bold;
+      }
+      table {
+        margin: 20px 5px;
+        min-width: 200px;
+        max-width: 400px;
+      }
+      .inline {
+        display: inline;
+      }
+      table tr td:first-child {
+        color: #375EAB;
+      }
+      </style>
+    </head>
+    <body>
+        {{ if len $.Release }}
+        <h2>{{.Release}}</h2>
+        {{ end }}
+
+        <h4>Sections</h4>
+        <ul class="quicknav">
+            {{ range $name, $section := .Status.Sections }}
+            <li><a href="#{{$name | sectionID}}">{{$name}}</a></li>
+            {{ end }}
+        </ul>
+
+        {{ range $name, $section := .Status.Sections }}
+        <h2 id="{{$name | sectionID}}">{{$name}}</h2>
+        {{ if len $section.Counters }}
+        <h4>Counters</h4>
+        <table class="table-condensed table-striped table-bordered">
+            {{ range $name, $counter := $section.Counters }}
+            <tr><td nowrap>{{$name}}</td><td>{{$counter.Value}}</td></tr>
+            {{ end }}
+        </table>
+        {{ end }}
+
+        {{ if len $section.Ratios }}
+        <h4>Ratios</h4>
+        <table class="table-condensed table-striped table-bordered">
+            {{ range $name, $ratio := $section.Ratios }}
+            <tr><td nowrap>{{$name}}</td><td>{{$ratio.Value | printf "%.02f"}}%</td></tr>
+            {{ end }}
+        </table>
+        {{ end }}
+
+        {{ if len $section.CounterDistributions }}
+        <h4>Counter distributions</h4>
+        <table class="table-condensed table-striped table-bordered">
+            <tr>
+                <th>Percentiles</th>
+                {{ range $percentile := $section.Percentiles }}
+                <th>{{$percentile | printf "%.02f"}}</th>
+                {{ end }}
+            </tr>
+            {{ range $name, $ad := $section.CounterDistributions }}
+            <tr>
+                <td nowrap>{{$name}}</td>
+                {{ range $value := $ad.Values }}
+                <td>{{ $value }}</td>
+                {{ end }}
+            </tr>
+            {{ end }}
+        </table>
+        {{ end }}
+
+        {{ if len $section.RatioDistributions }}
+        <h4>Ratio distributions</h4>
+        <table class="table-condensed table-striped table-bordered">
+            <tr>
+                <th>Percentiles</th>
+                {{ range $percentile := $section.Percentiles }}
+                <th>{{$percentile | printf "%.02f"}}</th>
+                {{ end }}
+            </tr>
+            {{ range $name, $ad := $section.RatioDistributions }}
+            <tr>
+                <td nowrap>{{$name}}</td>
+                {{ range $value := $ad.Values }}
+                <td>{{ $value | printf "%.02f" }}%</td>
+                {{ end }}
+            </tr>
+            {{ end }}
+        </table>
+        {{ end }}
+
+        {{ if len $section.BoolDistributions }}
+        <h4>Bool distributions</h4>
+        <table class="table-condensed table-striped table-bordered">
+            <tr>
+                <th nowrap>Name</th>
+                <th nowrap>True %</th>
+                <th nowrap>False %</th>
+            </tr>
+            {{ range $name, $ad := $section.BoolDistributions }}
+            <tr>
+                <td nowrap>{{$name}}</td>
+                <td nowrap>{{$ad.TruePercentage | printf "%.02f"}}</td>
+                <td nowrap>{{$ad.FalsePercentage | printf "%.02f"}}</td>
+            </tr>
+            {{ end }}
+        </table>
+        {{ end }}
+
+        {{ if len $section.DurationDistributions }}
+        <h4>Duration distributions</h4>
+        <table class="table-condensed table-striped table-bordered">
+            <tr>
+                <th>Percentiles</th>
+                {{ range $percentile := $section.Percentiles }}
+                <th>{{$percentile | printf "%.02f"}}</th>
+                {{ end }}
+            </tr>
+            {{ range $name, $ad := $section.DurationDistributions }}
+            <tr>
+                <td nowrap>{{$name}}</td>
+                {{ range $value := $ad.Values }}
+                <td>{{ $value | humanizeDuration }}</td>
+                {{ end }}
+            </tr>
+            {{ end }}
+        </table>
+        {{ end }}
+
+        {{ if len $section.SampleInt64s }}
+        <h4>Raw samples</h4>
+        <table class="table-condensed table-striped table-bordered">
+            <tr>
+                <th>Percentiles</th>
+                {{ range $percentile := $section.Percentiles }}
+                <th>{{$percentile | printf "%.02f"}}</th>
+                {{ end }}
+            </tr>
+            {{ range $name, $ad := $section.SampleInt64s }}
+            <tr>
+                <td nowrap>{{$name}}</td>
+                {{ range $value := $ad.Values }}
+                <td>{{ $value }}</td>
+                {{ end }}
+            </tr>
+            {{ end }}
+        </table>
+        {{ end }}
+
+        {{ if len $section.SampleDurations }}
+        <h4>Duration samples</h4>
+        <table class="table-condensed table-striped table-bordered">
+            <tr>
+                <th>Percentiles</th>
+                {{ range $percentile := $section.Percentiles }}
+                <th>{{$percentile | printf "%.02f"}}</th>
+                {{ end }}
+            </tr>
+            {{ range $name, $ad := $section.SampleDurations }}
+            <tr>
+                <td nowrap>{{$name}}</td>
+                {{ range $value := $ad.Values }}
+                <td>{{$value | humanizeDuration }}</td>
+                {{ end }}
+            </tr>
+            {{ end }}
+        </table>
+        {{ end }}
+
+        {{ if len $section.SampleBytes }}
+        <h4>Size samples (bytes)</h4>
+        <table class="table-condensed table-striped table-bordered">
+            <tr>
+                <th>Percentiles</th>
+                {{ range $percentile := $section.Percentiles }}
+                <th>{{$percentile | printf "%.02f"}}</th>
+                {{ end }}
+            </tr>
+            {{ range $name, $ad := $section.SampleBytes }}
+            <tr>
+                <td nowrap>{{$name}}</td>
+                {{ range $value := $ad.Values }}
+                <td>{{$value | humanizeSize}}</td>
+                {{ end }}
+            </tr>
+            {{ end }}
+        </table>
+        {{ end }}
+
+        {{ if len $section.Breakdowns }}
+        <h4>Breakdowns</h4>
+            {{ range $name, $breakdown := $section.Breakdowns }}
+            <table class="inline table-condensed table-striped table-bordered">
+                <tr><td colspan=2><b>{{$name}}</b></td></tr>
+                {{ range $category, $value := $breakdown.Value }}
+                <tr><td nowrap>{{$category}}</td><td>{{$value | printf "%.02f"}}%</td></tr>
+                {{ end }}
+            </table>
+            {{ end }}
+        {{ end }}
+
+        {{ end }}
+
+    </body>
+</html>

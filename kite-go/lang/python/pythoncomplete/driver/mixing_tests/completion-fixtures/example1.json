@@ -1,0 +1,59 @@
+{
+    "completions": [
+        {
+            "snippet": {
+                "text": "my_func()",
+                "placeholders": [
+                    {
+                        "begin": 8,
+                        "end": 8
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 177,
+                "end": 180
+            },
+            "display": "my_func(…)",
+            "documentation": {
+                "text": ""
+            },
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "my_obj",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 177,
+                "end": 180
+            },
+            "display": "my_obj",
+            "documentation": {
+                "text": ""
+            },
+            "hint": "Foo",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "my_pkg",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 177,
+                "end": 180
+            },
+            "display": "my_pkg",
+            "documentation": {
+                "text": "Support for regular expressions (RE).\n\nThis module provides regular expression matching operations similar to those found in Perl. It supports both 8-bit and Unicode strings; both the pattern and the strings being processed can contain null bytes and characters outside the US ASCII range.\n\nRegular expressions can contain both special and ordinary characters. Most ordinary characters, like \"A\", \"a\", or \"0\", are the simplest regular expressions; they simply match themselves. You can concatenate or"
+            },
+            "web_id": "re",
+            "local_id": "python;;;;re",
+            "hint": "module",
+            "smart": false
+        }
+    ]
+}

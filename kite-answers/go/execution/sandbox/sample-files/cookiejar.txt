@@ -1,0 +1,2 @@
+#LWP-Cookies-2.0
+Set-Cookie3: a=1; path="/"; domain="mock.kite.com"; path_spec; discard; version=0

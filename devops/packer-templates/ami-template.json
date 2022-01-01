@@ -1,0 +1,125 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": ""
+  },
+  "builders": [
+    {
+      "name": "aws-us-west-1",
+      "type": "amazon-ebs",
+      "region": "us-west-1",
+      "source_ami": "ami-XXXXXXX",
+      "instance_type": "t3.small",
+      "ssh_username": "ubuntu",
+      "ami_name": "kite_base_bionic_{{timestamp}}"
+    },
+    {
+      "name": "aws-us-west-2",
+      "type": "amazon-ebs",
+      "region": "us-west-2",
+      "source_ami": "ami-XXXXXXX",
+      "instance_type": "t3.small",
+      "ssh_username": "ubuntu",
+      "ami_name": "kite_base_bionic_{{timestamp}}"
+    },
+    {
+      "name": "aws-us-east-1",
+      "type": "amazon-ebs",
+      "region": "us-east-1",
+      "source_ami": "ami-XXXXXXX",
+      "instance_type": "t3.small",
+      "ssh_username": "ubuntu",
+      "ami_name": "kite_base_bionic_{{timestamp}}"
+    },
+    {
+      "name": "aws-eu-west-1",
+      "type": "amazon-ebs",
+      "region": "eu-west-1",
+      "source_ami": "ami-XXXXXXX",
+      "instance_type": "t3.small",
+      "ssh_username": "ubuntu",
+      "ami_name": "kite_base_bionic_{{timestamp}}"
+    },
+    {
+      "name": "aws-ap-southeast-1",
+      "type": "amazon-ebs",
+      "region": "ap-southeast-1",
+      "source_ami": "ami-XXXXXXX",
+      "instance_type": "t3.small",
+      "ssh_username": "ubuntu",
+      "ami_name": "kite_base_bionic_{{timestamp}}"
+    },
+    {
+      "name": "gcp-kite-dev",
+      "image_name": "kite-base-{{timestamp}}",
+      "type": "googlecompute",
+      "project_id": "kite-dev-XXXXXXX",
+      "source_image_family": "ubuntu-1804-lts",
+      "ssh_username": "packer",
+      "zone": "us-west1-a"
+    },
+    {
+      "name": "gcp-kite-prod",
+      "image_name": "kite-base-{{timestamp}}",
+      "type": "googlecompute",
+      "project_id": "kite-prod-XXXXXXX",
+      "source_image_family": "ubuntu-1804-lts",
+      "ssh_username": "packer",
+      "zone": "us-west1-a"
+    },
+    {
+      "type": "docker",
+      "image": "ubuntu:18.04",
+      "commit": true
+    },
+    {
+        "box_name": "kite/base",
+        "communicator": "ssh",
+        "source_path": "bento/ubuntu-18.04",
+        "provider": "virtualbox",
+        "add_force": true,
+        "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "apt-get update",
+        "apt-get install -y curl",
+        "curl -O https://apt.puppetlabs.com/puppet6-release-bionic.deb",
+        "dpkg -i puppet6-release-bionic.deb",
+        "apt-get update",
+        "apt-get install -y puppet-agent",
+        "/opt/puppetlabs/bin/puppet config set node_name_fact node_name"
+      ],
+      "environment_vars": [
+        "DEBIAN_FRONTEND=noninteractive"
+      ],
+      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo {{ .Path }}",
+      "override": {
+        "docker": {
+          "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}"
+        }
+      }
+    },
+    {
+      "type": "puppet-masterless",
+      "puppet_bin_dir": "/opt/puppetlabs/puppet/bin",
+      "manifest_file": "../puppet/site.pp",
+      "module_paths": [
+        "../puppet/site-modules",
+        "../puppet/modules"
+      ],
+      "facter": {
+        "node_name": "kite-base.kite.dev"
+      },
+      "override": {
+        "docker": {
+          "prevent_sudo": true,
+          "puppet_bin_dir": "/opt/puppetlabs/puppet/bin"
+        }
+      }
+    }
+  ]
+}

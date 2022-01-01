@@ -1,0 +1,46 @@
+.newsletter {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.newsletter__new {
+  display: flex;
+  flex-direction: column;
+}
+
+.newsletter__new > * + * {
+  margin-top: 1rem;
+}
+
+.newsletter__email {
+  font-family: 'Avenir Next Rounded W01', sans-serif;
+  font-size: var(--body-font-size);
+  border: 1px solid #DCDCDC;
+  padding: 1.3rem 1.2rem;
+  background:  #fff;
+  flex-grow: 1;
+  border-radius: var(--border-radius);
+}
+
+.newsletter__submit {
+  font-size: var(--body-font-size);
+  background: #24273F;
+  color: var(--background);
+  border-radius: var(--border-radius);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 1.1rem .6rem;
+}
+
+.newsletter__submit:hover {
+  opacity: .7;
+}
+
+.newsletter__error {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.3rem);
+  right: 0;
+  color: var(--text-error);
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unified Curation Tool</title>
+  <link rel="icon" type="image/png" href="/static/img/favicon-16x16.png" />
+  <script type="text/javascript" src="/static/js/lib/ace.js"></script>
+  <script type="text/javascript" src="/static/js/lib/mode-python.js"></script>
+  <script type="text/javascript" src="/static/js/lib/events.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/css/unified-curation.css">
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.11.4/themes/black-tie/jquery-ui.css">
+</head>
+<body>
+  <div id="referenceTool"></div>
+  <div id="codeAuthoringTool"></div>
+</body>
+<script type="text/javascript">
+INIT_DATA = {
+  view: {{.View}},
+  userEmail: {{.UserEmail}},
+  codeExampleUrlBase: {{.CodeExampleUrlBase}},
+  language: {{.Language}},
+  package: {{.Package}}
+};
+</script>
+
+{{if .Dev}}
+  <script type="text/javascript" src="/static/js/bundle.js"></script>
+{{else}}
+  <script type="text/javascript" src="/static/js/bundle.min.js"></script>
+{{end}}
+
+</html>

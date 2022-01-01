@@ -1,0 +1,92 @@
+<%- | Array[String]  $streams
+| -%>
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+	worker_connections 768;
+	# multi_accept on;
+}
+
+http {
+
+	##
+	# Basic Settings
+	##
+
+	sendfile on;
+	tcp_nopush on;
+	tcp_nodelay on;
+	keepalive_timeout 65;
+	types_hash_max_size 2048;
+	# server_tokens off;
+
+	# server_names_hash_bucket_size 64;
+	# server_name_in_redirect off;
+
+	include /etc/nginx/mime.types;
+	default_type text/plain;
+
+	##
+	# SSL Settings
+	##
+
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+	ssl_prefer_server_ciphers on;
+
+	##
+	# Logging Settings
+	##
+  access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+  log_format log_body escape=none '$request_body';
+
+	##
+	# Gzip Settings
+	##
+
+	gzip on;
+
+	# gzip_vary on;
+	# gzip_proxied any;
+	# gzip_comp_level 6;
+	# gzip_buffers 16 8k;
+	# gzip_http_version 1.1;
+	# gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+	##
+	# Virtual Host Configs
+	##
+
+  server {
+    listen 8080 default_server;
+    listen [::]:8080 default_server;
+
+    server_name _;
+
+<% $streams.each |$stream| { -%>
+    location /<%= $stream %> {
+      if ($request_method = POST) {
+        access_log /var/log/metrics/<%= $stream %>_metrics.log log_body;
+        proxy_pass $scheme://127.0.0.1:8080/logsink;
+        break;
+      }
+      return 200 $scheme://$host/serviceup.html;
+    }
+<% } -%>
+
+    location /logsink {
+      return 200;
+    }
+		location /.ping {
+      return 200 "pong";
+    }
+    location /nginx_status {
+      stub_status;
+      allow 127.0.0.1;	#only allow requests from localhost
+      deny all;		#deny all other hosts	
+    }
+  }
+}

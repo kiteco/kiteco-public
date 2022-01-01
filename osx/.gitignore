@@ -1,0 +1,11 @@
+# xcode files:
+xcuserdata/
+*~.nib
+DerivedData/
+*.xccheckout
+*.xcscmblueprint
+# this file just stores the latest git hash:
+Kite/Git.plist
+# generated from xcodebuild
+build/
+/tensorflow_build/tensorflow/

@@ -1,0 +1,9 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install -y --no-install-recommends libgirepository1.0-dev gcc libcairo2-dev pkg-config gir1.2-gtk-3.0
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install pycairo
+RUN pip3 install pygobject==3.32.1
+
+ENTRYPOINT ["/usr/bin/env", "python3", "-m", "kite.pkgexploration", "pygobject", "3.32.1", "pygobject__3.32.1.json", "pygobject__3.32.1.log", "--toplevel", "gi"]

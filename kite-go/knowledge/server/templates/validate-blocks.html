@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/server/static/style.css">
+	</head>
+	<body>
+
+		<p>{{.ID}}
+		<p>{{.Path}}
+
+		<table>
+			<tr>
+				<td>Block F1
+				<td>{{.Stats.F1}}
+			<tr>
+				<td>Block Precision
+				<td>{{.Stats.Precision}}
+			<tr>
+				<td>Block Recall
+				<td>{{.Stats.Recall}}
+		</table>
+
+		<div class=compare>
+			<div class=left>
+				<p class=header>RETRIEVED
+					{{range $block := .Retrieved}}
+						<ul class=lines>
+							{{range $line := $block.Lines}}
+								{{if $line.IsHit}}
+									<li class=lineHit>{{$line.Number}} {{$line.Content}}</li>
+								{{else}}
+									<li class=lineMiss>{{$line.Number}} {{$line.Content}}</li>
+								{{end}}
+							{{end}}
+							<div class=blockProb>Probability: {{$block.Probability}}</div>
+						</ul>
+					{{end}}
+			</div>
+
+			<div class=right>
+				<p class=header>RELEVANT
+					{{range $block := .Relevant}}
+						<ul class=lines>
+							{{range $line := $block.Lines}}
+								{{if $line.IsHit}}
+									<li class=lineHit>{{$line.Number}} {{$line.Content}}</li>
+								{{else}}
+									<li class=lineMiss>{{$line.Number}} {{$line.Content}}</li>
+								{{end}}
+							{{end}}
+						</ul>
+					{{end}}
+			</div>
+		</div>
+
+	</body>
+</html>

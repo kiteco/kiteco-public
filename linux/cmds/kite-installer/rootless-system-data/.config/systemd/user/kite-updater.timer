@@ -1,0 +1,9 @@
+[Unit]
+Description=kite-updater timer
+
+[Timer]
+OnBootSec=5m
+OnUnitInactiveSec=15m
+
+[Install]
+WantedBy=basic.target

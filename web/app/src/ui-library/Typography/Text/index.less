@@ -1,0 +1,35 @@
+@import "../../../assets/styles/less/variables";
+
+.ant-typography {
+  mark {
+    color: @java;
+    background: transparent;
+  }
+
+  del {
+    text-decoration: none;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      width: 100%;
+      height: 2px;
+      background: rgba(@black, 0.85);
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &.highlight {
+    del {
+      color: @java;
+
+      &::after {
+        background: @java;
+      }
+    }
+  }
+}

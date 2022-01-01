@@ -1,0 +1,18 @@
+[
+    {
+        "comment": "Endpoint for testing healthd with user-node", 
+        "endpoint": "http://localhost:9091",
+        "name": "user-node"
+    },
+    {
+        "comment": "Endpoint for testing healthd with event-storage", 
+        "endpoint": "http://localhost:8081",
+        "name": "event-storage"
+    },
+    {
+        "comment": "Endpoint for testing healthd with codeexample-author", 
+        "endpoint": "http://localhost:3005",
+        "name": "codeexample-author",
+        "grace_period": 30
+    }
+]

@@ -1,0 +1,15 @@
+---
+config:
+    instances: 16
+    instance_type: "m3.2xlarge"
+    ebs_vol_gb: 2000
+
+pipeline:
+    unzip:
+        input:  "s3://kite-emr/github-repos-list/2016-06-22_02-10-38-AM.emr"
+        mapreduce_memory_mb: 8000
+        mapreduce_reduce_tasks: 0
+
+    python-filter:
+        input: unzip
+        mapreduce_memory_mb: 4000

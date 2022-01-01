@@ -1,0 +1,240 @@
+#@ load("@ytt:data", "data")
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: #@ data.values.namespace
+  labels:
+    name: #@ data.values.namespace
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: null
+  name: service
+  namespace: #@ data.values.namespace
+  annotations:
+    iam.gke.io/gcp-service-account: #@ "svc-rc-kite-com-{}@{}.iam.gserviceaccount.com".format(data.values.env, data.values.project)
+    amazonaws.com/role-arn: #@ "arn:aws:iam::XXXXXXX:role/svc-rc-kite-com-{}".format(data.values.env)
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: rc-kite-com
+  namespace: #@ data.values.namespace
+spec:
+  domains:
+    - #@ data.values.hostname
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: #@ data.values.namespace
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: #@ "rc-kite-com-{}".format(data.values.env)
+    networking.gke.io/managed-certificates: rc-kite-com
+spec:
+  rules:
+  - host: #@ data.values.hostname
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: nginx
+          servicePort: #@ data.values.nginx_port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: #@ data.values.namespace
+  name: nginx
+  annotations:
+    cloud.google.com/backend-config: '{"default": "nginx-backendconfig"}'
+spec:
+  ports:
+  - name: service
+    port: #@ data.values.nginx_port
+    protocol: TCP
+    targetPort: #@ data.values.nginx_port
+  - name: status
+    port: #@ data.values.nginx_status_port
+    protocol: TCP
+    targetPort: #@ data.values.nginx_status_port
+  selector:
+    app: nginx
+  type: NodePort
+---
+apiVersion: cloud.google.com/v1beta1
+kind: BackendConfig
+metadata:
+  namespace: #@ data.values.namespace
+  name: nginx-backendconfig
+spec:
+  timeoutSec: 86400
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: #@ data.values.namespace
+  name: nginx
+  labels:
+    tag: #@ data.values.tag
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        tag: #@ data.values.tag
+    spec:
+      serviceAccountName: service
+      containers:
+        - name: nginx
+          image: #@ "gcr.io/kite-dev-XXXXXXX/rc-kite-com-nginx:{}".format(data.values.tag)
+          resources:
+            limits:
+              memory: #@ data.values.nginx_mem
+              cpu: #@ data.values.nginx_cpu
+          livenessProbe:
+             initialDelaySeconds: 120
+             exec:
+              command:
+                - curl
+                - #@ "http://localhost:{}/.ping".format(data.values.nginx_port)
+          readinessProbe:
+             initialDelaySeconds: 30
+             exec:
+              command:
+                - curl
+                - #@ "http://localhost:{}/.ping".format(data.values.nginx_port)
+          ports:
+            - containerPort: #@ data.values.nginx_port
+            - containerPort: #@ data.values.nginx_status_port
+          volumeMounts:
+            - name: nginx-secret-volume
+              mountPath: /var/secrets
+        - name: metricbeat
+          image: #@ "gcr.io/kite-dev-XXXXXXX/rc-kite-com-metricbeat:{}".format(data.values.tag)
+          resources:
+            limits:
+              memory: 50Mi
+              cpu: 10m
+          env:
+          - name: SVC_NAME
+            value: #@ data.values.hostname
+          - name: CLOUD_ID
+            valueFrom:
+              secretKeyRef:
+                name: rc-kite-com-metricbeat
+                key: cloud_id
+          - name: CLOUD_AUTH
+            valueFrom:
+              secretKeyRef:
+                name: rc-kite-com-metricbeat
+                key: cloud_auth
+      volumes:
+        - name: nginx-secret-volume
+          secret:
+            secretName: nginx
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  namespace: #@ data.values.namespace
+  name: nginx
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 75
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 75
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: #@ data.values.namespace
+  name: convcohort
+spec:
+  ports:
+  - port: #@ data.values.convcohort_port
+    protocol: TCP
+    targetPort: #@ data.values.convcohort_port
+  selector:
+    app: convcohort
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: #@ data.values.namespace
+  name: convcohort
+  labels:
+    tag: #@ data.values.tag
+spec:
+  selector:
+    matchLabels:
+      app: convcohort
+  template:
+    metadata:
+      labels:
+        app: convcohort
+        tag: #@ data.values.tag
+    spec:
+      serviceAccountName: service
+      containers:
+        - name: convcohort
+          image: #@ "gcr.io/kite-dev-XXXXXXX/rc-kite-com-convcohort:{}".format(data.values.tag)
+          resources:
+            limits:
+              memory: #@ data.values.convcohort_mem
+              cpu: #@ data.values.convcohort_cpu
+          livenessProbe:
+            exec:
+              command:
+                - curl
+                - #@ "http://localhost:{}/convcohort/.ping".format(data.values.convcohort_port)
+            initialDelaySeconds: 300
+          readinessProbe:
+            exec:
+              command:
+                - curl
+                - #@ "http://localhost:{}/convcohort/.ping".format(data.values.convcohort_port)
+            initialDelaySeconds: 300
+          ports:
+            - containerPort: #@ data.values.convcohort_port
+          env:
+            - name: CUSTOMER_IO_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: rc-kite-com-convcohort
+                  key: CUSTOMER_IO_API_KEY
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  namespace: #@ data.values.namespace
+  name: convcohort
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: convcohort
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80

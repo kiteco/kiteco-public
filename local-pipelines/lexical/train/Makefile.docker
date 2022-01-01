@@ -1,0 +1,347 @@
+# First set up the Kite ML Python environment per these instructions: https://github.com/kiteco/kiteco/tree/master/kite-python/kite_ml/
+
+LAMBDA_RUN := 1
+ifeq ($(LAMBDA_RUN),1)
+	KITECO_ROOT := /var/kite/bundle/kiteco
+else
+	KITECO_ROOT := $(GOPATH)/src/github.com/kiteco/kiteco
+endif
+
+VOCAB_SIZE := 13500
+CONTEXT_SIZE := 1024
+EMBEDDING_SIZE := 180
+NUM_HEADS := 6
+NUM_LAYERS := 4
+STEPS := 50000
+BATCH := 90
+NUM_PREDICTION_SLOTS := 20
+LANG := go
+NUM_GPU := 2
+
+RESUME_FROM := notset
+RESUME_FROM_DIR := resumed_model
+RESUME_STEPS := 0
+
+VOCAB_FILE := ident-vocab-$(VOCAB_SIZE)-entries.bpe
+VOCAB_PATH := out_vocab_$(LANG)/vocab-checkpoints/$(VOCAB_FILE)
+
+TFSERVING_NAME :=
+
+ifeq ($(LANG),go)
+	# VOCAB_RUNDB := s3://kite-data/run-db/2020-05-19T21:07:59Z_lexical-vocabgen-go
+	VOCAB_RUNDB := s3://kite-data/run-db/2020-08-09T21:24:05Z_lexical-vocabgen-go
+	TFSERVING_NAME := go-large
+endif
+ifeq ($(LANG),javascript)
+	VOCAB_RUNDB := s3://kite-data/run-db/2020-02-05T02:03:19Z_lexical-vocabgen-javascript
+	TFSERVING_NAME := js-large
+endif
+ifeq ($(LANG),python)
+	VOCAB_RUNDB := s3://kite-data/run-db/2020-03-13T01:55:15Z_lexical-vocabgen-python
+	TFSERVING_NAME := py-large
+endif
+ifeq ($(LANG),text__go)
+	# Golang text vocab, allow keywords to merge with hspace
+	# VOCAB_RUNDB := s3://kite-data/run-db/2020-09-04T01:36:06Z_lexical-vocabgen-text
+	# golang text vocab, allow keywords to merge with following hspace only
+	VOCAB_RUNDB := s3://kite-data/run-db/2020-09-15T21:29:59Z_lexical-vocabgen-text
+
+	# js/go/python normal run
+	# VOCAB_RUNDB := s3://kite-data/run-db/2020-09-18T19:11:52Z_lexical-vocabgen-text
+
+	# js/go/python with score normalization
+	# VOCAB_RUNDD := s3://kite-data/run-db/2020-09-20T01:49:13Z_lexical-vocabgen-text
+endif
+ifeq ($(LANG),text__javascript-jsx-vue-css-html-less-typescript-tsx)
+	# with max score normalization
+	# VOCAB_RUNDB := s3://kite-data/run-db/2020-09-22T19:39:55Z_lexical-vocabgen-text__javascript-jsx-vue-css-html-less-typescript-tsx
+	# with max score normalization + add symbol char class to split.go
+	VOCAB_RUNDB := s3://kite-data/run-db/2020-10-06T23:48:27Z_lexical-vocabgen-text__javascript-jsx-vue-css-html-less-typescript-tsx
+endif
+ifeq ($(LANG),text__java-scala-kotlin)
+	# with max score normalization
+	# VOCAB_RUNDB := s3://kite-data/run-db/2020-09-25T01:46:26Z_lexical-vocabgen-text__java-scala-kotlin
+
+	# with max score normalization + add symbol char class to split.go
+	VOCAB_RUNDB := s3://kite-data/run-db/2020-10-07T20:03:43Z_lexical-vocabgen-text__java-scala-kotlin
+endif
+ifeq ($(LANG),text__c-cpp-objectivec-csharp)
+	# with max score normalization
+	# VOCAB_RUNDB := s3://kite-data/run-db/2020-09-26T04:25:27Z_lexical-vocabgen-text__c-cpp-objectivec-csharp
+
+	# with max score normalization + add symbol char class to split.go
+	VOCAB_RUNDB := s3://kite-data/run-db/2020-10-08T04:59:43Z_lexical-vocabgen-text__c-cpp-objectivec-csharp
+endif
+ifeq ($(LANG),text__java)
+	# with max score normalization
+	VOCAB_RUNDB := s3://kite-data/run-db/2020-09-26T20:20:45Z_lexical-vocabgen-text__java
+endif
+ifeq ($(LANG),text__python-go-javascript-jsx-vue-css-html-less-typescript-tsx-java-scala-kotlin-c-cpp-objectivec-csharp-php-ruby-bash)
+	# with max score normalization
+	# VOCAB_RUNDB := s3://kite-data/run-db/2020-10-06T16:50:18Z_lexical-vocabgen-text__python-go-javascript-jsx-vue-css-html-less-typescript-tsx-java-scala-kotlin-c-cpp-objectivec-csharp-php-ruby-bash
+	# with max score normalization + add symbol char class to split.go
+	# VOCAB_RUNDB := s3://kite-data/run-db/2020-11-20T20:56:51Z_lexical-vocabgen-text__python-go-javascript-jsx-vue-css-html-less-typescript-tsx-java-scala-kotlin-c-cpp-objectivec-csharp-php-ruby-bash
+	# with all files
+	VOCAB_RUNDB := s3://kite-data/run-db/2020-12-01T20:55:31Z_lexical-vocabgen-text__python-go-javascript-jsx-vue-css-html-less-typescript-tsx-java-scala-kotlin-c-cpp-objectivec-csharp-php-ruby-bash
+endif
+ifeq ($(LANG),text__python-go-php-ruby-bash)
+	# with max score normalization + add symbol char class to split.go
+	VOCAB_RUNDB := s3://kite-data/run-db/2020-10-21T04:53:00Z_lexical-vocabgen-text__python-go-php-ruby-bash
+endif
+
+MODEL_TYPE := lexical
+MODEL_NAME := $(LANG)_$(MODEL_TYPE)_context_$(CONTEXT_SIZE)_embedding_$(EMBEDDING_SIZE)_layer_$(NUM_LAYERS)_head_$(NUM_HEADS)_vocab_$(VOCAB_SIZE)_steps_$(STEPS)_batch_$(BATCH)
+
+PWD := $(shell pwd)
+TENSORBOARD_DIR := ./out/tensorboard
+OUT_DIR := ./out_$(MODEL_NAME)
+TMP_DIR := ./tmp
+DATA_DIR := ./data
+GLOBAL_DATA_DIR := /data/lexical-training-data
+TRAIN_DIR := train
+VALIDATE_DIR := validate
+RUNDB :=
+
+DIRS_TO_CREATE := $(OUT_DIR) $(TMP_DIR) $(TENSORBOARD_DIR)
+
+TENSORBOARD_PATH := $(TENSORBOARD_DIR)/$(MODEL_NAME)
+SAVED_MODEL_PATH := saved_model
+TFSERVING_PATH := tfserving
+FROZEN_MODEL_PATH := lexical_model.frozen.pb
+CONFIG_FILE := config.json
+TEST_RESULT := result.csv
+CKPT_PATH := ckpt
+SEARCH_CONFIG_FILE := searchconfig.json
+
+DOCKER_IMAGE := tensorflow:local
+DOCKER_MNT := /training
+USER_ID := $(shell id -u)
+GROUP_ID := $(shell id -g)
+DOCKER_CMD_PREFIX := docker run -t --gpus all -v $(PWD):$(DOCKER_MNT) -v /data:/data -v /var/kite/bundle/cudacache:/cudacache -v $(KITECO_ROOT):$(KITECO_ROOT) -v /var/kite/bundle/bin:/var/kite/bundle/bin --user $(USER_ID):$(GROUP_ID) --rm $(DOCKER_IMAGE)
+HOROVOD_CMD_PREFIX := mpirun -np $(NUM_GPU) -H localhost:$(NUM_GPU) -bind-to none -map-by slot -x NCCL_DEBUG=INFO -x LD_LIBRARY_PATH -x PATH -mca pml ob1 -mca btl ^openib
+
+ifeq ($(LAMBDA_RUN),0)
+	DOCKER_MNT := ./
+	DOCKER_CMD_PREFIX :=
+	HOROVOD_CMD_PREFIX :=
+endif
+
+$(shell mkdir -p $(DIRS_TO_CREATE))
+
+slack:
+	slack -a -C info -t "$(MODEL_NAME)" "$(MSG) -- modelpath: $(RUNDB)/$(OUT_DIR)"
+
+clean:
+	rm -rf $(TMP_DIR)
+	rm -rf $(DATA_DIR)
+	rm -rf $(GLOBAL_DATA_DIR)/*
+
+start_tensorboard:
+	tensorboard --logdir=$(TENSORBOARD_DIR)
+
+fetch_vocab:
+	rundb get-artifact $(VOCAB_RUNDB) $(VOCAB_PATH) $(TMP_DIR)/$(VOCAB_FILE)
+	mv $(TMP_DIR)/$(VOCAB_FILE) $(OUT_DIR)/ident-vocab-entries.bpe
+
+datagen_on_cluster:
+	chmod +x ./scripts/datagen.sh
+	./scripts/datagen.sh \
+		--model=$(MODEL_NAME) \
+		--lang=$(LANG) \
+		--vocab=$(OUT_DIR)/ident-vocab-entries.bpe \
+		--contextsize=$(CONTEXT_SIZE) \
+		--batchsize=$(BATCH) \
+		--steps=$(STEPS) \
+		--traindir=$(GLOBAL_DATA_DIR)/$(TRAIN_DIR) \
+		--validatedir=$(GLOBAL_DATA_DIR)/$(VALIDATE_DIR) \
+		--numgpu=$(NUM_GPU) \
+		--tmpdir=$(TMP_DIR)
+
+train_on_cluster:
+	configgen \
+		--lang=$(LANG) \
+		--vocabsize=$(VOCAB_SIZE) \
+		--embeddingsize=$(EMBEDDING_SIZE) \
+		--contextsize=$(CONTEXT_SIZE) \
+		--numheads=$(NUM_HEADS) \
+		--numlayers=$(NUM_LAYERS) \
+		--numpredictionslots=$(NUM_PREDICTION_SLOTS) \
+    	--modeltype=$(MODEL_TYPE) \
+		--output=$(TMP_DIR)/$(CONFIG_FILE)
+	mv $(TMP_DIR)/$(CONFIG_FILE) $(OUT_DIR)/$(CONFIG_FILE)
+	$(DOCKER_CMD_PREFIX) \
+		$(HOROVOD_CMD_PREFIX) \
+		python $(DOCKER_MNT)/train.py \
+		--steps=$(STEPS) \
+		--config=$(DOCKER_MNT)/$(OUT_DIR)/$(CONFIG_FILE) \
+		--train_batch_size=$(BATCH) \
+		--validate_batch_size=$(BATCH) \
+		--train_samples=$(GLOBAL_DATA_DIR)/$(TRAIN_DIR) \
+		--validate_samples=$(GLOBAL_DATA_DIR)/$(VALIDATE_DIR) \
+		--checkpoint_path=$(DOCKER_MNT)/$(DATA_DIR)/$(CKPT_PATH) \
+		--out_dir=$(DOCKER_MNT)/$(TMP_DIR)/$(SAVED_MODEL_PATH) \
+		--tensorboard=$(DOCKER_MNT)/$(TENSORBOARD_PATH)
+	mv $(TMP_DIR)/$(SAVED_MODEL_PATH) $(OUT_DIR)
+
+generate_local_model:
+	$(DOCKER_CMD_PREFIX) \
+		python $(DOCKER_MNT)/local_model.py \
+		--in_saved_model=$(DOCKER_MNT)/$(OUT_DIR)/$(SAVED_MODEL_PATH) \
+		--config=$(DOCKER_MNT)/$(OUT_DIR)/$(CONFIG_FILE) \
+		--out_frozen_model=$(DOCKER_MNT)/$(TMP_DIR)/$(FROZEN_MODEL_PATH)
+	mv $(TMP_DIR)/$(FROZEN_MODEL_PATH) $(OUT_DIR)
+
+generate_tfserving_model:
+	$(DOCKER_CMD_PREFIX) \
+		python $(DOCKER_MNT)/tfserve_model.py \
+		--in_saved_model=$(DOCKER_MNT)/$(OUT_DIR)/$(SAVED_MODEL_PATH) \
+		--config=$(DOCKER_MNT)/$(OUT_DIR)/$(CONFIG_FILE) \
+		--search_config=$(DOCKER_MNT)/$(OUT_DIR)/$(SEARCH_CONFIG_FILE) \
+		--out_saved_model=$(DOCKER_MNT)/$(TMP_DIR)/$(TFSERVING_PATH)/1
+
+	$(DOCKER_CMD_PREFIX) \
+		python $(DOCKER_MNT)/tfserve_warmup_assets.py \
+		--model=$(TFSERVING_NAME) \
+		--config=$(DOCKER_MNT)/$(OUT_DIR)/$(CONFIG_FILE) \
+		--out_assets_extra=$(DOCKER_MNT)/$(TMP_DIR)/$(TFSERVING_PATH)/1
+
+	cp $(OUT_DIR)/$(CONFIG_FILE) $(TMP_DIR)/$(TFSERVING_PATH)/1/assets.extra/
+	cp $(OUT_DIR)/$(SEARCH_CONFIG_FILE) $(TMP_DIR)/$(TFSERVING_PATH)/1/assets.extra/
+	cp $(OUT_DIR)/ident-vocab-entries.bpe $(TMP_DIR)/$(TFSERVING_PATH)/1/assets.extra/
+
+	mv $(TMP_DIR)/$(TFSERVING_PATH) $(OUT_DIR)
+
+model_from_checkpoint:
+	$(DOCKER_CMD_PREFIX) \
+		python $(DOCKER_MNT)/model_from_checkpoint.py \
+		--load_checkpoint=$(DOCKER_MNT)/$(DATA_DIR) \
+		--config=$(DOCKER_MNT)/$(OUT_DIR)/$(CONFIG_FILE) \
+		--out_dir=$(DOCKER_MNT)/$(TMP_DIR)/$(SAVED_MODEL_PATH)
+	mv $(TMP_DIR)/$(SAVED_MODEL_PATH) $(OUT_DIR)
+
+searchconfiggen_on_cluster:
+	# initial search config
+	searchconfiggen \
+		--lang=$(LANG) \
+		--modeltype=$(MODEL_TYPE) \
+		--out=$(OUT_DIR)/$(SEARCH_CONFIG_FILE)
+
+	# calibration before temperature scaling
+	calibration \
+		--lang=$(LANG) \
+		--modelpath=$(OUT_DIR) \
+		--outdir=$(TMP_DIR)/calibration_original \
+		--search=$(OUT_DIR)/$(SEARCH_CONFIG_FILE) \
+		--localdataroot=$(KITECO_ROOT)
+
+	# # temperature scaling (updates search config)
+	# traindata_temperature_scaling \
+	# 	--lang=$(LANG) \
+	# 	--modelpath=$(OUT_DIR) \
+	# 	--traindir=$(TMP_DIR)/temperature_scaling/train_samples \
+	# 	--validatedir=$(TMP_DIR)/temperature_scaling/validate_samples \
+  	#	--search=$(TMP_DIR)/$(SEARCH_CONFIG_FILE) \
+	# 	--localdataroot=$(KITECO_ROOT)
+
+	# $(DOCKER_CMD_PREFIX) \
+	# 	python $(DOCKER_MNT)/cmds/calibrate-temperature-scaling/train/train_temperature_scaling.py \
+	# 	--insearch=$(DOCKER_MNT)/$(TMP_DIR)/$(SEARCH_CONFIG_FILE) \
+	# 	--outsearch=$(DOCKER_MNT)/$(TMP_DIR)/$(SEARCH_CONFIG_FILE) \
+	# 	--train_samples=$(DOCKER_MNT)/$(TMP_DIR)/temperature_scaling/train_samples \
+	# 	--validate_samples=$(DOCKER_MNT)/$(TMP_DIR)/temperature_scaling/validate_samples
+
+	# # calibration after temperature scaling
+	# calibration \
+	# 	--lang=$(LANG) \
+	# 	--modelpath=$(OUT_DIR) \
+	# 	--outdir=$(TMP_DIR)/calibration_final \
+  	#	--search=$(TMP_DIR)/$(SEARCH_CONFIG_FILE) \
+	# 	--localdataroot=$(KITECO_ROOT)
+
+	# min p computation (updates search config)
+	minp \
+		--modelpath=$(OUT_DIR) \
+		--insearch=$(OUT_DIR)/$(SEARCH_CONFIG_FILE) \
+		--outsearch=$(OUT_DIR)/$(SEARCH_CONFIG_FILE) \
+		--language=$(LANG)
+
+	# done
+	mv $(TMP_DIR)/calibration_original $(OUT_DIR)/calibration_original
+	# mv $(TMP_DIR)/calibration_final $(OUT_DIR)/calibration_final
+	# mv $(TMP_DIR)/$(SEARCH_CONFIG_FILE) $(OUT_DIR)/$(SEARCH_CONFIG_FILE)
+
+upload:
+	cp -r logs $(OUT_DIR)
+	cp -r data $(OUT_DIR)
+	rundb add-artifact $(RUNDB) $(OUT_DIR) $(OUT_DIR) --recursive
+	rundb add-artifact $(RUNDB) $(TENSORBOARD_DIR) tensorboard --recursive
+
+test_on_cluster: $(OUT_DIR)/$(FROZEN_MODEL_PATH)
+	performance \
+		--lang=$(LANG) \
+		--search=$(OUT_DIR)/$(SEARCH_CONFIG_FILE) \
+		--localdataroot=$(KITECO_ROOT) \
+		--modelpath=$(OUT_DIR) \
+		--resultpath=$(TMP_DIR)/$(TEST_RESULT)
+	mv $(TMP_DIR)/$(TEST_RESULT) $(OUT_DIR)
+
+# RESUME MODEL TRAINING
+
+configure_resume:
+	# Generate config.json
+	configgen \
+		--lang=$(LANG) \
+		--vocabsize=$(VOCAB_SIZE) \
+		--embeddingsize=$(EMBEDDING_SIZE) \
+		--contextsize=$(CONTEXT_SIZE) \
+		--numheads=$(NUM_HEADS) \
+		--numlayers=$(NUM_LAYERS) \
+		--numpredictionslots=$(NUM_PREDICTION_SLOTS) \
+		--output=$(TMP_DIR)/$(CONFIG_FILE)
+
+	# Assert config.json is compatiable with model we want to resume,
+	# and download model locally
+	resume-training \
+		--resumefrom=$(RESUME_FROM) \
+		--configinput= $(TMP_DIR)/$(CONFIG_FILE) \
+		--configoutput= $(TMP_DIR)/$(CONFIG_FILE) \
+		--output=$(RESUME_FROM_DIR) \
+		--steps=$(RESUME_STEPS)
+	mv $(TMP_DIR)/$(CONFIG_FILE) $(OUT_DIR)/$(CONFIG_FILE)
+
+	# Copy the vocab
+	cp $(RESUME_FROM_DIR)/ident-vocab-entries.bpe $(OUT_DIR)/ident-vocab-entries.bpe
+	echo "RESUMED FROM $(RESUME_FROM)" > $(OUT_DIR)/RESUMED.txt
+
+resume_datagen_on_cluster:
+	chmod +x ./scripts/datagen.sh
+	./scripts/datagen.sh \
+		--model=$(MODEL_NAME) \
+		--lang=$(LANG) \
+		--vocab=$(OUT_DIR)/ident-vocab-entries.bpe \
+		--contextsize=$(CONTEXT_SIZE) \
+		--batchsize=$(BATCH) \
+		--steps=$(STEPS) \
+		--skipsteps=$(shell cat $(RESUME_FROM_DIR)/steps) \
+		--traindir=$(GLOBAL_DATA_DIR)/$(TRAIN_DIR) \
+		--validatedir=$(GLOBAL_DATA_DIR)/$(VALIDATE_DIR) \
+		--numgpu=$(NUM_GPU) \
+		--tmpdir=$(TMP_DIR)
+
+resume_train_on_cluster:
+	# Resume training
+	$(DOCKER_CMD_PREFIX) \
+		$(HOROVOD_CMD_PREFIX) \
+		python $(DOCKER_MNT)/train.py \
+		--resume_model=$(DOCKER_MNT)/resumed_model/$(SAVED_MODEL_PATH) \
+		--resume_steps=$(shell cat $(RESUME_FROM_DIR)/steps) \
+		--steps=$(STEPS) \
+		--config=$(DOCKER_MNT)/$(OUT_DIR)/$(CONFIG_FILE) \
+		--train_batch_size=$(BATCH) \
+		--validate_batch_size=$(BATCH) \
+		--train_samples=$(GLOBAL_DATA_DIR)/$(TRAIN_DIR) \
+		--validate_samples=$(GLOBAL_DATA_DIR)/$(VALIDATE_DIR) \
+		--checkpoint_path=$(DOCKER_MNT)/$(DATA_DIR)/$(CKPT_PATH) \
+		--out_dir=$(DOCKER_MNT)/$(TMP_DIR)/$(SAVED_MODEL_PATH) \
+		--tensorboard=$(DOCKER_MNT)/$(TENSORBOARD_PATH)
+	mv $(TMP_DIR)/$(SAVED_MODEL_PATH) $(OUT_DIR)

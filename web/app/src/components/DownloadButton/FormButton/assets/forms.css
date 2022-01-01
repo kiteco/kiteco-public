@@ -1,0 +1,45 @@
+.form__row{
+  margin-bottom: 2.5em;
+  position:relative;
+}
+
+.form__row--last{
+  margin-bottom:0;
+}
+.form__row__error{
+  position:absolute;
+  right:0;
+  top: 100%;
+  color:#f00;
+  font-size: 12px;
+  line-height:20px;
+  transition: 300ms linear;
+}
+
+.form__success, .form__error {
+  font-size: 1.6rem;
+}
+
+.form__row--important{
+  border-top:3px solid #ccc;
+  border-radius: 0 0 5px 5px;
+  background:#fafafa;
+  padding: 5px 15px;
+  margin: 25px 0;
+}
+
+.form__row--important.form__row--with-error{
+  border-color:rgba(255,0,0,0.5);
+  background: rgba(255,0,0,0.2);
+  color:#f00;
+}
+
+.form__row--hidden{
+  display:none;
+}
+
+.form__contact-us-main-error {
+  margin: 5px 0 0;
+  left: 0;
+  right: 0;
+}

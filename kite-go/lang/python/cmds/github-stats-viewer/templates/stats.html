@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Github Package Stats</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+        <style>
+        body {
+            padding: 20px;
+        }
+        td {
+            font-family: monospace;
+        }
+        </style>
+    </head>
+    <body>
+      <div class="table">
+        <table class="table table-striped">
+          <tbody>
+          <tr>
+            <td colspan="3"><b>Name</b></td>
+            <td colspan="3">{{.Stats.Name}}</td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>Count</b></td>
+            <td colspan="3">{{.Stats.Count | comma}}</td>
+          </tr>
+          <tr>
+              <td colspan="3"><b>{{if .Stats.InGraph}}In Graph{{else}}Not In Graph{{end}}</b></td>
+              <td colspan="3">{{if .Stats.InGraph}}<a href="{{.Stats.Node | nodeURL}}">{{.Stats.AnyName}}</a>{{end}}</td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>Members</b></td>
+          </tr>  
+          {{range $i,$m := .Stats.Members | sort}}
+            <tr>
+              <td colspan="3">{{add $i 1}}) <a style="color:{{$m | color}}" href="{{$m | statsURL}}">{{$m.Name}}</a></td>
+              <td colspan="3">{{if $m.InGraph}}<a href="{{$m.Node | nodeURL}}">{{$m.AnyName}}</a>{{end}}</td>
+              <td colspan="3">{{$m.Count | comma}} </td>
+            </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </body>
+  </div>
+</html>

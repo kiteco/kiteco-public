@@ -1,0 +1,194 @@
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+
+}
+
+h2, h3, h4, h5 {
+	font-family: 'Helvetica Neue', sans-serif;
+	font-weight: 200;
+	margin: 0;
+	padding: 10px;
+}
+.pageTitle {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	box-sizing: border-box;
+	font-family: 'Helvetica Neue', sans-serif;
+	font-weight: 200;
+	font-size: 19px;
+	padding: 0 10px;
+}
+
+.wrapper {
+	width: 100%;
+	height: calc(100% - 40px);
+	display: flex;
+}
+
+
+.leftPanel {
+	width: 40%;
+	font-family: 'Helvetica Neue', sans-serif;
+	background-color: #D5E4F1;
+	overflow: auto;
+	font-weight: 200;
+}
+
+.leftPanel .content {
+	box-sizing: border-box;
+}
+
+
+.leftPanel .content ul {
+	padding-left: 0;
+	list-style-type: none;
+	margin: 0;
+}
+
+.leftPanel .content ul a {
+	text-decoration: none;
+	color: black;
+}
+
+.leftPanel .content ul a li {
+	text-decoration: none;
+	color: black;
+	margin-top: 1px;
+}
+
+.leftPanel .content ul li {
+	padding: 10px;
+	background-color: #85B0E8;
+	cursor: pointer;
+	transition: 250ms background-color;
+}
+
+.leftPanel .content ul li:hover {
+	background-color: #BFD6F3;
+}
+
+.leftPanel .content ul li.active {
+	background-color: white;
+}
+
+.rightPanel {
+	width: 70%;
+	overflow: auto;
+}
+
+.rightPanel .content {
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.rightPanel .ndcg {
+	margin-bottom: 20px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.ndcg .diffLabel {
+	width: 45% !important;
+	background-color: #A7D2F9 !important;
+}
+
+.ndcg .diffCount {
+	width: 45% !important;
+	background-color: #8EC4F5 !important;
+}
+
+.rightPanel .snippet {
+	margin-bottom: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid black;
+}
+
+.score, .titleScore  {
+	color: black;
+    font-family: 'Helvetica Neue', sans-serif;
+    text-align: center;
+}
+
+.score .scoreLabel {
+    font-weight: bold;
+    display: inline-block;
+    width: 100px;
+    padding: 5px;
+    font-size: 13px;
+    background-color: rgba(162, 188, 216, 1);
+}
+
+.score .scoreCount {
+    padding: 5px;
+    background-color: rgba(186, 215, 226, 1);
+
+}
+
+.titleScore .diffLabel {
+	display: inline-block;
+    width: 250px;
+    text-align: center;
+    padding: 5px;
+    font-size: 13px;
+
+}
+
+.score .diffLabel {
+    font-weight: bold;
+    display: inline-block;
+    width: 250px;
+    height: 25px;
+    line-height: 25px;
+    text-align: right;
+    padding: 5px;
+    font-size: 13px;
+    background-color: rgb(243, 241, 217);
+    vertical-align: middle;
+}
+
+.score .diffCount {
+    padding: 5px;
+    text-align: left;
+    font-size: 13px;
+    width: 150px;
+    height: 25px;
+    line-height: 25px;
+    display: inline-block;
+    background-color: rgba(244, 212, 153, 1);
+    vertical-align: middle;
+}
+
+.result .title {
+	background-color: rgb(16, 120, 194);
+	color: white;
+	padding: 10px;
+	font-size:14px;
+	font-family: 'Helvetica Neue', sans-serif;
+}
+
+pre {
+	background-color: #222;
+	color: white;
+	box-sizing: border-box;
+	line-height: 15px;
+	padding: 10px;
+	margin: 0;
+}
+
+
+.innerCode {
+	position: relative;
+	width: 100%;
+}
+
+.scores {
+	text-align: center;
+	margin-bottom: 10px;
+}

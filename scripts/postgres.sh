@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+psql -U postgres -c "create user communityuser with password 'XXXXXXX';"
+psql -U postgres -c "alter role communityuser with superuser;"
+psql -U postgres -c "create database community_test;"
+psql -U postgres -c "create user accountuser with password 'XXXXXXX';"
+psql -U postgres -c "alter role accountuser with superuser;"
+psql -U postgres -c "create database account_test;"
+psql -U postgres -c "create user localfilesuser with password 'XXXXXXX';"
+psql -U postgres -c "alter role localfilesuser with superuser;"
+psql -U postgres -c "create database localfiles_test;"

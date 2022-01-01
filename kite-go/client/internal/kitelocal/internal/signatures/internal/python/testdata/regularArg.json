@@ -1,0 +1,457 @@
+{
+  "language": "python",
+  "callee": {
+    "id": "python;",
+    "kind": "function",
+    "repr": "myFunc",
+    "type": "FunctionType",
+    "type_id": "python;types.FunctionType",
+    "synopsis": "",
+    "detail": {
+      "parameters": [
+        {
+          "name": "first",
+          "default_value": [
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "str",
+              "type": "str",
+              "type_id": "python;__builtin__.str"
+            }
+          ],
+          "inferred_value": [
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "str",
+              "type": "str",
+              "type_id": "python;__builtin__.str"
+            },
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "str",
+              "type": "str",
+              "type_id": "python;__builtin__.str"
+            }
+          ],
+          "annotation": null,
+          "keyword_only": false,
+          "synopsis": "",
+          "language_details": {
+            "python": {
+              "default_value": [
+                {
+                  "id": "python;",
+                  "kind": "instance",
+                  "repr": "str",
+                  "type": "str",
+                  "type_id": "python;__builtin__.str"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false
+            }
+          }
+        },
+        {
+          "name": "second",
+          "default_value": [
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "str",
+              "type": "str",
+              "type_id": "python;__builtin__.str"
+            }
+          ],
+          "inferred_value": [
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "str",
+              "type": "str",
+              "type_id": "python;__builtin__.str"
+            },
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "str",
+              "type": "str",
+              "type_id": "python;__builtin__.str"
+            }
+          ],
+          "annotation": null,
+          "keyword_only": false,
+          "synopsis": "",
+          "language_details": {
+            "python": {
+              "default_value": [
+                {
+                  "id": "python;",
+                  "kind": "instance",
+                  "repr": "str",
+                  "type": "str",
+                  "type_id": "python;__builtin__.str"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false
+            }
+          }
+        }
+      ],
+      "kwarg": {
+        "name": "kwargs",
+        "default_value": null,
+        "inferred_value": null,
+        "annotation": null,
+        "keyword_only": false,
+        "synopsis": "",
+        "language_details": {
+          "python": null
+        }
+      },
+      "kwarg_parameters": [
+        {
+          "name": "kw1",
+          "default_value": null,
+          "inferred_value": [
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "str",
+              "type": "str",
+              "type_id": "python;__builtin__.str"
+            }
+          ],
+          "annotation": null,
+          "keyword_only": false,
+          "synopsis": "",
+          "language_details": {
+            "python": null
+          }
+        },
+        {
+          "name": "kw2",
+          "default_value": null,
+          "inferred_value": [
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "str",
+              "type": "str",
+              "type_id": "python;__builtin__.str"
+            }
+          ],
+          "annotation": null,
+          "keyword_only": false,
+          "synopsis": "",
+          "language_details": {
+            "python": null
+          }
+        }
+      ],
+      "return_value": null,
+      "return_annotation": null,
+      "signatures": [],
+      "language_details": {
+        "python": {
+          "kwarg": {
+            "name": "kwargs",
+            "default_value": null,
+            "inferred_value": null,
+            "annotation": null,
+            "keyword_only": false,
+            "synopsis": "",
+            "language_details": {
+              "python": null
+            }
+          },
+          "kwarg_parameters": [
+            {
+              "name": "kw1",
+              "default_value": null,
+              "inferred_value": [
+                {
+                  "id": "python;",
+                  "kind": "instance",
+                  "repr": "str",
+                  "type": "str",
+                  "type_id": "python;__builtin__.str"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": null
+              }
+            },
+            {
+              "name": "kw2",
+              "default_value": null,
+              "inferred_value": [
+                {
+                  "id": "python;",
+                  "kind": "instance",
+                  "repr": "str",
+                  "type": "str",
+                  "type_id": "python;__builtin__.str"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": null
+              }
+            }
+          ],
+          "return_annotation": null
+        }
+      }
+    },
+    "details": {
+      "function": {
+        "parameters": [
+          {
+            "name": "first",
+            "default_value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              }
+            ],
+            "inferred_value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              },
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              }
+            ],
+            "annotation": null,
+            "keyword_only": false,
+            "synopsis": "",
+            "language_details": {
+              "python": {
+                "default_value": [
+                  {
+                    "id": "python;",
+                    "kind": "instance",
+                    "repr": "str",
+                    "type": "str",
+                    "type_id": "python;__builtin__.str"
+                  }
+                ],
+                "annotation": null,
+                "keyword_only": false
+              }
+            }
+          },
+          {
+            "name": "second",
+            "default_value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              }
+            ],
+            "inferred_value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              },
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              }
+            ],
+            "annotation": null,
+            "keyword_only": false,
+            "synopsis": "",
+            "language_details": {
+              "python": {
+                "default_value": [
+                  {
+                    "id": "python;",
+                    "kind": "instance",
+                    "repr": "str",
+                    "type": "str",
+                    "type_id": "python;__builtin__.str"
+                  }
+                ],
+                "annotation": null,
+                "keyword_only": false
+              }
+            }
+          }
+        ],
+        "kwarg": {
+          "name": "kwargs",
+          "default_value": null,
+          "inferred_value": null,
+          "annotation": null,
+          "keyword_only": false,
+          "synopsis": "",
+          "language_details": {
+            "python": null
+          }
+        },
+        "kwarg_parameters": [
+          {
+            "name": "kw1",
+            "default_value": null,
+            "inferred_value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              }
+            ],
+            "annotation": null,
+            "keyword_only": false,
+            "synopsis": "",
+            "language_details": {
+              "python": null
+            }
+          },
+          {
+            "name": "kw2",
+            "default_value": null,
+            "inferred_value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              }
+            ],
+            "annotation": null,
+            "keyword_only": false,
+            "synopsis": "",
+            "language_details": {
+              "python": null
+            }
+          }
+        ],
+        "return_value": null,
+        "return_annotation": null,
+        "signatures": [],
+        "language_details": {
+          "python": {
+            "kwarg": {
+              "name": "kwargs",
+              "default_value": null,
+              "inferred_value": null,
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": null
+              }
+            },
+            "kwarg_parameters": [
+              {
+                "name": "kw1",
+                "default_value": null,
+                "inferred_value": [
+                  {
+                    "id": "python;",
+                    "kind": "instance",
+                    "repr": "str",
+                    "type": "str",
+                    "type_id": "python;__builtin__.str"
+                  }
+                ],
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": null
+                }
+              },
+              {
+                "name": "kw2",
+                "default_value": null,
+                "inferred_value": [
+                  {
+                    "id": "python;",
+                    "kind": "instance",
+                    "repr": "str",
+                    "type": "str",
+                    "type_id": "python;__builtin__.str"
+                  }
+                ],
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": null
+                }
+              }
+            ],
+            "return_annotation": null
+          }
+        }
+      },
+      "type": null,
+      "instance": null,
+      "module": null
+    }
+  },
+  "report": {
+    "definition": {
+      "filename": "/home/jansorg/self-employment/customers/kite.com/source/python-test/TestModule/test3.py",
+      "line": 1
+    },
+    "description_text": "",
+    "description_html": "",
+    "examples": null,
+    "usages": [
+      {
+        "code": "myFunc(kw1=\"kw1 value\", kw2=\"kw2 value\")",
+        "filename": "/home/jansorg/self-employment/customers/kite.com/source/python-test/TestModule/test3.py",
+        "line": 4,
+        "begin_bytes": 106,
+        "begin_runes": 106
+      },
+      {
+        "code": "myFunc(first=\"my 1st\", second=\"my 2nd\")",
+        "filename": "/home/jansorg/self-employment/customers/kite.com/source/python-test/TestModule/test3.py",
+        "line": 5,
+        "begin_bytes": 147,
+        "begin_runes": 147
+      }
+    ],
+    "total_usages": 2,
+    "links": null,
+    "total_links": 0
+  },
+  "signatures": []
+}

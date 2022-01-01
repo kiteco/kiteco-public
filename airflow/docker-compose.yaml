@@ -1,0 +1,71 @@
+version: "3"
+services:
+  postgres:
+    image: "postgres:9.6"
+    container_name: "postgres"
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=XXXXXXX
+      - POSTGRES_DB=airflow
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./dev/data/postgres:/var/lib/postgresql/data
+  initdb:
+    build:
+      context: ../
+      dockerfile: ./airflow/Dockerfile
+    entrypoint: airflow initdb
+    depends_on:
+      - postgres
+    volumes:
+      - ./conf/dev:/opt/airflow/conf
+      - $HOME/.aws/:/home/airflow/.aws
+  webserver:
+    build:
+      context: ../
+      dockerfile: ./airflow/Dockerfile
+    restart: always
+    depends_on:
+      - initdb
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_SESSION_TOKEN
+    volumes:
+      - ../:/opt/airflow/kiteco
+      - ./conf/dev:/opt/airflow/conf
+      - ./dev/logs:/opt/airflow/logs
+      - $HOME/.aws/:/home/airflow/.aws
+    ports:
+      - "8080:8080"
+    entrypoint: airflow webserver
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /opt/airflow/airflow-webserver.pid ]"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+  scheduler:
+    build:
+      context: ../
+      dockerfile: ./airflow/Dockerfile
+    restart: always
+    depends_on:
+      - initdb
+    environment:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_SESSION_TOKEN
+    volumes:
+      - ../:/opt/airflow/kiteco
+      - ./conf/dev:/opt/airflow/conf
+      - ./dev/logs:/opt/airflow/logs
+      - $HOME/.aws/:/home/airflow/.aws
+    ports:
+      - "8793:8793"
+    entrypoint: airflow scheduler
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /opt/airflow/airflow-scheduler.pid ]"]
+      interval: 30s
+      timeout: 30s
+      retries: 3

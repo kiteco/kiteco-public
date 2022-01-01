@@ -1,0 +1,36 @@
+.ModuleNav .with-popularity li {
+  position: relative;
+}
+.ModuleNav .with-popularity li:before,
+.ModuleNav .with-popularity li:after {
+  content: '';
+  width: 13px;
+  height: 12px;
+  position: absolute;
+  top: 7px;
+  left: -24px;
+}
+.ModuleNav .with-popularity li:before {
+  background: var(--text-very-subtle);
+  -webkit-mask: url(popularity-bars.svg);
+  -webkit-mask-repeat: no-repeat;
+}
+.ModuleNav .with-popularity li:after {
+  background: var(--text-subtle);
+  -webkit-mask: url(popularity-bars.svg);
+  -webkit-mask-repeat: no-repeat;
+  width: 0;
+}
+.ModuleNav .with-popularity li[data-popularity='0']:after { width: 0; }
+.ModuleNav .with-popularity li[data-popularity='1']:after { width: 1px; }
+.ModuleNav .with-popularity li[data-popularity='2']:after { width: 4px; }
+.ModuleNav .with-popularity li[data-popularity='3']:after { width: 7px; }
+.ModuleNav .with-popularity li[data-popularity='4']:after { width: 10px; }
+.ModuleNav .with-popularity li[data-popularity='5']:after { width: 13px; }
+
+nav.ModuleNav {
+  grid-column: index-start / item-start;
+  grid-row: 2 / -1;
+  padding-left: var(--padding-2);
+  position: sticky;
+}

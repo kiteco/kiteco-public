@@ -1,0 +1,27 @@
+@import url("index.css");
+
+.annotationBlock {
+  flex: 0 1 20%;
+  vertical-align: baseline;
+}
+
+.annotationBlock p {
+  border-left: 1px solid var(--hover);
+  color: var(--hover); /* Reuse orange from link hover color */
+
+  font-size: 15px;
+  line-height: 1.5;
+  word-break: break-word;
+  word-wrap: break-word;
+
+  margin-left: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.annotationBlock p:first-child {
+  margin-top: 0;
+}
+
+.annotationBlock p:last-child {
+  margin-bottom: 0;
+}

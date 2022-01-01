@@ -1,0 +1,109 @@
+{
+  package pigeon
+
+  import (
+    "errors"
+  )
+}
+
+Grammar <- _ W* spec:ArgSpec (W / EOL)
+  // Return an *ArgSpec struct.
+  {
+    return grammarAction(c, spec.(*pythonimports.ArgSpec))
+  }
+
+ArgSpec <- IDList W* args:ArgsDecl
+  // Returns an *ArgSpec struct with the Args field filled.
+  {
+    return argSpecAction(c, args.([]pythonimports.Arg))
+  }
+
+IDList <- first:ID rest:( '.' ID )*
+  // Returns the string corresponding to the fully qualified ID.
+  {
+    return idListAction(c, first.(string), toIfaceSlice(rest))
+  }
+
+ArgsDecl <- '(' W* list:ArgsList? W* ')'
+  // Returns a []Arg slice.
+  {
+    return argsDeclAction(c, list)
+  }
+
+ArgsList <- first:ArgDef rest:( W* ',' W* ArgDef )*
+  // Returns a []Arg slice.
+  {
+    return argsListAction(c, first.(pythonimports.Arg), toIfaceSlice(rest))
+  }
+
+ArgDef <- delim1:( OptionalDelimiter W* )? name:( ( "**" / "*" )? ID / "..." / "/" / "*" ) value:( W* '=' Literal )? delim2:OptionalDelimiter?
+  // Returns an Arg struct. At this point, "*" or "**" is stored as part of the
+  // Arg.Name. It is extracted into Vararg or Kwarg in the top-level Grammar action.
+  {
+    var startDelim, endDelim string
+    if delim1 != nil {
+      startDelim = toIfaceSlice(delim1)[0].(string)
+    }
+    if delim2 != nil {
+      endDelim = delim2.(string)
+    }
+    return argDefAction(c, name, toIfaceSlice(value), startDelim, endDelim)
+  }
+
+// The optional delimiter is loosely accepted so the parsing of the argspec won't fail if
+// it has unmatched or invalid delimiters. The delimiter ends up being part of the arg
+// name during parsing, and in the grammar action at the end it is removed from the name
+// and applied to arguments within the delimiters.
+OptionalDelimiter <- W* delim:( '[' / ']' )
+  // Returns a string, the optional delimiter that matched.
+  {
+    return string(delim.([]byte)), nil
+  }
+
+// Literal parses any ID-like value (e.g. var_name, foo.bar.baz,
+// True, None, etc.), a numeric literal and a string literal.
+// TODO: support also lists, dict/set, tuple?
+Literal <- W* lit:( StringValue / IDList / NumValue )
+  // Returns a string.
+  {
+    return lit.(string), nil
+  }
+
+NumValue <- [0-9]+ ( '.' [0-9]+ )?      // TODO: more complex than this
+  // Returns the matched text as a string.
+  {
+    return string(c.text), nil
+  }
+
+// TODO: support the full string literal notations
+// (i.e. prefixes, escapes, triple-quoted, etc.)?
+StringValue <- ( DoubleQuotedString / SingleQuotedString )
+  // Returns the matched text as a string.
+  {
+    return string(c.text), nil
+  }
+DoubleQuotedString <- '"' ( ![\r\n"] . )* '"'
+SingleQuotedString <- '\'' ( ![\r\n'] . )* '\''
+
+/*
+ * Identifiers
+ * https://docs.python.org/3/reference/lexical_analysis.html#identifiers
+*/
+ID <- IDStart IDContinue*
+  // Returns a string corresponding to the ID.
+  {
+    return string(c.text), nil
+  }
+
+IDStart <- [\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}_] / OtherIDStart
+OtherIDStart <- [\u1885-\u1886\u2118\u212E\u309B-\u309C]
+IDContinue <- IDStart / [\p{Mn}\p{Mc}\p{Nd}\p{Pc}] / OtherIDContinue
+OtherIDContinue <- [\u00B7\u0387\u1369-\u1371\u19DA]
+
+EOL <- ( '\r' '\n' / '\r' / '\n' )
+
+W "whitespace" <- [ \t\f]
+BlankLine <- W* EOL
+_ <- BlankLine*
+
+EOF <- !.

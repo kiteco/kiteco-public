@@ -1,0 +1,12 @@
+package dynamicanalysis
+
+import "flag"
+
+var dockerTests bool
+
+func init() {
+	flag.BoolVar(&dockerTests,
+		"docker",
+		false,
+		"run tests that require docker")
+}

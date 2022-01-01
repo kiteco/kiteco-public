@@ -1,0 +1,6 @@
+FROM kiteco/python-import-exploration
+
+# not necessary once the next version of splinter is out: https://github.com/cobrateam/splinter/pull/672
+RUN python -m pip install six splinter==0.10.0
+
+ENTRYPOINT ["/usr/bin/env", "python", "-m", "kite.pkgexploration", "splinter", "0.10.0", "splinter__0.10.0.json", "splinter__0.10.0.log"]

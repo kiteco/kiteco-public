@@ -1,0 +1,14 @@
+platform: linux
+image_resource:
+  type: docker-image
+  source: {repository: kiteco/concourse}
+
+inputs:
+- name: kiteco
+  path: gopath/src/github.com/kiteco/kiteco
+outputs:
+- name: build
+
+run:
+  path: gopath/src/github.com/kiteco/kiteco/concourse/tasks/build-go/run.bash
+  args: [((input_file)), ((output_file_prefix))]

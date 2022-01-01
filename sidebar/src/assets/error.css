@@ -1,0 +1,66 @@
+/* TODO: Not using color variables yet, doesn’t have to be themed. */
+
+.global-error {
+  color: white;
+  background: red;
+  padding: 1rem;
+}
+
+.global-error--hide {
+  visibility: hidden;
+  display: none;
+}
+
+.app__error-overlay {
+  position: absolute;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10rem 2rem;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.app__error-overlay--see-through {
+  opacity: 0.6;
+  backdrop-filter: blur(5px);
+}
+
+.app__error-overlay > div {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.app__error-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+
+.app__error-subtitle {
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+.app__error-button {
+  background-color: #1283e6;
+  opacity: 0.8;
+  padding: 2rem;
+  border-radius: 2rem;
+  font-size: 2.5rem;
+  font-weight: 200;
+  cursor: pointer;
+  transition: 250ms all;
+}
+
+.app__error-button:hover {
+  opacity: 1;
+}

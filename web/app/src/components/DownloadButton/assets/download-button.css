@@ -1,0 +1,76 @@
+.download-button__container{
+  display: flex;
+  justify-content: flex-end;
+}
+.form__button.download-button {
+  font-size: 2rem;
+  background-color: #59d36b;
+  border: 1px solid #48b757;
+  border-radius: 0.5rem;
+  font-weight: 400;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.form__button.download-button:hover {
+  background-color: #14b4c3;
+}
+
+.Documentation a.download-button:hover,
+.Documentation a.download-button:hover * {
+  color: white !important;
+  text-decoration-color: white !important;
+}
+
+.download-button > * + * {
+  margin-left: 1rem;
+}
+
+@media all and (min-width: 50rem) {
+  .download-button {
+    font-size: 2.34rem;
+  }
+}
+
+.download-button__icon {
+  width: 1.98rem;
+  height: 1.98rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.download-button__text {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.download-button__subtext {
+  flex-grow: 1;
+  text-align: center;
+  opacity: 0.8;
+  font-weight: thin;
+}
+
+.download-button__icon--mac {
+  background-image: url(./icon-apple.png);
+}
+
+.download-button__icon--windows {
+  background-image: url(./icon-windows.png);
+}
+
+.download-button__icon--linux {
+  background-image: url(./linux-logo.svg);
+}
+
+.download-button__text-elements {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}

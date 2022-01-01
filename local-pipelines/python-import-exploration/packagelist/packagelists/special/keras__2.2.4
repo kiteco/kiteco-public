@@ -1,0 +1,5 @@
+FROM kiteco/python-import-exploration
+
+RUN pip3 install tensorflow==1.13.1 keras==2.2.4
+
+ENTRYPOINT ["/usr/bin/env", "python3", "-m", "kite.pkgexploration", "Keras", "2.2.4", "keras__2.2.4.json", "keras__2.2.4.log", "--toplevel", "keras"]

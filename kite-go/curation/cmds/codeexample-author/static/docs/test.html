@@ -1,0 +1,100 @@
+<!doctype html>
+
+<html>
+
+<head>
+<title>Test doc | Kite Curation</title>
+<link rel="stylesheet" href="github.css">
+<link rel="stylesheet" href="curation-docs.css">
+</head>
+
+<body>
+<h1 id="test-doc">Test doc</h1>
+<p>This is a test doc to demonstrate compilation of Markdown-formatted curation documents to HTML.</p>
+<ul>
+<li>this should</li>
+<li>be a</li>
+<li>list</li>
+</ul>
+<p>For example, a fancy-free artist avoids pure mathematics or logic not because he understands them and could say something about them if he wished, but because he instinctively inclines toward other things. Such instinctive and violent inclinations and disinclinations are signs by which you can recognize the pettier souls. In great souls and superior minds, these passions are not found. Each of us is merely one human being, merely an experiment, a way station. But each of us should be on the way toward perfection, should be striving to reach the center, not the periphery. Remember this: one can be a strict logician or grammarian, and at the same time full of imagination and music. […] The kind of person we want to develop, the kind of person we aim to become, would at any time be able to exchange his discipline or art for any other.</p>
+<p>Apparently this example is giving us some trouble:</p>
+<pre><code><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> deque
+
+<span class="hljs-comment"># CODE</span>
+d = deque([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+d.reverse()
+<span class="hljs-keyword">print</span> d
+
+<span class="hljs-comment"># OUTPUT</span>
+deque([<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>])
+</code></pre><p>You can also syntax highlight as &quot;good&quot; or &quot;bad&quot; using the language tag:</p>
+<pre><code class="lang-bad"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fib</span><span class="hljs-params">(n)</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> n &lt; <span class="hljs-number">2</span> <span class="hljs-keyword">else</span> fib(n-<span class="hljs-number">1</span>) + fib(n-<span class="hljs-number">2</span>)
+</code></pre>
+<p>And you can show what a good example looks like instead:</p>
+<pre><code class="lang-good"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fib</span><span class="hljs-params">(n)</span>:</span>
+    prev = <span class="hljs-number">0</span>
+    curr = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):
+        next = prev + curr
+        prev = curr
+        curr = next
+    <span class="hljs-keyword">return</span> curr
+</code></pre>
+<p>All the code is automatically syntax highlighted.  Here&#39;s a longer example to demonstrate more complex syntax highlighting:</p>
+<pre><code><span class="hljs-keyword">import</span> kite.classification.svm <span class="hljs-keyword">as</span> svm
+<span class="hljs-keyword">import</span> kite.classification.utils <span class="hljs-keyword">as</span> utils
+
+SIZE_CHAR_HASH_VEC = <span class="hljs-number">20</span>  <span class="hljs-comment"># size of vector that characters will be hashed to</span>
+SIZE_WORD_HASH_VEC = <span class="hljs-number">5</span>  <span class="hljs-comment"># size of vector that words will be hashed to</span>
+N_TOP_FREQ_WORDS = <span class="hljs-number">50</span>  <span class="hljs-comment"># how many top words to retrieve from each training file</span>
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ErrorFeaturizer</span><span class="hljs-params">(svm.SVMFeaturizer)</span>:</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, most_freq_words)</span>:</span>
+        self.most_freq_words = most_freq_words
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">features</span><span class="hljs-params">(self, text)</span>:</span>
+        <span class="hljs-string">""" Computes feature vector representing distribution of
+        chars, words, and most freq words (across all lang errors).
+        This feature vector is then used for classification.
+        Three main components to the feature vector:
+        1. Distribution of the characters in the text, hashed into a fixed
+           slice of length classifier.SizeCharHashVec.
+        2. Distribution of the words in the text, hashed into a fixed slice
+           of length classifier.SizeWordHashVec.
+        3. Presence of most frequently encountered words across the training set.
+        """</span>
+
+        text = text.lower()
+        feat_vec = utils.compute_char_hash_vec(text, SIZE_CHAR_HASH_VEC)
+        feat_vec.extend(utils.compute_word_hash_vec(text, SIZE_WORD_HASH_VEC))
+        feat_vec.extend(
+            utils.compute_most_freq_words_feature_vec(
+                text,
+                self.most_freq_words))
+        <span class="hljs-keyword">return</span> feat_vec
+</code></pre><p>Looks like it works!</p>
+
+<script type="text/javascript">
+/* Dang. What a hack. We notate .lang-bad and .lang-good in the code examples by using
+ * Github-style language tags, but those classes get applied to the <code> tag inside
+ * the <pre> tag.  Since <code> is an inline tag, setting background-color on it only
+ * paints the color behind text (ie, not to the full width of the enclosing <pre>).  So
+ * here we copy the lang-good and lang-bad classes (on the <code> tags) to their parent
+ * tags (the <pre> tags), which can then style the background-color properly.
+ */
+function copyClassToParent(className) {
+  var tags = document.getElementsByClassName(className);
+  for (var i = 0; i < tags.length; i++) {
+    tags[i].parentElement.classList.add(className);
+  }
+}
+copyClassToParent('lang-bad');
+copyClassToParent('lang-good');
+</script>
+</body>
+
+</html>

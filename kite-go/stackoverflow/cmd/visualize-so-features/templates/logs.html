@@ -1,0 +1,107 @@
+<html>
+    <head>
+    <title>StackOverFlow Logs</title>
+        <style>
+            body {
+                font-family: 'Arial';
+            }
+
+            .log-wrapper {
+                display: block;
+                background-color: 3366FF;
+            }
+
+            .result-wrapper {
+                display: block;
+                background-color: lightblue;
+            }
+
+            .question-wrapper {
+                display: block;
+                background-color: FBB917;
+            }
+
+
+            .answer-wrapper {
+                display: block;
+                background-color: orange;
+            }
+
+            .stats-wrapper {
+                width: 50%;
+                height: 60px;
+                float: left;
+                display: block;
+                background-color: 33FF66;
+            }
+            .logs-wrapper {
+               
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="logs-wrapper">
+            {{ range $i,$log := .Logs }}
+                <div class="log-wrapper">
+                    {{ range $j, $result := $log.Results }}
+                        <div class="result-wrapper">
+                            <div><h1> {{ printf "%s" $log.Query }} </h1><div>
+                            <div><a href="{{$result.URL}}" target="_blank" style="target-new: tab;"> {{ printf "%s" $result.URL}} </a></div>
+                            <h3>{{printf "GoogleScore: %d" $result.Score}}</h3>
+                            {{range $k,$feat := $result.Features}}
+                                <p> {{printf "%s:%f" $feat.Name $feat.Feat }} </p>
+                            {{ end }}
+                            {{range $k,$ques := $result.Question }}
+                                <div class="question-wrapper">
+                                    <p> {{printf "ID: %d" $ques.ID}} </p>
+                                    <p> {{printf "Title: %s" $ques.Title}} </p>
+                                    <p> {{printf "Body: %s" $ques.Body}} </p>
+                                    <p> {{printf "Code: %s" $ques.Code}} </p>
+                                    <p> {{printf "Tags: %s" $ques.Tags}} </p>
+                                    <p> {{printf "Score: %d" $ques.Score}} </p>
+                                    <p> {{printf "ViewCount: %d" $ques.ViewCount}} </p>
+                                    <p> {{printf "AnswerCount: %d" $ques.AnswerCount}} </p>
+                                    <p> {{printf "CommentCount: %d" $ques.CommentCount}} </p>
+                                    <p> {{printf "FavoriteCount: %d" $ques.FavoriteCount}} </p>
+                                    <p> {{printf "AcceptedAnswerID: %d" $ques.AcceptedAnswerID}} </p>
+                                </div>
+                            {{ end }}
+                            {{range $k,$ans := $result.Answers }}
+                                <div class="answer-wrapper">
+                                    <p> {{printf "ID: %d" $ans.ID}} </p>
+                                    {{ if $ans.ShowTitle }}
+                                        <p> {{printf "Title: %s" $ans.Title}} </p>
+                                    {{ end }}
+                                    <p> {{printf "Body: %s" $ans.Body}} </p>
+                                    {{ if $ans.ShowCode }}
+                                        <p> {{printf "Code: %s" $ans.Code}} </p>
+                                    {{ end }}
+                                    {{ if $ans.ShowScore }}
+                                        <p> {{printf "Score: %d" $ans.Score}} </p>
+                                    {{ end }}
+                                    {{ if $ans.ShowVC }}
+                                        <p> {{printf "ViewCount: %d" $ans.ViewCount}} </p>
+                                    {{ end }}
+                                    {{ if $ans.ShowAC }}
+                                        <p> {{printf "AnswerCount: %d" $ans.AnswerCount}} </p>
+                                    {{ end }}
+                                    {{ if $ans.ShowCC }}
+                                        <p> {{printf "CommentCount: %d" $ans.CommentCount}} </p>
+                                    {{ end }}
+                                    {{ if $ans.ShowFC }}
+                                        <p> {{printf "FavoriteCount: %d" $ans.FavoriteCount}} </p>
+                                    {{ end }}
+                                    {{ if $ans.ShowAAID }}
+                                        <p> {{printf "AcceptedAnswerID: %d" $ans.AcceptedAnswerID}} </p>
+                                    {{ end }}
+                                </div>
+                            {{ end }} 
+
+                        </div>
+                    {{ end }}
+                </div>
+            {{ end }}
+    </div>
+    </body>
+</html>

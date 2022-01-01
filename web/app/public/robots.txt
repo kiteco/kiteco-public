@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /cgi-bin/
+Disallow: /wp-admin/
+Disallow: /wp-content/plugins/
+Sitemap: https://www.kite.com/sitemap-index.xml.gz
+Sitemap: https://www.kite.com/sitemap_index.xml

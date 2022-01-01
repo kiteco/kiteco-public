@@ -1,0 +1,73 @@
+.file-tree {
+  user-select: none;
+  display: inline-block;
+  min-width: 100%;
+}
+
+.file-tree__file {
+  margin-left: 1.8rem;
+}
+
+.file-tree__folder {
+  width: auto;
+}
+
+.file-tree__header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.file-tree__header:hover {
+  background: var(--popup-menu-selected-background);
+}
+
+.file-tree__body {
+  margin-left: 2rem;
+  width: auto;
+}
+
+.file-tree__folder-indicator {
+  width: 1.3rem;
+  height: 1.3rem;
+  mask-position: center center;
+  mask-repeat: no-repeat;
+  background: var(--text-color-normal);
+  flex-shrink: 0;
+}
+
+.file-tree__folder-indicator--open {
+  mask-image: url(./explorer-folder-expanded.svg);
+}
+
+.file-tree__folder-indicator--closed {
+  mask-image: url(./explorer-folder-collapsed.svg);
+}
+
+.file-tree__name {
+  margin: 0.5rem 0 0.5rem 1rem;
+  padding-left: 3rem;
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: 1.7rem 1.7rem;
+  white-space: nowrap;
+}
+
+.file-tree__name--folder {
+  background-image: url(./explorer-folder.svg);
+}
+
+.file-tree__name--file {
+  background-image: url(./explorer-code-file.svg);
+}
+
+.file-tree__name--kiteignore {
+  background-image: url(./explorer-kiteignore-file.svg);
+}
+
+.file-tree__empty {
+  color: var(--text-color-light);
+  font-size: 1.2rem;
+}

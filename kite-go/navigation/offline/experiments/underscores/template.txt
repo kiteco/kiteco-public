@@ -1,0 +1,45 @@
+# Should shingles cross over underscores?
+
+$date
+
+## Background
+
+We compare two approaches of transforming words with underscores into shingles.
+
+For the control, we convert a word into shingles by finding any five consecutive letters.
+So `foobar` becomes two shingles: `fooba` and `oobar`.
+And `foo_barbaz` also becomes two shingles: `barba` and `arbaz`.
+
+For the treatment, we also allow shingles which span across underscores.
+So `foobar` still becomes two shingles: `fooba` and `oobar`.
+But `foo_barbaz` becomes five shingles: `fooba`, `oobar`, `obarb`, `barba`, and `arbaz`.
+
+## Instructions
+
+To reproduce the experiment: `make all`
+
+## Validation
+
+### Control
+
+$control_validation
+
+### Treatment
+
+$treatment_validation
+
+## Examples
+
+Note: these are cherry-picked examples, not random samples.
+
+For the treatment and control, we get recommendations based on the current path.
+We find the ranking (1-based) of the related path and call that the "related path rank".
+We find the highest scoring keywords from the related path.
+
+$examples
+
+## Conclusion
+
+We should switch to the treatment, because:
+- The overall validation metrics are marginally better.
+- We know of several interesting examples where the treatment performs significantly better.

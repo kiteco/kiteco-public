@@ -1,0 +1,284 @@
+html {
+  --cm-text-default: 16px;
+  --cm-completion-text-default: 14px;
+  --cm-completion-icon-dimension: 15px;
+  --cm-social-sharing-btn-dimensions: 20px;
+  --cm-completion-right-margin: 30px;
+  --cm-max-completions-box-width: 40.0em;
+  --cm-std-padding: 4px;
+  --cm-std-padding-2: 8px;
+  --cm-desc-padding: 14px;
+
+  /* from material theme */
+  /* --cm-hint-text-color:  rgba(233, 237, 237, 1);
+  --cm-hint-background: #161d20;
+  --cm-hint-highlight: rgba(255, 255, 255, 0.15);
+  --cm-kite-logo-color: #82B1FF;
+  --cm-synopsis-color: rgba(233, 237, 237, 1);
+  --cm-caption-color: rgb(210, 243, 243);
+  --cm-docs-link-color: rgb(89, 179, 253); */
+}
+
+/* WordPress specific */
+.section.section-html {
+
+}
+
+.CodeMirror-wrapper--default {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  /* margin: 0 10% 10px; */
+  min-height: 36rem;
+  position: relative;
+  cursor: text;
+
+  overflow: hidden;  /* change to `auto` to get scrollbars */
+}
+
+.CodeMirror-wrapper--default.cursor-default {
+  cursor: default;
+}
+
+.CodeMirror-wrapper--default.cursor-text {
+  cursor: text;
+}
+
+.CodeMirror-scripting div.CodeMirror-cursors {
+  visibility: visible;
+}
+
+@media only screen and (max-width: 768px) {
+  .CodeMirror-wrapper--default {
+    /* margin: 0 10% 5px; */
+  }
+}
+
+.react-codemirror2 {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.CodeMirror {
+  font-family: 'Droid Sans Mono W01', monospace;
+  font-size: var(--cm-text-default);
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
+
+.CodeMirror-hints-hidden {
+  display: none;
+}
+
+.CodeMirror-hints-wrapper {
+  position: absolute;
+  max-width: var(--cm-max-completions-box-width);
+  border-radius: 0;
+  /* overflow-y: scroll; */  /* this doesn't work -- empty scrollbar */
+}
+
+.CodeMirror-hints {
+  font-family: 'Droid Sans Mono W01', monospace;
+  font-size: var(--cm-completion-text-default);
+
+  background-color: var(--cm-hint-background);
+  padding: 0;
+  max-height: calc(calc(var(--cm-completion-text-default) + var(--cm-std-padding-2)) * 7);
+  border: none;
+  overflow-y: hidden;
+  position: relative;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.CodeMirror-hints-documentation {
+  background-color: black;
+  font-size: var(--cm-completion-text-default);
+  font-family: 'Droid Sans Mono W01', monospace;
+  z-index: 10;
+  border-radius: 3px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
+  padding: var(--cm-desc-padding);
+}
+
+.CodeMirror-hints-documentation .synopsis {
+  color: var(--cm-synopsis-color);
+  line-height: 1.5em;
+  max-height: 4.5em;
+  text-align: justify;
+  margin-bottom: var(--cm-std-padding-2);
+  margin-right: -1em;
+  padding-right: 1em;
+  overflow: hidden;
+  position: relative;
+}
+
+.CodeMirror-hints-documentation .synopsis::before {
+  content: '\2026';
+  position: absolute;
+  right: 2px;
+  bottom: 0;
+}
+
+.CodeMirror-hints-documentation .synopsis::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 2em;
+  height: 2em;
+  margin-top: 0.2em;
+  background: black;
+}
+
+.CodeMirror-hints-documentation .docs-link {
+  color: var(--cm-docs-link-color);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.CodeMirror-hints-documentation .docs-link:hover {
+  text-decoration: none;
+  color: var(--cm-kite-logo-color);
+}
+
+.CodeMirror-hint {
+  color: var(--cm-hint-text-color);
+  padding: var(--cm-std-padding) !important;
+  border-radius: 0;
+  line-height: 1.25;
+}
+
+.CodeMirror-hint .completion-hint {
+  float: right;
+  text-align: right;
+  padding-right: var(--cm-std-padding);
+}
+
+.CodeMirror-hint .completion-display {
+  margin-right: var(--cm-completion-right-margin);
+}
+
+.CodeMirror-hint::before {
+  content: '';
+  display: inline-block;
+  width: var(--cm-completion-icon-dimension);
+  height: var(--cm-completion-icon-dimension);
+  padding-left: var(--cm-std-padding-2);
+  vertical-align: baseline;
+  background-size: var(--cm-completion-icon-dimension) var(--cm-completion-icon-dimension);
+  background-repeat: no-repeat;
+  box-sizing: unset;
+}
+
+.CodeMirror-hint.kind__module::before {
+  background-image: url('./module.svg');
+}
+
+.CodeMirror-hint.kind__function::before {
+  background-image: url('./function.svg');
+}
+
+.CodeMirror-hint.kind__type::before {
+  background-image: url('./type.svg');
+}
+
+.CodeMirror-hint.kind__unknown::before {
+  background-image: url('./unknown.svg');
+}
+
+.CodeMirror-hint.kind__instance::before {
+  background-image: url('./instance.svg');
+}
+
+.CodeMirror-hint.kind__keyword::before {
+  background-image: url('./keyword.svg');
+}
+
+li.CodeMirror-hint-active {
+  background: var(--cm-hint-highlight);
+}
+
+.CodeMirror-linenumber {
+  width: 36px !important;  /* changes gutter width -- must reload page to experiment */
+  margin-left: -23px;  /* changes left-right balance -- must reload page to experiment */
+}
+
+/* .CodeMirror-linewidget {
+  animation-duration: 5000ms;
+  animation-name: captionfade;
+  animation-direction: alternate;
+} */
+
+.CodeMirror-caption-widget {
+  padding: 10px 0px;
+  font-size: 18px;
+  font-family: 'Neue Frutiger W01', sans-serif;
+  font-weight: 500;
+  color: var(--cm-caption-color);
+  max-width: 40rem;
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+}
+
+/* @keyframes captionfade {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    height: 0%;
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+  }
+} */
+
+.CodeMirror-caption-widget--line {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  line-height: 2.3rem;
+}
+
+.CodeMirror-caption-widget--completion-padding {
+  padding-top: calc(calc(var(--cm-completion-text-default) * 2) * 6);
+}
+
+.CodeMirror-cursor-caption-widget {
+  padding: 10px 0px;
+  max-width: 30rem;
+  padding-left: 1.0rem;
+  text-shadow: var(--cm-hint-background) 2px 2px;
+}
+
+.CodeMirror-cursor-caption-widget.exploding-head::after {
+  content: '';
+  position: absolute;
+  top: 170px;
+  left: 260px;
+  height: 50px;
+  width: 50px;
+  background-image: url('./exploding-head.png');
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+}
+
+.CodeMirror-cursor-caption-widget p {
+  font-size: 18px !important;
+  font-family: 'Neue Frutiger W01', sans-serif;
+  font-weight: 500 !important;
+  line-height: 120% !important;
+  color: var(--cm-caption-color);
+}
+
+.CodeMirror-line {
+  margin: 0 !important;
+}

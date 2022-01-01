@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/server/static/style.css">
+	</head>
+	<body>
+
+		<table>
+			<tr>
+				<td>Pull
+				<td>File F1
+				<td>Files Edited
+			{{range $pull := .Pulls}}
+			<tr>
+				<td><a href="/codenav/validate-files/{{$pull.Number}}">{{$pull.Number}}</a>
+				<td>{{$pull.Stats.F1}}
+				<td>{{$pull.NumFiles}}
+			{{end}}
+		</table>
+
+		<p>Mean F1: {{.Stats.F1}}
+
+	</body>
+</html>

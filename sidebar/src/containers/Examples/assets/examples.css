@@ -1,0 +1,45 @@
+.examples.main {
+  position: relative;
+  justify-content: flex-start;
+}
+
+.examples-page {
+  padding: 0 1rem;
+  flex: 1 1 0;
+  overflow-y: auto;
+}
+
+.examples .examples__code-example__title {
+  font-size: 2rem;
+}
+
+.examples__section {
+  margin-top: 0.3rem;
+}
+
+@media only screen and (min-width: 700px) {
+  .examples {
+    width: 50%;
+  }
+}
+
+.examples__bottom-buffer {
+  padding: 1.5rem;
+}
+
+.examples-wrapper {
+  flex-grow: 1;
+  height: 100%;
+  overflow: auto;
+  flex-direction: column;
+  display: flex;
+  position: relative;
+}
+
+.examples-wrapper:focus {
+  outline: 0;
+}
+
+.examples {
+  overflow-y: auto;
+}

@@ -1,0 +1,4 @@
+#@data/values
+---
+  package_regexp: kite-server.tgz
+  terraform_location: kiteserver

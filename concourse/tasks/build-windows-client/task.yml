@@ -1,0 +1,12 @@
+platform: windows
+inputs:
+- name: kiteco
+  path: gopath/src/github.com/kiteco/kiteco
+- name: version
+outputs:
+- name: build
+run:
+  path: bash
+  args: [gopath/src/github.com/kiteco/kiteco/concourse/tasks/build-windows-client/run.bash]
+params:
+  WINDOWS_PASS: ((update_signing))

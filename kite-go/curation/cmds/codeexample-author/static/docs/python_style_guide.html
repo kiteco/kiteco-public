@@ -1,0 +1,1319 @@
+<!doctype html>
+
+<html>
+
+<head>
+<title>Style Guide: Code Examples | Kite Curation</title>
+<link rel="stylesheet" href="github.css">
+<link rel="stylesheet" href="curation-docs.css">
+</head>
+
+<body>
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<p><strong>Table of Contents</strong>  <em>generated with <a href="https://github.com/thlorenz/doctoc">DocToc</a></em></p>
+<ul>
+<li><a href="#style-guide-code-examples">Style Guide: Code Examples</a><ul>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#goals-readability-concision-simplicity-consistency">Goals: Readability, Concision, Simplicity, Consistency</a></li>
+</ul>
+</li>
+<li><a href="#basics">Basics</a><ul>
+<li><a href="#follow-pep8-as-a-basic-coding-style-guideline">Follow PEP8 as a basic coding style guideline</a></li>
+<li><a href="#show-only-one-concept-per-example">Show only one concept per example</a></li>
+<li><a href="#duplicate-code-instead-of-using-loops-or-extra-variables">Duplicate code instead of using loops or extra variables</a></li>
+<li><a href="#minimize-look-back-distance">Minimize look-back distance</a></li>
+<li><a href="#use-newlines-only-to-separate-functionality-and-do-not-separate-outputs">Use newlines only to separate functionality, and do not separate outputs</a></li>
+<li><a href="#preserve-structure-across-related-code-examples">Preserve structure across related code examples</a></li>
+<li><a href="#choose-which-examples-to-write-using-kite-usage-metrics-official-documentation-then-google">Choose which examples to write using Kite usage metrics, official documentation, then Google</a></li>
+</ul>
+</li>
+<li><a href="#titles">Titles</a><ul>
+<li><a href="#start-the-title-with-a-verb">Start the title with a verb</a></li>
+<li><a href="#use-verb-roots-instead-of-other-verb-forms">Use verb roots instead of other verb forms</a></li>
+<li><a href="#capitalize-only-the-first-letter-of-the-first-word">Capitalize only the first letter of the first word</a></li>
+<li><a href="#use-a-verb-phrase-that-captures-the-main-behavior-of-the-function">Use a verb phrase that captures the main behavior of the function</a></li>
+<li><a href="#construct-short-but-comprehensive-titles">Construct short but comprehensive titles</a></li>
+<li><a href="#construct-titles-that-reflect-what-a-user-might-query">Construct titles that reflect what a user might query</a></li>
+<li><a href="#use-proper-english-for-titles">Use proper English for titles</a></li>
+<li><a href="#use-verbs-that-are-most-commonly-used-with-a-given-noun">Use verbs that are most commonly used with a given noun</a></li>
+<li><a href="#use-the-specification-to-describe-various-ways-to-use-the-function">Use the specification to describe various ways to use the function.</a></li>
+<li><a href="#dont-include-specification-phrases-for-incidental-complexity">Don&#39;t include specification phrases for incidental complexity</a></li>
+<li><a href="#when-a-value-in-the-title-is-essential-explicitly-include-the-values-otherwise-generalize">When a value in the title is essential, explicitly include the values; otherwise generalize</a></li>
+<li><a href="#spell-out-terminologies">Spell out terminologies</a></li>
+<li><a href="#avoid-using-parentheses">Avoid using parentheses</a></li>
+<li><a href="#avoid-unnecessary-prepositional-phrases">Avoid unnecessary prepositional phrases</a></li>
+<li><a href="#avoid-using-redundant-object-or-instance">Avoid using redundant <code>object</code> or <code>instance</code></a></li>
+<li><a href="#avoid-all-apostrophes-either-for-contractions-or-for-the-possessive-case">Avoid all apostrophes, either for contractions or for the possessive case</a></li>
+<li><a href="#link-the-title-to-the-code-as-much-as-possible">Link the title to the code as much as possible</a></li>
+<li><a href="#use-the-suggested-terminology-if-there-is-not-a-more-appropriate-term">Use the suggested terminology if there is not a more appropriate term</a></li>
+<li><a href="#use-consistent-title-structure-across-examples">Use consistent title structure across examples</a></li>
+<li><a href="#use-consistent-vocabulary-for-interchangeable-object-types">Use consistent vocabulary for interchangeable object types</a></li>
+<li><a href="#use-terms-appropriate-for-the-demonstrated-concept">Use terms appropriate for the demonstrated concept</a></li>
+<li><a href="#use-the-articles-a-and-an-for-general-behavior-and-the-for-specific-behavior">Use the articles &quot;a&quot; and &quot;an&quot; for general behavior, and &quot;the&quot; for specific behavior</a></li>
+<li><a href="#use-plurals-to-generalize-behavior-that-applies-to-multiple-objects">Use plurals to generalize behavior that applies to multiple objects</a></li>
+<li><a href="#titles-should-never-be-duplicates">Titles should never be duplicates</a></li>
+<li><a href="#use-backticks--to-specify-terminology-that-is-not-used-as-natural-language">Use backticks (`) to specify terminology that is not used as natural language</a></li>
+<li><a href="#dont-blend-identifiers-into-natural-language">Don&#39;t blend identifiers into natural language</a></li>
+<li><a href="#prefer-to-use-digits-rather-than-spell-out-numbers">Prefer to use digits rather than spell out numbers</a></li>
+<li><a href="#use-acronyms-if-they-are-typically-used-as-such-otherwise-spell-them-out-with-each-word-capitalized">Use acronyms if they are typically used as such; otherwise, spell them out with each word capitalized</a></li>
+<li><a href="#do-not-put-a-period-at-the-end-of-titles">Do not put a period at the end of titles</a></li>
+</ul>
+</li>
+<li><a href="#preludes-and-postludes">Preludes and postludes</a><ul>
+<li><a href="#use-the-prelude-and-postlude-for-code-that-isnt-directly-relevant-to-the-demonstrated-concept">Use the prelude and postlude for code that isn&#39;t directly relevant to the demonstrated concept</a></li>
+<li><a href="#put-import-statements-in-the-prelude">Put import statements in the prelude</a></li>
+<li><a href="#use-import-x-syntax-by-default">Use <code>import x</code> syntax by default</a></li>
+<li><a href="#use-from-abc-import-d-when-there-are-multiple-subpackages">Use <code>from a.b.c import d</code> when there are multiple subpackages</a></li>
+<li><a href="#in-general-prefer-to-put-code-in-the-main-code-section">In general, prefer to put code in the main code section</a></li>
+</ul>
+</li>
+<li><a href="#variables">Variables</a><ul>
+<li><a href="#use-concise-and-purposeful-variable-names">Use concise and purposeful variable names</a></li>
+<li><a href="#avoid-variables-like-name-or-file-that-could-be-confused-with-part-of-the-api">Avoid variables like <code>name</code> or <code>file</code> that could be confused with part of the API</a></li>
+<li><a href="#follow-language-conventions-for-separating-words-in-a-variable-name">Follow language conventions for separating words in a variable name</a></li>
+<li><a href="#dont-create-variables-that-are-only-referenced-once">Don&#39;t create variables that are only referenced once</a></li>
+<li><a href="#but-do-introduce-temporary-variables-rather-than-split-expressions-across-lines">But do introduce temporary variables rather than split expressions across lines</a></li>
+<li><a href="#introduce-temporary-variables-when-the-meaning-of-a-value-is-not-clear">Introduce temporary variables when the meaning of a value is not clear</a></li>
+</ul>
+</li>
+<li><a href="#values-and-placeholders">Values and Placeholders</a><ul>
+<li><a href="#use-simple-placeholders">Use simple placeholders</a></li>
+<li><a href="#when-appropriate-use-placeholders-that-are-relevant-to-the-package">When appropriate, use placeholders that are relevant to the package</a></li>
+<li><a href="#minimize-placeholders-to-only-what-is-necessary">Minimize placeholders to only what is necessary</a></li>
+<li><a href="#use-double-quotes-for-string-literals-by-default">Use double quotes for string literals by default</a></li>
+<li><a href="#switch-to-single-quotes-if-you-need-to-include-double-quotes-inside-a-string">Switch to single quotes if you need to include double-quotes inside a string</a></li>
+<li><a href="#use-triple-double-quotes-for-multi-line-strings">Use triple-double-quotes for multi-line strings</a></li>
+<li><a href="#put-a-new-line-at-the-start-and-end-of-multi-line-strings-if-possible">Put a new line at the start and end of multi-line strings, if possible</a></li>
+<li><a href="#use-the-alphabet-a-b-c--for-string-placeholders">Use the alphabet (a, b, c, ...) for string placeholders</a></li>
+<li><a href="#use-natural-numbers-1-2-3--for-integer-placeholders">Use natural numbers (1, 2, 3, ...) for integer placeholders</a></li>
+<li><a href="#use-natural-numbers-with-a-0-suffix-for-float-placeholders">Use natural numbers with a &quot;.0&quot; suffix for float placeholders</a></li>
+<li><a href="#continue-these-sequences-for-hierarchies-sequences-or-groups-of-placeholder-content">Continue these sequences for hierarchies, sequences, or groups of placeholder content.</a></li>
+<li><a href="#use-strings-for-dictionary-keys">Use strings for dictionary keys</a></li>
+<li><a href="#use-cn-for-placeholder-classes-and-fn-for-placeholder-functions">Use <code>C[n]</code> for placeholder classes and <code>f[n]</code> for placeholder functions</a></li>
+<li><a href="#use-pathtofile-for-directory-names">Use <code>&quot;/path/to/file&quot;</code> for directory names</a></li>
+<li><a href="#dont-use-the-same-value-twice-unless-for-the-same-purpose-each-time">Don&#39;t use the same value twice unless for the same purpose each time</a></li>
+<li><a href="#for-placeholder-functions-and-classes-balance-simple-with-natural">For placeholder functions and classes, balance &quot;simple&quot; with &quot;natural&quot;</a></li>
+<li><a href="#use-mockkitecom-for-examples-that-demonstrate-communication-with-a-server">Use mock.kite.com for examples that demonstrate communication with a server</a></li>
+</ul>
+</li>
+<li><a href="#files">Files</a><ul>
+<li><a href="#use-sample-files-provided-by-kite-whenever-possible">Use sample files provided by Kite whenever possible</a></li>
+<li><a href="#when-an-example-requires-a-file-to-be-created-create-it-in-the-prelude">When an example requires a file to be created, create it in the prelude</a></li>
+<li><a href="#name-files-following-the-same-guidelines-for-naming-variables">Name files following the same guidelines for naming variables</a></li>
+<li><a href="#open-file-with-a-straightforward-open">Open file with a straightforward open</a></li>
+<li><a href="#always-write-to-files-in-the-current-working-directory">Always write to files in the current working directory</a></li>
+</ul>
+</li>
+<li><a href="#output">Output</a><ul>
+<li><a href="#generate-the-minimal-output-needed-to-clearly-demonstrate-the-concept">Generate the minimal output needed to clearly demonstrate the concept</a></li>
+<li><a href="#keep-print-statements-as-simple-as-possible">Keep print statements as simple as possible</a></li>
+<li><a href="#avoid-unnecessary-output-formatting-or-explanations">Avoid unnecessary output formatting or explanations</a></li>
+<li><a href="#prefer-to-print-lists-with-a-for-statement">Prefer to print lists with a <code>for</code> statement</a></li>
+<li><a href="#whenever-possible-produce-the-same-output-every-time">Whenever possible, produce the same output every time</a></li>
+<li><a href="#output-binary-data-as-raw-strings">Output binary data as raw strings</a></li>
+</ul>
+</li>
+<li><a href="#miscellaneous">Miscellaneous</a><ul>
+<li><a href="#write-some-examples-before-titling-them">Write some examples before titling them</a></li>
+<li><a href="#dont-use-advanced-concepts-unless-necessary">Don&#39;t use advanced concepts unless necessary</a></li>
+<li><a href="#dont-write-examples-that-demonstrate-what-not-to-do">Don&#39;t write examples that demonstrate what not to do</a></li>
+<li><a href="#dont-write-examples-that-simply-construct-an-object">Don&#39;t write examples that simply construct an object</a></li>
+<li><a href="#dont-reimplement-default-behavior">Don&#39;t reimplement default behavior</a></li>
+<li><a href="#use-explicit-keyword-arguments-when-there-are-many-arguments-to-a-function">Use explicit keyword arguments when there are many arguments to a function</a></li>
+<li><a href="#use-keyword-arguments-when-it-is-standard-practice-to-do-so">Use keyword arguments when it is standard practice to do so</a></li>
+<li><a href="#demonstrate-the-purpose-not-simply-the-functionality">Demonstrate the purpose, not simply the functionality</a></li>
+<li><a href="#when-copying-existing-examples-modify-them-to-fit-the-style-guidelines">When copying existing examples, modify them to fit the style guidelines</a></li>
+<li><a href="#only-use-comments-when-an-example-cannot-be-written-in-a-self-explanatory-way">Only use comments when an example cannot be written in a self-explanatory way</a></li>
+<li><a href="#bundle-together-examples-that-use-the-same-function-with-different-parameters">Bundle together examples that use the same function with different parameters</a></li>
+<li><a href="#when-using-multi-variable-assignment-with-long-tuples-print-the-tuple-first">When using multi-variable assignment with long tuples, print the tuple first</a></li>
+<li><a href="#use-the-isoformat-method-to-format-datetime-objects-instead-of-strftime">Use the <code>isoformat</code> method to format <code>datetime</code> objects, instead of <code>strftime</code></a></li>
+<li><a href="#for-combinations-of-similar-functions-and-similar-parameters-choose-one-function-as-canonical">For combinations of similar functions and similar parameters, choose one function as canonical</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<h1 id="style-guide-code-examples">Style Guide: Code Examples</h1>
+<h2 id="introduction">Introduction</h2>
+<p>A code example should demonstrate how to use a function, class, or API in a way that is easy and quick to understand. For instance, here is a code example demonstrating how to write a simple object as JSON:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">import</span> json
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">print</span> json.dumps({<span class="hljs-string">"a"</span>:<span class="hljs-number">1</span>})
+
+<span class="hljs-comment"># OUTPUT</span>
+{<span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>}
+</code></pre>
+<p>This example is excellent because:</p>
+<ul>
+<li>the main code section is short and quick to understand</li>
+<li>it shows one concept and does not try to show other concepts in the same example</li>
+<li>the import statement is in the prelude, because it is necessary to run the example but not central to the example</li>
+</ul>
+<p>Here is code example demonstrating how to reverse a <code>deque</code> object:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">import</span> collections
+
+<span class="hljs-comment"># CODE</span>
+d = collections.deque([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+d.reverse()
+<span class="hljs-keyword">print</span> d
+
+<span class="hljs-comment"># OUTPUT</span>
+deque([<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>])
+</code></pre>
+<p>This code example is excellent because</p>
+<ul>
+<li>it is short and can be understood very quickly</li>
+<li>it is easy to match the input <code>[1, 2, 3]</code> with the output <code>[3, 2, 1]</code>, and so the effect of <code>reverse()</code> is clear</li>
+<li>it shows one concept and does not try to show other concepts in the same example</li>
+<li>the import statement is in the prelude, because it is necessary to run the example but not central to the example</li>
+<li>the print statement is in the main code section, so the user can match the print statement with the output</li>
+</ul>
+<p>Here is a code example showing how to inspect the arguments of a function:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">import</span> inspect
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">(a, b=<span class="hljs-number">2</span>, *args, **kwargs)</span>:</span>
+    <span class="hljs-keyword">return</span> a
+
+<span class="hljs-keyword">print</span> getargspec(f)
+
+<span class="hljs-comment"># OUTPUT</span>
+ArgSpec(args=[<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>], varargs=<span class="hljs-string">'args'</span>, keywords=<span class="hljs-string">'kwargs'</span>, defaults=(<span class="hljs-number">2</span>,))
+</code></pre>
+<p>This code example is excellent because</p>
+<ul>
+<li>it is short and can be understood easily</li>
+<li>it shows one concept and does not try to show other concepts in the same example</li>
+<li>it uses simple placeholder variables and argument names</li>
+<li>it demonstrates all of the features of the function</li>
+</ul>
+<p>Finally, here is a code example showing how to extract the query string from a request on a Werkzeug server:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">from</span> werkzeug.wrappers <span class="hljs-keyword">import</span> Request, Response
+<span class="hljs-keyword">from</span> werkzeug.serving <span class="hljs-keyword">import</span> run_simple
+<span class="hljs-keyword">from</span> os <span class="hljs-keyword">import</span> environ
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">application</span><span class="hljs-params">(environ, start_response)</span>:</span>
+    request = Request(environ)
+    query = request.args.get(<span class="hljs-string">"query"</span>)
+
+    response = Response(<span class="hljs-string">"You searched "</span> + query)
+    <span class="hljs-keyword">return</span> response(environ, start_response)
+
+<span class="hljs-comment"># POSTLUDE</span>
+port = int(environ.get(<span class="hljs-string">"PORT"</span>, <span class="hljs-string">"8000"</span>))
+run_simple(<span class="hljs-string">"0.0.0.0"</span>, port, application)
+</code></pre>
+<p>This code example is excellent because</p>
+<ul>
+<li>the concept is demonstrated in the context of a minimal Werkzeug application</li>
+<li>the incidental code is limited to only what is necessary, while still showing the context of the example</li>
+<li>the main code section contains only server-related code; imports and running the server are outside of it</li>
+</ul>
+<h3 id="goals-readability-concision-simplicity-consistency">Goals: Readability, Concision, Simplicity, Consistency</h3>
+<ul>
+<li><strong>Readability</strong>: how much working memory does it take to understand the example?</li>
+<li><strong>Concision</strong>: how long does it take to read the example?</li>
+<li><strong>Simplicity</strong>: how hard is it to interpolate this example with the reader&#39;s current code?</li>
+<li><strong>Consistency</strong>: how hard is it to pick out the similarities and differences between this and other code examples?</li>
+</ul>
+<p>Fortunately these goals are often aligned.</p>
+<p>But do not follow these guidelines when they do not make sense.  Instead, use your best judgment about when to bend or break these rules.</p>
+<p>In this document, good code examples are shown like this:</p>
+<pre><code class="lang-good"><span class="hljs-keyword">print</span> <span class="hljs-string">"This is a positive example of how to write good code examples."</span>
+</code></pre>
+<p>And negative examples, showing what <em>not</em> to do, are shown like this:</p>
+<pre><code class="lang-bad">print(<span class="hljs-string">'This is a negative example showing how NOT to write code examples.'</span>)
+</code></pre>
+<h2 id="basics">Basics</h2>
+<p>This section contains basic guidelines for code examples.</p>
+<p>Note that these may vary from traditional coding style guidelines because examples are driven by different principles of construction than those used in software engineering.  For example, clarity and conciseness are important here, but modularity and reusability are not.</p>
+<h3 id="follow-pep8-as-a-basic-coding-style-guideline">Follow PEP8 as a basic coding style guideline</h3>
+<p>The standard Python coding conventions used by almost all Python developers are described in a document called PEP8: <a href="https://www.Python.org/dev/peps/pep-0008/">https://www.Python.org/dev/peps/pep-0008/</a>. The most important of these conventions are listed below:</p>
+<ul>
+<li>use 4 spaces per indentation</li>
+<li>never use wildcard imports (e.g. <code>from x import *</code>)</li>
+<li>surround binary operators (<code>+</code>, <code>-</code>, <code>=</code>, etc.) with a space on each side</li>
+<li>do not surround an assignment (<code>=</code>) with spaces when used for keyword or default arguments</li>
+<li>do not put spaces immediately inside parenthesis and brackets (e.g. <code>spam( ham[ 1 ] )</code>)</li>
+<li>always pair a specific error with an <code>except</code> clause; never use the base <code>Exception</code> or leave it empty</li>
+<li>use <code>isinstance</code> for type comparison</li>
+<li>use the fact that empty sequences evaluate to <code>False</code> to check emptiness, instead of checking length</li>
+</ul>
+<p>We diverge from PEP8 as follows:</p>
+<ul>
+<li>no two-line spaces around classes and top-level functions</li>
+<li>refer to previews to determine line length (should be 51)</li>
+<li>when splitting long function calls across lines, do not use extra whitespace to align with the opening delimiter</li>
+<li>we have our own set of rules for imports, as described in the prelude section</li>
+</ul>
+<h3 id="show-only-one-concept-per-example">Show only one concept per example</h3>
+<p>This example shows two independent concepts, which is bad:</p>
+<pre><code class="lang-bad">data = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+<span class="hljs-keyword">print</span> map(<span class="hljs-keyword">lambda</span> x: x*<span class="hljs-number">2</span>, data)
+<span class="hljs-keyword">print</span> filter(<span class="hljs-keyword">lambda</span> x: x&lt;<span class="hljs-number">3</span>, data)
+</code></pre>
+<p>Instead, split this into two separate examples:</p>
+<pre><code class="lang-good">data = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+<span class="hljs-keyword">print</span> map(<span class="hljs-keyword">lambda</span> x: x*<span class="hljs-number">2</span>, data)
+</code></pre>
+<pre><code class="lang-good">data = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+<span class="hljs-keyword">print</span> filter(<span class="hljs-keyword">lambda</span> x: x&lt;<span class="hljs-number">3</span>, data)
+</code></pre>
+<p>However, use a single example to demonstrate the multiple ways to use a particular function.</p>
+<pre><code><span class="hljs-comment"># TITLE: Retrieve the timezone from a string</span>
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">print</span> gettz()
+<span class="hljs-keyword">print</span> gettz(<span class="hljs-string">"UTC"</span>)
+<span class="hljs-keyword">print</span> gettz(<span class="hljs-string">"America/Los Angeles"</span>)
+</code></pre><h3 id="duplicate-code-instead-of-using-loops-or-extra-variables">Duplicate code instead of using loops or extra variables</h3>
+<p>It is perfectly fine to copy a line of code two or three times with small modifications. In fact this is often <em>better</em> than introducing a loop, because it takes less time for a human to  understand three duplicated lines with small changes than to understand a loop. This is a good example:</p>
+<pre><code class="lang-good">d = defaultdict(list)
+
+d[<span class="hljs-string">"a"</span>].append(<span class="hljs-number">1</span>)
+d[<span class="hljs-string">"b"</span>].append(<span class="hljs-number">2</span>)
+d[<span class="hljs-string">"c"</span>].append(<span class="hljs-number">3</span>)
+
+<span class="hljs-keyword">print</span> d
+</code></pre>
+<p>Whereas this example takes longer to understand (despite technically having fewer lines of code):</p>
+<pre><code class="lang-bad">d = defaultdict(list)
+
+<span class="hljs-keyword">for</span> i, v <span class="hljs-keyword">in</span> enumerate([<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>]):
+    d[v].append(i)
+
+<span class="hljs-keyword">print</span> d
+</code></pre>
+<h3 id="minimize-look-back-distance">Minimize look-back distance</h3>
+<p>When referring to variables, try to keep them close to the line where they are used. If a variable is used multiple times, it may be worth replacing them with their literal values, as the more times it is used, the further away it gets from its definition and the more times the user must look back and forth for the value.</p>
+<pre><code class="lang-bad">document = <span class="hljs-string">"document_a.txt"</span>
+<span class="hljs-keyword">print</span> fnmatch(document, <span class="hljs-string">"*.txt"</span>)
+<span class="hljs-keyword">print</span> fnmatch(document, <span class="hljs-string">"document_?.txt"</span>)
+<span class="hljs-keyword">print</span> fnmatch(document, <span class="hljs-string">"document_[abc].txt"</span>)
+<span class="hljs-keyword">print</span> fnmatch(document, <span class="hljs-string">"document_[!xyz].txt"</span>)
+</code></pre>
+<pre><code class="lang-good"><span class="hljs-keyword">print</span> fnmatch(<span class="hljs-string">"document_a.txt"</span>, <span class="hljs-string">"*.txt"</span>)
+<span class="hljs-keyword">print</span> fnmatch(<span class="hljs-string">"document_a.txt"</span>, <span class="hljs-string">"document_?.txt"</span>)
+<span class="hljs-keyword">print</span> fnmatch(<span class="hljs-string">"document_a.txt"</span>, <span class="hljs-string">"document_[abc].txt"</span>)
+<span class="hljs-keyword">print</span> fnmatch(<span class="hljs-string">"document_a.txt"</span>, <span class="hljs-string">"document_[!xyz].txt"</span>)
+</code></pre>
+<pre><code class="lang-bad">a = f.open(<span class="hljs-string">"a.txt"</span>)
+b = f.open(<span class="hljs-string">"b.txt"</span>)
+
+a.write(<span class="hljs-string">"A"</span>)
+b.write(<span class="hljs-string">"B"</span>)
+
+a.close()
+b.close()
+</code></pre>
+<pre><code class="lang-good">a = f.open(<span class="hljs-string">"a.txt"</span>)
+a.write(<span class="hljs-string">"A"</span>)
+a.close()
+
+b = f.open(<span class="hljs-string">"b.txt"</span>)
+b.write(<span class="hljs-string">"B"</span>)
+b.close()
+</code></pre>
+<h3 id="use-newlines-only-to-separate-functionality-and-do-not-separate-outputs">Use newlines only to separate functionality, and do not separate outputs</h3>
+<p>Aside from class and function definitions, newlines should only be used to separate a section of functionaily from another to make the example more readable. Do not add new lines before or after print statements, as they will naturally be separated by inline outputs.</p>
+<pre><code class="lang-bad">q = Queue.Queue()
+
+q.put(<span class="hljs-string">"a"</span>)
+
+q.put(<span class="hljs-string">"b"</span>)
+
+q.put(<span class="hljs-string">"c"</span>)
+
+<span class="hljs-keyword">print</span> q.get()
+
+<span class="hljs-keyword">print</span> q.get()
+
+<span class="hljs-keyword">print</span> q.get()
+</code></pre>
+<pre><code class="lang-good">q = Queue.Queue()
+q.put(<span class="hljs-string">"a"</span>)
+q.put(<span class="hljs-string">"b"</span>)
+q.put(<span class="hljs-string">"c"</span>)
+
+<span class="hljs-keyword">print</span> q.get()
+<span class="hljs-keyword">print</span> q.get()
+<span class="hljs-keyword">print</span> q.get()
+</code></pre>
+<pre><code class="lang-bad">f = open(<span class="hljs-string">"sample.json"</span>)
+
+<span class="hljs-keyword">print</span> json.load(f)
+</code></pre>
+<pre><code class="lang-good">f = open(<span class="hljs-string">"sample.json"</span>)
+<span class="hljs-keyword">print</span> json.load(f)
+</code></pre>
+<h3 id="preserve-structure-across-related-code-examples">Preserve structure across related code examples</h3>
+<p>For example, these two examples show how to express different recurrence rules using <code>dateutil.rrule</code>:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># TITLE: List the dates of the 100th day of every year</span>
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">for</span> date <span class="hljs-keyword">in</span> dateutil.rrule(YEARLY, byyearday=<span class="hljs-number">100</span>, count=<span class="hljs-number">3</span>):
+    <span class="hljs-keyword">print</span> date
+</code></pre>
+<pre><code class="lang-good"><span class="hljs-comment"># TITLE: List the dates of the next 10th week of the year</span>
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">for</span> date <span class="hljs-keyword">in</span> dateutil.rrule(DAILY, byweekno=<span class="hljs-number">10</span>, count=<span class="hljs-number">3</span>):
+    <span class="hljs-keyword">print</span> date
+</code></pre>
+<p>Whereas if the second example was written as follows, it would be more difficult to understand the differences:</p>
+<pre><code class="lang-bad"><span class="hljs-comment"># TITLE: List the dates of the next 10th week of the year</span>
+
+<span class="hljs-comment"># CODE</span>
+dates = dateutil.rrule(DAILY, byweekno=<span class="hljs-number">10</span>, count=<span class="hljs-number">3</span>)
+<span class="hljs-keyword">print</span> list(dates)
+</code></pre>
+<h3 id="choose-which-examples-to-write-using-kite-usage-metrics-official-documentation-then-google">Choose which examples to write using Kite usage metrics, official documentation, then Google</h3>
+<p>Typically, you want to prioritize the most popular classes, functions, and subpackages first. The curation tool provides usage metrics, which is a good baseline for evaluating what to cover. Using this in conjunction with the official documentation for the package will generally cover most, if not all of the major use cases. Supplement this with Google and StackOverflow search results.</p>
+<p>General guideline:</p>
+<ol>
+<li>Cover what is on both the curation tool and the quick start/tutorial/overview page of the documentation</li>
+<li>Cover the rest of what is on the curation tool, until you reach niche or advanced functions</li>
+<li>Cover the rest of what is on the official documentation, until you reach niche or advanced functions</li>
+<li>Do searches online and cover any interesting use cases of the remaining content of the package</li>
+</ol>
+<h2 id="titles">Titles</h2>
+<p>Writing high quality titles is, in many ways, the hardest part of all.  You have to describe all of the essential parts of what the example does in one compact and easy-to-read sentence fragment.</p>
+<p><strong>Template for writing titles: [verb phrase] [(opt.) specification phrase]</strong></p>
+<p>Specification phrases are used to qualify or refine the verb phrase.  They are often prepositional phrases.</p>
+<p>Examples of good titles that use the template:</p>
+<p>Verb phrase only:</p>
+<ul>
+<li>&quot;Construct a 1D array&quot;</li>
+<li>&quot;Construct a 2D array&quot;</li>
+</ul>
+<p>Verb phrase plus specification phrase:</p>
+<ul>
+<li>&quot;Construct an array from a matrix&quot;</li>
+<li>&quot;Construct an array of `int16`s&quot;</li>
+<li>&quot;Construct an array of `float`s&quot;</li>
+<li>&quot;Construct an array from a matrix of `int16`s&quot;</li>
+</ul>
+<h3 id="start-the-title-with-a-verb">Start the title with a verb</h3>
+<ul>
+<li>Good: &quot;<strong>Multiply</strong> every element of a matrix with a scalar&quot;</li>
+<li>Bad: &quot;<em>Scalar</em> multiplication of every element of a matrix&quot;</li>
+</ul>
+<h3 id="use-verb-roots-instead-of-other-verb-forms">Use verb roots instead of other verb forms</h3>
+<p>Good: &quot;<strong>Construct</strong> an array&quot;
+Bad: &quot;<em>Constructing</em> an array&quot;
+Bad: &quot;<em>Constructed</em> an array&quot;</p>
+<h3 id="capitalize-only-the-first-letter-of-the-first-word">Capitalize only the first letter of the first word</h3>
+<ul>
+<li>Good: &quot;<strong>Construct an array</strong>&quot;</li>
+<li>Bad: &quot;<em>Construct An Array</em>&quot;</li>
+<li>Bad: &quot;<em>construct an array</em>&quot;</li>
+</ul>
+<h3 id="use-a-verb-phrase-that-captures-the-main-behavior-of-the-function">Use a verb phrase that captures the main behavior of the function</h3>
+<p>The verb included in the function name is often a good place to start.</p>
+<pre><code><span class="hljs-comment"># Example</span>
+<span class="hljs-keyword">import</span> itertools
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.count(<span class="hljs-number">10</span>):
+    <span class="hljs-keyword">print</span> i
+    <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">20</span>: <span class="hljs-keyword">break</span>
+</code></pre><p>In this case, &quot;<strong>Count up from 10</strong>&quot; would be a good title</p>
+<p>Sometimes the documentation for a function can provide good inspiration for a title.</p>
+<h3 id="construct-short-but-comprehensive-titles">Construct short but comprehensive titles</h3>
+<p>If a word can be removed without changing the meaning or making the title nonsensical, it should be removed.</p>
+<ul>
+<li>Good: &quot;<strong>Construct an array of `int16`s</strong>&quot;</li>
+<li>Bad: &quot;<em>Construct an array with explicit 16-bit integer type</em>&quot;</li>
+</ul>
+<h3 id="construct-titles-that-reflect-what-a-user-might-query">Construct titles that reflect what a user might query</h3>
+<p>Think about the kinds of queries that users might form to look for the code example, and use the most common query terms in your title.</p>
+<pre><code><span class="hljs-comment"># Example</span>
+<span class="hljs-keyword">for</span> date <span class="hljs-keyword">in</span> rrule(WEEKLY, byweekday=MO, count=<span class="hljs-number">3</span>):
+    <span class="hljs-keyword">print</span> date
+</code></pre><p>The above example uses an <code>rrule</code> to return the dates of every Monday. So while the example uses terms like <code>rrule</code>, <code>byweekday</code> and <code>weekly</code>, the most typical query for a script like this would contain terms like every, weekly, Monday, week day, and list, so you would want title it something like &quot;<strong>List the dates of every Monday</strong>&quot;.</p>
+<h3 id="use-proper-english-for-titles">Use proper English for titles</h3>
+<p>Do not skip articles or have grammatical, spelling, or capitalization errors.</p>
+<ul>
+<li>Good: &quot;<strong>Get the date of the first Monday of every month</strong>&quot;</li>
+<li>Bad: &quot;<em>Get first monday of month</em>&quot;</li>
+</ul>
+<h3 id="use-verbs-that-are-most-commonly-used-with-a-given-noun">Use verbs that are most commonly used with a given noun</h3>
+<ul>
+<li>Good: &quot;<strong>Start</strong> a thread&quot;</li>
+<li>Bad: &quot;<em>Run</em> a thread&quot;</li>
+<li>Good: &quot;<strong>Compile</strong> a regular expression&quot;</li>
+<li>Bad: &quot;<em>Build</em> a regular expression&quot;</li>
+</ul>
+<h3 id="use-the-specification-to-describe-various-ways-to-use-the-function-">Use the specification to describe various ways to use the function.</h3>
+<p>For example, the specification can be the input argument type, the secondary behavior of the function, or a particular condition.</p>
+<p>Examples:</p>
+<ul>
+<li>Specify the argument type: &quot;Construct an array <strong>of `int16`s</strong>&quot;</li>
+<li>Specify the secondary behavior of the function: &quot;Evaluate a template <strong>and ignore missing keys</strong>&quot;</li>
+<li>Specify a particular condition: &quot;Construct a 3D array <strong>of random values between 0 and 1</strong>&quot;</li>
+</ul>
+<h3 id="don-t-include-specification-phrases-for-incidental-complexity">Don&#39;t include specification phrases for incidental complexity</h3>
+<p>How to determine whether a specification is essential or incidental:</p>
+<p>Imagine you are writing a code example based on the title with a specification. The specification is <strong>incidental</strong> if the <em>same code (or a piece of similar code without substantial change) will be written without or with the specification</em>.</p>
+<p>Example: <code>numpy.eye(3)</code></p>
+<p>Candidate titles:</p>
+<ul>
+<li>&quot;Construct an identity matrix of a specified size&quot;</li>
+<li>&quot;Construct an identity matrix of size n&quot;</li>
+<li>&quot;Construct an identity matrix of size 3&quot;</li>
+<li>&quot;Construct an identity matrix&quot;</li>
+</ul>
+<p>The last one is preferred because by looking at the title &quot;Construct an identity matrix&quot;,
+the code you may write may be:</p>
+<pre><code>numpy.eye(2)
+numpy.eye(3)
+numpy.eye(4)
+</code></pre><p>which are basically the same.</p>
+<h3 id="when-a-value-in-the-title-is-essential-explicitly-include-the-values-otherwise-generalize">When a value in the title is essential, explicitly include the values; otherwise generalize</h3>
+<pre><code><span class="hljs-comment"># Example</span>
+expected = [<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>]
+array2 = [<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.01</span>]
+array3 = [<span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.1</span>]
+<span class="hljs-keyword">try</span>:
+    testing.assert_array_almost_equal(array2, expected, <span class="hljs-number">2</span>)
+    <span class="hljs-keyword">print</span> <span class="hljs-string">"expected and array2 are equal"</span>
+    testing.assert_array_almost_equal(array3, expected, <span class="hljs-number">2</span>)
+<span class="hljs-keyword">except</span> AssertionError:
+    <span class="hljs-keyword">print</span> <span class="hljs-string">"AssertionError: expected and array3 are not equal"</span>
+</code></pre><p>Candidate titles:</p>
+<ul>
+<li>Bad: &quot;Assert that <em>two arrays are equal within a given number of decimals</em>&quot;</li>
+<li>Bad: &quot;Assert that <em>arrays are equal within n decimals</em>&quot;</li>
+<li>Good: &quot;Assert that <strong>two arrays are equal within 2 decimals</strong>&quot;</li>
+</ul>
+<p>Both the number of arrays passed to the function and the decimal places are essential.</p>
+<pre><code><span class="hljs-comment"># Example</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> itertools.repeat(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>):
+    <span class="hljs-keyword">print</span> i
+</code></pre><p>Candidate titles:</p>
+<ul>
+<li>Bad: &quot;Repeat <em>the value 10 three times</em>&quot;</li>
+<li>Bad: &quot;Repeat <em>a value n times</em>&quot;</li>
+<li>Good: &quot;Repeat <strong>a value three times</strong>&quot;</li>
+</ul>
+<p>In this case, because <code>repeat</code> by definition must repeat some number of times, the number of repetitions is essential; the value that it repeats is not.</p>
+<pre><code><span class="hljs-comment"># Example</span>
+<span class="hljs-keyword">print</span> numpy.eye(<span class="hljs-number">3</span>, dtype = int16)
+</code></pre><p>Candidate titles:</p>
+<ul>
+<li>Bad: &quot;Construct <em>an identity matrix of a specified type</em>&quot;</li>
+<li>Bad: &quot;Construct <em>a 3-by-3 identity matrix of int16s</em>&quot;&quot;</li>
+<li>Good: &quot;Construct <strong>an identity matrix of int16s</strong>&quot;&quot;</li>
+</ul>
+<p>The core concept being demonstrated here is the ability to specify a data type when initializing an identity matrix; therefore, the dimensions of the matrix is incidental, while the data type is essential.</p>
+<h3 id="spell-out-terminologies">Spell out terminologies</h3>
+<ul>
+<li>Bad: &quot;Find the <em>R^2</em> of a fitted line&quot;</li>
+<li>Good: &quot;Find the <strong>R-squared measure of a least-squares regression analysis</strong></li>
+</ul>
+<h3 id="avoid-using-parentheses">Avoid using parentheses</h3>
+<p>Titles that include parentheses, like &quot;Compute the sum of the second dimension <em>(rows)</em> of an array&quot;, are unnecessarily verbose. If a title needs parentheses, it can be simplified to not include them.</p>
+<h3 id="avoid-unnecessary-prepositional-phrases">Avoid unnecessary prepositional phrases</h3>
+<ul>
+<li>Good: &quot;<strong>Evaluate</strong> a template&quot;</li>
+<li>Bad: &quot;<em>Substitute values into</em> a template&quot;</li>
+<li>Good: &quot;<strong>Walk</strong> a tree&quot;</li>
+<li>Bad: &quot;<em>Walk over</em> a tree&quot;</li>
+</ul>
+<h3 id="avoid-using-redundant-object-or-instance-">Avoid using redundant <code>object</code> or <code>instance</code></h3>
+<p>Everything in Python is an object, so it is unnecessary to specify that something is an object or an instance.</p>
+<ul>
+<li>Bad: &quot;Write a new compressed file <em>using a GzipFile object</em>&quot;</li>
+<li>Bad: &quot;Write a new compressed file <em>using an instance of GzipFile</em>&quot;</li>
+<li>Good: &quot;Write a new compressed file <strong>using GzipFile</strong>&quot;</li>
+</ul>
+<p>This is also true for JSON.</p>
+<ul>
+<li>Bad: &quot;Encode a <em>dictionary as a JSON object</em>&quot;</li>
+<li>Good: &quot;Encode a <strong>dictionary as JSON</strong>&quot;</li>
+</ul>
+<p>You can, however, use object or instance to refer to Python objects in the general sense</p>
+<ul>
+<li>Good: &quot;<strong>Pickle a class object</strong>&quot;</li>
+<li>Good: &quot;<strong>Construct a Python class instance from a YAML document</strong>&quot;</li>
+</ul>
+<h3 id="avoid-all-apostrophes-either-for-contractions-or-for-the-possessive-case">Avoid all apostrophes, either for contractions or for the possessive case</h3>
+<ul>
+<li>Good: &quot;...<strong>should not</strong>...&quot;</li>
+<li>Bad: &quot;...<em>shouldn&#39;t</em>...&quot;</li>
+<li>Good: &quot;...<strong>the name of a thread</strong>...&quot;</li>
+<li>Bad: &quot;...<em>a thread&#39;s name</em>...&quot;</li>
+</ul>
+<h3 id="link-the-title-to-the-code-as-much-as-possible">Link the title to the code as much as possible</h3>
+<pre><code><span class="hljs-comment"># Example</span>
+numpy.all(my_matrix &gt; <span class="hljs-number">0</span>, axis = <span class="hljs-number">0</span>)
+</code></pre><ul>
+<li>Good: &quot;Determine if every element in a matrix <strong>is larger than 0</strong> by columns&quot;</li>
+<li>Bad: &quot;Determine if every element in a matrix <em>is positive</em> by columns&quot;</li>
+</ul>
+<h3 id="use-the-suggested-terminology-if-there-is-not-a-more-appropriate-term">Use the suggested terminology if there is not a more appropriate term</h3>
+<p>The following are preferred default terms that we would like all code examples to use for general cases. If there is not a better term based on the name of the function or what the documentation indicates, use these.</p>
+<ul>
+<li>Use <strong>a</strong> or <strong>an</strong> instead of <em>one</em></li>
+<li>Prefer <strong>construct</strong> over <em>make, create, return, generate</em></li>
+<li>Prefer <strong>compute</strong> over <em>calculate, return</em></li>
+<li>Prefer <strong>convert</strong> over <em>map, translate</em></li>
+<li>Prefer <strong>equal</strong> over <em>identical</em></li>
+<li>Prefer <strong>hex</strong> over <em>hexadecimal</em></li>
+<li>Prefer <strong>get</strong> over <em>return, print, show, view</em>, but use more specific words if possible</li>
+<li>Prefer <strong>sequence</strong> over <em>list, array, iterable</em></li>
+<li>Prefer <strong>element</strong> over <em>item, value</em></li>
+<li>Prefer <strong>condition</strong> over <em>predicate, if-statement</em></li>
+</ul>
+<p>Additionally, use the following common terms, even though they are not English words:</p>
+<ul>
+<li><strong>datetime</strong>, not <em>date time</em></li>
+<li><strong>filename</strong>, not <em>file name</em></li>
+</ul>
+<h3 id="use-consistent-title-structure-across-examples">Use consistent title structure across examples</h3>
+<p>If there are multiple concise ways to express a title, pick one and stick with it.</p>
+<ul>
+<li>Good: &quot;List the dates of Easter each year&quot; and &quot;List the 20th day of each month&quot;</li>
+<li>Bad: &quot;List the dates of Easter each year&quot; and &quot;Calculate the 20th day of each month&quot;</li>
+</ul>
+<h3 id="use-consistent-vocabulary-for-interchangeable-object-types">Use consistent vocabulary for interchangeable object types</h3>
+<p>For example, use &quot;element&quot; to refer to items of an array. Do not interchange between &quot;element&quot; and &quot;item&quot;.</p>
+<h3 id="use-terms-appropriate-for-the-demonstrated-concept">Use terms appropriate for the demonstrated concept</h3>
+<p>For example, when writing an example that work with HTTP requests, use &quot;<strong>Send a GET/POST/etc. request...</strong>&quot; instead of &quot;<em>Request a URL...</em>&quot; or &quot;<em>Make a request...</em>&quot;.</p>
+<h3 id="use-the-articles-a-and-an-for-general-behavior-and-the-for-specific-behavior">Use the articles &quot;a&quot; and &quot;an&quot; for general behavior, and &quot;the&quot; for specific behavior</h3>
+<pre><code><span class="hljs-comment"># Example</span>
+<span class="hljs-keyword">print</span> mimetypes.guess_extension(<span class="hljs-string">"text/html"</span>)
+<span class="hljs-keyword">print</span> mimetypes.guess_extension(<span class="hljs-string">"audio/mpeg"</span>)
+<span class="hljs-keyword">print</span> mimetypes.guess_extension(<span class="hljs-string">"fake/type"</span>)
+</code></pre><ul>
+<li>Good: &quot;Guess <strong>the</strong> file extension from <strong>a</strong> MIME type&quot; - In this example, we are demonstrating that the <code>guess_extension</code> function will return a <em>specific</em> file extension, and that it works for <em>various</em> MIME types. Therefore, we want to use the definite article &quot;the&quot; to refer to file extensions, and the indefinite article &quot;a&quot; to refer to MIME types.</li>
+<li>Bad: &quot;Guess <em>a</em> file extension from <em>a</em> MIME type&quot; - Implies that we are guessing <em>some</em> file extension, not a specific one</li>
+<li>Bad: &quot;Guess <em>a</em> file extension from <em>the</em> MIME type&quot; - Implies that we are guessing <em>some</em> file extension from a <em>specific</em> MIME type, which is not what the example shows</li>
+<li>Bad: &quot;Guess <em>the</em> file extension from <em>the</em> MIME type&quot; - Implies that we are only demonstrating the function for a <em>specific</em> MIME type, which is not what the example shows</li>
+</ul>
+<h3 id="use-plurals-to-generalize-behavior-that-applies-to-multiple-objects">Use plurals to generalize behavior that applies to multiple objects</h3>
+<pre><code><span class="hljs-comment"># Example</span>
+ints = array.array(<span class="hljs-string">"i"</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-keyword">print</span> ints.pop()
+<span class="hljs-keyword">print</span> ints
+<span class="hljs-keyword">print</span> ints.pop(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">print</span> ints
+</code></pre><ul>
+<li>Bad: &quot;Pop <em>an element</em> off of an array&quot;</li>
+<li>Good: &quot;Pop <strong>elements</strong> off of an array&quot;</li>
+</ul>
+<pre><code><span class="hljs-comment"># Example</span>
+url = <span class="hljs-string">"http://mock.kite.com/text"</span>
+request = urllib2.Request(url)
+request.add_header(<span class="hljs-string">"custom-header"</span>, <span class="hljs-string">"header"</span>)
+<span class="hljs-keyword">print</span> request.header_items()
+</code></pre><ul>
+<li>Bad: &quot;Define <em>a custom header</em> for an HTTP request&quot;</li>
+<li>Good: &quot;Define <strong>custom headers</strong> for an HTTP request&quot;</li>
+</ul>
+<p>In both examples, even though the example only works with one object at a time, the concept applies to multiple objects, so the plural forms are more appropriate.</p>
+<p>Note that we don&#39;t pluralize the non-essential part (&quot;array&quot; and &quot;request&quot;).</p>
+<h3 id="titles-should-never-be-duplicates">Titles should never be duplicates</h3>
+<p>If two examples vary by a small amount, that variation is essential and therefore should be captured in the title.</p>
+<h3 id="use-backticks-to-specify-terminology-that-is-not-used-as-natural-language">Use backticks (`) to specify terminology that is not used as natural language</h3>
+<p>When using terms such as <code>int</code>, <code>bytearray</code>, and <code>defaultdict</code>, surround the term with backticks. This also applies to terms such as <code>float</code> and <code>for</code>, which are English words but not used in their English meaning, and class names like <code>TextCalendar</code> and <code>ElementTree</code>, which are composed of English words but are not themselves English words.</p>
+<p>Note that this does not apply to abbreviations; terms like MD5, SHA256, and HMAC should not have backticks around them.</p>
+<h3 id="don-t-blend-identifiers-into-natural-language">Don&#39;t blend identifiers into natural language</h3>
+<ul>
+<li>When there is a concise English word that commonly corresponds to an identified, always use the English word (&quot;<strong>dictionary</strong>&quot; not &quot;<em>dict</em>&quot;, &quot;<strong>sequence</strong>&quot; not &quot;<em>list</em>&quot;, &quot;<strong>integer</strong>&quot; not &quot;<em>int</em>&quot;; however, use &quot;<strong>float</strong>&quot; instead of &quot;<em>floating point number</em>&quot;)</li>
+<li>Prefer to not separate, expand, or otherwise modify the identifier into an English word (&quot;<strong>bytearray</strong>&quot; not &quot;<em>byte array</em>&quot;, &quot;<strong>DictWriter</strong>&quot; not &quot;<em>dictionary writer</em>&quot;)</li>
+<li>When an identifier is also exactly an English language word, use lower case if the meaning does not become ambiguous (&quot;<strong>Start a process</strong>&quot; not &quot;<em>Start a Process</em>&quot;)</li>
+<li>If an identifier is exactly an English language word, but is not used in the same meaning or is only loosely related, Match capitalization and surround it in backticks (&quot;<strong>Share a list between processes using a `Manager`</strong>&quot;, not &quot;<em>Share a list between processes using a manager</em>&quot;)</li>
+<li>In general, when referring to a class name, match capitalization and use backticks, but when referring to the corresponding abstract concept that happens to be the same word, use lowercase and no backticks.</li>
+<li>When referring to functions in the title, do not include the parenthesis (&quot;<strong>Print a year calendar using `prcal`</strong>&quot; not &quot;<em>Print a year calendar using `prcal()`</em>&quot;)</li>
+</ul>
+<h3 id="prefer-to-use-digits-rather-than-spell-out-numbers">Prefer to use digits rather than spell out numbers</h3>
+<p>Use your best judgment on whether to use digits/numerals (e.g. 5) or spell out the word of numbers (e.g. <em>five</em>).  Some general guidelines:</p>
+<p>If a number is a parameter that is core to the example, use digits.</p>
+<ul>
+<li>Good: &quot;Wrap a string of text to width <strong>30</strong>&quot;</li>
+<li>Bad: &quot;Wrap a string of text to width <em>thirty</em>&quot;</li>
+</ul>
+<p>If a number expresses something that is typically written with digits (e.g. measurements, dimensions, constants), use digits.</p>
+<ul>
+<li>Good: &quot;Construct a <strong>3-by-5</strong> identity matrix&quot;</li>
+<li>Bad: &quot;Construct a <em>three-by-five</em> identity matrix&quot;</li>
+</ul>
+<p>If a number is none of the above, and is also less than 10, spell it out.</p>
+<ul>
+<li>Good: &quot;Combine <strong>two</strong> arrays&quot;</li>
+<li>Bad: &quot;Combine <em>2</em> arrays&quot;</li>
+</ul>
+<p>When in doubt, use digits.</p>
+<h3 id="use-acronyms-if-they-are-typically-used-as-such-otherwise-spell-them-out-with-each-word-capitalized">Use acronyms if they are typically used as such; otherwise, spell them out with each word capitalized</h3>
+<p>Good:</p>
+<ul>
+<li>HMAC</li>
+<li>CSS</li>
+<li>Recurrent Neural Network</li>
+<li>Daylight Savings Time</li>
+</ul>
+<p>Bad:</p>
+<ul>
+<li>LDA (should be Latent Direchlet Allocation)</li>
+<li>RNN (should be Recurrent Neural Network)</li>
+<li>HyperText Markup Language (should be HTML)</li>
+<li>Structured Query Language (should be SQL)</li>
+</ul>
+<p>Exceptions:</p>
+<ul>
+<li>use &quot;random number generator&quot;, not RNG or Random Number Generator</li>
+</ul>
+<p>When in doubt, spell them out.</p>
+<h3 id="do-not-put-a-period-at-the-end-of-titles">Do not put a period at the end of titles</h3>
+<p>Titles are sentence fragments, not full sentences.</p>
+<h2 id="preludes-and-postludes">Preludes and postludes</h2>
+<p>Code examples are divided into three sections: prelude, main code, and postlude.  These are combined at runtime to form the entire program, but only the main code is shown in the sidebar; the user only sees all three sections if they click on the example.  We therefore put setup and teardown code in the prelude and postlude, respectively, and reserve the main code section for demonstrating the core concept.</p>
+<h3 id="use-the-prelude-and-postlude-for-code-that-isn-t-directly-relevant-to-the-demonstrated-concept">Use the prelude and postlude for code that isn&#39;t directly relevant to the demonstrated concept</h3>
+<p>Preludes and postludes are not visible to a user until they expand a code example, so use them for code that is needed for the example to run, but is not immediately relevant to the core concept of the example.</p>
+<pre><code class="lang-bad"><span class="hljs-comment"># TITLE: Read a basic CSV file</span>
+
+<span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">import</span> csv
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">"sample.csv"</span>, <span class="hljs-string">"w"</span>) <span class="hljs-keyword">as</span> f:
+    f.write(<span class="hljs-string">"a,1\n"</span>)
+    f.write(<span class="hljs-string">"b,2\n"</span>)
+
+f = open(<span class="hljs-string">"sample.csv"</span>)
+csv_reader = csv.reader(f)
+
+<span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> csv_reader:
+    <span class="hljs-keyword">print</span> row
+</code></pre>
+<p>This example begins with setup code which creates <code>sample.csv</code>, a file used in the demonstration of <code>csv.reader</code>.  The setup code should not be included in the main code section.  A better division of the example would be:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># TITLE: Read a basic CSV file</span>
+
+<span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">import</span> csv
+
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">"sample.csv"</span>, <span class="hljs-string">"w"</span>) <span class="hljs-keyword">as</span> f:
+    f.write(<span class="hljs-string">"a,1\n"</span>)
+    f.write(<span class="hljs-string">"b,2\n"</span>)
+
+<span class="hljs-comment"># CODE</span>
+f = open(<span class="hljs-string">"sample.csv"</span>)
+csv_reader = csv.reader(f)
+
+<span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> csv_reader:
+    <span class="hljs-keyword">print</span> row
+</code></pre>
+<p>Thus the Kite sidebar will only show code that opens and reads the file, which is the central concept of this example.</p>
+<h3 id="put-import-statements-in-the-prelude">Put import statements in the prelude</h3>
+<pre><code class="lang-good"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">import</span> yaml
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">print</span> yaml.dump(<span class="hljs-string">"abc"</span>)
+</code></pre>
+<h3 id="use-import-x-syntax-by-default">Use <code>import x</code> syntax by default</h3>
+<p>We want examples to be as easy to understand as possible, so for most packages, we want to import at the package level and access its functions from the package, rather than using <code>from x import y</code> to import functions directly.</p>
+<pre><code class="lang-bad"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">from</span> json <span class="hljs-keyword">import</span> dumps
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">print</span> dumps({<span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>})
+</code></pre>
+<pre><code class="lang-good"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">import</span> json
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">print</span> json.dumps({<span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>})
+</code></pre>
+<h3 id="use-from-a-b-c-import-d-when-there-are-multiple-subpackages">Use <code>from a.b.c import d</code> when there are multiple subpackages</h3>
+<p>If a package contains subpackages, accessing them through the top-level package can make the example messy and hard to read. In these cases, it makes more sense to use <code>from</code>.</p>
+<pre><code class="lang-good"><span class="hljs-comment"># TITLE: Map a URL to a function using `getattr`</span>
+
+<span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">from</span> werkzeug.wrappers <span class="hljs-keyword">import</span> Response, Request
+<span class="hljs-keyword">from</span> werkzeug.routing <span class="hljs-keyword">import</span> Map, Rule
+<span class="hljs-keyword">from</span> werkzeug.exceptions <span class="hljs-keyword">import</span> HTTPException
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorld</span><span class="hljs-params">(object)</span>:</span>
+
+    url_map = Map([
+        Rule(<span class="hljs-string">"/home"</span>, endpoint=<span class="hljs-string">"home"</span>),
+    ])
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dispatch_request</span><span class="hljs-params">(self, request)</span>:</span>
+        url_adapter = self.url_map.bind_to_environ(request.environ)
+        <span class="hljs-keyword">try</span>:
+            endpoint, values = url_adapter.match()
+
+            <span class="hljs-comment"># Call the corresponding function by prepending "on_"</span>
+            <span class="hljs-keyword">return</span> getattr(self, <span class="hljs-string">"on_"</span> + endpoint)(request, **values)
+        <span class="hljs-keyword">except</span> HTTPException, e:
+            <span class="hljs-keyword">return</span> e
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">on_home</span><span class="hljs-params">(self, request)</span>:</span>
+        <span class="hljs-keyword">return</span> Response(<span class="hljs-string">"Hello, World!"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wsgi_app</span><span class="hljs-params">(self, environ, start_response)</span>:</span>
+        request = Request(environ)
+        response = self.dispatch_request(request)
+        <span class="hljs-keyword">return</span> response(environ, start_response)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__call__</span><span class="hljs-params">(self, environ, start_response)</span>:</span>
+        <span class="hljs-keyword">return</span> self.wsgi_app(environ, start_response)
+</code></pre>
+<h3 id="in-general-prefer-to-put-code-in-the-main-code-section">In general, prefer to put code in the main code section</h3>
+<p>If your example involves helper classes or methods that are central to the example then you should still include those in the main code section.</p>
+<pre><code class="lang-good"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">import</span> yaml
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dice</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, a, b)</span>:</span>
+        self.a = a
+        self.b = b
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__repr__</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'Dice(%d, %d)'</span> % (self.a, self.b)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dice_constructor</span><span class="hljs-params">(loader, node)</span>:</span>
+    value = yaml.loader.construct_scalar(node)
+    a, b = map(int, value.split(<span class="hljs-string">'d'</span>))
+    <span class="hljs-keyword">return</span> Dice(a, b)
+
+add_constructor(<span class="hljs-string">'!dice'</span>, dice_constructor)
+
+<span class="hljs-keyword">print</span> yaml.load(<span class="hljs-string">"gold: !dice 10d6"</span>)
+</code></pre>
+<h2 id="variables">Variables</h2>
+<h3 id="use-concise-and-purposeful-variable-names">Use concise and purposeful variable names</h3>
+<p>Use variable names that are short, and describe what a variable is going to be used for. For example, this is good because you can see what the purpose of each variables is:</p>
+<pre><code class="lang-good">xdata = np.arange(10)
+ydata = np.zeros(10)
+plot(xdata, ydata)
+</code></pre>
+<p>Whereas this is bad because it&#39;s not clear what the variables do:</p>
+<pre><code class="lang-bad">a = np.arange(10)
+b = np.zeros(10)
+plot(a, b)
+</code></pre>
+<p><strong>Avoid &#39;foo&#39; &#39;bar&#39; etc.</strong> regardless of how/where you are considering using it.</p>
+<h3 id="avoid-variables-like-name-or-file-that-could-be-confused-with-part-of-the-api">Avoid variables like <code>name</code> or <code>file</code> that could be confused with part of the API</h3>
+<p>Consider the following example using Jinja2:</p>
+<pre><code class="lang-bad">template = Template(<span class="hljs-string">"&lt;div&gt;{{name}}&lt;/div&gt;"</span>)
+print(template.render(name=<span class="hljs-string">"abc"</span>))  <span class="hljs-comment"># unclear - is "name" somehow special?</span>
+</code></pre>
+<p>For somebody not familiar with Jinja, it unclear whether <code>name</code> has some special meaning in the Jinja2 API, or whether it&#39;s used as an arbitrary placeholder. To make it clear, use a word that could not be confused for part of the API:</p>
+<pre><code class="lang-good">template = Template(<span class="hljs-string">"&lt;div&gt;{{person}}&lt;/div&gt;"</span>)
+print(template.render(person=<span class="hljs-string">"abc"</span>))
+</code></pre>
+<h3 id="follow-language-conventions-for-separating-words-in-a-variable-name">Follow language conventions for separating words in a variable name</h3>
+<pre><code class="lang-good"><span class="hljs-comment"># Python</span>
+my_variable = <span class="hljs-number">1</span>
+
+<span class="hljs-comment"># Java</span>
+int myVariable = <span class="hljs-number">1</span>
+</code></pre>
+<h3 id="don-t-create-variables-that-are-only-referenced-once">Don&#39;t create variables that are only referenced once</h3>
+<p>This is unnecessarily verbose:</p>
+<pre><code class="lang-bad">pattern = <span class="hljs-string">"abc .* def"</span>
+regex = re.compile(pattern)
+</code></pre>
+<p>Instead, put it all on one line:</p>
+<pre><code class="lang-good">regex = re.compile(<span class="hljs-string">"abc .* def"</span>)
+</code></pre>
+<h3 id="but-do-introduce-temporary-variables-rather-than-split-expressions-across-lines">But do introduce temporary variables rather than split expressions across lines</h3>
+<p>This is difficult to understand:</p>
+<pre><code class="lang-bad">yaml.dump({<span class="hljs-string">"name"</span>: <span class="hljs-string">"abc"</span>, <span class="hljs-string">"age"</span>: <span class="hljs-number">7</span>},
+     open(<span class="hljs-string">"myfile.txt"</span>, <span class="hljs-string">"w"</span>),
+     default_flow_style=<span class="hljs-keyword">False</span>)
+</code></pre>
+<p>Instead, it would be better to introduce two temporary variables:</p>
+<pre><code class="lang-good">data = {<span class="hljs-string">"name"</span>: <span class="hljs-string">"abc"</span>, <span class="hljs-string">"age"</span>: <span class="hljs-number">7</span>}
+f = open(<span class="hljs-string">"myfile.txt"</span>, <span class="hljs-string">"w"</span>)
+yaml.dump(data, f, default_flow_style=<span class="hljs-keyword">False</span>)
+</code></pre>
+<h3 id="introduce-temporary-variables-when-the-meaning-of-a-value-is-not-clear">Introduce temporary variables when the meaning of a value is not clear</h3>
+<p>This is difficult to understand:</p>
+<pre><code class="lang-bad"><span class="hljs-keyword">print</span> np.where([<span class="hljs-keyword">False</span>, <span class="hljs-keyword">True</span>, <span class="hljs-keyword">True</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">300</span>])
+</code></pre>
+<p>Instead, introduce temporaries to indicate what the variables mean:</p>
+<pre><code class="lang-good">condition = [<span class="hljs-keyword">False</span>, <span class="hljs-keyword">True</span>, <span class="hljs-keyword">True</span>]
+when_true = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+when_false = [<span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">300</span>]
+<span class="hljs-keyword">print</span> np.where(condition, when_true, when_false)
+</code></pre>
+<p>This will sometimes conflict with the rule about not creating variables that are only referenced once. Use your best judgment.</p>
+<h2 id="values-and-placeholders">Values and Placeholders</h2>
+<h3 id="use-simple-placeholders">Use simple placeholders</h3>
+<p>This is unnecessarily long:</p>
+<pre><code class="lang-bad"><span class="hljs-keyword">print</span> json.dump({<span class="hljs-string">"first_name"</span>: <span class="hljs-string">"Graham"</span>, <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Johnson"</span>, <span class="hljs-string">"born_in"</span>: <span class="hljs-string">"Antarctica"</span>})
+</code></pre>
+<p>Instead, use more concise data:</p>
+<pre><code class="lang-good"><span class="hljs-keyword">print</span> json.dump({<span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>, <span class="hljs-string">"b"</span>: <span class="hljs-number">2</span>})
+</code></pre>
+<p><strong>Avoid &#39;foo&#39; &#39;bar&#39; etc.</strong> regardless of how/where you are considering using it.</p>
+<h3 id="when-appropriate-use-placeholders-that-are-relevant-to-the-package">When appropriate, use placeholders that are relevant to the package</h3>
+<p>This is simple, but makes no sense in the context of <code>shlex</code>:</p>
+<pre><code class="lang-bad"><span class="hljs-keyword">print</span> shlex.split(<span class="hljs-string">"a b"</span>)
+</code></pre>
+<p>Instead, since <code>shlex</code> is used for parsing Unix shell commands, use a sample command:</p>
+<pre><code class="lang-good"><span class="hljs-keyword">print</span> shlex.split(<span class="hljs-string">'tar -cvf kite_source.tar /home/kite/'</span>)
+</code></pre>
+<p>Similarly, since HMAC is used to hash messages using a key, express those semantics in the placeholders:</p>
+<pre><code class="lang-good">h = hmac.new(<span class="hljs-string">"key"</span>)
+h.update(<span class="hljs-string">"Hello, World!"</span>)
+</code></pre>
+<h3 id="minimize-placeholders-to-only-what-is-necessary">Minimize placeholders to only what is necessary</h3>
+<p><strong>Use the smallest amount of placeholder content that still clearly demonstrates the concept.</strong> You should rarely ever need more than 3.</p>
+<p>When choosing between 1, 2, or 3 placeholders, consider the cost of incremental cost:</p>
+<ul>
+<li>For example, in <code>&quot;abc&quot;.upper()</code>, the last <code>c</code>, while not strictly necessary, is low cost</li>
+<li>But <code>map(upper, [&quot;abc&quot;, &quot;def&quot;])</code> is better than <code>map(upper, [&quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;])</code> because each incremental item element adds seven characters to the code, gets us to a less familiar part of the alphabet, and adds considerable length to the output</li>
+<li>In the case of <code>{&quot;a&quot;: 1}.pop(&quot;a&quot;)</code>, one entry is sufficient because <code>pop</code> for dictionaries does not care about order</li>
+</ul>
+<p>Be careful when using only one placeholder, as the example may become ambiguous</p>
+<ul>
+<li>if we show <code>&quot;a&quot;.upper()</code>, it is unclear if it works for multiple characters</li>
+<li>if we show <code>[1].pop()</code>, it is unclear if <code>pop</code> is getting the first or last item, or even the whole list</li>
+</ul>
+<p>Sometimes there are additional reasons to consider using two vs three items. For example, when multiplying two matrices it&#39;s required to use non-square dimensions to illustrate how the dimensions need to line up.</p>
+<h3 id="use-double-quotes-for-string-literals-by-default">Use double quotes for string literals by default</h3>
+<p>Rationale: we could have chosen either one, but it&#39;s important to have a consistent standard, and double quotes are more consistent with string representations in other languages.</p>
+<pre><code class="lang-good"><span class="hljs-keyword">print</span> <span class="hljs-string">"use double quotes by default"</span>
+</code></pre>
+<h3 id="switch-to-single-quotes-if-you-need-to-include-double-quotes-inside-a-string">Switch to single quotes if you need to include double-quotes inside a string</h3>
+<p>This is ugly:</p>
+<pre><code class="lang-bad">s = <span class="hljs-string">"Greg said \"hello\" to Phil"</span>
+</code></pre>
+<p>Instead, switch to single quotes:</p>
+<pre><code class="lang-good">s = <span class="hljs-string">'Greg said "hello" to Phil'</span>
+</code></pre>
+<h3 id="use-triple-double-quotes-for-multi-line-strings">Use triple-double-quotes for multi-line strings</h3>
+<pre><code class="lang-good">document = <span class="hljs-string">"""
+{
+  "a": 20,
+  "b": [1,2,3,"a"],
+  "c": {
+    "d": [1,2,3],
+    "e": 40
+  }
+}
+"""</span>
+data = json.loads(document)
+</code></pre>
+<h3 id="put-a-new-line-at-the-start-and-end-of-multi-line-strings-if-possible">Put a new line at the start and end of multi-line strings, if possible</h3>
+<pre><code class="lang-bad">data = <span class="hljs-string">"""This is a
+little hard to read"""</span>
+</code></pre>
+<pre><code class="lang-good">data = <span class="hljs-string">"""
+This is a
+lot easier to read
+"""</span>
+</code></pre>
+<h3 id="use-the-alphabet-a-b-c-for-string-placeholders">Use the alphabet (a, b, c, ...) for string placeholders</h3>
+<pre><code class="lang-good">my_string = <span class="hljs-string">"abc"</span>
+</code></pre>
+<h3 id="use-natural-numbers-1-2-3-for-integer-placeholders">Use natural numbers (1, 2, 3, ...) for integer placeholders</h3>
+<pre><code class="lang-good">numpy.array([1, 2, 3])
+</code></pre>
+<h3 id="use-natural-numbers-with-a-0-suffix-for-float-placeholders">Use natural numbers with a &quot;.0&quot; suffix for float placeholders</h3>
+<pre><code class="lang-good">my_list = [1.0, 2.0, 3.0]
+</code></pre>
+<h3 id="continue-these-sequences-for-hierarchies-sequences-or-groups-of-placeholder-content-">Continue these sequences for hierarchies, sequences, or groups of placeholder content.</h3>
+<pre><code class="lang-good">map(upper, [<span class="hljs-string">'abc'</span>, <span class="hljs-string">'def'</span>])
+numpy.array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]])
+</code></pre>
+<h3 id="use-strings-for-dictionary-keys">Use strings for dictionary keys</h3>
+<p>If the key-value pairs are purposeful, use key names that correspond to the meaning of the value. Otherwise, use <code>&quot;a&quot;, &quot;b&quot;...</code> as placeholder keys, and <code>1, 2...</code> as placeholder values.</p>
+<pre><code class="lang-bad">json.dumps({<span class="hljs-number">1</span>: <span class="hljs-string">"a"</span>, <span class="hljs-number">2</span>: <span class="hljs-string">"b"</span>})
+</code></pre>
+<pre><code class="lang-good">json.dumps({<span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>, <span class="hljs-string">"b"</span>: <span class="hljs-number">2</span>})
+</code></pre>
+<h3 id="use-c-n-for-placeholder-classes-and-f-n-for-placeholder-functions">Use <code>C[n]</code> for placeholder classes and <code>f[n]</code> for placeholder functions</h3>
+<p>Note that this only applies to <em>placeholder</em> classes and functions, i.e. classes and functions that have no functionality or purpose, such as those used in demonstrating <code>sys</code> and <code>inspect</code> functionality.</p>
+<pre><code class="lang-bad"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">bark</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Bark bark!"</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cat</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">meow</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"meow"</span>
+</code></pre>
+<pre><code class="lang-good"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C1</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f1</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C2</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">f2</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>
+</code></pre>
+<h3 id="use-path-to-file-for-directory-names">Use <code>&quot;/path/to/file&quot;</code> for directory names</h3>
+<p>Again, only for non-purposeful placeholder directory names. Note that there is a <code>/</code> at the beginning.</p>
+<pre><code class="lang-bad">os.path.split(<span class="hljs-string">"/home/user/docs/sample.txt"</span>)
+</code></pre>
+<pre><code class="lang-good">os.path.split(<span class="hljs-string">"/path/to/file"</span>)
+</code></pre>
+<h3 id="don-t-use-the-same-value-twice-unless-for-the-same-purpose-each-time">Don&#39;t use the same value twice unless for the same purpose each time</h3>
+<p>The following example creates an HMAC hash using a key, then updates it with a value:</p>
+<pre><code class="lang-bad">h = hmac.new(<span class="hljs-string">"abc"</span>)
+h.update(<span class="hljs-string">"abc"</span>)
+</code></pre>
+<p>This is confusing since it leaves the user wondering whether there was some important reason to use <code>&quot;abc&quot;</code> in both places. Instead, you should use different values so that there is no confusion:</p>
+<pre><code class="lang-good">h = hmac.new(<span class="hljs-string">"key"</span>)
+h.update(<span class="hljs-string">"Hello, World!"</span>)
+</code></pre>
+<p>On the other hand, sometimes the same value is being used <em>for the same purpose</em> in two different places. In this case you <em>should</em> use the same value in both cases, for example:</p>
+<pre><code class="lang-good">data1 = numpy.zeros(8)
+data2 = numpy.zeros(8)
+</code></pre>
+<h3 id="for-placeholder-functions-and-classes-balance-simple-with-natural-">For placeholder functions and classes, balance &quot;simple&quot; with &quot;natural&quot;</h3>
+<p>This example has a bunch of incidental complexity:</p>
+<pre><code class="lang-bad"><span class="hljs-comment"># TITLE: Add test cases to a suite</span>
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyTest</span><span class="hljs-params">(TestCase)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">setUp</span><span class="hljs-params">(self)</span>:</span>
+        self.name = <span class="hljs-string">"abc"</span>
+        self.num = <span class="hljs-number">123</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_name_equals</span><span class="hljs-params">(self)</span>:</span>
+        self.assertEqual(self.name, <span class="hljs-string">"abc"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_num_equals</span><span class="hljs-params">(self)</span>:</span>
+        self.assertEqual(self.num, <span class="hljs-number">123</span>)
+
+suite = TestSuite()
+suite.addTest(MyTest(<span class="hljs-string">"test_name_equals"</span>))
+suite.addTest(MyTest(<span class="hljs-string">"test_num_equals"</span>))
+</code></pre>
+<p>Here is a much simpler version, that forms a better example:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># TITLE: Add test cases to a suite</span>
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyTest</span><span class="hljs-params">(TestCase)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_a</span><span class="hljs-params">(self)</span>:</span>
+        self.assertTrue(<span class="hljs-number">0</span> &lt; <span class="hljs-number">1</span>)
+
+suite = TestSuite()
+suite.addTest(MyTest(<span class="hljs-string">"test_a"</span>))
+</code></pre>
+<p>First, we don&#39;t need to use <code>setUp</code> or instance variables.  We do have a decision between <code>assertTrue(True)</code> or <code>assertTrue(0 &lt; 1)</code>.  Here we&#39;ve decided in favor of the latter, though not strongly.</p>
+<h3 id="use-mock-kite-com-for-examples-that-demonstrate-communication-with-a-server">Use mock.kite.com for examples that demonstrate communication with a server</h3>
+<p>A list of endpoints for mock.kite.com can be found <a href="https://quip.com/qmbpAwyeKI56">here</a>.</p>
+<h2 id="files">Files</h2>
+<h3 id="use-sample-files-provided-by-kite-whenever-possible">Use sample files provided by Kite whenever possible</h3>
+<p>A list of sample files accessible from the examples can be found <a href="https://quip.com/OCKRAUwgFL4x">here</a>. The following example shows how to use these files:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># CODE</span>
+f = open(<span class="hljs-string">"sample.txt"</span>)
+<span class="hljs-keyword">print</span> f.read()
+
+<span class="hljs-comment"># POSTLUDE</span>
+<span class="hljs-string">'''
+sample_files:
+- sample.txt
+'''</span>
+</code></pre>
+<p>If the provided sample files are not enough, ask your correspondent about creating new sample files before explicitly creating files in new examples.</p>
+<h3 id="when-an-example-requires-a-file-to-be-created-create-it-in-the-prelude">When an example requires a file to be created, create it in the prelude</h3>
+<pre><code class="lang-good"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">import</span> csv
+
+<span class="hljs-keyword">with</span> open(<span class="hljs-string">"sample.csv"</span>, <span class="hljs-string">"w"</span>) <span class="hljs-keyword">as</span> f:
+    f.write(<span class="hljs-string">"a,1\n"</span>)
+    f.write(<span class="hljs-string">"b,2\n"</span>)
+
+<span class="hljs-comment"># CODE</span>
+f = open(<span class="hljs-string">"sample.csv"</span>)
+csv_reader = csv.reader(f)
+
+<span class="hljs-keyword">for</span> row <span class="hljs-keyword">in</span> csv_reader:
+    <span class="hljs-keyword">print</span> row
+</code></pre>
+<h3 id="name-files-following-the-same-guidelines-for-naming-variables">Name files following the same guidelines for naming variables</h3>
+<p>File names that appear in the main code section should reflect their purpose, just like variables.</p>
+<p>When a file is simple a placeholder file, use a short name with a familiar extension:</p>
+<ul>
+<li><code>a.txt</code></li>
+<li><code>image.png</code></li>
+<li><code>file.zip</code></li>
+<li><code>page.html</code></li>
+<li>etc.</li>
+</ul>
+<h3 id="open-file-with-a-straightforward-open">Open file with a straightforward open</h3>
+<p>Unless absolutely necessary, do not use a <code>with</code> statement for opening files (rationale: this is a difficult one to decide on but <code>open</code> works fine for short examples, and <code>with</code> is a language-level feature that some users may not be familiar with).</p>
+<pre><code class="lang-good">f = open(<span class="hljs-string">"input.txt"</span>)
+</code></pre>
+<h3 id="always-write-to-files-in-the-current-working-directory">Always write to files in the current working directory</h3>
+<pre><code class="lang-good">f = open(<span class="hljs-string">"output.txt"</span>, <span class="hljs-string">"w"</span>)
+f.write(<span class="hljs-string">"abc"</span>)
+</code></pre>
+<p>Never specify an explicit path (this would not run inside the sandbox environment):</p>
+<pre><code class="lang-bad">f = open(<span class="hljs-string">"/path/to/output.txt"</span>, <span class="hljs-string">"w"</span>)
+f.write(<span class="hljs-string">"abc"</span>)
+</code></pre>
+<h2 id="output">Output</h2>
+<h3 id="generate-the-minimal-output-needed-to-clearly-demonstrate-the-concept">Generate the minimal output needed to clearly demonstrate the concept</h3>
+<p>Output must be read and understood by the user, to, so the more output there is, the more time it takes users to understand the example.</p>
+<p>This code generates 24 lines of output, which is too much:</p>
+<pre><code class="lang-bad"><span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> itertools.permutations([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]):
+    <span class="hljs-keyword">print</span> x
+
+<span class="hljs-comment"># OUTPUT</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
+(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>)
+(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>)
+(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>)
+(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)
+(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)
+(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>)
+(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>)
+(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>)
+(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
+(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>)
+(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>)
+(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>)
+(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">4</span>)
+(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>)
+(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)
+(<span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
+(<span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>)
+(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+</code></pre>
+<p>Instead, do the following, which only generates six lines of output:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> itertools.permutations([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]):
+    <span class="hljs-keyword">print</span> x
+
+<span class="hljs-comment"># OUTPUT</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>)
+(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
+(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>)
+(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+(<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+</code></pre>
+<p>However, the following generates <em>too little</em> output and does not show the concept clearly:</p>
+<pre><code class="lang-bad"><span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> itertools.permutations([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]):
+    <span class="hljs-keyword">print</span> x
+
+<span class="hljs-comment"># OUTPUT</span>
+(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)
+(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+</code></pre>
+<h3 id="keep-print-statements-as-simple-as-possible">Keep print statements as simple as possible</h3>
+<p>Always use a simple <code>print</code> statement to output values. Note that we use Python 2-style <code>print value</code>, not <code>print(value)</code>. Don&#39;t use statements like these:</p>
+<pre><code class="lang-bad">[<span class="hljs-keyword">print</span> item <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> some_list]
+</code></pre>
+<pre><code class="lang-bad">print(value1, value2, value3)
+</code></pre>
+<pre><code class="lang-bad"><span class="hljs-keyword">print</span> value1, value2, value3
+</code></pre>
+<pre><code class="lang-bad"><span class="hljs-keyword">from</span> pprint <span class="hljs-keyword">import</span> pprint
+pprint(some_dict)
+</code></pre>
+<h3 id="avoid-unnecessary-output-formatting-or-explanations">Avoid unnecessary output formatting or explanations</h3>
+<p>If you feel the need to add expository, you probably need to simplify your example so that it does not create complex outputs.</p>
+<pre><code class="lang-bad"><span class="hljs-keyword">print</span> <span class="hljs-string">"This is the value for a: "</span> + a
+</code></pre>
+<pre><code class="lang-bad"><span class="hljs-keyword">print</span> <span class="hljs-string">"Person {name}: {sex}, age {age}"</span>.format(
+    name = name,
+    sex = sex,
+    age = str(age)
+)
+</code></pre>
+<pre><code class="lang-bad"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">print_dict</span><span class="hljs-params">(d)</span>:</span>
+  output = <span class="hljs-string">""</span>
+  <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> d.items():
+    output += <span class="hljs-string">"Key: "</span> + key + <span class="hljs-string">" Value: "</span> + value + <span class="hljs-string">"\n"</span>
+
+print_dict(some_dict)
+</code></pre>
+<h3 id="prefer-to-print-lists-with-a-for-statement">Prefer to print lists with a <code>for</code> statement</h3>
+<p>This example requires a more advanced understanding of Python iterators and should be avoided:</p>
+<pre><code class="lang-bad"><span class="hljs-keyword">print</span> list(itertools.permutations([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]))
+</code></pre>
+<p>Instead, use this syntax:</p>
+<pre><code class="lang-good"><span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> itertools.permutations([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]):
+    <span class="hljs-keyword">print</span> x
+</code></pre>
+<h3 id="whenever-possible-produce-the-same-output-every-time">Whenever possible, produce the same output every time</h3>
+<p>When demonstrating functions such as random number generators, set a deterministic seed in the prelude if it is available:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">import</span> random
+random.seed(<span class="hljs-number">0</span>)
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">print</span> random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>)
+</code></pre>
+<p>This is good because the user will only see the main code section, which will not be cluttered with the call to <code>random.seed</code>.</p>
+<p>When using <code>numpy.random</code>, there is a similar seed function:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># PRELUDE</span>
+<span class="hljs-keyword">from</span> numpy.random <span class="hljs-keyword">import</span> randn, seed
+seed(<span class="hljs-number">0</span>)
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">print</span> randn(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>)
+</code></pre>
+<p>For examples that involve time stamps, HTTP requests, and random number generators with no seed, this is not possible, which is okay.</p>
+<h3 id="output-binary-data-as-raw-strings">Output binary data as raw strings</h3>
+<p>Even though this can cause broken characters to appear, we still want to keep print statements as simple as possible.</p>
+<pre><code class="lang-good"><span class="hljs-keyword">print</span> binary_data
+</code></pre>
+<pre><code class="lang-bad"><span class="hljs-keyword">print</span> repr(binary_data)
+</code></pre>
+<pre><code class="lang-bad"><span class="hljs-keyword">print</span> hexlify(binary_data)
+</code></pre>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<h3 id="write-some-examples-before-titling-them">Write some examples before titling them</h3>
+<p>Often it is helpful to write some initial examples to get a sense of a package&#39;s classes and functions first. Coming up with titles is easier after you map out the different examples you want to write. Also, titling an example essentially finalizes its contents, and you may miss opportunities to improve the content if you write the title too early.</p>
+<h3 id="don-t-use-advanced-concepts-unless-necessary">Don&#39;t use advanced concepts unless necessary</h3>
+<p>This example works, but may be difficult for beginners who are not familiar with Python&#39;s dictionary unpacking syntax:</p>
+<pre><code class="lang-bad">data = {<span class="hljs-string">"person"</span>: <span class="hljs-string">"abc"</span>, <span class="hljs-string">"age"</span>: <span class="hljs-number">5</span>}
+<span class="hljs-keyword">print</span> <span class="hljs-string">"{person} is age {age}"</span>.format(**data)
+</code></pre>
+<p>Instead, this example is easy for everyone to understand:</p>
+<pre><code class="lang-good"><span class="hljs-keyword">print</span> <span class="hljs-string">"{person} is age {age}"</span>.format(person=<span class="hljs-string">"abc"</span>, age=<span class="hljs-number">5</span>)
+</code></pre>
+<h3 id="don-t-write-examples-that-demonstrate-what-not-to-do">Don&#39;t write examples that demonstrate what not to do</h3>
+<pre><code class="lang-bad"><span class="hljs-keyword">try</span>:
+    <span class="hljs-keyword">print</span> pickle.loads(<span class="hljs-string">"pickle"</span>)
+<span class="hljs-keyword">except</span> IndexError:
+    <span class="hljs-keyword">print</span> <span class="hljs-string">"String does not contain pickle data"</span>
+</code></pre>
+<p>However, it is sometimes good to include a demonstration of common failure modes as part of a larger example.</p>
+<pre><code class="lang-good">dictionary = {<span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>}
+
+<span class="hljs-keyword">print</span> dictionary.pop(<span class="hljs-string">"a"</span>)
+<span class="hljs-keyword">print</span> dictionary
+
+<span class="hljs-keyword">try</span>:
+    <span class="hljs-keyword">print</span> dictionary.pop(<span class="hljs-string">"a"</span>)
+<span class="hljs-keyword">except</span> KeyError <span class="hljs-keyword">as</span> e:
+    <span class="hljs-keyword">print</span> <span class="hljs-string">"KeyError: "</span> + e.message
+
+<span class="hljs-keyword">print</span> dictionary.pop(<span class="hljs-string">"a"</span>, <span class="hljs-keyword">None</span>)
+</code></pre>
+<h3 id="don-t-write-examples-that-simply-construct-an-object">Don&#39;t write examples that simply construct an object</h3>
+<p>Object construction on its own is not informative; it is much more helpful to see how an object is used.</p>
+<pre><code class="lang-bad">pattern = re.compile(<span class="hljs-string">"[a-z]+[0-9]+"</span>)
+<span class="hljs-keyword">print</span> pattern
+</code></pre>
+<pre><code class="lang-good">pattern = re.compile(<span class="hljs-string">"[a-z]+[0-9]+"</span>)
+<span class="hljs-keyword">print</span> pattern.match(<span class="hljs-string">"test123"</span>)
+</code></pre>
+<h3 id="don-t-reimplement-default-behavior">Don&#39;t reimplement default behavior</h3>
+<p>Here is a bad example showing a class with an explicit pickling function:</p>
+<pre><code class="lang-bad"><span class="hljs-keyword">import</span> cPickle
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, value)</span>:</span>
+        self.value = value
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__getstate__</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> {<span class="hljs-string">'the_value'</span>: value}
+
+f = Foo(<span class="hljs-number">123</span>)
+s = cPickle.dumps(f)
+</code></pre>
+<p>The problem with the code example above is that, by default, cPickle uses the <code>__dict__</code> attribute whenever there is no <code>getstate</code> function. So the code in the example above would have produced the exact same output even if the <code>getstate</code> function had been omitted. This is bad because it&#39;s not clear to the user why the <code>getstate</code> function is important, since the result is exactly what would have happened anyway if <code>getstate</code> had been omitted. Instead, a better example would implement <code>getstate</code> in a way that is different to the default behavior.</p>
+<h3 id="use-explicit-keyword-arguments-when-there-are-many-arguments-to-a-function">Use explicit keyword arguments when there are many arguments to a function</h3>
+<pre><code class="lang-good">xdata = np.arange(<span class="hljs-number">10</span>)
+ydata = np.zeros(<span class="hljs-number">10</span>)
+plot(xdata, ydata, style=<span class="hljs-string">'r-'</span>, label=<span class="hljs-string">'my data'</span>)
+</code></pre>
+<h3 id="use-keyword-arguments-when-it-is-standard-practice-to-do-so">Use keyword arguments when it is standard practice to do so</h3>
+<p>This works but is non-standard:</p>
+<pre><code class="lang-bad">a = array([1, 2, 3], float)
+</code></pre>
+<p>Whereas this is standard practice for <code>numpy</code> code:</p>
+<pre><code class="lang-good">a = array([1, 2, 3], dtype=float)
+</code></pre>
+<h3 id="demonstrate-the-purpose-not-simply-the-functionality">Demonstrate the purpose, not simply the functionality</h3>
+<p>Examples should demonstrate the <strong>purpose</strong> of its functions, not merely their <em>functionality</em>. Use functions in a way that mirrors their intended usage, and clearly show the purpose that the function serves.</p>
+<pre><code class="lang-bad"><span class="hljs-keyword">print</span> secure_filename(<span class="hljs-string">"a b"</span>)
+<span class="hljs-comment"># OUTPUT: 'a_b'</span>
+</code></pre>
+<pre><code class="lang-good"><span class="hljs-keyword">print</span> secure_filename(<span class="hljs-string">"../../../etc/passwd"</span>)
+<span class="hljs-comment"># OUTPUT: 'etc_passwd'</span>
+</code></pre>
+<h3 id="when-copying-existing-examples-modify-them-to-fit-the-style-guidelines">When copying existing examples, modify them to fit the style guidelines</h3>
+<p>Many packages will provide examples in their official documentation pages, and it&#39;s okay to use these as examples. However, they will likely not abide by this style guide as is, so modify them as needed.</p>
+<h3 id="only-use-comments-when-an-example-cannot-be-written-in-a-self-explanatory-way">Only use comments when an example cannot be written in a self-explanatory way</h3>
+<p>Strive to write examples that do not need comments to explain what they do. If an explanation is absolutely necessary, include a brief comment <strong>above</strong> the section that requires explanation; do not use inline comments.</p>
+<p>This is obvious and does not need a comment:</p>
+<pre><code class="lang-bad"><span class="hljs-comment"># Dump to string</span>
+output_string = csv.dumps([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+</code></pre>
+<p>This is obvious and is also using an inline comment:</p>
+<pre><code class="lang-bad">csv.loads(string) <span class="hljs-comment"># load from string</span>
+</code></pre>
+<p>This comment is helpful to include because the line is confusing on its own, but cannot be written more clearly because <code>has_header</code> cannot be called with a keyword argument:</p>
+<pre><code class="lang-good"><span class="hljs-comment"># Sample the first 256 bytes of the file</span>
+<span class="hljs-keyword">print</span> sniffer.has_header(f.read(<span class="hljs-number">256</span>))
+</code></pre>
+<h3 id="bundle-together-examples-that-use-the-same-function-with-different-parameters">Bundle together examples that use the same function with different parameters</h3>
+<p>Examples that call the same function with different parameters can generally be bundled together into a &quot;cheat sheet&quot; example that provides users with a quick reference to the usages of the function, <em>if the function calls all demonstrate the same concept</em>.</p>
+<pre><code class="lang-good"><span class="hljs-comment"># TITLE: Construct a dictionary</span>
+
+<span class="hljs-comment"># CODE</span>
+<span class="hljs-keyword">print</span> dict(a=<span class="hljs-number">1</span>, b=<span class="hljs-number">2</span>)
+<span class="hljs-keyword">print</span> {<span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>, <span class="hljs-string">"b"</span>: <span class="hljs-number">2</span>}
+<span class="hljs-keyword">print</span> dict([(<span class="hljs-string">"a"</span>, <span class="hljs-number">1</span>), (<span class="hljs-string">"b"</span>, <span class="hljs-number">2</span>)])
+<span class="hljs-keyword">print</span> dict({<span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>, <span class="hljs-string">"b"</span>: <span class="hljs-number">2</span>})
+<span class="hljs-keyword">print</span> dict(zip([<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]))
+</code></pre>
+<p>Functions like <code>dateutil.rrule</code> are exceptions because they provide conceptually different outputs based on the arguments provided.</p>
+<h3 id="when-using-multi-variable-assignment-with-long-tuples-print-the-tuple-first">When using multi-variable assignment with long tuples, print the tuple first</h3>
+<p>This allows users to more easily match up the variables with their values and helps users who are not familiar with the syntax understand what is going on.</p>
+<pre><code class="lang-good">st = os.stat(open(<span class="hljs-string">"sample.txt"</span>))
+<span class="hljs-keyword">print</span> st
+mode, ino, dev, nlink, uid, gid, size, accessed, modified, created = st
+</code></pre>
+<h3 id="use-the-isoformat-method-to-format-datetime-objects-instead-of-strftime-">Use the <code>isoformat</code> method to format <code>datetime</code> objects, instead of <code>strftime</code></h3>
+<p><code>strftime</code> tends to be long and unwieldy, and is not completely standardized. <code>isoformat</code> has a standard output that is decently readable and makes the code example much more concise. Of course, when you can, you should print out the <code>datetime</code> object directly, so you can take advantage of the default <code>repr</code> method that outputs a nicely-formatted representation of the date and time.</p>
+<h3 id="for-combinations-of-similar-functions-and-similar-parameters-choose-one-function-as-canonical">For combinations of similar functions and similar parameters, choose one function as canonical</h3>
+<p>When a package has <code>x</code> similar functions, each of which take in <code>y</code> similar parameters, we don&#39;t want to enumerate <code>x * y</code> examples that show all the different ways to call each of the functions with each of the parameters. For example, <code>csv</code> has two different readers, each of which take in various parameters for reading different delimiters, row indicators, quotes, etc. Showing examples for how to use each of these parameters for both readers would be redundant.</p>
+<p>Instead, choose one of the function as the &quot;canonical&quot; example, and only show the different parameters or ways of calling the function for that function. For everything else, just provide one simple example for each function. In the case of <code>csv</code>, we would choose one reader and write an example for each of the different parameters, and only provide one simple example of using the other reader.</p>
+<p>This is also true for objects - <code>hashlib</code> has 5 different hash objects, each of which can be initialized, updated, copied, converted to a hex value, or accessed as its raw binary value. In this case, we would choose one hash to show how to do each of these actions, and for all other hashes, simply have one example of each that shows how to initialize it.</p>
+
+<script type="text/javascript">
+/* Dang. What a hack. We notate .lang-bad and .lang-good in the code examples by using
+ * Github-style language tags, but those classes get applied to the <code> tag inside
+ * the <pre> tag.  Since <code> is an inline tag, setting background-color on it only
+ * paints the color behind text (ie, not to the full width of the enclosing <pre>).  So
+ * here we copy the lang-good and lang-bad classes (on the <code> tags) to their parent
+ * tags (the <pre> tags), which can then style the background-color properly.
+ */
+function copyClassToParent(className) {
+  var tags = document.getElementsByClassName(className);
+  for (var i = 0; i < tags.length; i++) {
+    tags[i].parentElement.classList.add(className);
+  }
+}
+copyClassToParent('lang-bad');
+copyClassToParent('lang-good');
+</script>
+</body>
+
+</html>

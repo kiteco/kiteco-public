@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+    <head>
+      <title>Counts</title>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+      <style>
+        body {
+          padding: 20px;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Sections</h1>
+      <table class="table table-striped">
+        <tr><td><a href="#Modules">Missing Imported Modules</a></td></tr>
+        <tr><td><a href="#ModuleAttrs">Missing Module Attributes</a></td></tr>
+        <tr><td><a href="#ClassAttrs">Missing Class Attributes</a></td></tr>
+      </table>
+      <h2 id="Modules">Missing Imported Modules</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range $ac := .MissingModules}}
+            <tr>
+              <td>{{$ac.Attr}}</td>
+              <td>{{$ac.Count | prettyCount}}</td?>
+            </tr>
+          {{end}}
+        </tbody>
+      </table>
+      <h2 id="ModuleAttrs">Missing Module Attributes</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Attribute</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range $nc := .MissingModuleAttrs}}
+            <tr>
+              <td><b>{{$nc.Name}}</b></td>
+              <td></td>
+              <td><b>{{$nc.Count}}</b></td>  
+            </tr>
+            {{range $ac := $nc.Attrs | sortedCounts}}
+              <tr>
+                <td></td>
+                <td>{{$ac.Attr}}</td>
+                <td>{{$ac.Count | prettyCount}}</td>
+              </tr>
+            {{end}}
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          {{end}}
+        </tbody>
+      </table>
+      <h2 id="ClassAttrs">Missing Class Attributes</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Attribute</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range $class,$attrs := .MissingClassAttrs}}
+            <tr>
+              <td><b>{{$class}}</b></td>
+              <td></td>
+              <td></td>  
+            </tr>
+            {{range $ac := $attrs | sortedCounts}}
+              <tr>
+                <td></td>
+                <td>{{$ac.Attr}}</td>
+                <td>{{$ac.Count | prettyCount}}</td>
+              </tr>
+            {{end}}
+          {{end}}
+        </tbody>
+      </table>
+    </body>
+</html>

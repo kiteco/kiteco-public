@@ -1,0 +1,9 @@
+# Temp artifacts
+/kited
+/linux-unpacked
+/dist.log
+/kite-installer.deb
+/kite-updater.sh
+/builds/
+/tensorflow_build/build/
+/tensorflow_build/tensorflow_build/

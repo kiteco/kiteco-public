@@ -1,0 +1,19 @@
+#@ load("@ytt:overlay", "overlay")
+#@data/values
+
+#@overlay/match by=overlay.all
+---
+env: prod
+hostname: release.kite.com
+#@overlay/replace
+ingressHostnames:
+  - release.kite.com
+  - linux.kite.com
+  - windows.kite.com
+#@overlay/replace
+certificateDomains:
+  - release.kite.com
+  - linux.kite.com
+  - windows.kite.com
+port: 9093
+

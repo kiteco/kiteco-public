@@ -1,0 +1,21 @@
+<ul>
+{{ $outer := . }}
+{{range $typ := .AvailableTypes}}
+    <li>
+    {{if eq $typ $outer.Type}}
+        <strong>{{$typ}}</strong>
+        <ul>
+        {{range $failure, $count := $outer.FailureCounts}}
+        {{if eq $failure $outer.Failure}}
+            <li><strong>{{$failure}}</strong>: {{$count}}</li>
+        {{else}}
+            <li><a href="{{groupedURL $typ $failure}}">{{$failure}}</a>: {{$count}}</li>
+        {{end}}
+        {{end}}
+        </ul>
+    {{else}}
+        <a href="{{groupedURL $typ ""}}">{{$typ}}</a>
+    {{end}}
+    </li>
+{{end}}
+</ul>

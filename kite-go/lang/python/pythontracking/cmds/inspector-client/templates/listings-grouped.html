@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+        <title>Inspector</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Inspector</h1>
+            {{.Selector}}
+            {{ $meta := .Listings.Metadata}}
+            {{if $meta.Failure}}
+                <h2>{{$meta.Type}} events for {{$meta.Date}} (failure: {{$meta.Failure}})</h2>
+            {{else}}
+                <h2>{{$meta.Type}} events for {{$meta.Date}}</h2>
+            {{end}}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Machine ID</th>
+                        <th>Filename</th>
+                        <th>Failure</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range $group := .Listings.Groups}}
+                    <tr style="background-color: #ceffd2; border-bottom: 2px solid #666;">
+                        <td>{{$group.UserID}}</td>
+                        <td>{{$group.MachineID}}</td>
+                        <td colspan="2">{{$group.Filename}}</td>
+                    </tr>
+                    <tr>
+                        {{range $event := $group.Events}}
+                        <tr>
+                            <td td colspan="2"><a href="{{eventURL $event.URI $event.MessageID}}">{{$event.MessageID}}</a></td>
+                            <td>{{$event.Timestamp}}</td>
+                            <td>{{$event.Failure}}</td>
+                        </tr>
+                        {{end}}
+                    </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

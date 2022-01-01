@@ -1,0 +1,229 @@
+.homepage__section.footer {
+  position: relative;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+  padding-top: 2.5rem;
+  overflow: hidden;
+  background-color: #FAFAFA;
+}
+
+.footer::before {
+  content: "";
+  z-index: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 14.7rem;
+  height: 29.6rem;
+  background-image: url('./kites-left.svg');
+}
+.footer::after {
+  content: "";
+  z-index: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 11.8rem;
+  height: 27.6rem;
+  background-image: url('./kites-right.svg');
+}
+
+.footer_separator {
+  display:none;
+  color: #798592;
+  font-family: 'Droid Sans Mono W01', monospace;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+@media all and (min-width: 50rem) {
+  .footer_separator {
+    display:block;
+  }
+}
+
+.footer_separator:before, .footer_separator:after {
+  height: 1px;
+  width: 14rem;
+  background-color: #798592;
+  content: '';
+  display: inline-block;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.footer__menu {
+  font-size: 1.5rem;
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+  margin: 0 auto 5.5rem;
+}
+
+.footer .footer__text {
+  font-size: 1.5rem;
+  line-height: 1.6rem;
+}
+
+.footer__section {
+  text-align: center;
+  margin: 0 3rem;
+}
+
+.footer__section h4 {
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+@media all and (min-width: 50rem) {
+  .footer__section {
+    text-align: left;
+  }
+}
+
+.footer__menu__item {
+  margin-bottom: 2rem;
+  display: block;
+  text-decoration: none;
+  color: #4A90E2;
+}
+
+.footer__menu__item:hover {
+  text-decoration: underline;
+}
+
+.footer__contact {
+  margin-top: 2rem;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  text-align: center;
+}
+
+.footer__contact:hover {
+  text-decoration: underline
+}
+
+.footer__logo {
+  background: url('../../../assets/images/icon-logo.svg') no-repeat;
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto;
+}
+
+.footer .footer__disclaimer {
+  font-size: 1.5rem;
+  margin: 3rem 0 5rem;
+  min-height: 20px;
+}
+
+.footer__disclaimer__love {
+  height: 2rem;
+  width: 2rem;
+  vertical-align: bottom;
+  margin: 0 0.5rem;
+}
+
+.tweak__transform {
+  transform: translateX(1.55rem);
+}
+
+.footer__social {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4.5rem;
+}
+
+.footer__social .footer__text {
+  font-size: 1.5rem;
+  color: #858894;
+}
+
+@media all and (max-width: 50rem) {
+  .homepage__section.footer {
+    padding-top: 0.5rem;
+  }
+  .footer__social {
+    justify-content: center;
+  }
+}
+
+.footer__social > * + * {
+  margin-left: 1.6rem;
+}
+
+.footer__social-item {
+  display: block;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  height: 2.2rem;
+  width: 2.2rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  opacity: 1;
+}
+
+.footer__social-item:hover {
+  opacity: .6;
+}
+
+
+.footer__twitter {
+  background-image: url('../../../assets/images/icon-twitter-bw.svg');
+}
+
+.footer__facebook {
+  background-image: url('../../../assets/images/icon-facebook-bw.svg');
+}
+
+.footer__linkedin {
+  background-image: url('../../../assets/images/icon-linkedin-bw.svg');
+}
+
+.footer__youtube {
+  background-image: url('../../../assets/images/icon-youtube-bw.svg');
+}
+
+.footer__new-style h4 {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 3.5rem;
+}
+.footer .newsletter__submit {
+  font-size: var(--body-font-size);
+  background: #24273F;
+  color: var(--background);
+  border-radius: var(--border-radius);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 1.1rem .6rem;
+  margin-top: 1.6rem;
+}
+@media all and (max-width: 1200px) {
+  .footer::before,
+  .footer::after {
+    content: none;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .footer__new-style h4 {
+    margin-bottom: 2.5rem;
+    margin-top: 3.5rem;
+  }
+  .footer__menu {
+    margin-bottom: 3rem;
+  }
+  .footer__disclaimer {
+    margin-bottom: 3rem;
+  }
+}
+@media (max-width: 767px) {
+  .footer__section {
+    margin: 0 3rem 4rem;
+  }
+}

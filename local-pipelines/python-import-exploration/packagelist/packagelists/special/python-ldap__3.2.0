@@ -1,0 +1,8 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install --no-install-recommends -y libldap2-dev libssl-dev libsasl2-dev
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN pip2 install python-ldap==3.2.0
+
+ENTRYPOINT ["/usr/bin/env", "python2", "-m", "kite.pkgexploration", "python-ldap", "3.2.0", "python-ldap__3.2.0.json", "python-ldap__3.2.0.log"]

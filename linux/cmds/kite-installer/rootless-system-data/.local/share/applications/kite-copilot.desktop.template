@@ -1,0 +1,8 @@
+[Desktop Entry]
+NoDisplay=true
+Type=Application
+Version={{.Version}}
+Name=Kite Copilot
+Exec={{.HomeDir}}/.local/share/kite/current/linux-unpacked/kite --no-sandbox %u
+Icon={{.HomeDir}}/.local/share/icons/hicolor/128x128/apps/kite.png
+MimeType=application/x-kite;x-scheme-handler/kite;

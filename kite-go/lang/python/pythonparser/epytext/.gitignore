@@ -1,0 +1,5 @@
+# Ignore compiled python files in testdata.
+testdata/*.pyc
+
+# Ignore generated epydoc HTML from python files in testdata.
+testdata/html/

@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+    <head>
+      <title>Local Static Analysis</title>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+      <style>
+        body {
+          padding: 20px;
+        }
+      </style>
+    </head>
+    <body>
+        <h1>Cumulative Stats</h1>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th><b>Num Bases Resolved</b></th>
+                    <th><b>Pct Bases Resolved</b></th>
+                    <th><b>Num Members Found</b></th>
+                    <th><b>Pct Members Found</b></th>
+                    <th><b>Num Attrs Found</b></th>
+                </tr>
+                <tr>
+                    <td>{{.ResolvedBases | comma}}</td>
+                    <td>{{.PctResolvedBases | prettyPct}}</td>
+                    <td>{{.MembersResolved | comma}}</td>
+                    <td>{{.PctMembersResolved | prettyPct}}</td>
+                    <td>{{.Attrs | comma}}</td>
+                </tr>
+                <tr>
+                    <th><b>Processing Time</b></th>
+                    <th><b>Num Files Too Large</b></th>
+                    <th><b>Num Files With Parse Errors</b></th>
+                    <th><b>Num Files Added</b></th>
+                    <th><b>Num Total Python Files</b></th>
+                </tr>
+                <tr>
+                    <td>{{.Stats.ProcessingTime | prettyTime}}</td>
+                    <td>{{.Stats.TooLarge | comma}}</td>
+                    <td>{{.Stats.ParseErrors | comma}}</td>
+                    <td>{{.Stats.Added | comma}}</td>
+                    <td>{{.Stats.Files | comma}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h1>Sections</h1>
+        <table class="table table-striped">
+            {{range $i,$project := .Projects}}
+                <tr><td><a href="#{{$i}}">{{$project.Path}}</a></td></tr>
+            {{end}}
+        </table>
+        {{range $i,$project := .Projects}}
+            <h2 id="{{$i}}">{{$project.Path}}</h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th><b>Num Bases Resolved</b></th>
+                        <th><b>Pct Bases Resolved</b></th>
+                        <th><b>Num Members Found</b></th>
+                        <th><b>Pct Members Found</b></th>
+                        <th><b>Num Attrs Found</b></th>
+                    </tr>
+                    <tr>
+                        <td>{{$project.ResolvedBases | comma}}</td>
+                        <td>{{$project.PctResolvedBases | prettyPct}}</td>
+                        <td>{{$project.MembersResolved | comma}}</td>
+                        <td>{{$project.PctMembersResolved | prettyPct}}</td>
+                        <td>{{$project.Attrs | comma}}</td>
+                    </tr>
+                    <tr>
+                        <th><b>Processing Time</b></th>
+                        <th><b>Num Files Too Large</b></th>
+                        <th><b>Num Files With Parse Errors</b></th>
+                        <th><b>Num Files Added</b></th>
+                        <th><b>Num Total Python Files</b></th>
+                    </tr>
+                    <tr>
+                        <td>{{$project.Stats.ProcessingTime | prettyTime}}
+                        <td>{{$project.Stats.TooLarge | comma}}</td>
+                        <td>{{$project.Stats.ParseErrors | comma}}</td>
+                        <td>{{$project.Stats.Added | comma}}</td>
+                        <td>{{$project.Stats.Files | comma}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3><a href="/trace/{{$project.Path}}">Trace</a></h3>
+            <h3>Files</h3>
+            <table class="table table-striped">
+                {{range $sf := $project.Sources | sortFiles}}
+                    <tr><td><a href="/file/{{$project.Path}}/{{$sf.Path}}">{{$sf.Path}}</a></td></tr>
+                {{end}}
+            </table>
+        {{end}}
+    </body>
+</html>

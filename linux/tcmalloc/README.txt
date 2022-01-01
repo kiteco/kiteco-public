@@ -1,0 +1,3 @@
+- build_tcmalloc.bash rebuilds libtcmalloc* with the current master of https://github.com/gperftools/gperftools
+- libtcmalloc_minimal.a is statically linked into kited
+- libtcmalloc_minimal_debug.so is used to preload tcmalloc for tests run on Travis CI

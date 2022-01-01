@@ -1,0 +1,11 @@
+[Desktop Entry]
+Categories=Development;IDE;
+Comment=Python IDE for professional developers
+Exec=pycharm.sh
+TryExec=/opt/JetBrains/apps/PyCharm-P/ch-0/191.6605.12/bin/pycharm.sh
+Icon=/opt/JetBrains/apps/PyCharm-P/ch-0/.icon.svg
+Name=PyCharm Professional
+StartupWMClass=jetbrains-pycharm
+Terminal=false
+Type=Application
+Version=1.0

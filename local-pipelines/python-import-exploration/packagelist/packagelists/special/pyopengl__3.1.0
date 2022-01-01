@@ -1,0 +1,8 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install -y --no-install-recommends freeglut3 libglu1-mesa
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN pip2 install pyopengl==3.1.0
+
+ENTRYPOINT ["/usr/bin/env", "python2", "-m", "kite.pkgexploration", "pyopengl", "3.1.0", "pyopengl__3.1.0.json", "pyopengl__3.1.0.log", "--toplevel", "OpenGL"]

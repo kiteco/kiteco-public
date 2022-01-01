@@ -1,0 +1,3 @@
+---
+metrics_collector::stdout_output: true
+metrics_collector::kinesis_output:  "kite_status_test"

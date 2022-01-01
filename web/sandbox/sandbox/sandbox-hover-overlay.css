@@ -1,0 +1,37 @@
+html {
+  --sandbox-hover-overlay-z-index: 90;
+}
+
+.sandbox-hover-overlay {
+  position: absolute;
+  z-index: var(--sandbox-overlay-z-index);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(138, 138, 138, 0.1);
+  padding: 10rem 2rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.sandbox-hover-overlay__copy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  
+
+  margin-top: auto;
+  margin-left: auto;
+  position: relative;
+
+  color: #14B4C3;
+  font-size: 2.0rem;
+  font-family: 'Neue Frutiger W01', sans-serif
+}

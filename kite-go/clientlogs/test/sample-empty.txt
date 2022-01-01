@@ -1,0 +1,4 @@
+[kited] 2020/09/30 23:13:07.365411 plugins.go:228: activated GoTick in plugin manager
+Exception 0xc0000005 0x0 0xc003818f60 0x7ffa24904e10
+PC=0x7ffa24904e10
+signal arrived during external code execution

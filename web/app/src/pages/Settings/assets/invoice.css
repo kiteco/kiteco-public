@@ -1,0 +1,109 @@
+.settings__invoice {
+}
+
+.settings__invoice > * + * {
+  margin-top: 5rem;
+}
+
+.settings__invoice__head {
+  font-size: 3rem;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.settings__invoice__subhead {
+  color: #888;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.settings__invoice__id {
+  font-family: 'Droid Sans Mono W01', monospace;
+  flex-shrink: 2;
+  overflow: hidden;
+  text-overflow: ellipse;
+}
+
+.settings__invoice__org-name {
+  font-weight: 700;
+}
+
+.settings__invoice__items {
+  list-style: none;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.settings__invoice__items > * + * {
+  margin-top: 2rem;
+  border-top: 1px dashed #ccc;
+}
+
+.settings__invoice__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.settings__invoice__item > * + * {
+  margin-left: 1rem;
+}
+
+.settings__invoice__item__main {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.settings__invoice__item__top  {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.settings__invoice__item__top  > * {
+  margin-right: 1rem;
+}
+
+.settings__invoice__item__date-range {
+  font-size: 1.2rem;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipse;
+}
+
+.settings__invoice__item__description {
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin-top: 1rem;
+
+}
+
+.settings__invoice__total {
+  text-align: right;
+}
+
+.settings__invoice__customer > * {
+  margin: 0;
+  text-align: right;
+}
+
+.settings__invoice__customer > * + * {
+  margin-top: 1rem;
+}
+
+.settings__invoice__org-details {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.settings__invoice__kite-details > * {
+  margin: 0;
+}
+
+.settings__invoice__kite-details > * + * {
+  margin-top: 1rem;
+}

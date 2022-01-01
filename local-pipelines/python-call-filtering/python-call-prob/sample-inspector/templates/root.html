@@ -1,0 +1,88 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <style>
+        textarea#code {
+            fontmily: Menlo, Monaco, Consolas, "Courier New", monospace;
+        }
+        td.prop-name {
+            color: #666;
+        }
+        table {
+            font-size: 14px;
+        }
+
+        .completion {
+            margin-left: 20px;
+            color: black;
+        }
+
+        .valid-completion {
+            border: 2px solid green;
+            border-radius: 10px;
+        }
+    </style>
+    <title>Completions playground</title>
+</head>
+<body>
+<div class="container-fluid">
+    <h4>CallProb Model Sample Inspector</h4>
+    <div class="col-md-8" id="samples-panel">
+
+    {{range .Samples}}
+        {{template "sample-block" .}}
+        <br/><br/>
+{{end}}
+
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(".collapsible").click(function(event){
+        if ($(event.target).parent().children(".collapsible-children").is(":visible")){
+            $(event.target).parent().children(".collapsible-children").hide()
+        }else {
+            $(event.target).parent().children(".collapsible-children").show()
+        }
+        event.stopPropagation()
+    })
+
+</script>
+</body>
+</html>
+
+{{define "sample-block"}}
+    <div >
+        <pre class="collapsible">
+            <code>
+                {{.Source}}
+            </code>
+        </pre>
+        <div>
+            User typed : <label>{{.UserTyped}}</label><br/>
+            Mode : <label>{{if .Truncated}} Truncated {{else}} Full call {{end}}</label>
+        </div>
+        <div class="collapsible-children" style="display:none">
+            <label>Completions</label>
+            {{ range .Completions}}
+                {{template "completions-info" .}}
+            {{ end }}
+        </div>
+    </div>
+{{end}}
+
+{{define "completions-info" }}
+    <div class="completion {{if eq .Label 1}}valid-completion{{end}}">
+        <label class="completion-label">
+            {{.Completion}}
+        </label>
+        <div>Features :
+        {{range .Features}}
+            <label>{{.Name}}</label> : {{.Weight}} <br/>
+        {{end}}
+        </div>
+    </div>
+{{end}}
+

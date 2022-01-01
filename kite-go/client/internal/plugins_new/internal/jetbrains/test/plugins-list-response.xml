@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin-repository><ff>"Languages"</ff><category name="Languages"><idea-plugin downloads="12531" size="3496457" date="1603211144000" updatedDate="1603211144000" url="http://help.kite.com/category/45-intellij-pycharm-integration"><name>Kite Code AutoComplete: Python, JavaScript, Go</name><id>com.kite.intellij</id><description><![CDATA[<p>AI-powered coding assistant featuring Python, Go and JavaScript code completion snippets, advanced function signatures, and instant documentation. Code faster and stay in flow with Kite Autocomplete.</p>
+<p><img src="https://kite-public-assets.s3-us-west-1.amazonaws.com/kite-public/plugin-intellij/with_without_kite_v1.png" alt=""></p>
+<h3>Features</h3>
+<h4>Completions Powered by Machine Learning</h4>
+<p>Kite’s code completions are powered by machine learning models trained on over 25 million open-source code files. <strong>Kite also runs locally</strong>. Your code is private and does not leave your machine.</p>
+<p><img src="https://kite-public-assets.s3-us-west-1.amazonaws.com/kite-public/plugin-intellij/python_intellij_v1.gif" alt=""></p>
+<h4>Instant Code Documentation</h4>
+<p>Get instant documentation for the symbol underneath your cursor so you save time searching for Python docs (not yet available for JavaScript docs).</p>
+<p><img src="https://kite-public-assets.s3-us-west-1.amazonaws.com/kite-public/plugin-intellij/kite_documentation.gif" alt=""></p>
+<h4>Supports Most Code Editors</h4>
+<p>Kite works with  <em>.py .go .js .jsx .vue</em> files in the following code editors:</p>
+<ul>
+<li><a href="https://www.kite.com/integrations/intellij/">IntelliJ IDEA</a></li>
+<li><a href="https://www.kite.com/integrations/webstorm/">Webstorm</a></li>
+<li><a href="https://www.kite.com/">Goland</a></li>
+<li><a href="https://www.kite.com/integrations/vs-code/">VS Code</a></li>
+<li><a href="https://www.kite.com/integrations/pycharm/">PyCharm</a></li>
+<li><a href="https://www.kite.com/integrations/spyder/">Spyder</a></li>
+<li><a href="https://www.kite.com/integrations/sublime-text/">Sublime</a></li>
+<li><a href="https://www.kite.com/integrations/vim/">Vim</a></li>
+<li><a href="https://www.kite.com/integrations/atom-editor/">Atom</a></li>
+<li><a href="https://www.kite.com/integrations/jupyter/">JupyterLab</a></li>
+<li><a href="https://www.kite.com/integrations/jupyterhub/">JupyterHub</a></li>
+</ul>
+<p>Learn more about how Kite heightens IntelliJ IDEA’s capabilities at <a href="https://kite.com/integrations/vs-code/">kite.com/integrations/intellij</a>.</p>
+<h3>Requirements</h3>
+<p>This plugin requires the <a href="https://kite.com/">Kite desktop app</a>, which you will be prompted to install if it’s not already present.</p>
+<p>Use another editor? Check out <a href="https://kite.com/integrations/">Kite’s other editor integrations</a>.</p>
+<h3>Installing the Kite Engine</h3>
+<p>The <a href="https://kite.com/">Kite desktop app</a> needs to be installed in order for the package to work properly. The package itself provides the frontend that interfaces with the Kite Engine, which performs all the code analysis and machine learning 100% locally on your computer. (No code is sent to a cloud server.)</p>
+<h4>macOS Instructions</h4>
+<ol>
+<li>Download the <a href="https://kite.com/download/">installer</a> and open the downloaded .dmg file.</li>
+<li>Drag the Kite icon into the Applications folder.</li>
+<li>Run Kite.app to start the Kite Engine.</li>
+</ol>
+<h4>Windows Instructions</h4>
+<ol>
+<li>Download the <a href="https://kite.com/download/">installer</a> and run the downloaded .exe file.</li>
+<li>The installer should run the Kite Engine automatically after installation is complete.</li>
+</ol>
+<h4>Linux Instructions</h4>
+<ol>
+<li>Visit <a href="https://kite.com/linux/">kite.com/linux</a> to install Kite.</li>
+<li>The installer should run the Kite Engine automatically after installation is complete.</li>
+</ol>
+<h3>Troubleshooting</h3>
+<p>Check our help center for the <a href="https://help.kite.com/category/39-getting-started">most recent installation guide</a> for IntelliJ and the <a href="https://help.kite.com/article/122-troubleshooting-the-jetbrains-plugin">troubleshooting guide</a>.</p>
+<h3>About Kite</h3>
+<p>Kite is built by a team in San Francisco devoted to making programming easier and more enjoyable for all. Follow Kite on <a href="https://twitter.com/kitehq">Twitter</a> and get the latest news and programming tips on the <a href="https://kite.com/blog/">Kite Blog</a>. Kite has been featured in <a href="https://www.wired.com/2016/04/kites-coding-asssitant-spots-errors-finds-better-open-source/">Wired</a>, <a href="https://venturebeat.com/2019/01/28/kite-raises-17-million-for-its-ai-powered-developer-environment/">VentureBeat</a>, <a href="https://thenextweb.com/dd/2016/04/14/kite-plugin/">The Next Web</a>, and <a href="https://techcrunch.com/2019/01/28/kite-raises-17m-for-its-ai-driven-code-completion-tool/">TechCrunch</a>.</p>
+]]></description><version>1.8.9</version><vendor email="support@kite.com" url="https://kite.com/">Kite</vendor><rating>4.5</rating><change-notes><![CDATA[<ul><li>Support more file extensions for Kite completions.</li></ul>]]></change-notes><idea-version min="n/a" max="n/a" since-build="193.0" until-build="203.*"></idea-version></idea-plugin><idea-plugin downloads="12531" size="3491291" date="1601889433000" updatedDate="1603211144000" url="http://help.kite.com/category/45-intellij-pycharm-integration"><name>Kite Code AutoComplete: Python, JavaScript, Go</name><id>com.kite.intellij</id><description><![CDATA[<p>AI-powered coding assistant featuring Python, Go and JavaScript code completion snippets, advanced function signatures, and instant documentation. Code faster and stay in flow with Kite Autocomplete.</p>
+<p><img src="https://kite-public-assets.s3-us-west-1.amazonaws.com/kite-public/plugin-intellij/with_without_kite_v1.png" alt=""></p>
+<h3>Features</h3>
+<h4>Completions Powered by Machine Learning</h4>
+<p>Kite’s code completions are powered by machine learning models trained on over 25 million open-source code files. <strong>Kite also runs locally</strong>. Your code is private and does not leave your machine.</p>
+<p><img src="https://kite-public-assets.s3-us-west-1.amazonaws.com/kite-public/plugin-intellij/python_intellij_v1.gif" alt=""></p>
+<h4>Instant Code Documentation</h4>
+<p>Get instant documentation for the symbol underneath your cursor so you save time searching for Python docs (not yet available for JavaScript docs).</p>
+<p><img src="https://kite-public-assets.s3-us-west-1.amazonaws.com/kite-public/plugin-intellij/kite_documentation.gif" alt=""></p>
+<h4>Supports Most Code Editors</h4>
+<p>Kite works with  <em>.py .go .js .jsx .vue</em> files in the following code editors:</p>
+<ul>
+<li><a href="https://www.kite.com/integrations/intellij/">IntelliJ IDEA</a></li>
+<li><a href="https://www.kite.com/integrations/webstorm/">Webstorm</a></li>
+<li><a href="https://www.kite.com/">Goland</a></li>
+<li><a href="https://www.kite.com/integrations/vs-code/">VS Code</a></li>
+<li><a href="https://www.kite.com/integrations/pycharm/">PyCharm</a></li>
+<li><a href="https://www.kite.com/integrations/spyder/">Spyder</a></li>
+<li><a href="https://www.kite.com/integrations/sublime-text/">Sublime</a></li>
+<li><a href="https://www.kite.com/integrations/vim/">Vim</a></li>
+<li><a href="https://www.kite.com/integrations/atom-editor/">Atom</a></li>
+<li><a href="https://www.kite.com/integrations/jupyter/">JupyterLab</a></li>
+<li><a href="https://www.kite.com/integrations/jupyterhub/">JupyterHub</a></li>
+</ul>
+<p>Learn more about how Kite heightens IntelliJ IDEA’s capabilities at <a href="https://kite.com/integrations/vs-code/">kite.com/integrations/intellij</a>.</p>
+<h3>Requirements</h3>
+<p>This plugin requires the <a href="https://kite.com/">Kite desktop app</a>, which you will be prompted to install if it’s not already present.</p>
+<p>Use another editor? Check out <a href="https://kite.com/integrations/">Kite’s other editor integrations</a>.</p>
+<h3>Installing the Kite Engine</h3>
+<p>The <a href="https://kite.com/">Kite desktop app</a> needs to be installed in order for the package to work properly. The package itself provides the frontend that interfaces with the Kite Engine, which performs all the code analysis and machine learning 100% locally on your computer. (No code is sent to a cloud server.)</p>
+<h4>macOS Instructions</h4>
+<ol>
+<li>Download the <a href="https://kite.com/download/">installer</a> and open the downloaded .dmg file.</li>
+<li>Drag the Kite icon into the Applications folder.</li>
+<li>Run Kite.app to start the Kite Engine.</li>
+</ol>
+<h4>Windows Instructions</h4>
+<ol>
+<li>Download the <a href="https://kite.com/download/">installer</a> and run the downloaded .exe file.</li>
+<li>The installer should run the Kite Engine automatically after installation is complete.</li>
+</ol>
+<h4>Linux Instructions</h4>
+<ol>
+<li>Visit <a href="https://kite.com/linux/">kite.com/linux</a> to install Kite.</li>
+<li>The installer should run the Kite Engine automatically after installation is complete.</li>
+</ol>
+<h3>Troubleshooting</h3>
+<p>Check our help center for the <a href="https://help.kite.com/category/39-getting-started">most recent installation guide</a> for IntelliJ and the <a href="https://help.kite.com/article/122-troubleshooting-the-jetbrains-plugin">troubleshooting guide</a>.</p>
+<h3>About Kite</h3>
+<p>Kite is built by a team in San Francisco devoted to making programming easier and more enjoyable for all. Follow Kite on <a href="https://twitter.com/kitehq">Twitter</a> and get the latest news and programming tips on the <a href="https://kite.com/blog/">Kite Blog</a>. Kite has been featured in <a href="https://www.wired.com/2016/04/kites-coding-asssitant-spots-errors-finds-better-open-source/">Wired</a>, <a href="https://venturebeat.com/2019/01/28/kite-raises-17-million-for-its-ai-powered-developer-environment/">VentureBeat</a>, <a href="https://thenextweb.com/dd/2016/04/14/kite-plugin/">The Next Web</a>, and <a href="https://techcrunch.com/2019/01/28/kite-raises-17m-for-its-ai-driven-code-completion-tool/">TechCrunch</a>.</p>
+]]></description><version>1.8.5</version><vendor email="support@kite.com" url="https://kite.com/">Kite</vendor><rating>4.5</rating><change-notes><![CDATA[<h3>Changed</h3>
+<ul><li>The first release on the JetBrains marketplace.</li></ul>]]></change-notes><idea-version min="n/a" max="n/a" since-build="193.0" until-build="203.*"></idea-version></idea-plugin></category></plugin-repository>

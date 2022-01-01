@@ -1,0 +1,24 @@
+boxes = { "kiteserver" => "kite/nvidia-docker-puppet" }
+
+Vagrant.configure("2") do |config|
+
+  ["metrics-collector", "release", "nchan", "kiteserver"].each do |node_name|
+    config.vm.define "#{node_name}" do |machine|
+      machine.vm.provider "virtualbox" do |v|
+        v.name = node_name
+      end
+
+      machine.vm.box = boxes.fetch(node_name, "kite/base")
+      machine.vm.synced_folder "~/.aws", "/root/.aws"
+      machine.vm.synced_folder "./", "/opt/puppet"
+      machine.vm.provision "shell", inline: <<-SCRIPT
+cat << 'EOF' > /opt/puppetlabs/facter/facts.d/local.json
+{"node_name": "#{node_name}-0", "kite_env": "dev", "kiteco_version": "99990909.0"}
+EOF
+cd /opt/puppet && /opt/puppetlabs/bin/puppet apply --modulepath=/opt/puppet/modules:/opt/puppet/site-modules site.pp
+SCRIPT
+      machine.vm.network "private_network", type: "dhcp"
+    end
+  end
+
+end

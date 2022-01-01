@@ -1,0 +1,104 @@
+.modal {
+  padding-bottom: 10%;
+}
+
+.dialog {
+  margin-bottom: 22%;
+  width: 100%;
+}
+
+.container {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: var(--highlight-background);
+  border-radius: 4px;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  padding: 1.5rem 1.2rem 1.5rem 1.2rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.form {
+  display: grid;
+  justify-items: center;
+}
+
+.title {
+  color: var(--text-color-normal);
+  font-size: 1.7rem;
+  min-width: 100%;
+}
+
+.errorColor {
+  color: var(--error-color);
+}
+
+.messageColor {
+  color: var(--text-color-normal)
+}
+
+.message {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  align-self: end;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.left {
+  display: flex;
+  justify-self: left;
+}
+
+.input {
+  background: var(--input-background);
+  border: var(--input-border);
+  border-radius: 0.3rem;
+  outline: none;
+  min-width: 20rem;
+  padding: 0.5rem 0.75rem;
+  margin: 0.75rem 0 1rem 0;
+  color: var(--input-text);
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.button {
+  background-color: var(--button-background);
+  font: caption;
+  color: var(--button-text);
+  border-radius: 0.3rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  padding: 0.7rem;
+  margin-bottom: 0.25rem;
+}
+
+.button:hover {
+  background-color: var(--text-color-highlight);
+  color: var(--button-text);
+}
+
+.link {
+  color: var(--link-color);
+  cursor: pointer;
+  font-size: 1.1rem;
+  justify-self: end;
+}
+
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 0 0.2rem;
+}
+
+.fillWidth {
+  width: 100%;
+  box-sizing: border-box;
+}

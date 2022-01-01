@@ -1,0 +1,13 @@
+platform: linux
+image_resource:
+  type: docker-image
+  source: {repository: kiteco/concourse}
+inputs:
+- name: kiteco
+- name: meta
+- name: release_bin
+run:
+  path: kiteco/concourse/tasks/release-client-build/run.bash
+params:
+  RELEASE_DB_URI: ((release_db_uri))
+  PERCENTAGE: ((percentage))

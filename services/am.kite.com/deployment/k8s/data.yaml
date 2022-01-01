@@ -1,0 +1,19 @@
+#@data/values
+---
+tag:
+namespace:
+project:
+env:
+hostname:
+user_mux_cpu:
+user_mux_mem:
+user_node_mem:
+user_node_cpu:
+user_mux_port: 9090
+user_mux_debug_port: 9091
+user_node_port: 9090
+user_node_debug_port: 9091
+user_mux_keys: ["AWS_REGION", "COMMUNITY_DB_URI", "COMMUNITY_DB_DRIVER"]
+user_node_keys: ["AWS_REGION", "COMMUNITY_DB_URI", "COMMUNITY_DB_DRIVER",
+                  "STRIPE_SECRET", "STRIPE_WEBHOOK_SECRET", "OCTOBAT_SECRET", "OCTOBAT_PUBLISHABLE", "MIXPANEL_SECRET",
+                  "DELIGHTED_SECRET", "QUICK_EMAIL_TOKEN", "LICENSE_RSA_KEY"]

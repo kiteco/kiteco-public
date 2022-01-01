@@ -1,0 +1,10 @@
+venv
+
+data/*
+!data/readme.md
+resources/*
+!resources/readme.md
+
+
+output/*
+

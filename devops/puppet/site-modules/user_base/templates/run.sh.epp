@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Source configuraiton
+source /var/kite/config.sh
+
+# Release specific configuration
+# Seems to be broken: "export HOSTNAME=$(hostname)"
+# export HOSTNAME=$(hostname)
+export REGION=<%= $facts[aws_region] %>
+export RELEASE=<%= $facts[kiteco_version] %>
+export PROVIDER="aws"
+export AWS_REGION=<%= $facts[aws_region] %>
+
+# Dump limits/sysctl
+ulimit -a > /var/kite/log/ulimit.log
+sysctl -a > /var/kite/log/sysctl.log
+
+export LD_LIBRARY_PATH=/usr/local/lib
+
+exec <%= $executable %>

@@ -1,0 +1,9 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install --no-install-recommends -y netbase
+RUN rm -rf /var/lib/apt/lists/*
+
+# PyPI claims the only version is 0.5.1, while pip claims the only version is 0.5.2 - why?
+RUN pip2 install aioeventlet==0.5.2
+
+ENTRYPOINT ["/usr/bin/env", "python2", "-m", "kite.pkgexploration", "aioeventlet", "0.5.2", "aioeventlet__0.5.2.json", "aioeventlet__0.5.2.log"]

@@ -1,0 +1,28 @@
+.code-block {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.code-block__structured {
+  padding-left: 4ch;
+  text-indent: -4ch;
+  overflow-wrap: break-word;
+}
+
+.structured-signature__table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.structured-signature__arg {
+  overflow-wrap: break-word;
+  text-indent: -4ch;
+  padding: 0;
+}
+
+pre, code {
+  font-family: "Hack", monospace;
+  color: var(--text-color-light);
+  line-height: 1.35;
+}

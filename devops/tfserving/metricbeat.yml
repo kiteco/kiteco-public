@@ -1,0 +1,30 @@
+cloud.id: metrics:XXXXXXX
+cloud.auth: "${cloud_auth}"
+name: tfserving-dev-gcp
+logging:
+  level: info
+  files:
+    keepfiles: 7
+    name: metricbeat
+    path: "/var/log/metricbeat"
+    rotateeverybytes: '10485760'
+  metrics:
+    enabled: false
+    period: 30s
+  selectors: 
+  to_files: true
+  to_syslog: false
+queue:
+  mem:
+    events: 4096
+    flush:
+      min_events: 0
+      timeout: 0s
+fields_under_root: false
+output:
+  elasticsearch: {}
+metricbeat.config.modules.path: "/etc/metricbeat/modules.d/*.yml"
+fields:
+  node_name: tfserving-dev-gcp
+xpack:
+

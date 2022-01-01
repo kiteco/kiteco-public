@@ -1,0 +1,78 @@
+{
+  "string": {
+    "type": "string"
+  },
+  "int": {
+    "type": "integer",
+    "minimum": -2147483648,
+    "maximum": 2147483647
+  },
+  "map<string,int>": {
+    "type": "object",
+    "additionalProperties": {
+      "$ref": "#/int"
+    }
+  },
+  "map<string,map<string,int>>": {
+    "type": "object",
+    "additionalProperties": {
+      "$ref": "#/map<string,int>"
+    }
+  },
+  "double": {
+    "type": "number"
+  },
+  "array<double>": {
+    "oneOf": [
+      {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      },
+      {
+        "type": "null"
+      }
+    ]
+  },
+  "array<array<double>>": {
+    "oneOf": [
+      {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      },
+      {
+        "type": "null"
+      }
+    ]
+  },
+  "array<int>": {
+    "oneOf": [
+      {
+        "type": "array",
+        "items": {
+          "$ref": "#/int"
+        }
+      },
+      {
+        "type": "null"
+      }
+    ]
+  },
+  "bigint": {
+    "type": "integer",
+    "minimum": -9223372036854775808,
+    "maximum": 9223372036854775807
+  },
+  "boolean": {
+    "type": [
+      "boolean",
+      "null"
+    ]
+  }
+}

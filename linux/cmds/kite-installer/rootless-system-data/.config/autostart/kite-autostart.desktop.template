@@ -1,0 +1,8 @@
+[Desktop Entry]
+NoDisplay=true
+Type=Application
+Version={{.Version}}
+Name=Kite
+Comment=Kite - ML powered code completions
+Exec={{.HomeDir}}/.local/share/kite/kited --system-boot
+Hidden=false

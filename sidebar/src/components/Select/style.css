@@ -1,0 +1,45 @@
+.select {
+  font-weight: 200;
+  font-size: 1.6rem;
+  color: #edeaf7;
+  line-height: 2rem;
+  position: relative;
+}
+
+.select__toggle {
+  padding: 1rem;
+  border: 1px solid white;
+  cursor: pointer;
+  transform: all 0.5s linear;
+}
+
+.select__toggle:hover {
+  background: white;
+  color: blue;
+}
+
+.select__options {
+  background: white;
+  color: blue;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 1px solid white;
+  z-index: 9999;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+  transform: all 0.5s linear;
+}
+
+.select__options > * {
+  margin: 0;
+}
+
+.select__option {
+  padding: 1rem 1rem;
+  cursor: pointer;
+}
+
+.select__option:hover {
+  background: #edeaf7;
+}

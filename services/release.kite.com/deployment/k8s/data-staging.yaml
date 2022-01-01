@@ -1,0 +1,19 @@
+#@ load("@ytt:overlay", "overlay")
+#@data/values
+
+#@overlay/match by=overlay.all
+---
+env: staging
+hostname: release-staging.kite.com
+#! Allows QA to spoof these in /etc/hosts for QAing
+#@overlay/replace
+ingressHostnames:
+  - release-staging.kite.com
+  - release.kite.com
+  - linux.kite.com
+  - windows.kite.com
+#@overlay/replace
+certificateDomains:
+  - release-staging.kite.com
+port: 9093
+

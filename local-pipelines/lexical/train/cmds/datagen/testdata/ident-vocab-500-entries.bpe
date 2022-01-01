@@ -1,0 +1,2002 @@
+[
+  {
+    "BytePair": "prototype$",
+    "Count": 20805076
+  },
+  {
+    "BytePair": "className$",
+    "Count": 11898993
+  },
+  {
+    "BytePair": "document$",
+    "Count": 16240002
+  },
+  {
+    "BytePair": "require$",
+    "Count": 22991086
+  },
+  {
+    "BytePair": "options$",
+    "Count": 26706619
+  },
+  {
+    "BytePair": "exports$",
+    "Count": 13640681
+  },
+  {
+    "BytePair": "element$",
+    "Count": 13670187
+  },
+  {
+    "BytePair": "console$",
+    "Count": 15006584
+  },
+  {
+    "BytePair": "Element$",
+    "Count": 13453099
+  },
+  {
+    "BytePair": "window$",
+    "Count": 12427054
+  },
+  {
+    "BytePair": "target$",
+    "Count": 10330254
+  },
+  {
+    "BytePair": "sition$",
+    "Count": 11338534
+  },
+  {
+    "BytePair": "result$",
+    "Count": 11993314
+  },
+  {
+    "BytePair": "module$",
+    "Count": 13362268
+  },
+  {
+    "BytePair": "length$",
+    "Count": 39274095
+  },
+  {
+    "BytePair": "lement$",
+    "Count": 115190
+  },
+  {
+    "BytePair": "height$",
+    "Count": 14092362
+  },
+  {
+    "BytePair": "expect$",
+    "Count": 10980947
+  },
+  {
+    "BytePair": "essage$",
+    "Count": 12895507
+  },
+  {
+    "BytePair": "config$",
+    "Count": 10257489
+  },
+  {
+    "BytePair": "String$",
+    "Count": 11658128
+  },
+  {
+    "BytePair": "Object$",
+    "Count": 11485300
+  },
+  {
+    "BytePair": "$scope$",
+    "Count": 12337087
+  },
+  {
+    "BytePair": "width$",
+    "Count": 16375989
+  },
+  {
+    "BytePair": "value$",
+    "Count": 32109382
+  },
+  {
+    "BytePair": "ument$",
+    "Count": 1620298
+  },
+  {
+    "BytePair": "title$",
+    "Count": 12336973
+  },
+  {
+    "BytePair": "tions$",
+    "Count": 9759735
+  },
+  {
+    "BytePair": "style$",
+    "Count": 15785175
+  },
+  {
+    "BytePair": "state$",
+    "Count": 15326342
+  },
+  {
+    "BytePair": "scope$",
+    "Count": 5007352
+  },
+  {
+    "BytePair": "remove",
+    "Count": 10227325
+  },
+  {
+    "BytePair": "props$",
+    "Count": 11583880
+  },
+  {
+    "BytePair": "lback$",
+    "Count": 11062123
+  },
+  {
+    "BytePair": "indow$",
+    "Count": 1720459
+  },
+  {
+    "BytePair": "index$",
+    "Count": 12345187
+  },
+  {
+    "BytePair": "event$",
+    "Count": 11814925
+  },
+  {
+    "BytePair": "error$",
+    "Count": 13879831
+  },
+  {
+    "BytePair": "ction$",
+    "Count": 12137641
+  },
+  {
+    "BytePair": "create",
+    "Count": 15983228
+  },
+  {
+    "BytePair": "ation$",
+    "Count": 21425898
+  },
+  {
+    "BytePair": "Value$",
+    "Count": 10756325
+  },
+  {
+    "BytePair": "Class$",
+    "Count": 18029454
+  },
+  {
+    "BytePair": "Array$",
+    "Count": 10674957
+  },
+  {
+    "BytePair": "type$",
+    "Count": 30618550
+  },
+  {
+    "BytePair": "tion$",
+    "Count": 24503099
+  },
+  {
+    "BytePair": "text$",
+    "Count": 18172065
+  },
+  {
+    "BytePair": "sole$",
+    "Count": 167662
+  },
+  {
+    "BytePair": "self$",
+    "Count": 16065191
+  },
+  {
+    "BytePair": "selec",
+    "Count": 16945224
+  },
+  {
+    "BytePair": "push$",
+    "Count": 16320551
+  },
+  {
+    "BytePair": "proto",
+    "Count": 2164384
+  },
+  {
+    "BytePair": "path$",
+    "Count": 11825245
+  },
+  {
+    "BytePair": "param",
+    "Count": 11340196
+  },
+  {
+    "BytePair": "orts$",
+    "Count": 1301438
+  },
+  {
+    "BytePair": "name$",
+    "Count": 45536890
+  },
+  {
+    "BytePair": "lick$",
+    "Count": 11042793
+  },
+  {
+    "BytePair": "lass$",
+    "Count": 9131535
+  },
+  {
+    "BytePair": "item$",
+    "Count": 11304066
+  },
+  {
+    "BytePair": "ight$",
+    "Count": 10397182
+  },
+  {
+    "BytePair": "idth$",
+    "Count": 9065310
+  },
+  {
+    "BytePair": "ents$",
+    "Count": 20486264
+  },
+  {
+    "BytePair": "defin",
+    "Count": 11617215
+  },
+  {
+    "BytePair": "date$",
+    "Count": 11546524
+  },
+  {
+    "BytePair": "data$",
+    "Count": 44312709
+  },
+  {
+    "BytePair": "cope$",
+    "Count": 2044744
+  },
+  {
+    "BytePair": "confi",
+    "Count": 3880543
+  },
+  {
+    "BytePair": "class",
+    "Count": 2761287
+  },
+  {
+    "BytePair": "body$",
+    "Count": 10040343
+  },
+  {
+    "BytePair": "ation",
+    "Count": 11653921
+  },
+  {
+    "BytePair": "ange$",
+    "Count": 10958680
+  },
+  {
+    "BytePair": "able$",
+    "Count": 14123927
+  },
+  {
+    "BytePair": "Type$",
+    "Count": 13047954
+  },
+  {
+    "BytePair": "Name$",
+    "Count": 23342965
+  },
+  {
+    "BytePair": "Math$",
+    "Count": 12837705
+  },
+  {
+    "BytePair": "Date$",
+    "Count": 11831264
+  },
+  {
+    "BytePair": "Data$",
+    "Count": 13792081
+  },
+  {
+    "BytePair": "val$",
+    "Count": 14284427
+  },
+  {
+    "BytePair": "user",
+    "Count": 10956718
+  },
+  {
+    "BytePair": "url$",
+    "Count": 13868826
+  },
+  {
+    "BytePair": "ult$",
+    "Count": 10208915
+  },
+  {
+    "BytePair": "ule$",
+    "Count": 3496762
+  },
+  {
+    "BytePair": "tor$",
+    "Count": 16702905
+  },
+  {
+    "BytePair": "tion",
+    "Count": 13310020
+  },
+  {
+    "BytePair": "ter$",
+    "Count": 18251482
+  },
+  {
+    "BytePair": "star",
+    "Count": 14759815
+  },
+  {
+    "BytePair": "set$",
+    "Count": 16682579
+  },
+  {
+    "BytePair": "scri",
+    "Count": 12485044
+  },
+  {
+    "BytePair": "ror$",
+    "Count": 8793123
+  },
+  {
+    "BytePair": "roll",
+    "Count": 13626044
+  },
+  {
+    "BytePair": "res$",
+    "Count": 17612970
+  },
+  {
+    "BytePair": "requ",
+    "Count": 11682286
+  },
+  {
+    "BytePair": "req$",
+    "Count": 10081339
+  },
+  {
+    "BytePair": "remo",
+    "Count": 4873673
+  },
+  {
+    "BytePair": "ray$",
+    "Count": 3541426
+  },
+  {
+    "BytePair": "put$",
+    "Count": 13542686
+  },
+  {
+    "BytePair": "out$",
+    "Count": 12817974
+  },
+  {
+    "BytePair": "ore$",
+    "Count": 12211876
+  },
+  {
+    "BytePair": "one$",
+    "Count": 15663272
+  },
+  {
+    "BytePair": "ode$",
+    "Count": 28393297
+  },
+  {
+    "BytePair": "obj$",
+    "Count": 10374550
+  },
+  {
+    "BytePair": "log$",
+    "Count": 16141404
+  },
+  {
+    "BytePair": "load",
+    "Count": 10063536
+  },
+  {
+    "BytePair": "les$",
+    "Count": 14284525
+  },
+  {
+    "BytePair": "lbac",
+    "Count": 1815280
+  },
+  {
+    "BytePair": "key$",
+    "Count": 15594817
+  },
+  {
+    "BytePair": "ize$",
+    "Count": 10869969
+  },
+  {
+    "BytePair": "ist$",
+    "Count": 14004678
+  },
+  {
+    "BytePair": "ire$",
+    "Count": 476063
+  },
+  {
+    "BytePair": "ing$",
+    "Count": 32840971
+  },
+  {
+    "BytePair": "indo",
+    "Count": 1792418
+  },
+  {
+    "BytePair": "ild$",
+    "Count": 10051976
+  },
+  {
+    "BytePair": "gth$",
+    "Count": 2497072
+  },
+  {
+    "BytePair": "get$",
+    "Count": 17464543
+  },
+  {
+    "BytePair": "ext$",
+    "Count": 23814759
+  },
+  {
+    "BytePair": "ery$",
+    "Count": 11245738
+  },
+  {
+    "BytePair": "ers$",
+    "Count": 14564901
+  },
+  {
+    "BytePair": "err$",
+    "Count": 15179171
+  },
+  {
+    "BytePair": "ent$",
+    "Count": 53771774
+  },
+  {
+    "BytePair": "end$",
+    "Count": 21999256
+  },
+  {
+    "BytePair": "ect$",
+    "Count": 15879290
+  },
+  {
+    "BytePair": "div$",
+    "Count": 21098738
+  },
+  {
+    "BytePair": "dex$",
+    "Count": 8937987
+  },
+  {
+    "BytePair": "defa",
+    "Count": 11218572
+  },
+  {
+    "BytePair": "date",
+    "Count": 10113750
+  },
+  {
+    "BytePair": "data",
+    "Count": 9977683
+  },
+  {
+    "BytePair": "curr",
+    "Count": 14477834
+  },
+  {
+    "BytePair": "cont",
+    "Count": 32310701
+  },
+  {
+    "BytePair": "comp",
+    "Count": 14591648
+  },
+  {
+    "BytePair": "clas",
+    "Count": 2217335
+  },
+  {
+    "BytePair": "ath$",
+    "Count": 5985449
+  },
+  {
+    "BytePair": "ate$",
+    "Count": 28009732
+  },
+  {
+    "BytePair": "ase$",
+    "Count": 10600452
+  },
+  {
+    "BytePair": "ame$",
+    "Count": 9365928
+  },
+  {
+    "BytePair": "age$",
+    "Count": 19062972
+  },
+  {
+    "BytePair": "act$",
+    "Count": 10678068
+  },
+  {
+    "BytePair": "ach$",
+    "Count": 11410103
+  },
+  {
+    "BytePair": "ace$",
+    "Count": 13162961
+  },
+  {
+    "BytePair": "able",
+    "Count": 13006023
+  },
+  {
+    "BytePair": "Cont",
+    "Count": 10317656
+  },
+  {
+    "BytePair": "ver",
+    "Count": 18010594
+  },
+  {
+    "BytePair": "ve$",
+    "Count": 24617179
+  },
+  {
+    "BytePair": "val",
+    "Count": 15330163
+  },
+  {
+    "BytePair": "utt",
+    "Count": 13438681
+  },
+  {
+    "BytePair": "us$",
+    "Count": 14703450
+  },
+  {
+    "BytePair": "up$",
+    "Count": 10021927
+  },
+  {
+    "BytePair": "umb",
+    "Count": 11982481
+  },
+  {
+    "BytePair": "ue$",
+    "Count": 6706593
+  },
+  {
+    "BytePair": "ty$",
+    "Count": 12886128
+  },
+  {
+    "BytePair": "ts$",
+    "Count": 30215720
+  },
+  {
+    "BytePair": "tri",
+    "Count": 17273703
+  },
+  {
+    "BytePair": "tr$",
+    "Count": 13454932
+  },
+  {
+    "BytePair": "to$",
+    "Count": 10626606
+  },
+  {
+    "BytePair": "tit",
+    "Count": 3169516
+  },
+  {
+    "BytePair": "th$",
+    "Count": 9948313
+  },
+  {
+    "BytePair": "ter",
+    "Count": 24313392
+  },
+  {
+    "BytePair": "tem",
+    "Count": 12523084
+  },
+  {
+    "BytePair": "te$",
+    "Count": 11560795
+  },
+  {
+    "BytePair": "tar",
+    "Count": 3209206
+  },
+  {
+    "BytePair": "sub",
+    "Count": 10018870
+  },
+  {
+    "BytePair": "sty",
+    "Count": 6323962
+  },
+  {
+    "BytePair": "str",
+    "Count": 24613164
+  },
+  {
+    "BytePair": "st$",
+    "Count": 23334991
+  },
+  {
+    "BytePair": "set",
+    "Count": 40191446
+  },
+  {
+    "BytePair": "ser",
+    "Count": 27749709
+  },
+  {
+    "BytePair": "sel",
+    "Count": 1140973
+  },
+  {
+    "BytePair": "se$",
+    "Count": 22217140
+  },
+  {
+    "BytePair": "row",
+    "Count": 10279232
+  },
+  {
+    "BytePair": "rol",
+    "Count": 4807851
+  },
+  {
+    "BytePair": "res",
+    "Count": 41208920
+  },
+  {
+    "BytePair": "pus",
+    "Count": 776262
+  },
+  {
+    "BytePair": "ps$",
+    "Count": 6130157
+  },
+  {
+    "BytePair": "pro",
+    "Count": 31756926
+  },
+  {
+    "BytePair": "pre",
+    "Count": 14396933
+  },
+  {
+    "BytePair": "pon",
+    "Count": 11287670
+  },
+  {
+    "BytePair": "per",
+    "Count": 21909426
+  },
+  {
+    "BytePair": "pe$",
+    "Count": 5598719
+  },
+  {
+    "BytePair": "par",
+    "Count": 31400432
+  },
+  {
+    "BytePair": "our",
+    "Count": 13253455
+  },
+  {
+    "BytePair": "oun",
+    "Count": 13874426
+  },
+  {
+    "BytePair": "ord",
+    "Count": 13017618
+  },
+  {
+    "BytePair": "or$",
+    "Count": 32078312
+  },
+  {
+    "BytePair": "on$",
+    "Count": 48150953
+  },
+  {
+    "BytePair": "obj",
+    "Count": 9626719
+  },
+  {
+    "BytePair": "new",
+    "Count": 10542053
+  },
+  {
+    "BytePair": "mod",
+    "Count": 6911933
+  },
+  {
+    "BytePair": "ml$",
+    "Count": 11368978
+  },
+  {
+    "BytePair": "me$",
+    "Count": 13646908
+  },
+  {
+    "BytePair": "mat",
+    "Count": 14781830
+  },
+  {
+    "BytePair": "loc",
+    "Count": 16962559
+  },
+  {
+    "BytePair": "lin",
+    "Count": 21776703
+  },
+  {
+    "BytePair": "lic",
+    "Count": 7202672
+  },
+  {
+    "BytePair": "len",
+    "Count": 6351545
+  },
+  {
+    "BytePair": "lem",
+    "Count": 12859769
+  },
+  {
+    "BytePair": "lec",
+    "Count": 12225795
+  },
+  {
+    "BytePair": "le$",
+    "Count": 35888175
+  },
+  {
+    "BytePair": "las",
+    "Count": 5329115
+  },
+  {
+    "BytePair": "ite",
+    "Count": 10476368
+  },
+  {
+    "BytePair": "it$",
+    "Count": 24006560
+  },
+  {
+    "BytePair": "ist",
+    "Count": 14661450
+  },
+  {
+    "BytePair": "is$",
+    "Count": 11422889
+  },
+  {
+    "BytePair": "ing",
+    "Count": 29041762
+  },
+  {
+    "BytePair": "in$",
+    "Count": 29387604
+  },
+  {
+    "BytePair": "id$",
+    "Count": 44744755
+  },
+  {
+    "BytePair": "ht$",
+    "Count": 5287084
+  },
+  {
+    "BytePair": "has",
+    "Count": 11162162
+  },
+  {
+    "BytePair": "gro",
+    "Count": 10103911
+  },
+  {
+    "BytePair": "get",
+    "Count": 57972180
+  },
+  {
+    "BytePair": "ft$",
+    "Count": 14640563
+  },
+  {
+    "BytePair": "for",
+    "Count": 30113497
+  },
+  {
+    "BytePair": "fin",
+    "Count": 14361285
+  },
+  {
+    "BytePair": "fil",
+    "Count": 11267771
+  },
+  {
+    "BytePair": "ext",
+    "Count": 24707476
+  },
+  {
+    "BytePair": "exp",
+    "Count": 10519280
+  },
+  {
+    "BytePair": "ew$",
+    "Count": 10573305
+  },
+  {
+    "BytePair": "ess",
+    "Count": 7875958
+  },
+  {
+    "BytePair": "es$",
+    "Count": 42260477
+  },
+  {
+    "BytePair": "er$",
+    "Count": 146647652
+  },
+  {
+    "BytePair": "ent",
+    "Count": 68198950
+  },
+  {
+    "BytePair": "end",
+    "Count": 29921563
+  },
+  {
+    "BytePair": "en$",
+    "Count": 34228419
+  },
+  {
+    "BytePair": "el$",
+    "Count": 24632010
+  },
+  {
+    "BytePair": "ed$",
+    "Count": 18465525
+  },
+  {
+    "BytePair": "doc",
+    "Count": 4426475
+  },
+  {
+    "BytePair": "dis",
+    "Count": 17145885
+  },
+  {
+    "BytePair": "dex",
+    "Count": 8676825
+  },
+  {
+    "BytePair": "de$",
+    "Count": 11175034
+  },
+  {
+    "BytePair": "dat",
+    "Count": 6700718
+  },
+  {
+    "BytePair": "cur",
+    "Count": 4458370
+  },
+  {
+    "BytePair": "ct$",
+    "Count": 10900718
+  },
+  {
+    "BytePair": "cre",
+    "Count": 7081966
+  },
+  {
+    "BytePair": "con",
+    "Count": 25038669
+  },
+  {
+    "BytePair": "col",
+    "Count": 24404039
+  },
+  {
+    "BytePair": "ch$",
+    "Count": 19740810
+  },
+  {
+    "BytePair": "ces",
+    "Count": 10796421
+  },
+  {
+    "BytePair": "ce$",
+    "Count": 29756204
+  },
+  {
+    "BytePair": "cal",
+    "Count": 39227392
+  },
+  {
+    "BytePair": "bod",
+    "Count": 1771021
+  },
+  {
+    "BytePair": "bac",
+    "Count": 6439241
+  },
+  {
+    "BytePair": "ay$",
+    "Count": 13124695
+  },
+  {
+    "BytePair": "ati",
+    "Count": 9442328
+  },
+  {
+    "BytePair": "ate",
+    "Count": 19426766
+  },
+  {
+    "BytePair": "at$",
+    "Count": 16404716
+  },
+  {
+    "BytePair": "arg",
+    "Count": 20215770
+  },
+  {
+    "BytePair": "ar$",
+    "Count": 19863450
+  },
+  {
+    "BytePair": "app",
+    "Count": 18949858
+  },
+  {
+    "BytePair": "ang",
+    "Count": 9812206
+  },
+  {
+    "BytePair": "and",
+    "Count": 18404381
+  },
+  {
+    "BytePair": "an$",
+    "Count": 12896377
+  },
+  {
+    "BytePair": "al$",
+    "Count": 27811716
+  },
+  {
+    "BytePair": "ain",
+    "Count": 10069985
+  },
+  {
+    "BytePair": "age",
+    "Count": 14253821
+  },
+  {
+    "BytePair": "add",
+    "Count": 23676465
+  },
+  {
+    "BytePair": "ad$",
+    "Count": 13596783
+  },
+  {
+    "BytePair": "Val",
+    "Count": 4032307
+  },
+  {
+    "BytePair": "Tim",
+    "Count": 13580867
+  },
+  {
+    "BytePair": "Str",
+    "Count": 1380167
+  },
+  {
+    "BytePair": "Pro",
+    "Count": 25443423
+  },
+  {
+    "BytePair": "Obj",
+    "Count": 5319846
+  },
+  {
+    "BytePair": "Id$",
+    "Count": 22725612
+  },
+  {
+    "BytePair": "Dat",
+    "Count": 3086549
+  },
+  {
+    "BytePair": "Con",
+    "Count": 14583880
+  },
+  {
+    "BytePair": "Col",
+    "Count": 10826022
+  },
+  {
+    "BytePair": "..+",
+    "Count": 13401146
+  },
+  {
+    "BytePair": "y$",
+    "Count": 90471191
+  },
+  {
+    "BytePair": "x$",
+    "Count": 71084187
+  },
+  {
+    "BytePair": "we",
+    "Count": 11510514
+  },
+  {
+    "BytePair": "w$",
+    "Count": 33878307
+  },
+  {
+    "BytePair": "vi",
+    "Count": 25027328
+  },
+  {
+    "BytePair": "ve",
+    "Count": 20129742
+  },
+  {
+    "BytePair": "v$",
+    "Count": 25517413
+  },
+  {
+    "BytePair": "ut",
+    "Count": 23101875
+  },
+  {
+    "BytePair": "us",
+    "Count": 20884966
+  },
+  {
+    "BytePair": "ur",
+    "Count": 24657547
+  },
+  {
+    "BytePair": "up",
+    "Count": 19091967
+  },
+  {
+    "BytePair": "un",
+    "Count": 51709056
+  },
+  {
+    "BytePair": "um",
+    "Count": 28488205
+  },
+  {
+    "BytePair": "ul",
+    "Count": 33688382
+  },
+  {
+    "BytePair": "u$",
+    "Count": 17892289
+  },
+  {
+    "BytePair": "ty",
+    "Count": 17996922
+  },
+  {
+    "BytePair": "tr",
+    "Count": 28007424
+  },
+  {
+    "BytePair": "to",
+    "Count": 71247330
+  },
+  {
+    "BytePair": "ti",
+    "Count": 68716844
+  },
+  {
+    "BytePair": "th",
+    "Count": 58745632
+  },
+  {
+    "BytePair": "te",
+    "Count": 63344865
+  },
+  {
+    "BytePair": "ta",
+    "Count": 15235628
+  },
+  {
+    "BytePair": "t+",
+    "Count": 12125183
+  },
+  {
+    "BytePair": "t$",
+    "Count": 209459145
+  },
+  {
+    "BytePair": "su",
+    "Count": 14248940
+  },
+  {
+    "BytePair": "st",
+    "Count": 116787505
+  },
+  {
+    "BytePair": "sp",
+    "Count": 26784086
+  },
+  {
+    "BytePair": "so",
+    "Count": 5797587
+  },
+  {
+    "BytePair": "si",
+    "Count": 36956682
+  },
+  {
+    "BytePair": "sh",
+    "Count": 28640318
+  },
+  {
+    "BytePair": "se",
+    "Count": 67206078
+  },
+  {
+    "BytePair": "sc",
+    "Count": 14052865
+  },
+  {
+    "BytePair": "s+",
+    "Count": 24482230
+  },
+  {
+    "BytePair": "s$",
+    "Count": 262006806
+  },
+  {
+    "BytePair": "ro",
+    "Count": 53514523
+  },
+  {
+    "BytePair": "ri",
+    "Count": 42983004
+  },
+  {
+    "BytePair": "re",
+    "Count": 132416665
+  },
+  {
+    "BytePair": "r$",
+    "Count": 63195173
+  },
+  {
+    "BytePair": "qu",
+    "Count": 35176810
+  },
+  {
+    "BytePair": "q$",
+    "Count": 9314427
+  },
+  {
+    "BytePair": "pu",
+    "Count": 3790922
+  },
+  {
+    "BytePair": "po",
+    "Count": 30883760
+  },
+  {
+    "BytePair": "pl",
+    "Count": 50266819
+  },
+  {
+    "BytePair": "p$",
+    "Count": 100423826
+  },
+  {
+    "BytePair": "ow",
+    "Count": 16445164
+  },
+  {
+    "BytePair": "ou",
+    "Count": 34294746
+  },
+  {
+    "BytePair": "or",
+    "Count": 92838265
+  },
+  {
+    "BytePair": "op",
+    "Count": 30717368
+  },
+  {
+    "BytePair": "oo",
+    "Count": 22248018
+  },
+  {
+    "BytePair": "on",
+    "Count": 80327093
+  },
+  {
+    "BytePair": "ol",
+    "Count": 27650076
+  },
+  {
+    "BytePair": "od",
+    "Count": 12154055
+  },
+  {
+    "BytePair": "o$",
+    "Count": 59057715
+  },
+  {
+    "BytePair": "no",
+    "Count": 25511713
+  },
+  {
+    "BytePair": "n$",
+    "Count": 85699829
+  },
+  {
+    "BytePair": "mp",
+    "Count": 18170052
+  },
+  {
+    "BytePair": "mo",
+    "Count": 22453781
+  },
+  {
+    "BytePair": "mm",
+    "Count": 10688777
+  },
+  {
+    "BytePair": "me",
+    "Count": 27817725
+  },
+  {
+    "BytePair": "ma",
+    "Count": 42695248
+  },
+  {
+    "BytePair": "m$",
+    "Count": 71852597
+  },
+  {
+    "BytePair": "lo",
+    "Count": 55311591
+  },
+  {
+    "BytePair": "li",
+    "Count": 56305143
+  },
+  {
+    "BytePair": "le",
+    "Count": 82221068
+  },
+  {
+    "BytePair": "l$",
+    "Count": 99606834
+  },
+  {
+    "BytePair": "ke",
+    "Count": 24447219
+  },
+  {
+    "BytePair": "k$",
+    "Count": 49720295
+  },
+  {
+    "BytePair": "js",
+    "Count": 10480930
+  },
+  {
+    "BytePair": "j$",
+    "Count": 15747614
+  },
+  {
+    "BytePair": "iz",
+    "Count": 9020705
+  },
+  {
+    "BytePair": "it",
+    "Count": 29990182
+  },
+  {
+    "BytePair": "is",
+    "Count": 56699344
+  },
+  {
+    "BytePair": "ir",
+    "Count": 6394308
+  },
+  {
+    "BytePair": "in",
+    "Count": 142004110
+  },
+  {
+    "BytePair": "im",
+    "Count": 23477739
+  },
+  {
+    "BytePair": "il",
+    "Count": 24456953
+  },
+  {
+    "BytePair": "ig",
+    "Count": 17480306
+  },
+  {
+    "BytePair": "id",
+    "Count": 29018035
+  },
+  {
+    "BytePair": "ic",
+    "Count": 14537183
+  },
+  {
+    "BytePair": "i$",
+    "Count": 108965017
+  },
+  {
+    "BytePair": "ht",
+    "Count": 20277389
+  },
+  {
+    "BytePair": "he",
+    "Count": 15697554
+  },
+  {
+    "BytePair": "h$",
+    "Count": 28886052
+  },
+  {
+    "BytePair": "gg",
+    "Count": 10446564
+  },
+  {
+    "BytePair": "ge",
+    "Count": 18881527
+  },
+  {
+    "BytePair": "g$",
+    "Count": 64851757
+  },
+  {
+    "BytePair": "fi",
+    "Count": 45846570
+  },
+  {
+    "BytePair": "ff",
+    "Count": 20070845
+  },
+  {
+    "BytePair": "fa",
+    "Count": 10411607
+  },
+  {
+    "BytePair": "f$",
+    "Count": 52928993
+  },
+  {
+    "BytePair": "ex",
+    "Count": 17875072
+  },
+  {
+    "BytePair": "ew",
+    "Count": 8700589
+  },
+  {
+    "BytePair": "ev",
+    "Count": 10664411
+  },
+  {
+    "BytePair": "es",
+    "Count": 32066244
+  },
+  {
+    "BytePair": "er",
+    "Count": 99587294
+  },
+  {
+    "BytePair": "en",
+    "Count": 66740498
+  },
+  {
+    "BytePair": "em",
+    "Count": 11027408
+  },
+  {
+    "BytePair": "el",
+    "Count": 42492100
+  },
+  {
+    "BytePair": "ec",
+    "Count": 36225498
+  },
+  {
+    "BytePair": "e+",
+    "Count": 15105752
+  },
+  {
+    "BytePair": "e$",
+    "Count": 205465300
+  },
+  {
+    "BytePair": "dr",
+    "Count": 12300361
+  },
+  {
+    "BytePair": "do",
+    "Count": 27529417
+  },
+  {
+    "BytePair": "di",
+    "Count": 39771200
+  },
+  {
+    "BytePair": "de",
+    "Count": 92692511
+  },
+  {
+    "BytePair": "d+",
+    "Count": 14229639
+  },
+  {
+    "BytePair": "d$",
+    "Count": 160123027
+  },
+  {
+    "BytePair": "ct",
+    "Count": 10547727
+  },
+  {
+    "BytePair": "cs",
+    "Count": 12413677
+  },
+  {
+    "BytePair": "co",
+    "Count": 45644192
+  },
+  {
+    "BytePair": "cl",
+    "Count": 12564192
+  },
+  {
+    "BytePair": "ch",
+    "Count": 61565662
+  },
+  {
+    "BytePair": "ce",
+    "Count": 12647674
+  },
+  {
+    "BytePair": "c$",
+    "Count": 82940834
+  },
+  {
+    "BytePair": "bu",
+    "Count": 14430457
+  },
+  {
+    "BytePair": "bo",
+    "Count": 16988324
+  },
+  {
+    "BytePair": "bj",
+    "Count": 1600398
+  },
+  {
+    "BytePair": "b$",
+    "Count": 68510580
+  },
+  {
+    "BytePair": "ay",
+    "Count": 29632953
+  },
+  {
+    "BytePair": "au",
+    "Count": 12414915
+  },
+  {
+    "BytePair": "at",
+    "Count": 75453193
+  },
+  {
+    "BytePair": "as",
+    "Count": 42155258
+  },
+  {
+    "BytePair": "ar",
+    "Count": 92244675
+  },
+  {
+    "BytePair": "ap",
+    "Count": 40804546
+  },
+  {
+    "BytePair": "an",
+    "Count": 87291653
+  },
+  {
+    "BytePair": "am",
+    "Count": 33094746
+  },
+  {
+    "BytePair": "al",
+    "Count": 62446184
+  },
+  {
+    "BytePair": "ag",
+    "Count": 21015268
+  },
+  {
+    "BytePair": "ad",
+    "Count": 42663682
+  },
+  {
+    "BytePair": "ac",
+    "Count": 72070615
+  },
+  {
+    "BytePair": "ab",
+    "Count": 26202807
+  },
+  {
+    "BytePair": "a$",
+    "Count": 110900003
+  },
+  {
+    "BytePair": "__",
+    "Count": 12225784
+  },
+  {
+    "BytePair": "_$",
+    "Count": 29551561
+  },
+  {
+    "BytePair": "Y$",
+    "Count": 11717379
+  },
+  {
+    "BytePair": "Ty",
+    "Count": 7414870
+  },
+  {
+    "BytePair": "To",
+    "Count": 15955024
+  },
+  {
+    "BytePair": "T$",
+    "Count": 13103870
+  },
+  {
+    "BytePair": "St",
+    "Count": 26090937
+  },
+  {
+    "BytePair": "Se",
+    "Count": 16845241
+  },
+  {
+    "BytePair": "S$",
+    "Count": 11863614
+  },
+  {
+    "BytePair": "Re",
+    "Count": 26091486
+  },
+  {
+    "BytePair": "Po",
+    "Count": 11273952
+  },
+  {
+    "BytePair": "N$",
+    "Count": 12757349
+  },
+  {
+    "BytePair": "Lo",
+    "Count": 10353665
+  },
+  {
+    "BytePair": "L$",
+    "Count": 14378715
+  },
+  {
+    "BytePair": "In",
+    "Count": 37704832
+  },
+  {
+    "BytePair": "He",
+    "Count": 11424724
+  },
+  {
+    "BytePair": "Fi",
+    "Count": 11400024
+  },
+  {
+    "BytePair": "Ex",
+    "Count": 15269804
+  },
+  {
+    "BytePair": "Ev",
+    "Count": 14851275
+  },
+  {
+    "BytePair": "Er",
+    "Count": 10742761
+  },
+  {
+    "BytePair": "E$",
+    "Count": 14212818
+  },
+  {
+    "BytePair": "De",
+    "Count": 12272130
+  },
+  {
+    "BytePair": "D$",
+    "Count": 12729202
+  },
+  {
+    "BytePair": "Co",
+    "Count": 16499925
+  },
+  {
+    "BytePair": "Ch",
+    "Count": 19838153
+  },
+  {
+    "BytePair": "Ar",
+    "Count": 4885186
+  },
+  {
+    "BytePair": "3$",
+    "Count": 12560676
+  },
+  {
+    "BytePair": "2$",
+    "Count": 21012935
+  },
+  {
+    "BytePair": "1$",
+    "Count": 23523400
+  },
+  {
+    "BytePair": "/+",
+    "Count": 98904745
+  },
+  {
+    "BytePair": ".+",
+    "Count": 13637924
+  },
+  {
+    "BytePair": "$$",
+    "Count": 55909611
+  },
+  {
+    "BytePair": " +",
+    "Count": 218172101
+  },
+  {
+    "BytePair": " $",
+    "Count": 15991930
+  },
+  {
+    "BytePair": "z",
+    "Count": 29123739
+  },
+  {
+    "BytePair": "y",
+    "Count": 85709373
+  },
+  {
+    "BytePair": "x",
+    "Count": 44923719
+  },
+  {
+    "BytePair": "w",
+    "Count": 78757802
+  },
+  {
+    "BytePair": "v",
+    "Count": 71355005
+  },
+  {
+    "BytePair": "u",
+    "Count": 141604036
+  },
+  {
+    "BytePair": "t",
+    "Count": 207138712
+  },
+  {
+    "BytePair": "s",
+    "Count": 175696056
+  },
+  {
+    "BytePair": "r",
+    "Count": 126316264
+  },
+  {
+    "BytePair": "q",
+    "Count": 8172847
+  },
+  {
+    "BytePair": "p",
+    "Count": 211255313
+  },
+  {
+    "BytePair": "o",
+    "Count": 148463651
+  },
+  {
+    "BytePair": "n",
+    "Count": 145782484
+  },
+  {
+    "BytePair": "m",
+    "Count": 184036723
+  },
+  {
+    "BytePair": "l",
+    "Count": 148448069
+  },
+  {
+    "BytePair": "k",
+    "Count": 89741187
+  },
+  {
+    "BytePair": "j",
+    "Count": 49283805
+  },
+  {
+    "BytePair": "i",
+    "Count": 167934156
+  },
+  {
+    "BytePair": "h",
+    "Count": 105989231
+  },
+  {
+    "BytePair": "g",
+    "Count": 136943474
+  },
+  {
+    "BytePair": "f",
+    "Count": 132199016
+  },
+  {
+    "BytePair": "e",
+    "Count": 202824980
+  },
+  {
+    "BytePair": "d",
+    "Count": 145684394
+  },
+  {
+    "BytePair": "c",
+    "Count": 208956483
+  },
+  {
+    "BytePair": "b",
+    "Count": 172237086
+  },
+  {
+    "BytePair": "a",
+    "Count": 132868581
+  },
+  {
+    "BytePair": "_",
+    "Count": 174216500
+  },
+  {
+    "BytePair": "Z",
+    "Count": 7783190
+  },
+  {
+    "BytePair": "Y",
+    "Count": 10273464
+  },
+  {
+    "BytePair": "X",
+    "Count": 17769676
+  },
+  {
+    "BytePair": "W",
+    "Count": 34806118
+  },
+  {
+    "BytePair": "V",
+    "Count": 27701752
+  },
+  {
+    "BytePair": "U",
+    "Count": 50320411
+  },
+  {
+    "BytePair": "T",
+    "Count": 99678502
+  },
+  {
+    "BytePair": "S",
+    "Count": 107993371
+  },
+  {
+    "BytePair": "R",
+    "Count": 73604109
+  },
+  {
+    "BytePair": "Q",
+    "Count": 14364148
+  },
+  {
+    "BytePair": "P",
+    "Count": 75317685
+  },
+  {
+    "BytePair": "O",
+    "Count": 80070314
+  },
+  {
+    "BytePair": "N",
+    "Count": 59344994
+  },
+  {
+    "BytePair": "M",
+    "Count": 93573570
+  },
+  {
+    "BytePair": "L",
+    "Count": 69336994
+  },
+  {
+    "BytePair": "K",
+    "Count": 18772664
+  },
+  {
+    "BytePair": "J",
+    "Count": 16812726
+  },
+  {
+    "BytePair": "I",
+    "Count": 65933547
+  },
+  {
+    "BytePair": "H",
+    "Count": 39442909
+  },
+  {
+    "BytePair": "G",
+    "Count": 31023733
+  },
+  {
+    "BytePair": "F",
+    "Count": 55932267
+  },
+  {
+    "BytePair": "E",
+    "Count": 83560940
+  },
+  {
+    "BytePair": "D",
+    "Count": 55953726
+  },
+  {
+    "BytePair": "C",
+    "Count": 82585644
+  },
+  {
+    "BytePair": "B",
+    "Count": 74009071
+  },
+  {
+    "BytePair": "A",
+    "Count": 96199292
+  },
+  {
+    "BytePair": "9",
+    "Count": 6721108
+  },
+  {
+    "BytePair": "8",
+    "Count": 9101375
+  },
+  {
+    "BytePair": "7",
+    "Count": 6794273
+  },
+  {
+    "BytePair": "6",
+    "Count": 10237688
+  },
+  {
+    "BytePair": "5",
+    "Count": 10940166
+  },
+  {
+    "BytePair": "4",
+    "Count": 13702460
+  },
+  {
+    "BytePair": "3",
+    "Count": 8726461
+  },
+  {
+    "BytePair": "2",
+    "Count": 12574586
+  },
+  {
+    "BytePair": "1",
+    "Count": 16597279
+  },
+  {
+    "BytePair": "/",
+    "Count": 8257194
+  },
+  {
+    "BytePair": ".",
+    "Count": 48653389
+  },
+  {
+    "BytePair": "-",
+    "Count": 82983052
+  },
+  {
+    "BytePair": "+",
+    "Count": 173039807
+  },
+  {
+    "BytePair": "$",
+    "Count": 239571682
+  },
+  {
+    "BytePair": "#",
+    "Count": 11446360
+  },
+  {
+    "BytePair": " ",
+    "Count": 0
+  },
+  {
+    "BytePair": "\n",
+    "Count": 189182
+  }
+]

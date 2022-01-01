@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="icon" type="image/png" href="/static/img/favicon-16x16.png" />
+	<script type="text/javascript" src="/static/js/lib/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<title>Code Example Authoring</title>
+	<script language="javascript">
+	$('body').ready(function() {
+		$('#newpackage a').click(function() {
+			packagename = $('#newpackage input').val();
+			if (packagename.length > 0) {
+				{{if .DefaultOld}}
+					window.location = '/python/' + packagename + '/author';
+				{{else}}
+					window.location = '/examples/python/' + packagename;
+				{{end}}
+			}
+		});
+	});
+	</script>
+</head>
+<body class="packages-list">
+	<div class="list">
+		<div class="login-warning">Logged in as {{.CurrentUser}}</div>
+		{{ $defaultOld := .DefaultOld}}
+		{{range $_, $language := .Languages}}
+			<div class="language-label"><b>{{$language.Name}}</b>
+				{{range $package := $language.Packages}}
+					<div class="package-label">
+						<a href="/{{if not $defaultOld}}examples/{{end}}{{$language.Name}}/{{$package.Name}}{{if $defaultOld}}/author{{end}}">{{$package.Name}}<span class="numberSnippets">
+						{{$package.SnippetCount}}</span></a>
+
+						{{with .CurrentAccessor}}<span class="currentuser">currently being edited by {{.}}</span>{{end}}
+					</div>
+				{{end}}
+			</div>
+		{{end}}
+		<div id="newpackage">
+			<input type="text"></input><a href="#">New package</a>
+		</div>
+	</div>
+	<div class="curator-links">
+		<a href="/static/docs/python_style_guide.html">Python Style Guide</a>
+	</div>
+</body>
+</html>

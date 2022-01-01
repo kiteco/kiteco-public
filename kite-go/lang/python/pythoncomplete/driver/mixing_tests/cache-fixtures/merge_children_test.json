@@ -1,0 +1,1313 @@
+{
+    "cache": [
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": {
+                            "ArgSpec": {
+                                "args": [
+                                    {
+                                        "default_type": "",
+                                        "default_value": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "s",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "encoding",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "cls",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_hook",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_float",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_int",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_constant",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_pairs_hook",
+                                        "types": null
+                                    }
+                                ],
+                                "kwarg": "kw",
+                                "node_id": 0,
+                                "vararg": ""
+                            },
+                            "ArgumentCount": 0
+                        },
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 3
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 64,
+                            "end": 66
+                        },
+                        "score": 1,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 4
+                                }
+                            ],
+                            "text": "([s])"
+                        },
+                        "source": "popular_pattern",
+                        "traditional_meta": null
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.loads([s])\n"
+                }
+            ],
+            "provider": {
+                "type": 3
+            },
+            "source": {
+                "selection": {
+                    "begin": 65,
+                    "end": 65
+                },
+                "text": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.loads()\n"
+            }
+        },
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 5,
+                                "user_default_references": false
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 59,
+                            "end": 61
+                        },
+                        "score": 0.22943505709198223,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "load"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "Attribute"
+                        }
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 5,
+                                "user_default_references": false
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 59,
+                            "end": 61
+                        },
+                        "score": 0.7705649429080178,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "loads"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "Attribute"
+                        }
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.loads\n"
+                }
+            ],
+            "provider": {
+                "type": 5,
+                "user_default_references": false
+            },
+            "source": {
+                "selection": {
+                    "begin": 61,
+                    "end": 61
+                },
+                "text": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.lo\n"
+            }
+        },
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "empty_call_meta": {
+                            "is_type_kind": false
+                        },
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 2
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 63,
+                            "end": 63
+                        },
+                        "score": 1,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 1
+                                }
+                            ],
+                            "text": "()"
+                        },
+                        "source": "empty_call",
+                        "traditional_meta": null
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load()\n"
+                }
+            ],
+            "provider": {
+                "type": 2
+            },
+            "source": {
+                "selection": {
+                    "begin": 63,
+                    "end": 63
+                },
+                "text": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load\n"
+            }
+        },
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 5,
+                                "user_default_references": false
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 59,
+                            "end": 63
+                        },
+                        "score": 0.22943505709198223,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "load"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "Attribute"
+                        }
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 5,
+                                "user_default_references": false
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 59,
+                            "end": 63
+                        },
+                        "score": 0.7705649429080178,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "loads"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "Attribute"
+                        }
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.loads\n"
+                }
+            ],
+            "provider": {
+                "type": 5,
+                "user_default_references": false
+            },
+            "source": {
+                "selection": {
+                    "begin": 63,
+                    "end": 63
+                },
+                "text": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load\n"
+            }
+        },
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "empty_call_meta": {
+                            "is_type_kind": false
+                        },
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 2
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 64,
+                            "end": 64
+                        },
+                        "score": 1,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 1
+                                }
+                            ],
+                            "text": "()"
+                        },
+                        "source": "empty_call",
+                        "traditional_meta": null
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.loads()\n"
+                }
+            ],
+            "provider": {
+                "type": 2
+            },
+            "source": {
+                "selection": {
+                    "begin": 64,
+                    "end": 64
+                },
+                "text": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.loads\n"
+            }
+        },
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 5,
+                                "user_default_references": false
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 59,
+                            "end": 64
+                        },
+                        "score": 1,
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "loads"
+                        },
+                        "source": "traditional",
+                        "traditional_meta": {
+                            "Situation": "Attribute"
+                        }
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.loads\n"
+                }
+            ],
+            "provider": {
+                "type": 5,
+                "user_default_references": false
+            },
+            "source": {
+                "selection": {
+                    "begin": 64,
+                    "end": 64
+                },
+                "text": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.loads\n"
+            }
+        },
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": null,
+                        "call_pattern_meta": {
+                            "ArgSpec": {
+                                "args": [
+                                    {
+                                        "default_type": "",
+                                        "default_value": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "fp",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "encoding",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "cls",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_hook",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_float",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_int",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_constant",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_pairs_hook",
+                                        "types": null
+                                    }
+                                ],
+                                "kwarg": "kw",
+                                "node_id": 0,
+                                "vararg": ""
+                            },
+                            "ArgumentCount": 0
+                        },
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 3
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 63,
+                            "end": 65
+                        },
+                        "score": 1,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 5
+                                }
+                            ],
+                            "text": "([fp])"
+                        },
+                        "source": "popular_pattern",
+                        "traditional_meta": null
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load([fp])\n"
+                }
+            ],
+            "provider": {
+                "type": 3
+            },
+            "source": {
+                "selection": {
+                    "begin": 64,
+                    "end": 64
+                },
+                "text": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load()\n"
+            }
+        },
+        {
+            "completions": [
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": {
+                            "ArgSpec": {
+                                "args": [
+                                    {
+                                        "default_type": "",
+                                        "default_value": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "fp",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "encoding",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "cls",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_hook",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_float",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_int",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_constant",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_pairs_hook",
+                                        "types": null
+                                    }
+                                ],
+                                "kwarg": "kw",
+                                "node_id": 0,
+                                "vararg": ""
+                            },
+                            "CallProb": 0.3527831733226776,
+                            "FunctionSym": {},
+                            "NumArgs": 2,
+                            "NumConcreteArgs": 2,
+                            "NumOrigArgs": 0
+                        },
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 8
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 63,
+                            "end": 65
+                        },
+                        "score": 0.04042261838912964,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 4
+                                },
+                                {
+                                    "begin": 6,
+                                    "end": 9
+                                }
+                            ],
+                            "text": "(foo, bar)"
+                        },
+                        "source": "call_model",
+                        "traditional_meta": null
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load(foo, bar)\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": {
+                            "ArgSpec": {
+                                "args": [
+                                    {
+                                        "default_type": "",
+                                        "default_value": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "fp",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "encoding",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "cls",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_hook",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_float",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_int",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_constant",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_pairs_hook",
+                                        "types": null
+                                    }
+                                ],
+                                "kwarg": "kw",
+                                "node_id": 0,
+                                "vararg": ""
+                            },
+                            "CallProb": 0.4186601936817169,
+                            "FunctionSym": {},
+                            "NumArgs": 2,
+                            "NumConcreteArgs": 1,
+                            "NumOrigArgs": 0
+                        },
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 8
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 63,
+                            "end": 65
+                        },
+                        "score": 0.022930262610316277,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 5
+                                },
+                                {
+                                    "begin": 16,
+                                    "end": 19
+                                }
+                            ],
+                            "text": "([fp], encoding=foo)"
+                        },
+                        "source": "call_model",
+                        "traditional_meta": null
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load([fp], encoding=foo)\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": {
+                            "ArgSpec": {
+                                "args": [
+                                    {
+                                        "default_type": "",
+                                        "default_value": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "fp",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "encoding",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "cls",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_hook",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_float",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_int",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_constant",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_pairs_hook",
+                                        "types": null
+                                    }
+                                ],
+                                "kwarg": "kw",
+                                "node_id": 0,
+                                "vararg": ""
+                            },
+                            "CallProb": 0.29011446237564087,
+                            "FunctionSym": {},
+                            "NumArgs": 1,
+                            "NumConcreteArgs": 1,
+                            "NumOrigArgs": 0
+                        },
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 8
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 63,
+                            "end": 65
+                        },
+                        "score": 0.022140437737107277,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 4
+                                }
+                            ],
+                            "text": "(foo)"
+                        },
+                        "source": "call_model",
+                        "traditional_meta": null
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load(foo)\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": {
+                            "ArgSpec": {
+                                "args": [
+                                    {
+                                        "default_type": "",
+                                        "default_value": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "fp",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "encoding",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "cls",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_hook",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_float",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_int",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_constant",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_pairs_hook",
+                                        "types": null
+                                    }
+                                ],
+                                "kwarg": "kw",
+                                "node_id": 0,
+                                "vararg": ""
+                            },
+                            "CallProb": 0.4169100821018219,
+                            "FunctionSym": {},
+                            "NumArgs": 2,
+                            "NumConcreteArgs": 1,
+                            "NumOrigArgs": 0
+                        },
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 8
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 63,
+                            "end": 65
+                        },
+                        "score": 0.021439872682094574,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 5
+                                },
+                                {
+                                    "begin": 16,
+                                    "end": 19
+                                }
+                            ],
+                            "text": "([fp], encoding=bar)"
+                        },
+                        "source": "call_model",
+                        "traditional_meta": null
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load([fp], encoding=bar)\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": {
+                            "ArgSpec": {
+                                "args": [
+                                    {
+                                        "default_type": "",
+                                        "default_value": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "fp",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "encoding",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "cls",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_hook",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_float",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_int",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_constant",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_pairs_hook",
+                                        "types": null
+                                    }
+                                ],
+                                "kwarg": "kw",
+                                "node_id": 0,
+                                "vararg": ""
+                            },
+                            "CallProb": 0.41638800501823425,
+                            "FunctionSym": {},
+                            "NumArgs": 2,
+                            "NumConcreteArgs": 1,
+                            "NumOrigArgs": 0
+                        },
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 8
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 63,
+                            "end": 65
+                        },
+                        "score": 0.020994914695620537,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 5
+                                },
+                                {
+                                    "begin": 7,
+                                    "end": 10
+                                }
+                            ],
+                            "text": "([fp], foo)"
+                        },
+                        "source": "call_model",
+                        "traditional_meta": null
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load([fp], foo)\n"
+                },
+                {
+                    "meta": {
+                        "arg_spec_meta": null,
+                        "attr_model_meta": null,
+                        "call_model_meta": {
+                            "ArgSpec": {
+                                "args": [
+                                    {
+                                        "default_type": "",
+                                        "default_value": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "fp",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "encoding",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "cls",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_hook",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_float",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_int",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "parse_constant",
+                                        "types": null
+                                    },
+                                    {
+                                        "default_type": "types.NoneType",
+                                        "default_value": "None",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "name": "object_pairs_hook",
+                                        "types": null
+                                    }
+                                ],
+                                "kwarg": "kw",
+                                "node_id": 0,
+                                "vararg": ""
+                            },
+                            "CallProb": 0.41563087701797485,
+                            "FunctionSym": {},
+                            "NumArgs": 2,
+                            "NumConcreteArgs": 1,
+                            "NumOrigArgs": 0
+                        },
+                        "call_pattern_meta": null,
+                        "dict_meta": null,
+                        "expr_model_meta": null,
+                        "ggnn_meta": null,
+                        "keyword_model_meta": false,
+                        "mixing_meta": {
+                            "do_not_compose": false,
+                            "hide_completion": false,
+                            "provider": {
+                                "type": 8
+                            }
+                        },
+                        "name_model_meta": null,
+                        "render_meta": {},
+                        "replace": {
+                            "begin": 63,
+                            "end": 65
+                        },
+                        "score": 0.02034931443631649,
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 5
+                                },
+                                {
+                                    "begin": 7,
+                                    "end": 10
+                                }
+                            ],
+                            "text": "([fp], bar)"
+                        },
+                        "source": "call_model",
+                        "traditional_meta": null
+                    },
+                    "target": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load([fp], bar)\n"
+                }
+            ],
+            "provider": {
+                "type": 8
+            },
+            "source": {
+                "selection": {
+                    "begin": 64,
+                    "end": 64
+                },
+                "text": "import json\n\nfoo = \"hello\"\nbar = \"test\"\n\nimport json\n\njson.load()\n"
+            }
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+<%- | String  $puppet_root,
+      String  $node_name
+| -%>
+#! /usr/bin/env bash
+
+exec /usr/bin/env bolt apply --boltdir <%= $puppet_root %> <%= $puppet_root %>/nodes/<%= $node_name %>.pp --targets localhost

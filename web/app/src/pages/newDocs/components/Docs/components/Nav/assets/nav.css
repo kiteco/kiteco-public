@@ -1,0 +1,26 @@
+/* Style */
+
+/* Colors */
+.Documentation aside h3 {
+  color: var(--external-headline);
+}
+.Documentation aside a,
+.Documentation aside a.code {
+  text-decoration-color: var(--external-link-underline);
+}
+.Documentation aside a:hover {
+  text-decoration-color: var(--external-text);
+}
+.Documentation aside code {
+  color: var(--external-text);
+}
+
+/* Arrangement/responsive
+     (default designs assume 1440px–1680px breakpoint)
+     ----------------------------------------------- */
+.Documentation aside {
+  grid-column: aside-start / index-start;
+  grid-row: 2 / -1;
+  padding-left: var(--padding-1);
+  padding-right: var(--padding-1);
+}

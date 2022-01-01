@@ -1,0 +1,3 @@
+[default]
+region = us-west-1
+credential_process = /var/kite/aws/credentials

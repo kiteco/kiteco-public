@@ -1,0 +1,87 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <style>
+        textarea#code {
+            fontmily: Menlo, Monaco, Consolas, "Courier New", monospace;
+        }
+        td.prop-name {
+            color: #666;
+        }
+        table {
+            font-size: 14px;
+        }
+
+        .completion {
+            margin-left: 20px;
+            color: black;
+        }
+
+        .filtered-out {
+            color: red;
+        }
+    </style>
+    <title>Completions playground</title>
+</head>
+<body>
+<div class="container-fluid">
+
+    <h4>GGNN completions explorator</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <form action="" method="post" id="form-buffer">
+                <div class="form-group">
+                    <textarea class="form-control" id="code" name="buffer" rows="10" cols="40" form="form-buffer">{{.Buffer}}</textarea>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <h4>Ordering</h4>
+                        <input type="radio" name="ordering" value="alphabetical" {{ if eq .Ordering "alphabetical"}} checked{{ end }}> Alphabetical<br>
+                        <input type="radio" name="ordering" value="callprob" {{ if eq .Ordering "callprob"}} checked{{ end }} > CallProb Score<br>
+                    </div>
+                    <div class="col-md-5">
+                        <input type="checkbox" name="enable-filtering" id="enable-filtering" {{ if .EnableFiltering }} checked {{ end }} >
+                        <label for="enable-filtering">Filter out red completions</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Get completions</button>
+            </form>
+            <div id="inputs-panel"></div>
+        </div>
+        <div class="col-md-8" id="completions-panel">{{template "completions-block" .Completions}}</div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".completion-label").click(function(event){
+        if ($(event.target).parent().children(".completion-children").is(":visible")){
+            $(event.target).parent().children(".completion-children").hide()
+        }else {
+            $(event.target).parent().children(".completion-children").show()
+        }
+        event.stopPropagation()
+    })
+
+</script>
+</body>
+</html>
+
+{{define "completions-block"}}
+    <div class="completion">
+        <label class="completion-label {{if .SkipCompletion}} filtered-out{{end}}" title="{{.Tooltip}}">
+            {{.Completion}}
+        </label>
+        {{ if gt (len .Children) 0}}
+
+            <div class="completion-children">
+                {{range .Children}}
+                    {{template "completions-block" .}}
+                {{end}}
+            </div>
+        {{ end }}
+    </div>
+{{end}}
+
+
+

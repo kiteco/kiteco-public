@@ -1,0 +1,8 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install --no-install-recommends -y libcurl4-openssl-dev libssl-dev
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install pycurl==7.43.0.2
+
+ENTRYPOINT ["/usr/bin/env", "python3", "-m", "kite.pkgexploration", "pycurl", "7.43.0.2", "pycurl__7.43.0.2.json", "pycurl__7.43.0.2.log"]

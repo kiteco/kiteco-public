@@ -1,0 +1,74 @@
+/* Style */
+.Documentation header {
+  background: var(--external-background);
+  display: flex;
+}
+
+.Documentation header .logo {
+  flex: none;
+  width: var(--aside-column-width);
+
+  background: var(--external-text);
+  -webkit-mask: url(logo.svg);
+  -webkit-mask-position-x: var(--padding-1);
+  -webkit-mask-position-y: 50%;
+  -webkit-mask-size: 120px;
+  -webkit-mask-repeat: no-repeat;
+}
+
+.Documentation header .search {
+  white-space: nowrap;
+  flex: auto;
+  padding-top: var(--padding-1);
+  padding-bottom: var(--padding-1);
+  padding-left: var(--padding-2);
+
+}
+.Documentation header .search input {
+  flex: none;
+  border: 1px solid var(--external-text-subtle);
+  color: var(--external-text);
+  background: inherit;
+
+  width: calc(100% - 50px);
+  max-width: 500px;
+  box-sizing: border-box;
+  padding: var(--inner-padding-1) var(--inner-padding-2);
+}
+.Documentation header .search input::placeholder {
+  color: var(--external-text-subtle);
+}
+.Documentation header .star-popup {
+  vertical-align: middle;
+  -webkit-mask: url(star-with-chevron.svg);
+  -webkit-mask-size: 100%;
+  background: var(--external-text-subtle);
+  position: relative;
+  top: -2px;
+  left: 8px;
+  width: 52px;
+  height: 30px;
+
+  cursor: pointer;
+
+  display: none;
+}
+.Documentation header .star-popup:hover {
+  background: var(--external-text);
+}
+.Documentation header .status {
+  padding-left: var(--padding-2);
+  padding-right: var(--padding-1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Arrangement/responsive
+     (default designs assume 1440px–1680px breakpoint)
+     ----------------------------------------------- */
+
+.Documentation header {
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+}

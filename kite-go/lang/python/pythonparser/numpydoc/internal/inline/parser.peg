@@ -1,0 +1,126 @@
+// This grammar is used internally by the numpydoc parser to parse
+// free text for inline markup. It is not exported outside this
+// numpydoc package. The input text is free text, one "paragraph"
+// at a time.
+
+{
+  package inline
+
+  import (
+    "errors"
+
+    "github.com/kiteco/kiteco/kite-go/lang/python/pythonparser/numpydoc/ast"
+  )
+}
+
+
+// From the quick reference doc (http://docutils.sourceforge.net/docs/user/rst/quickref.html):
+//
+// in inline markup, the following rules apply to start-strings and end-strings
+// (inline markup delimiters):
+//
+// 1. The start-string must start a text block or be immediately preceded by whitespace or any
+//    of  ' " ( [ { or <.
+// 2. The start-string must be immediately followed by non-whitespace.
+// 3. The end-string must be immediately preceded by non-whitespace.
+// 4. The end-string must end a text block (end of document or followed by a blank line) or be
+//    immediately followed by whitespace or any of ' " . , : ; ! ? - ) ] } / \ or >.
+// 5. If a start-string is immediately preceded by one of  ' " ( [ { or <, it must not be
+//    immediately followed by the corresponding character from  ' " ) ] } or >.
+// 6. An end-string must be separated by at least one character from the start-string.
+// 7. An unescaped backslash preceding a start-string or end-string will disable markup recognition,
+//    except for the end-string of inline literals.
+//
+// Also remember that inline markup may not be nested.
+
+// Immediately at start of input is a valid place for markup. Elsewhere
+// in the input, markup must be preceded by valid separators.
+Grammar <- first:BOFMarkupText? rest:( MarkupText / Text )* EOF
+  #{
+    return initState(c)
+  }
+  // Returns an *ast.Paragraph with the content set to the text
+  // and any inline markup detected.
+  {
+    var firstNode ast.Node
+    if first != nil {
+      firstNode = first.(ast.Node)
+    }
+    return grammarAction(c, firstNode, toIfaceSlice(rest))
+  }
+
+// Text is any section of text that is not inside a markup.
+Text <- ( !MarkupText . )+
+  // Returns an ast.Text
+  {
+    return textAction(c)
+  }
+
+StartMarkupSeparator <- quote:( Whitespace / StartQuoteSeparator )
+  #{
+    return startMarkupSeparatorState(c, string(quote.([]byte)))
+  }
+  // Returns a string
+  {
+    return string(c.text), nil
+  }
+
+MarkupText <- sep:StartMarkupSeparator inline:BOFMarkupText
+  // Returns an []ast.Node where the separator is in an ast.Text at
+  // index 0, and an *ast.Inline is at index 1.
+  {
+    return markupTextAction(c, sep.(string), inline.(*ast.Inline))
+  }
+
+// Allows zero characters in InsideMarkup because EndMarkup
+// consumes one character before the actual closing markup,
+// so rule 6 (at least one character inside markup) is respected.
+BOFMarkupText <- StartMarkup content:InsideMarkup* end:EndMarkup
+  // Return an *ast.Inline
+  {
+    return bofMarkupTextAction(c, toIfaceSlice(content), end.(string))
+  }
+
+StartMarkup <- markup:Markup !Whitespace !MatchingQuoteSeparator
+  // store the current markup, to match on EndMarkup.
+  #{
+    return startMarkupState(c, string(markup.([]byte)))
+  }
+
+MatchingQuoteSeparator <- quote:EndQuoteSeparator
+  &{
+    return matchingQuoteSeparatorPredicate(c, string(quote.([]byte)))
+  }
+
+InsideMarkup <- !EndMarkup .
+  // Returns a string.
+  {
+    return string(c.text), nil
+  }
+
+// TODO: backslash escaping is more complex than this, to address later.
+// See http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#escaping-mechanism
+// TODO: also, special case for backslash in end-string of inline literals (``, see rule 7).
+EndMarkup <- last:( !Whitespace !Backslash . ) markup:Markup
+  &{
+    return endMarkupPredicate(c, string(markup.([]byte)))
+  }
+  &EndMarkupSeparator
+  // Returns a string for the last character inside the markup.
+  {
+    return endMarkupAction(c, toIfaceSlice(last))
+  }
+
+EndMarkupSeparator <- Whitespace / [-'".,:;!?)\]}/\\>] / EOF
+
+// Order of options is important.
+Markup <- "``" / "**" / "`" / "*"
+
+StartQuoteSeparator <- ['"([{<]
+EndQuoteSeparator <- ['")\]}>]
+
+// See http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#whitespace
+Whitespace <- [ \t\f\v\r\n]
+Backslash <- "\\"
+EOF <- !.
+

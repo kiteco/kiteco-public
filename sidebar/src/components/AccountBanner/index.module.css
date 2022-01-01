@@ -1,0 +1,85 @@
+.container {
+  display: grid;
+  align-items: center;
+  grid-template-rows: [user] auto [pro] auto [row-end];
+  grid-template-columns: [grav] 5.3rem [text] auto [col-spacing] 1rem [button] 9.5rem [col-end];
+  row-gap: 0.2rem;
+  padding: 1rem;
+  background-color: var(--highlight-background);
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.kiteIcon {
+  mask: url('../../assets/icon-logo.svg') no-repeat;
+  background: var(--avatar-logo-color);
+  height: 3rem;
+  margin-top: 0.5rem;
+  margin-left: 0.7rem;
+}
+
+.loading {
+  grid-row: user / row-end;
+  grid-column: grav / col-end;
+  min-height: 8rem;
+}
+
+.userRow {
+  grid-row: user / pro;
+}
+
+.proRow {
+  grid-row: pro / row-end;
+}
+
+.text {
+  grid-column: text / col-spacing;
+  color: var(--text-color-normal);
+  word-break: break-word;
+}
+
+.smallFont {
+  font-size: 1.2rem;
+}
+
+.shiftDown {
+  margin-top: 0.1rem;
+}
+
+.button {
+  grid-column: button / col-end;
+  background-color: var(--button-background);
+  color: var(--button-text);
+  font-size: 1.3rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  width: 90%;
+  justify-self: center;
+}
+
+.button:hover {
+  background-color: var(--text-color-highlight);
+  color: var(--button-text);
+}
+
+.linkButton {
+  color: var(--text-color-normal);
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.linkButton:hover {
+  color: var(--text-color-normal);
+}
+
+.gravatar {
+  grid-column: grav / text;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+  background-color: var(--popup-menu-selected-background);
+}

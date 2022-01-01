@@ -1,0 +1,67 @@
+.login__container {
+  height: calc(100% - 3.7rem);
+  padding: 1.5rem;
+  box-sizing: border-box;
+  color: white;
+  font: caption;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeSpeed;
+}
+
+.login__container__main {
+  height: 100%;
+  background: linear-gradient(to top, #3f61f5, #251172);
+}
+
+.login__header--invisible {
+  height: 3.7rem;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.login__title {
+  font-size: 2.0rem;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.login__paragraph {
+  font-size: 1.6rem;
+  opacity: 0.7;
+  font-weight: 100;
+  text-align: center;
+}
+
+.login--login-container input {
+  border: 1px solid white;
+  color: white;
+  font-weight: 100;
+}
+
+.login--login-container {
+  margin-top: 2rem;
+}
+
+.login--login-container input::-webkit-input-placeholder {
+  color: white;
+}
+
+.login--login-container .setup__pw-reset-container {
+  text-align: right;
+  margin: 1rem 0.5rem;
+  opacity: 0.7;
+}
+
+.login--login-container .setup__pw-reset-container:hover {
+  text-decoration: underline;
+}
+
+.login--login-container .login__toggle {
+  color: white;
+}
+
+.login--login-container .login__toggle--active {
+  background-color: #467aca;
+}

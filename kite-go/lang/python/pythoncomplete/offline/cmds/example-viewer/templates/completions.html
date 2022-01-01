@@ -1,0 +1,73 @@
+<style>
+    /* Tooltip container */
+    .ttooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    }
+
+    /* Tooltip text */
+    .ttooltip .ttooltiptext {
+        visibility: hidden;
+        width: 250px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        z-index: 1;
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .ttooltip:hover .ttooltiptext {
+        visibility: visible;
+    }
+</style>
+
+<h2>Selected completions</h2>
+<table class="table">
+    <thead>
+    <tr>
+        {{range $typ := .CompTypes}}
+            <th><a href="{{$typ.URL}}">{{$typ.Name}}</a></th>
+            <th>Score</th>
+        {{end}}
+    </tr>
+    </thead>
+    <tbody>
+    {{range $comp := .SelectedComps}}
+        <tr>
+            <td {{if $comp.Correct }}class="correct"{{end}}>{{$comp.Comp.Identifier}} <br/><div class="ttooltip">Score : {{$comp.Score.GlobalScore}}
+                    <div class="ttooltiptext">
+                        {{$comp.ScoreDetail}}
+                    </div>
+                </div><br/>{{$comp.Source}}</td>
+        </tr>
+    {{end}}
+    </tbody>
+</table>
+<h2>All completions</h2>
+<table class="table">
+    <thead>
+    <tr>
+        {{range $typ := .CompTypes}}
+            <th><a href="{{$typ.URL}}">{{$typ.Name}}</a></th>
+            <th>Score</th>
+        {{end}}
+    </tr>
+    </thead>
+    <tbody>
+    {{range $comp := .Comps}}
+        <tr>
+            <td {{if $comp.Correct }}class="correct"{{end}}>{{$comp.Comp.Identifier}} {{if $comp.Duplicate}} (Duplicate){{end}} <div class="ttooltip">Score : {{$comp.Score.GlobalScore}}
+                <div class="ttooltiptext">
+                    {{$comp.ScoreDetail}}
+                </div>
+                </div><br/>{{$comp.Source}}</td>
+        </tr>
+    {{end}}
+    </tbody>
+</table>

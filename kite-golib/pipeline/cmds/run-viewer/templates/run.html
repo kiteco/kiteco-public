@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <title>{{.Run.Pipeline}} {{.Run.CreatedAt}}</title>
+    <style>
+        table {
+            width: unset !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>{{.Run.Pipeline}} {{if ne .Run.Pipeline .Run.Name}} - {{.Run.Name}} {{end}}</h2>
+
+    <dl class="dl-horizontal">
+        <dt>Path</dt>
+        <dd>{{.RunPath}}</dd>
+        <dt>Created at</dt>
+        <dd>{{.Run.CreatedAt}}</dd>
+        <dt>Status</dt>
+        <dd>{{.Run.Status}}</dd>
+        <dt>Error</dt>
+        <dd>{{.Run.Error}}</dd>
+        <dt>Status updated</dt>
+        <dd>{{.Run.StatusUpdated}}</dd>
+        <dt>Git commit hash</dt>
+        <dd>{{if .Run.GitCommitHash}}
+            <a href="https://github.com/kiteco/kiteco/commit/{{.Run.GitCommitHash}}">{{.Run.GitCommitHash}}</a>
+        {{else}}
+            (none)
+        {{end}}</dd>
+        <dt>Git branch</dt>
+        <dd>{{if .Run.GitBranch}}
+            <a href="https://github.com/kiteco/kiteco/compare/{{.Run.GitBranch}}">{{.Run.GitBranch}}</a>
+        {{else}}
+            (none)
+        {{end}}</dd>
+    </dl>
+
+    {{if .Params}}
+    <h4>Params</h4>
+    <table class="table table-striped">
+        <tbody>
+        {{range $p := .Params}}
+            <tr>
+                <td>{{$p.Name}}</td>
+                <td>{{$p.Value}}</td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+    {{end}}
+
+    {{if .Artifacts}}
+    <h4>Artifacts</h4>
+    <table class="table table-striped">
+        <tbody>
+        {{range $a := .Artifacts}}
+            <tr>
+                <td><a href="{{$a.URL}}">{{$a.Name}}</a></td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+    {{end}}
+
+    {{if .ChildRuns}}
+    <h4>Child Runs</h4>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Relative Path</th>
+            <th>Timestamp</th>
+            <th>Pipeline</th>
+            <th>Name</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range $cr := .ChildRuns}}
+            <tr>
+                <td><a href="{{$cr.Run.URL}}">{{$cr.RelativePath}}</a></td>
+                <td>{{$cr.Run.Timestamp}}</td>
+                <td>{{$cr.Run.Pipeline}}</td>
+                <td>{{$cr.Run.Name}}</td>
+                <td>{{$cr.Run.Status}}</td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+    {{end}}
+
+    {{if .Run.Results}}
+    <h4>Results</h4>
+    <table class="table table-striped">
+        <tbody>
+        {{range $res := .Run.Results}}
+            <tr>
+                <td>{{$res.Name}}</td>
+                <td>{{toHTML $res.Value}}</td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+    {{end}}
+
+    {{if .FeedStats}}
+    <h4>Feed Stats</h4>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Feed</th>
+            <th>In</th>
+            <th>Out</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range $s := .FeedStats}}
+            <tr>
+                <td>{{$s.Feed}}</td>
+                <td>{{$s.Stats.In}}</td>
+                <td>{{$s.Stats.Out}}</td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+    {{end}}
+</div>
+
+
+</body>
+</html>

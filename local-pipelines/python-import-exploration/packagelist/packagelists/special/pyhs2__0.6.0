@@ -1,0 +1,8 @@
+FROM kiteco/python-import-exploration
+
+RUN apt update && apt install --no-install-recommends -y libsasl2-dev
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN pip2 install pyhs2==0.6.0
+
+ENTRYPOINT ["/usr/bin/env", "python2", "-m", "kite.pkgexploration", "pyhs2", "0.6.0", "pyhs2__0.6.0.json", "pyhs2__0.6.0.log"]

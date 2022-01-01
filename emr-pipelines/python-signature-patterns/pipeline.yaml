@@ -1,0 +1,32 @@
+---
+config:
+    instances: 10
+    instance_type: "m3.2xlarge"
+
+pipeline:
+    extract-resolvable-snippets:
+        input: "s3://kite-emr/users/juan/github-unzip-filter/2016-06-24_18-13-09-PM/python-merge/output/*"
+        mapreduce_memory_mb: 12000
+    validate-call-specs:
+        input: extract-resolvable-snippets
+        mapreduce_map_memory_mb: 3000
+        mapreduce_reduce_memory_mb: 7000
+    signature-patterns:
+        input: validate-call-specs
+        mapreduce_map_memory_mb: 7000
+        #  max is 23040
+        mapreduce_reduce_memory_mb: 23030
+    merge-signature-patterns:
+        identity: True
+        input: signature-patterns
+        #  max is 23040
+        mapreduce_memory_mb: 23030
+        mapreduce_reduce_tasks: 1
+
+    extract-kwargs:
+        input: validate-call-specs
+        mapreduce_map_memory_mb: 7000
+        # max is 23040
+        mapreduce_reduce_memory_mb: 23030
+        mapreduce_reduce_tasks: 1
+        

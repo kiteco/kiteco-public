@@ -1,0 +1,135 @@
+{
+  "name": "Kite",
+  "version": "0.1.0",
+  "description": "Kite app with local settings and search.",
+  "author": {
+    "name": "Kite",
+    "email": "feedback@kite.com",
+    "url": "https://www.kite.com/"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kiteco/kiteco.git"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.168",
+    "@types/highlight.js": "^10.1.0",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.6",
+    "@types/react-gravatar": "^2.6.7",
+    "@types/react-redux": "^7.1.7",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/react-router-redux": "^5.0.18",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
+    "babel-eslint": "^9.0.0",
+    "concurrently": "^3.5.0",
+    "electron": "^8.5.3",
+    "electron-builder": "^22.5.1",
+    "electron-devtools-installer": "^3.0.0",
+    "eslint": "^5.12.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "react-scripts": "2.1.8",
+    "typescript": "^3.9.0-dev.20200424",
+    "typescript-plugin-css-modules": "^2.2.0",
+    "wait-on": "^2.0.2"
+  },
+  "dependencies": {
+    "@types/pluralize": "0.0.29",
+    "@types/react-aria-modal": "^4.0.2",
+    "@types/react-transition-group": "^4.4.0",
+    "babel-polyfill": "^6.22.0",
+    "cross-env": "^5.1.4",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.20",
+    "mixpanel-browser": "^2.34.0",
+    "pluralize": "^8.0.0",
+    "prismjs": "^1.14.0",
+    "query-string": "^6.12.1",
+    "react": "^16.13.1",
+    "react-aria-modal": "^4.0.0",
+    "react-dom": "^16.13.1",
+    "react-gravatar": "^2.6.3",
+    "react-markdown": "^2.5.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.1.2",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "^5.0.0-alpha.6",
+    "react-shortcuts": "^1.6.1",
+    "react-transition-group": "^4.4.1",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^1.0.0",
+    "redux-thunk": "^2.3.0",
+    "request": "^2.85.0",
+    "rollbar": "^2.3.9",
+    "shiitake": "^2.2.4",
+    "winston": "^3.2.1"
+  },
+  "scripts": {
+    "electron": "electron .",
+    "start": "bash -c 'BROWSER=none react-scripts start'",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "prepack": "npm run build",
+    "pack": "electron-builder",
+    "pack:linux": "npm run pack -- --linux",
+    "pack:win": "npm run pack -- --win",
+    "dev": "bash -c 'cross-env REACT_APP_ENV=development concurrently \"npm run start\" \"wait-on -l http-get://localhost:3000/ && npm run electron -- ${0} ${1}\"'"
+  },
+  "build": {
+    "copyright": "Copyright © 2017 Kite",
+    "productName": "Kite",
+    "appId": "com.kite.KiteApp",
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "protocols": [
+      {
+        "name": "kite",
+        "role": "Viewer",
+        "schemes": [
+          "kite"
+        ]
+      }
+    ],
+    "mac": {
+      "target": [
+        "dir"
+      ],
+      "extendInfo": {
+        "LSUIElement": 1
+      },
+      "entitlements": "entitlements.mac.plist",
+      "entitlementsInherit": "entitlements.mac.plist"
+    },
+    "win": {
+      "target": "dir"
+    },
+    "linux": {
+      "category": "Development",
+      "target": "dir"
+    },
+    "deb": {
+      "packageCategory": "devel"
+    },
+    "portable": {
+      "warningsAsErrors": false
+    }
+  },
+  "main": "public/electron.js",
+  "proxy": "http://localhost:46624",
+  "homepage": ".",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

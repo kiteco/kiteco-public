@@ -1,0 +1,114 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:struct", "struct")
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: #@ data.values.namespace
+  labels:
+    name: #@ data.values.namespace
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: release-kite-com
+  namespace: #@ data.values.namespace
+spec:
+  domains: #@ data.values.certificateDomains
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: release-kite-com-ingress
+  namespace: #@ data.values.namespace
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: #@ "release-kite-com-{}".format(data.values.env)
+    networking.gke.io/managed-certificates: release-kite-com
+spec:
+  rules:
+  #@ for/end hostname in struct.decode(data.values.ingressHostnames):
+  - host: #@ hostname
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: #@ data.values.name
+          servicePort: #@ data.values.port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: #@ data.values.namespace
+  name: #@ data.values.name
+spec:
+  ports:
+  - port: #@ data.values.port
+    protocol: TCP
+    targetPort: #@ data.values.port
+  selector:
+    app: webserver
+    env: #@ data.values.env
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: #@ data.values.namespace
+  name: #@ data.values.name
+  labels:
+    tag: #@ data.values.tag
+spec:
+  selector:
+    matchLabels:
+      app: webserver
+      env: #@ data.values.env
+  template:
+    metadata:
+      labels:
+        app: webserver
+        env: #@ data.values.env
+        tag: #@ data.values.tag
+    spec:
+      containers:
+        - name: app
+          image: #@ "gcr.io/kite-dev-XXXXXXX/release-kite-com:{}".format(data.values.tag)
+          args:
+            - server
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "400m"
+          livenessProbe:
+             httpGet:
+                path: /appcast.xml
+                port: #@ data.values.port
+          readinessProbe:
+             httpGet:
+                path: /appcast.xml
+                port: #@ data.values.port
+          ports:
+            - containerPort: #@ data.values.port
+          env:
+            - name: RELEASE_DB_DRIVER
+              value: postgres
+            - name: RELEASE_DB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: release-db-uri
+                  key: RELEASE_DB_URI
+            - name: RELEASE_DB_ENV
+              value: #@ data.values.env
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  namespace: #@ data.values.namespace
+  name: #@ data.values.name
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: #@ data.values.name
+  minReplicas: 2
+  maxReplicas: 4
+  targetCPUUtilizationPercentage: 80
+

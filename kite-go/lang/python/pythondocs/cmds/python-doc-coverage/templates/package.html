@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>{{.Package}} - Python Documentation Coverage</title>
+
+        <!-- Bootstrap -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    </head>
+    <body>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar"
+                aria-valuenow='{{.IncantationCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.IncantationCoverage | printf "%.0f"}}%;'>
+                HTML: {{.IncantationCoverage | printf "%.02f"}}% of incantations w/ descriptions
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar"
+                aria-valuenow='{{.DocstringCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.DocstringCoverage | printf "%.0f"}}%;'>
+                Docstrings: {{.DocstringCoverage | printf "%.02f"}}% of incantations w/ descriptions
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar"
+                aria-valuenow='{{.CombinedCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.CombinedCoverage | printf "%.0f"}}%;'>
+                Combined: {{.CombinedCoverage | printf "%.02f"}}% of incantations w/ descriptions
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar"
+                aria-valuenow='{{.NormalizedCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.NormalizedCoverage | printf "%.0f"}}%;'>
+                Normalized: {{.NormalizedCoverage | printf "%.02f"}}% of non-empty identifiers
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar"
+                aria-valuenow='{{.ValidHTMLCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.ValidHTMLCoverage | printf "%.0f"}}%;'>
+                ValidHTML: {{.ValidHTMLCoverage | printf "%.02f"}}% of non-empty identifiers
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar"
+                aria-valuenow='{{.StructuredCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.StructuredCoverage | printf "%.0f"}}%;'>
+                Structured: {{.StructuredCoverage | printf "%.02f"}}% of incantations w/ desc
+            </div>
+        </div>
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>Identifier</th>
+                <th>Incantations</th>
+                <th>% of Package</th>
+                <th>:func:</th>
+                <th>:class:</th>
+                <th>:meth:</th>
+                <th>Has Description</th>
+                <th>Fully Normalized</th>
+                <th>Valid HTML</th>
+            </tr>
+            {{range .Identifiers}}
+            <tr class={{.RowClass}}>
+                <td><a href="/documentation?q={{.Identifier}}">{{.Identifier}}</a></td>
+                <td>{{.Incantations}}</td>
+                <td>{{.PercentOfPackage | printf "%.02f"}}</td>
+                {{ if eq .FuncRole "YES" }}
+                    <td class="valid">YES</td>
+                {{ else }}
+                    <td class="invalid">NO</td>
+                {{ end }}
+
+                {{ if eq .ClassRole "YES" }}
+                    <td class="valid">YES</td>
+                {{ else }}
+                    <td class="invalid">NO</td>
+                {{ end }}
+
+                {{ if eq .MethRole "YES" }}
+                    <td class="valid">YES</td>
+                {{ else }}
+                    <td class="invalid">NO</td>
+                {{ end }}
+
+                <td>{{.HasDescription}}</td>
+                {{ if eq .Normalized "YES" }}
+                    <td class="valid">YES</td>
+                {{ else if eq .Normalized "NO" }}
+                    <td class="invalid">NO</td>
+                {{ else if eq .ValidHTML "" }}
+                    <td class="empty">EMPTY</td>
+                {{ end }}
+
+                {{ if eq .ValidHTML "YES" }}
+                    <td class="valid">YES</td>
+                {{ else if eq .ValidHTML "NO" }}
+                    <td class="invalid">NO</td>
+                {{ else if eq .ValidHTML "" }}
+                    <td class="empty">EMPTY</td>
+                {{ end }}
+            </tr>
+            {{end}}
+        </table>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

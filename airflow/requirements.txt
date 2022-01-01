@@ -1,0 +1,9 @@
+elasticsearch==7.7.0
+gevent
+mixpanel
+customerio
+requests
+sagemaker
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib

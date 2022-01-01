@@ -1,0 +1,25 @@
+Overview
+--------
+
+curation.kite.com hosts static documents (such as style guides) at
+<http://curation.kite.com/static/docs>.  The Markdown source for these docs is
+stored in this directory.  The HTML files are rebuilt when the Curation site
+is deployed, or when you run the build command manually.
+
+
+Setup
+-----
+
+First install dependencies.  You'll need Node, whose installer you can
+download from their website: <http://nodejs.org>.  Then run:
+
+	$ cd kiteco/kite-go/curation/cmds/codeexample-author
+	$ npm install
+
+
+Building Manually
+-----------------
+
+To build docs manually, run:
+
+	$ npm run build-docs

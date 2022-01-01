@@ -1,0 +1,9 @@
+<ul>
+    {{range $prov := .Providers}}
+        <li><a href="/example?idx={{$.Idx}}&view=ast&buffer={{$prov}}">{{$prov}}</a></li>
+    {{end}}
+</ul>
+
+<pre>
+    {{.AST}}
+</pre>

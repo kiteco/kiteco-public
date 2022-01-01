@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>{{.Reason}} - {{.Feed}} - {{.PipeName}} - Pipeline Feed Errors</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <style>
+        .err-row {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #e1eaf2;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h2>{{.Name}}</h2>
+
+    <h4>{{.Errors.Count}} Feed Errors - {{.Feed}} - {{.Reason}}</h4>
+
+    {{range $s := .Errors.Samples}}
+    <div class="row err-row">
+        <dl class="dl-horizontal">
+            <dt>Timestamp</dt>
+            <dd>{{$s.Timestamp}}</dd>
+            <dt>Source Name</dt>
+            <dd>{{$s.SourceName}}</dd>
+            <dt>Source Key</dt>
+            <dd>{{$s.SourceKey}}</dd>
+        </dl>
+
+        <code>
+            {{$s.Error}}
+        </code>
+    </div>
+    {{end}}
+</div>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" style="background:  hsl(216, 100%, 29%); padding: 0; margin: 0; width: 100%; height: 100%;">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tag above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Kite</title>
+  </head>
+  <body style="padding: 0; margin: 0; width: 100%; height: 100%;">
+    <script>
+      window.KITE_ENTERPRISE = "{{.Enterprise}}"
+    </script>
+    <div id="root">
+      <style>
+        @keyframes spin {
+          100% {
+            transform: rotate3d(1, 3.1, 0, 360deg);
+          }
+        }
+
+        @keyframes fadeinTranslate {
+        	0% {
+        		opacity: 0;
+        	}
+        	100% {
+        		opacity: 1;
+        	}
+        }
+
+        .kite__rotating__logo {
+          padding: 4rem 0;
+          text-align: center;
+        }
+
+        .kite__rotating__logo svg#kite {
+        	width: 25vw;
+        	max-width: 200px;
+        	fill: white;
+          margin: 0 auto;
+          animation-name: fadeinTranslate;
+          animation-duration: 0.3s;
+          animation-iteration-count: 1;
+        	animation-fill-mode: forwards;
+        }
+
+        .kite__rotating__logo svg#kite .top-part {
+          animation-name: spin;
+          animation-duration: 4s;
+          animation-iteration-count: 2;
+          animation-fill-mode: forwards;
+        	transform-style: preserve-3d;
+        	transform-origin: 35% top;
+        	perspective: 300px;
+        }
+
+        .kite__rotating__logo svg#kite .bottom-part {
+          animation-name: spin;
+          animation-duration: 2s;
+          animation-iteration-count: 2;
+          animation-fill-mode: forwards;
+        	transform-style: preserve-3d;
+        	transform-origin: 35% top;
+        }
+      </style>
+      <div class="kite__rotating__logo">
+        <svg id="kite" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.53 161.44">
+          <polygon class="bottom-part" points="65.14 63.79 39.06 112.88 95.93 161.44 114.67 89.04 65.14 63.79" fill="white"/>
+          <polygon class="top-part" points="45.03 0 0 79.52 34.53 109.02 63.35 58.12 116.16 83.28 127.53 39.32 45.03 0" fill="white"/>
+        </svg>
+      </div>
+    </div>
+  </body>
+</html>

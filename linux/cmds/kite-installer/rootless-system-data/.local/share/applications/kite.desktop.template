@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version={{.Version}}
+Name=Kite
+Comment=Kite - ML powered code completions
+Exec={{.HomeDir}}/.local/share/kite/kited
+Icon={{.HomeDir}}/.local/share/icons/hicolor/128x128/apps/kite.png
+Categories=Development;IDE;

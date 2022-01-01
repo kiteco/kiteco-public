@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Code Example Authoring Tool</title>
+	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<script type="text/javascript" src="/static/js/lib/jquery-2.1.4.min.js"></script>
+</head>
+<body id="flat">
+	{{range $codeExample := .CodeExamples}}
+		<div class="title">{{$codeExample.Title}}</div>
+<div class="code">{{$codeExample.Prelude}}
+{{$codeExample.Code}}
+{{$codeExample.Postlude}}</div>
+		<br />
+	{{end}}
+</body>
+</html>

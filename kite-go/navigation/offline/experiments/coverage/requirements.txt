@@ -1,0 +1,2 @@
+matplotlib==3.3.0
+mypy==0.790

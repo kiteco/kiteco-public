@@ -1,0 +1,18 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: kiteco/concourse.lfs-pull}
+
+inputs:
+- name: repo
+outputs:
+- name: repo
+caches:
+- path: .lfscache
+
+params:
+  private_key: ((private_key))
+
+run:
+  path: /opt/task/run

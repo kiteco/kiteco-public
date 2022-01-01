@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html><head><title>QTextObject Class Reference</title><style>h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+td.postheader { font-family: sans-serif }
+tr.address { font-family: sans-serif }
+body { background: #ffffff; color: black; }
+</style></head><body><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr /><td align="left" valign="top" width="32"><img align="left" border="0" height="32" src="images/rb-logo.png" width="32" /></td><td width="1">&#160;&#160;</td><td class="postheader" valign="center"><a href="index.html"><font color="#004faf">Home</font></a>&#160;&#183; <a href="classes.html"><font color="#004faf">All Classes</font></a>&#160;&#183; <a href="modules.html"><font color="#004faf">Modules</font></a></td></table><h1 align="center">QTextObject Class Reference<br /><sup><sup>[<a href="qtgui.html">QtGui</a> module]</sup></sup></h1><p>The QTextObject class is a base class for different kinds of
+objects that can group parts of a <a href="qtextdocument.html">QTextDocument</a> together. <a href="#details">More...</a></p>
+
+<p>Inherits <a href="qobject.html">QObject</a>.</p><p>Inherited by <a href="qtextblockgroup.html">QTextBlockGroup</a> and <a href="qtextframe.html">QTextFrame</a>.</p><h3>Methods</h3><ul><li><div class="fn" /><b><a href="qtextobject.html#QTextObject">__init__</a></b> (<i>self</i>, QTextDocument&#160;<i>doc</i>)</li><li><div class="fn" />QTextDocument <b><a href="qtextobject.html#document">document</a></b> (<i>self</i>)</li><li><div class="fn" />QTextFormat <b><a href="qtextobject.html#format">format</a></b> (<i>self</i>)</li><li><div class="fn" />int <b><a href="qtextobject.html#formatIndex">formatIndex</a></b> (<i>self</i>)</li><li><div class="fn" />int <b><a href="qtextobject.html#objectIndex">objectIndex</a></b> (<i>self</i>)</li><li><div class="fn" /><b><a href="qtextobject.html#setFormat">setFormat</a></b> (<i>self</i>, QTextFormat&#160;<i>format</i>)</li></ul><a name="details" /><hr /><h2>Detailed Description</h2><p>The QTextObject class is a base class for different kinds of
+objects that can group parts of a <a href="qtextdocument.html">QTextDocument</a> together.</p>
+<p>The common grouping text objects are lists (<a href="qtextlist.html">QTextList</a>), frames (<a href="qtextframe.html">QTextFrame</a>), and tables (<a href="qtexttable.html">QTextTable</a>). A text object has an associated
+<a href="qtextobject.html#format">format</a>() and <a href="qtextobject.html#document">document</a>().</p>
+<p>There are essentially two kinds of text objects: those that are
+used with blocks (block formats), and those that are used with
+characters (character formats). The first kind are derived from
+<a href="qtextblockgroup.html">QTextBlockGroup</a>, and the second
+kind from <a href="qtextframe.html">QTextFrame</a>.</p>
+<p>You rarely need to use this class directly. When creating custom
+text objects, you will also need to reimplement <a href="qtextdocument.html#createObject">QTextDocument.createObject</a>()
+which acts as a factory method for creating text objects.</p>
+<hr /><h2>Method Documentation</h2><h3 class="fn"><a name="QTextObject" />QTextObject.__init__ (<i>self</i>, <a href="qtextdocument.html">QTextDocument</a>&#160;<i>doc</i>)</h3><p>Creates a new <a href="qtextobject.html">QTextObject</a> for the
+given <i>document</i>.</p>
+<p><b>Warning:</b> This function should never be called directly,
+but only from <a href="qtextdocument.html#createObject">QTextDocument.createObject</a>().</p>
+
+
+<h3 class="fn"><a name="document" /><a href="qtextdocument.html">QTextDocument</a> QTextObject.document (<i>self</i>)</h3><p>Returns the document this object belongs to.</p>
+<p><b>See also</b> <a href="qtextobject.html#format">format</a>().</p>
+
+
+<h3 class="fn"><a name="format" /><a href="qtextformat.html">QTextFormat</a> QTextObject.format (<i>self</i>)</h3><p>Returns the text object's format.</p>
+<p><b>See also</b> <a href="qtextobject.html#setFormat">setFormat</a>() and <a href="qtextobject.html#document">document</a>().</p>
+
+
+<h3 class="fn"><a name="formatIndex" />int QTextObject.formatIndex (<i>self</i>)</h3><p>Returns the index of the object's format in the document's
+internal list of formats.</p>
+<p><b>See also</b> <a href="qtextdocument.html#allFormats">QTextDocument.allFormats</a>().</p>
+
+
+<h3 class="fn"><a name="objectIndex" />int QTextObject.objectIndex (<i>self</i>)</h3><p>Returns the object index of this object. This can be used
+together with <a href="qtextformat.html#setObjectIndex">QTextFormat.setObjectIndex</a>().</p>
+
+
+<h3 class="fn"><a name="setFormat" />QTextObject.setFormat (<i>self</i>, <a href="qtextformat.html">QTextFormat</a>&#160;<i>format</i>)</h3><p>Sets the text object's <i>format</i>.</p>
+<p><b>See also</b> <a href="qtextobject.html#format">format</a>().</p>
+<address><hr /><div align="center"><table border="0" cellspacing="0" width="100%"><tr class="address"><td align="left" width="25%">PyQt&#160;4.11.4 for X11</td><td align="center" width="50%">Copyright &#169; <a href="http://www.riverbankcomputing.com">Riverbank&#160;Computing&#160;Ltd</a> and <a href="http://www.qt.io">The Qt Company</a> 2015</td><td align="right" width="25%">Qt&#160;4.8.7</td></tr></table></div></address></body></html>

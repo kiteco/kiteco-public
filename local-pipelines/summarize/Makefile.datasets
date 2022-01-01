@@ -1,0 +1,91 @@
+TMP_DIR := /data/kite-local-pipelines/summarize/tmp
+
+DIRS_TO_CREATE := $(TMP_DIR)
+
+$(shell mkdir -p $(DIRS_TO_CREATE))
+
+clean:
+	rm -rf $(TMP_DIR)
+
+###
+### --- Remote directory structure ---
+###
+EXTRACT_GH_COMMITS_DATASET_IN := s3://github-crawl-kite/2020-11-all-full
+EXTRACT_GH_COMMITS_DATASET_OUT := s3://kite-local-pipelines/gh-commits-all/2020-11-20/raw
+SHUFFLE_GH_COMMITS_DATASET_OUT := s3://kite-local-pipelines/gh-commits-all/2020-11-20/shuffled
+SPLIT_GH_COMMITS_DATASET_OUT := s3://kite-local-pipelines/gh-commits-all/2020-11-20/split
+
+
+###
+### --- Extract commits ---
+###
+MAX_COMMIT_SAMPLES := 15000000
+EXTRACT_GH_COMMITS_CLUSTER_SIZE ?= 3
+EXTRACT_GH_COMMITS_INSTANCE_TYPE := standard_e8_v3
+
+extract_gh_commits_dist:
+	INSTANCE_TYPE=$(EXTRACT_GH_COMMITS_INSTANCE_TYPE) ../../kite-golib/pipeline/util/launch-dist-pipeline.sh \
+		github.com/kiteco/kiteco/kite-go/summarize/cmds/gh-commits \
+		$(EXTRACT_GH_COMMITS_CLUSTER_SIZE) \
+		extract \
+		--crawl=$(EXTRACT_GH_COMMITS_DATASET_IN) \
+		--out=$(EXTRACT_GH_COMMITS_DATASET_OUT) \
+		--tmpdir=$(TMP_DIR) \
+		--maxsamples=$(MAX_COMMIT_SAMPLES)
+	echo "Deployed extract-gh-commits pipeline! Will write results to $(EXTRACT_GH_COMMITS_DATASET_OUT)"
+
+extract_gh_commits:
+	go install github.com/kiteco/kiteco/kite-go/summarize/cmds/gh-commits
+	gh-commits \
+		extract \
+		--crawl=$(EXTRACT_GH_COMMITS_DATASET_IN) \
+		--out=$(EXTRACT_GH_COMMITS_DATASET_OUT) \
+		--tmpdir=$(TMP_DIR) \
+		--maxsamples=$(MAX_COMMIT_SAMPLES)
+
+
+###
+### --- Shuffle commits ---
+###
+SHUFFLE_GH_COMMITS_INSTANCE_TYPE := Standard_E16_V3
+
+shuffle_gh_commits_dist:
+	INSTANCE_TYPE=$(SHUFFLE_GH_COMMITS_INSTANCE_TYPE) ../../kite-golib/pipeline/util/launch-pipeline.sh \
+		github.com/kiteco/kiteco/kite-go/summarize/cmds/gh-commits \
+		gh-commits \
+			shuffle \
+			--in=$(EXTRACT_GH_COMMITS_DATASET_OUT) \
+			--out=$(SHUFFLE_GH_COMMITS_DATASET_OUT) \
+			--tmpdir=$(TMP_DIR)/shuffle
+		echo "Deployed shuffle-gh-commits pipeline! Will write results to $(SHUFFLE_GH_COMMITS_DATASET_OUT)"
+
+shuffle_gh_commits:
+	go install github.com/kiteco/kiteco/kite-go/summarize/cmds/gh-commits
+	gh-commits \
+		shuffle \
+		--in=$(EXTRACT_GH_COMMITS_DATASET_OUT) \
+		--out=$(SHUFFLE_GH_COMMITS_DATASET_OUT) \
+		--tmpdir=$(TMP_DIR)/shuffle
+
+###
+### --- Split commits ---
+###
+SPLIT_GH_COMMITS_INSTANCE_TYPE := standard_d8s_v3
+
+split_gh_commits_dist:
+	INSTANCE_TYPE=$(SPLIT_GH_COMMITS_INSTANCE_TYPE) ../../kite-golib/pipeline/util/launch-pipeline.sh \
+		github.com/kiteco/kiteco/kite-go/summarize/cmds/gh-commits \
+		gh-commits \
+			split \
+			--in=$(SHUFFLE_GH_COMMITS_DATASET_OUT) \
+			--out=$(SPLIT_GH_COMMITS_DATASET_OUT) \
+			--tmpdir=$(TMP_DIR)/split
+		echo "Deployed split-gh-commits pipeline! Will write results to $(SPLIT_GH_COMMITS_DATASET_OUT)"
+
+split_gh_commits:
+	go install github.com/kiteco/kiteco/kite-go/summarize/cmds/gh-commits
+	gh-commits \
+		split \
+		--in=$(SHUFFLE_GH_COMMITS_DATASET_OUT) \
+		--out=$(SPLIT_GH_COMMITS_DATASET_OUT) \
+		--tmpdir=$(TMP_DIR)/split

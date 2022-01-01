@@ -1,0 +1,203 @@
+<html>
+  <style type="text/css">
+    body {
+      font-family: sans-serif;
+      font-weight: 100;
+    }
+    h1 {
+      font-size: 20;
+      font-weight: 100;
+      margin-bottom: 3;
+    }
+    input[type="submit"] {
+      height: 25;
+      width: 150;
+      border: none;
+      background-color: #def;
+      color: #048;
+    }
+    input[type="number"] {
+      width: 50;
+      height: 20;
+    }
+    textarea, .output, .attention {
+      width: 1200;
+      font: 1em monospace;
+    }
+    textarea, .output {
+      box-sizing: border-box;
+      border: none;
+      padding: 7;
+      background-color: #eee;
+    }
+    textarea {
+      height: 200;
+      white-space: pre;
+      resize: none;
+    }
+    label {
+      display: block;
+      float: left;
+      width: 100;
+      margin-top: 4;
+    }
+    table, .extensions {
+      font: 0.7em monospace;
+      border-spacing: 1em;
+    }
+    table {
+      font: 0.7em monospace;
+      border-spacing: 0em;
+    }
+    tr:hover {
+      outline: thin solid;
+    }
+    .output {
+      white-space: pre-wrap;
+    }
+    .flex-container {
+      display: flex;
+    }
+    .sidebar {
+      width: 200;
+    }
+    a:link {
+      color: navy;
+    }
+    a:visited {
+      color: navy;
+    }
+  </style>
+  <title>Detailed beams</title>
+  <body>
+    <h2>Code</h2>
+    <div class="output">{{printf "%s" .Code}}</div>
+    <h2>Completions</h2>
+      <div class="output">{{printf "%s" .Completions}}</div>
+      {{if .ShowDuration}}
+        <h1>Duration</h1>
+          <div class="output">{{printf "%s" .Duration}}</div>
+      {{end}}
+      <h2>Prefix</h2>
+        <div class="output">{{printf "%s" .Prefix}}</div>
+      <h2>Beams</h2>
+        <div class="output">{{printf "%s" .Beams}}</div>
+        <h1>Show layer maps</h1>
+          <a href="/beams/{{.Key}}?showlayers=1">Layer maps</a>
+          <p>
+          <a href="/beams/{{.Key}}">No Layer maps</a>
+      {{range .Expansions}}
+      <p>
+      <h2>Depth {{.Depth}}</h2>
+        {{range .Beams}}
+          <hr>
+          <h3>Raw extensions</h3>
+          <table class="extensions">
+            <tr>
+              {{range $label := .RawExtensions}}
+                <td>{{printf "%s" $label}}</td>
+              {{end}}
+            </tr>
+            <tr>
+              {{range $label := .RawExtensionScores}}
+                <td>{{printf "%s" $label}}</td>
+              {{end}}
+            </tr>
+          </table>
+          <p>
+          <h3>Selected extensions</h3>
+          <table class="extensions">
+            <tr>
+              {{range $label := .SelectedExtensions}}
+                <td>{{printf "%s" $label}}</td>
+              {{end}}
+            </tr>
+            <tr>
+              {{range $label := .SelectedExtensionScores}}
+                <td>{{printf "%s" $label}}</td>
+              {{end}}
+            </tr>
+          </table>
+          {{if ne (len .Before) 0}}
+          <h1>Context Before Attention</h1>
+            <div class="attention">
+              {{range .Before}}
+                <span style="background-color:{{.Color}}">{{.Token}}</span>
+                {{if .Break}}<br>{{end}}
+              {{end}}
+            </div>
+            <p>
+            {{if .ShowLayers}}
+            <div>
+              <table>
+                {{range $level := .BeforeLabels}}
+                  <tr>
+                    {{range $label := $level}}
+                      <td>{{printf "%s" $label}}</td>
+                    {{end}}
+                  </tr>
+                {{end}}
+                {{range .Before}}
+                  <tr>
+                    <td>{{.Token}}</td>
+                    {{range $color := .Heads}}
+                      <td style="background-color:{{$color}}" width=10em></td>
+                    {{end}}
+                  </tr>
+                {{end}}
+                {{range $level := .BeforeLabels}}
+                  <tr>
+                    {{range $label := $level}}
+                      <td>{{printf "%s" $label}}</td>
+                    {{end}}
+                  </tr>
+                {{end}}
+              </table>
+            </div>
+            {{end}}
+          {{end}}
+          {{if ne (len .Predict) 0}}
+          <h1>Context Predict Attention</h1>
+            <div class="attention">
+              {{range .Predict}}
+                <span style="background-color:{{.Color}}">{{.Token}}</span>
+                {{if .Break}}<br>{{end}}
+              {{end}}
+            </div>
+            <p>
+            {{if .ShowLayers}}
+            <div>
+              <table>
+                {{range $level := .PredictLabels}}
+                  <tr>
+                    {{range $label := $level}}
+                      <td>{{printf "%s" $label}}</td>
+                    {{end}}
+                  </tr>
+                {{end}}
+                {{range .Predict}}
+                  <tr>
+                    <td>{{.Token}}</td>
+                    {{range $color := .Heads}}
+                      <td style="background-color:{{$color}}" width=10em></td>
+                    {{end}}
+                  </tr>
+                {{end}}
+                {{range $level := .PredictLabels}}
+                  <tr>
+                    {{range $label := $level}}
+                      <td>{{printf "%s" $label}}</td>
+                    {{end}}
+                  </tr>
+                {{end}}
+              </table>
+            </div>
+            {{end}}
+          {{end}}
+        {{end}}
+        <hr>
+        <h1>Predictions</h1>
+        <div class="output">{{.BeamsText}}</div>
+      {{end}}
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+      <title>{{.Method.Name}}</title>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+      <style>
+      body {
+          padding: 20px;
+      }
+      td {
+          font-family: monospace;
+      }
+      </style>
+  </head>
+  <body>
+    <div class="table">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td colspan="3"><b>Name</b></td>
+            <td colspan="3"><b>Graph</b></td>
+            <td colspan="3"><b>Popularity</b></td>
+          </tr>
+          <tr>
+            <td colspan="3">{{.Method.Name}}</td>
+            <td colspan="3"><a href="{{.Method.AnyName | nodeURL}}">{{.Method.AnyName}}</a></td>
+            <td colspan="3">{{.Method.Popularity}}</td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>Arg Spec</b></td>
+          </tr>
+          <tr>
+            <td colspan="3"><pre>{{.Method.ArgSpec | argSpecString}}</pre></td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>Signature Patterns</b></td>
+          </tr>
+          <tr>
+            <td colspan="3"><pre>{{.Method.Patterns | patternsString}}</pre></td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>Doc</b></td>
+          </tr>
+          <tr>
+            <td colspan="3"><pre>{{.Method.Doc | docString}}</pre></td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>**kwargs</b></td>
+          </tr>
+          <tr>
+            <td colspan="3"><pre>{{.Method.Kwargs | kwargsString}}</pre></td>
+          </tr>
+          <tr>
+            <td colspan="3"><b>Source Definition</b></td>
+          </tr>
+          <tr>
+            <td colspan="3"><pre>{{.Method.Source | sourceString}}</pre></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>  
+  </body>
+</html>

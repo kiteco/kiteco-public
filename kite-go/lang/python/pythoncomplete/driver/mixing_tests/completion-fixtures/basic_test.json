@@ -1,0 +1,115 @@
+{
+    "completions": [
+        {
+            "snippet": {
+                "text": "compile()",
+                "placeholders": [
+                    {
+                        "begin": 8,
+                        "end": 8
+                    }
+                ]
+            },
+            "replace": {
+                "begin": 13,
+                "end": 14
+            },
+            "display": "compile(…)",
+            "documentation": {
+                "text": "Compile a regular expression pattern into a regular expression object, which can be used for matching using its match() ( #re.match ) and search() ( #re.search ) methods, described below.\n\nThe expression’s behaviour can be modified by specifying a flags value. Values can be any of the following variables, combined using bitwise OR (the | operator).\n\nThe sequence\n\nprog = re.compile(pattern) result = prog.match(string)\n\nIs equivalent to\n\nresult = re.match(pattern, string)\n\nBut using re.compile()"
+            },
+            "web_id": "re.compile",
+            "local_id": "python;;;;re.compile",
+            "hint": "function",
+            "smart": false,
+            "children": [
+                {
+                    "snippet": {
+                        "text": "compile([pattern])",
+                        "placeholders": [
+                            {
+                                "begin": 8,
+                                "end": 17
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 13,
+                        "end": 14
+                    },
+                    "display": "…(\u003cpattern\u003e)",
+                    "documentation": {
+                        "text": "Compile a regular expression pattern into a regular expression object, which can be used for matching using its match() ( #re.match ) and search() ( #re.search ) methods, described below.\n\nThe expression’s behaviour can be modified by specifying a flags value. Values can be any of the following variables, combined using bitwise OR (the | operator).\n\nThe sequence\n\nprog = re.compile(pattern) result = prog.match(string)\n\nIs equivalent to\n\nresult = re.match(pattern, string)\n\nBut using re.compile()"
+                    },
+                    "web_id": "re.compile",
+                    "local_id": "python;;;;re.compile",
+                    "hint": "call",
+                    "smart": false
+                },
+                {
+                    "snippet": {
+                        "text": "compile([pattern], [flags])",
+                        "placeholders": [
+                            {
+                                "begin": 8,
+                                "end": 17
+                            },
+                            {
+                                "begin": 19,
+                                "end": 26
+                            }
+                        ]
+                    },
+                    "replace": {
+                        "begin": 13,
+                        "end": 14
+                    },
+                    "display": "…(\u003cpattern\u003e, \u003cflags\u003e)",
+                    "documentation": {
+                        "text": "Compile a regular expression pattern into a regular expression object, which can be used for matching using its match() ( #re.match ) and search() ( #re.search ) methods, described below.\n\nThe expression’s behaviour can be modified by specifying a flags value. Values can be any of the following variables, combined using bitwise OR (the | operator).\n\nThe sequence\n\nprog = re.compile(pattern) result = prog.match(string)\n\nIs equivalent to\n\nresult = re.match(pattern, string)\n\nBut using re.compile()"
+                    },
+                    "web_id": "re.compile",
+                    "local_id": "python;;;;re.compile",
+                    "hint": "call",
+                    "smart": false
+                }
+            ]
+        },
+        {
+            "snippet": {
+                "text": "copy_reg",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 13,
+                "end": 14
+            },
+            "display": "copy_reg",
+            "documentation": {
+                "text": "Helper to provide extensibility for pickle/cPickle.\n\nThis is only useful to add pickle support for extension types defined in C, not for instances of user-defined classes."
+            },
+            "web_id": "re.copy_reg",
+            "local_id": "python;;;;re.copy_reg",
+            "hint": "module",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "text": "copyreg",
+                "placeholders": null
+            },
+            "replace": {
+                "begin": 13,
+                "end": 14
+            },
+            "display": "copyreg",
+            "documentation": {
+                "text": "Helper to provide extensibility for pickle.\n\nThis is only useful to add pickle support for extension types defined in\nC, not for instances of user-defined classes."
+            },
+            "web_id": "re.copyreg",
+            "local_id": "python;;;;re.copyreg",
+            "hint": "module",
+            "smart": false
+        }
+    ]
+}

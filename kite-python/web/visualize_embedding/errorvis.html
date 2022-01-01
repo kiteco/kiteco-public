@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Error Message Spectral Embedding</title>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+		<style type="text/css">
+			#chart {
+			  width: 100%;
+			  height: 100%;
+			  //border: solid 1px #ccc;
+			}
+
+			text {
+			  font: 10px sans-serif;
+			}
+
+			html {
+				height: 100%;
+			}
+
+			body {
+				height: 100%;
+			}
+
+			.background {
+			  fill: none;
+			  pointer-events: all;
+			}
+
+			#chart .node {
+			  stroke: #fff;
+			  stroke-width: 1.5px;
+			}
+
+			#chart .label {
+			  font-family: "helvetica";
+			  font-size: 11px;
+			  fill: black;
+			}
+
+			#chart .edge {
+			  stroke: #999;
+			  stroke-opacity: .6;
+			  stroke-width: 1.5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="chart"></div>
+	</body>
+	<script type="text/javascript">
+
+		//Width and height
+		var width = 1000;
+		var height = 1000;
+
+		var node;
+		var label;
+		var edge;
+
+		var color = d3.scale.category10();
+
+		var x = d3.scale.linear()
+		    .domain([-10.0, 10.0])
+		    .range([0, width]);
+
+		var y = d3.scale.linear()
+		    .domain([-10.0, 10.0])
+		    .range([height, 0]);
+
+		var zm = d3.behavior.zoom().x(x).y(y).scaleExtent([-50, 50]).on("zoom", zoom);
+
+		function zoom() {
+		  node.attr("transform", transform);
+		  label.attr("transform", transform);
+		  //edge.attr("transform", transform_edge);
+		  console.log(zm.scale());
+		  var MAX_SHOW_LABEL = 1.4;
+		  if(zm.scale() > MAX_SHOW_LABEL) {
+		  	$('.label').show();
+		  } else {
+		  	$('.label').hide();
+		  }
+		}
+
+		function transform(d) {
+			return "translate(" + x(d.position.x) + "," + y(d.position.y) + ")";
+		}
+
+		function transform_edge(d) {
+			return "translate(" + x(d.source.x) + "," + y(d.source.y) + ")";
+		}
+
+		$(document).ready(function() {
+			//Create SVG element
+			var svg = d3.select("#chart")
+						.append("svg")
+						.attr("width", "100%")
+						.attr("height", "100%")
+					    .call(zm);
+
+			// Seems to be related to getting pointer events, not sure how necessary it is
+			svg.append("rect")
+			      .attr("class", "background")
+			      .attr("width", "100%")
+			      .attr("height", "100%");
+
+			$.getJSON("embedding.json", function(dataset) {
+				node = svg.selectAll(".node")
+				   .data(dataset.nodes)
+				   .enter()
+				   .append("circle")
+				   .attr("class", "node")
+				   .style("fill", function(d) {
+				   		console.log('------ pattern id' + d.pattern_id)
+				   		return color(d.pattern_id % 10)
+				   	})
+				   .attr("cx", function(d) {
+				   		return d.position.x;
+				   })
+				   .attr("cy", function(d) {
+				   		return d.position.y;
+				   })
+				   .attr("r", function(d) {
+				   		return 5.0;
+				   })
+				   .attr("transform", transform)
+				   ;
+
+				node
+				    .append("svg:title")
+				    .text(function(d) { return d.label; });
+
+				label = svg.selectAll(".label")
+				   .data(dataset.nodes)
+				   .enter()
+				   .append("text")
+				   .attr("class", "label")
+				   .text(function(d) {
+				   		return d["label"];
+				   })
+				   .attr("x", function(d) {
+				   		return d.position.x + 10.;
+				   })
+				   .attr("y", function(d) {
+				   		return d.position.y + 3.;
+				   })
+					   .attr("transform", transform)
+					   .attr("class", "label");
+
+		  		$('.label').hide();
+			})
+		});
+			
+		</script>
+</html>

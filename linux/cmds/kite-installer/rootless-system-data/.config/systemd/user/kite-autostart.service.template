@@ -1,0 +1,10 @@
+[Unit]
+Description=kited autostart on first login of a user
+
+[Service]
+Type=simple
+StandardOutput=null
+ExecStart={{.HomeDir}}/.local/share/kite/current/kited --system-boot
+
+[Install]
+WantedBy=default.target

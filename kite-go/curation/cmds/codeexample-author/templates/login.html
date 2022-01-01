@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="icon" type="image/png" href="/static/img/favicon-16x16.png" />
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			if ($('.alert').text().length === 0) {
+				$('.alert').remove();
+			};
+		});
+	</script>
+</head>
+<body class="loginbody">
+	<div id="login">
+		<form method="post" action="/login">
+		<div class="alert">{{.Alert}}</div>
+		<div class="field">
+			<div class="fieldLabel">E-Mail</div>
+			<input type="text" name="email" autofocus>
+		</div>
+		<div class="field">
+			<div class="fieldLabel">Password</div>
+			<input type="password" name="password">
+		</div>
+		<input class="loginButton" type="submit" value="Login">
+		</form>
+	</div>
+</body>
+</html>

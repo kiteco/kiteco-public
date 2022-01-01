@@ -1,0 +1,78 @@
+@import "../../assets/styles/less/variables";
+
+.kite-pro-checkout {
+  .checkout-steps .ant-skeleton {
+    margin-top: 20px;
+  }
+
+  .ant-spin {
+    width: 100%;
+    margin: 15px 0 -15px;
+  }
+
+  .ant-row:not(.ant-form-item):not(.submit-row) {
+    > .ant-col {
+      @spacing: 5px;
+
+      &:first-child {
+        padding-right: @spacing;
+      }
+
+      &:not(:first-child) {
+        padding-left: @spacing;
+      }
+
+      &.ant-col-md-12 {
+        padding-right: 0;
+        padding-left: 0;
+
+        @media screen and (min-width: @sm) {
+          padding-right: @spacing;
+          padding-left: @spacing;
+        }
+      }
+
+      &.ant-col-24 {
+        padding: 0px;
+
+        @media screen and (min-width: @sm) {
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+
+  .ant-row.submit-row {
+    margin-top: 10px;
+  }
+
+  .ant-form-item-label {
+    display: block;
+    flex-basis: 100%;
+    text-align: left;
+
+    label {
+      height: auto;
+      line-height: 18px;
+      margin-bottom: 5px;
+
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+  .detail-card {
+    .ant-skeleton {
+      margin-top: 0;
+    }
+
+    .ant-skeleton-title {
+      margin-top: 0;
+    }
+
+    .ant-skeleton-paragraph {
+      margin-bottom: 0;
+    }
+  }
+}

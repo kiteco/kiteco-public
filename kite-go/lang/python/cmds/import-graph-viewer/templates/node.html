@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Import graph</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+        <style>
+        body {
+            padding: 20px;
+        }
+        code {
+            tab-size: 4;
+        }
+        .count {
+          font-weight: bold;
+        }
+        .tooltip-inner {
+            white-space: pre-wrap;
+            max-width: 500px;
+            padding: 0;
+            text-align: left;
+        }
+        td {
+            font-family: monospace;
+        }
+        </style>
+    </head>
+    <body>
+      <div class="table">
+        <table class="table table-striped">
+          <tbody>
+          <tr>
+            <td><b>CanonicalName</b></td>
+            <td colspan="3">{{.Node.CanonicalName.String}}</td>
+          </tr>
+          <tr>
+            <td><b>Classification</b></td>
+            <td colspan="3">{{.Node.Classification}}</td>
+          </tr>
+          <tr>
+            <td><b>ID</b></td>
+            <td colspan="3"><a href="{{.Node | url}}">{{.Node.ID}}</a></td>
+          </tr>
+          <tr>
+            <td><b>TypeID</b></td>
+            <td colspan="3">{{if .Node.Type}}<a href="{{.Node.Type | url}}">{{.Node.Type | name}}</a>{{end}}</td>
+          </tr>
+
+          <tr>
+            <td colspan="4"><b>Bases</b></td>
+          </tr>
+          {{range $m := .Bases}}
+            <tr>
+              <td></td>
+              <td><a href="/id/{{$m}}">{{$m}}</a></td>
+            </tr>
+          {{end}}
+
+          <tr>
+            <td colspan="4"><b>Members</b></td>
+          </tr>
+          {{range $m := .Node.Members | sort}}
+            <tr>
+              <td></td>
+              <td>{{if $m.Child}}<a href="{{$m.Child | url}}">{{$m.Attr}}</a>{{else}}{{$m.Attr}}{{end}}</td>
+              <td>{{if $m.Child}}{{$m.Child | name}}{{end}}</td>
+              <td>{{if $m.Child}}{{$m.Child.Classification}}{{end}}</td>
+            </tr>
+          {{end}}
+
+          <tr>
+            <td colspan="4"><b>Referenced By</b></td>
+          </tr>
+          {{range $m := .Incoming}}
+            <tr>
+              <td></td>
+              <td colspan="3"><a href="{{$m.Parent | url}}">{{$m.Parent | name}}</a>.{{$m.Attr}}</td>
+            </tr>
+          {{end}}
+
+          <tr>
+            <td colspan="4"><b>Raw</b></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td colspan="3"><pre>{{.Raw}}</pre></td>
+          </tr>
+        </tbody>
+      </table>
+    </body>
+  </div>
+</html>

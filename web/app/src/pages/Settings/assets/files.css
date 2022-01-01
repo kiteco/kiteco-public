@@ -1,0 +1,112 @@
+.settings__files {
+  line-height: 2.5rem;
+}
+
+.settings__files > * + * {
+  margin-top: 4rem;
+}
+
+.settings__warning {
+  border: 1px red solid;
+  color: red;
+  font-size: 1.75rem;
+  padding: 1rem 1.5rem;
+}
+
+.settings__machine {
+  width: 100%;
+}
+
+.settings__load-machine {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  background-image: url(./machine.svg);
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: 4.2rem 4.2rem;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+  padding: 1rem 0;
+  padding-left: 6rem;
+}
+
+.settings__load-machine:hover {
+  color: cornflowerblue;
+}
+
+.settings__machine-id {
+  font-size: 1.2rem;
+  width: 12rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.settings__file-tree {
+  padding: 1rem;
+  border: 1px solid #abceff;
+  overflow-x: auto;
+}
+
+.settings__machine-purge {
+  overflow: visible;
+}
+
+.settings__machine-purge:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.settings__purge-link {
+  padding: 0.5rem;
+  padding-bottom: 0;
+  color: #abceff;
+  font-size: 1.2rem;
+  width: auto;
+  margin-left: auto;
+  float: right;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+}
+
+.settings__purge-link:hover {
+  color: #009966;
+  border-bottom: 1px solid #009966;
+}
+
+.settings__purge-confirm {
+  padding: 0 1rem;
+  background: lavenderblush;
+  border: 1px solid red;
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+
+.settings__purge-options {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+  align-items: flex-end;
+}
+
+.settings__purge-button {
+  flex-shrink: 0;
+  padding: 0.2rem 1rem;
+  background: red;
+  border-radius: 0.3rem;
+  color: white;
+  cursor: pointer;
+}
+
+.settings__purge-back {
+  flex-shrink: 0;
+  cursor: pointer;
+  color: black;
+  text-decoration: underline;
+}
+

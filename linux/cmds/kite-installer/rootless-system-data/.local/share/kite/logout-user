@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# This script takes username and password and sends a login request to kited
+# kited has to be running on the current machine
+set -e
+
+if ! command -v curl >/dev/null 2>&1; then
+    echo >&2 "Sorry! The curl command is needed to run this script."
+    exit 1
+fi
+
+echo "Logging current user out of Kite..."
+response="$(curl --silent -X POST "http://localhost:46624/clientapi/logout" 2>&1)"
+if [ $? -eq 0 ]; then
+  echo "Successfully logged out of Kite."
+else
+  echo "Failed to logout. The server response follows:"
+  echo "$response"
+fi

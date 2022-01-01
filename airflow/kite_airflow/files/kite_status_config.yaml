@@ -1,0 +1,30 @@
+editors:
+  - atom
+  - intellij
+  - jupyter
+  - spyder
+  - sublime3
+  - vim
+  - vscode
+
+languages:
+  bash: ['lexicaltextshprovider']
+  c: ['lexicaltexthprovider', 'lexicaltextcprovider']
+  cpp: ['lexicaltexthprovider', 'lexicaltextcppprovider']
+  csharp: ['lexicaltextcsprovider']
+  css: ['lexicaltextcssprovider']
+  go: ['lexicalgolangprovider', 'lexicaltextgolangprovider']
+  html: ['lexicaltexthtmlprovider']
+  java: ['lexicaltextjavaprovider']
+  javascript: ['lexicaljavascriptprovider', 'lexicaltextjsprovider']
+  jsx: ['lexicaltextjsxprovider']
+  kotlin: ['lexicaltextktprovider']
+  less: ['lexicaltextlessprovider']
+  objectivec: ['lexicaltexthprovider', 'lexicaltextmprovider']
+  php: ['lexicaltextphpprovider']
+  python: ['pythonlexicalprovider']
+  ruby: ['lexicaltextrbprovider']
+  scala: ['lexicaltextscalaprovider']
+  tsx: ['lexicaltexttsxprovider']
+  typescript: ['lexicaltexttsprovider']
+  vue: ['lexicaltextvueprovider']

@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/server/static/style.css">
+	</head>
+	<body>
+
+		<div class=file>
+			{{if .HasParent}}
+				<img height=17 src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/regular/folder.svg"></img>
+				<a href="/codenav/recommend/{{$.Parent.ID}}">{{$.Parent.Path}}</a>
+			{{else}}
+				<img height=21 src="https://avatars3.githubusercontent.com/u/7321919"></img>
+			{{end}}
+		</div>
+
+		<div class=current>
+			{{if .IsCode}}
+				<img height=20 src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/regular/file-alt.svg"></img>
+				{{.Current}}
+			{{else}}
+				<img height=20 src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/regular/folder.svg"></img>
+				{{.Current}}/
+			{{end}}
+		</div>
+
+		{{if .IsCode}}
+			<div class=header>Most similar files:</div>
+		{{else}}
+			<div class=header>Contents sorted by activity:</div>
+		{{end}}
+
+		<ul>
+			{{range $link := .Links}}
+				<li class=links>
+					{{if $link.IsCode}}
+						<img height=17 src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/regular/file-alt.svg"></img>
+					{{else}}
+						<img height=17 src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/regular/folder.svg"></img>
+					{{end}}
+					<a href="/codenav/recommend/{{$link.ID}}">{{$link.Path}}</a> (probability: {{$link.Probability}})
+						<div class=blocks>
+							{{range $block := $link.Blocks}}
+								<p>
+									<div class=commenter>
+										<a href="/codenav/recommend/{{$link.ID}}?line={{$block.FirstLine}}">
+											Lines {{$block.FirstLine}}-{{$block.LastLine}}
+										</a>
+										(probability: {{$block.Probability}})
+									</div>
+									<div>Keywords:
+										<ul class=keywords>
+											{{range $keyword := $block.Keywords}}
+												<li>{{$keyword.Word}} ({{$keyword.Score}})</li>
+											{{end}}
+										</ul>
+									</div>
+									<div class=diff>{{$block.Content}}</div>
+							{{end}}
+						</div>
+				</li>
+			{{end}}
+		</ul>
+
+	</body>
+</html>

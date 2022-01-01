@@ -1,0 +1,105 @@
+.docs__new-user {
+  padding: 3rem 2rem;
+  display: block;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  color: #09234c;
+  background-color: #ecf0f5;
+  background-image: url(./kite-background.png);
+  background-repeat: no-repeat;
+  background-position: right bottom -4rem;
+  background-size: 15rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ecf0f5;
+}
+
+
+.docs__new-user > * + * {
+  margin-top: 2rem;
+}
+
+.docs__new-user__text {
+  font-size: 1.8rem;
+}
+
+.docs__new-user__link {
+  font-size: 1.9rem;
+  text-decoration: none;
+}
+
+.docs__new-user__link:hover {
+  text-decoration: underline;
+}
+
+/* we really need to transition away from less */
+.docs-container a.docs__download-button, .docs__download-button {
+  width: auto;
+  font-size: 1.6rem;
+  padding: 1rem;
+  background-color: #2bbd41;
+  border: 1px solid #218815;
+  color: white;
+  box-shadow: none;
+  transition: background-color 250ms;
+}
+
+.docs-container a.docs__download-button:hover, .docs__download-button:hover {
+  background-color: #1e9c31;
+}
+
+.docs__promotion-darkbg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.docs__promotion-gate {
+  width: 50rem;
+  padding: 1rem;
+  margin: 5rem auto;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.6rem;
+  position: absolute;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 1rem;
+}
+
+.docs__promotion-gate > * + * {
+  margin-top: 2rem;
+}
+
+.docs__promo__logo {
+  background: url(../../../assets/icon-logo.svg) no-repeat;
+  background-size: 3rem 4rem;
+  width: 3rem;
+  height: 4rem;
+  flex-shrink: 0;
+}
+
+.docs__reset-promotion {
+  background: #999;
+  outline: none;
+  border: none;
+  color: white;
+  border-radius: 0.3rem;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+}
+
+.docs__reset-promotion:hover {
+  background: #888;
+}

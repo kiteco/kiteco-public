@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Code Example Authoring Tool</title>
+	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/jquery.tagit.css">
+
+	<script type="text/javascript" src="/static/js/lib/ace.js"></script>
+	<script type="text/javascript" src="/static/js/lib/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/lib/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/static/js/lib/tag-it.min.js"></script>
+	<script type="text/javascript" src="/static/js/main.js"></script>
+</head>
+<body data-package="{{.Package}}" data-language="{{.Language}}" data-fetch-examples="{{not .AccessConflict}}">
+	{{if .AccessConflict}}
+		<div>This package is currently being edited by {{.CurrentAccessor}}.</div>
+	{{else}}
+		<div id="send">Save</div>
+		<div class="wrapper codeExampleContainer"></div>
+	{{end}}
+</body>
+</html>

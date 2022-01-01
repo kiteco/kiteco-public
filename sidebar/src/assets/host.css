@@ -1,0 +1,45 @@
+.host {
+}
+
+.host > * {
+  margin: 0;
+  padding: 0;
+}
+
+.host > * + * {
+  margin-top: 1rem;
+}
+
+.host__form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(202, 223, 253, 0.5);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.host__input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+  border: none;
+  position: relative;
+  padding: 1rem;
+  font-family: "Hack", monospace;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.host__submit {
+  flex-grow: 0;
+  flex-shrink: 0;
+  border: none;
+  font-size: 1.5rem;
+  border-radius: 0;
+  margin: 0;
+  margin-left: 1rem;
+  color: cornflowerblue;
+}

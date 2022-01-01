@@ -1,0 +1,47 @@
+.examples__file-viewer {
+  font-size: 1.2rem;
+}
+
+.examples__file-viewer__name {
+  margin: 0;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  color: inherit;
+  border-radius: 0;
+}
+
+.examples__file-viewer--hide .examples__file-viewer__name:hover,
+.examples__file-viewer--show .examples__file-viewer__name:hover {
+  color: var(--bright-color);
+  background-color: var(--background);
+}
+
+.examples__file-viewer--show .examples__file-viewer__name {
+  background-color: var(--background);
+}
+
+.examples__file-viewer--show .examples__file-viewer__name,
+.examples__file-viewer--hide .examples__file-viewer__name {
+  color: var(--link-color);
+}
+
+.examples__file-viewer__content {
+  max-height: 20rem;
+  overflow: auto;
+}
+
+.examples__file-viewer__content--file {
+  margin: 0;
+  background-color: var(--background);
+  border-top: 1px solid var(--highlight-background);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  padding: 1rem;
+  tab-size: 2;
+}

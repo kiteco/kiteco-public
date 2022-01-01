@@ -1,0 +1,19 @@
+{
+    "name": "kite-kite",
+    "version": "0.0.3",
+    "author": "Manhattan Engineering, Inc.",
+    "summary": "Modules for configuring Kite infrastructure",
+    "description": "Modules for configuring Kite infrastructure",
+    "license": "proprietary",
+    "dependencies": [
+        {"name": "counsyl/python", "version_requirement": ">= 0.9.8"},
+        {"name": "counsyl/sys", "version_requirement": ">= 0.9.16"},
+        {"name": "garethr/docker", "version_requirement": ">= 4.1.1"},
+        {"name": "jfryman/nginx", "version_requirement": ">= 0.2.7"},
+        {"name": "puppetlabs/apt", "version_requirement": ">= 1.8.0"},
+        {"name": "willdurand/nodejs", "version_requirement": ">= 1.8.5"},
+        {"name": "puppetlabs/stdlib", "version_requirement": ">= 4.1.0"},
+        {"name": "puppetlabs/postgresql", "version_requirement": ">= 4.7.1 < 5.0.0"},
+        {"name": "puppetlabs/firewall", "version_requirement": ">= 1.7.1"}
+    ]
+}

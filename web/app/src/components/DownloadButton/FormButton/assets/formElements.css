@@ -1,0 +1,226 @@
+/* commont form elements styles */
+
+.form__input, .form__textarea {
+  /*TODO move all vars to global stylesheet file*/
+  background: #f1f3f3;
+  border-radius: var(--border-radius);
+  border: 2px solid #ddd;
+  box-shadow: none;
+  display: flex;
+  position: relative;
+  transition: 300ms linear;
+}
+.form__input__element, .form__textarea__element{
+  font-family: 'Avenir Next Rounded W01', sans-serif;
+  font-size: var(--body-font-size);
+  padding: var(--inner-padding-2);
+  flex: 1;
+  box-sizing: border-box;
+  line-height:1.5em;
+  background: transparent;
+  border:0;
+  outline: none;
+  position: relative;
+  z-index: 1;
+}
+
+.form__input--small .form__input__element{
+  font-size: var(--body-font-size);
+  padding: var(--inner-padding-1);
+}
+
+
+.form__input:hover, .form__textarea:hover, .form__select .form__select__control:hover {
+  border-color: rgba(2,144,212,0.3);
+}
+
+.form__input--is-focused,
+.form__input--is-focused:hover,
+.form__textarea--is-focused,
+.form__textarea--is-focused:hover{
+  border-color: rgba(2,144,212,1);
+}
+.form__input--error, .form__textarea--error, .form__select--error .form__select__control:not(.form__select__control--is-focused){
+  background-color: #ffdddd;
+  border-color:red !important;
+}
+
+/*input with icon*/
+.form__input--with-icon .form__input__element{
+  padding-left: calc(var(--inner-padding-2) * 4);
+}
+
+.form__icon__image{
+  position:absolute;
+  left: var(--inner-padding-2);
+  top: var(--inner-padding-2);
+  bottom: var(--inner-padding-2);
+  width: calc(var(--inner-padding-2)*2);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  z-index:2;
+  cursor: text;
+}
+
+
+.form__input--small .form__icon__image{
+  left: var(--inner-padding-1);
+  top: var(--inner-padding-1);
+  bottom: var(--inner-padding-1);
+  width: calc(var(--inner-padding-2)*1.5);
+}
+.form__input--small.form__input--with-icon .form__input__element{
+  padding-left: calc(var(--inner-padding-2) * 2.5);
+}
+
+.form__icon__image img{
+  max-height: 100%;
+  max-width: 100%;
+}
+
+
+
+
+
+
+/* selects */
+.form__select .form__select__control{
+  background: #f1f3f3;
+  border-radius: var(--border-radius);
+  border: 2px solid #ddd;
+  box-shadow: none;
+  display: flex;
+  transition: 300ms linear;
+  font-family: 'Avenir Next Rounded W01', sans-serif;
+  font-size: var(--body-font-size);
+  padding: var(--inner-padding-2);
+  flex: 1;
+  box-sizing: border-box;
+  line-height:1.5em;
+  outline: none;
+}
+
+.form__select .form__select__control--is-focused,
+.form__select:hover .form__select__control--is-focused{
+  border-color: rgba(2,144,212,1);
+}
+
+.form__select__value-container::before{
+  content: "\00a0\00a0";
+}
+
+.form__select {
+  outline: none;
+}
+
+.form__select .form__select__indicator-separator{
+  margin-top:0;
+  margin-bottom:0;
+}
+.form__select .form__select__value-container{
+  padding:0;
+}
+
+.form__select .form__select__dropdown-indicator{
+  padding:0;
+  height:19px;
+  width: 19px;
+  margin-left: 8px;
+}
+
+.form__select .form__select__dropdown-indicator svg {
+  height: 100%;
+  width: 100%;
+}
+
+.form__select__menu.css-15k3avv{
+  position:absolute;
+  top:100%;
+  background-color:hsl(0,0%,100%);
+  border-radius:4px;
+  box-shadow:0 0 0 1px hsla(0,0%,0%,0.1),0 4px 11px hsla(0,0%,0%,0.1);
+  margin-bottom:8px;
+  margin-top:8px;
+  width:100%;
+  z-index:999;
+  box-sizing:border-box;
+}
+
+.form__select .form__select__menu{
+  display: block;
+  font-family: 'Avenir Next Rounded W01', sans-serif;
+  font-size: var(--body-font-size);
+  padding:0;
+  margin:0;
+  margin-top: -3px;
+  outline:none;
+  border:2px solid rgba(2,144,212,1);
+  border-top:0;
+  box-shadow: none;
+  border-radius: 0;
+  background: #f1f3f3;
+  text-align:left;
+  color:#000;
+}
+
+/* form buttons*/
+
+.form__button {
+  position:relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #243763;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  font-size: var(--body-font-size);
+  padding: var(--inner-padding-2);
+  line-height:1.5em;
+  border:2px solid #243763;
+}
+.form__button--disabled{
+  opacity: 0.3;
+}
+.form__button--small{
+  padding: var(--inner-padding-1);
+  text-transform: none;
+}
+.form__button--big{
+  height:4.1rem;
+  line-height:4.1rem;
+  text-transform: none;
+  font-size: 2.34rem;
+}
+.form__button--inline{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.form__button__link{
+  position:absolute;
+  left:0;
+  top:0;
+  padding:0;
+  border: 0;
+  height:100%;
+  width:100%;
+  opacity:0;
+  display: block;
+  cursor: pointer;
+  margin-left: 0;
+}
+
+.form__button__input{
+  position:absolute;
+  left:0;
+  top:0;
+  padding:0;
+  border: 0;
+  height:100%;
+  width:100%;
+  opacity:0;
+  cursor: pointer;
+}

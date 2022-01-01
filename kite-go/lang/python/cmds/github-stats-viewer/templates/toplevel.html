@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+      <title>Github Package Stats</title>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+      <style>
+      body {
+        padding: 20px;
+      }
+      .search-row {
+        margin-bottom: 30px;
+      }
+      td {
+        font-family: monospace;
+      }
+      </style>
+    </head>
+    <body>
+
+      <div class="row search-row">
+        <form action="/search" method="GET">
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." name="q">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Go!</button>
+              </span>
+            </div>
+          </div>
+        </form> 
+      </div>
+
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th colspan="3">Package</th>
+              <th colspan="3">Count</th>
+            </tr>
+          </thead>
+          <tbody>
+          {{range $i,$stats := .Stats}}
+            <tr>
+              <td colspan="3">{{add $i 1}}) <a style="color:{{$stats | color}}" href="{{$stats | statsURL}}">{{$stats.Name}}</a></td>
+              <td colspan="3">{{$stats.Count | comma}}</td>
+            </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </body>
+    </div>
+</html>

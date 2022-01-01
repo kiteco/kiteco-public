@@ -1,0 +1,31 @@
+services:
+  user-mux:
+    build: ./user-mux
+    environment:
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY_ID}"
+      AWS_REGION: "${AWS_REGION}"
+      COMMUNITY_DB_URI: "${COMMUNITY_DB_URI}"
+      COMMUNITY_DB_DRIVER: "${COMMUNITY_DB_DRIVER}"
+    ports:
+    - "9090:9090"
+    volumes:
+    - ./user-mux/build:/opt/svc
+  user-node:
+    build: ./user-node
+    environment:
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY_ID}"
+      AWS_REGION: "${AWS_REGION}"
+      COMMUNITY_DB_URI: "${COMMUNITY_DB_URI}"
+      COMMUNITY_DB_DRIVER: "${COMMUNITY_DB_DRIVER}"
+      STRIPE_SECRET: "${STRIPE_SECRET}"
+      STRIPE_WEBHOOK_SECRET: "${STRIPE_WEBHOOK_SECRET}"
+      OCTOBAT_SECRET: "${OCTOBAT_SECRET}"
+      OCTOBAT_PUBLISHABLE: "${OCTOBAT_PUBLISHABLE}"
+      MIXPANEL_SECRET: "${MIXPANEL_SECRET}"
+      DELIGHTED_SECRET: "${DELIGHTED_SECRET}"
+      QUICK_EMAIL_TOKEN: "${QUICK_EMAIL_TOKEN}"
+      LICENSE_RSA_KEY: "${LICENSE_RSA_KEY}"
+    volumes:
+    - ./user-node/build:/opt/svc

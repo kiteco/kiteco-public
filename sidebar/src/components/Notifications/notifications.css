@@ -1,0 +1,217 @@
+.notifications {
+  position: fixed;
+  bottom: 5.75rem;
+  left: 1.5rem;
+  width: calc(100% - 3rem);
+  box-sizing: border-box;
+  z-index: 999;
+}
+
+.notifications > * + * {
+  margin-top: 1rem;
+}
+
+.notifications__autosearch {
+  width: 100%;
+  background-color: var(--popup-background);
+  padding: 0.5rem;
+  box-sizing: border-box;
+  color: var(--popup-text);
+  transition: all 250ms;
+  box-shadow: var(--shadow);
+  animation-name: notificationAnimation;
+  animation-fill-mode: forwards;
+  animation-duration: 750ms;
+}
+
+@keyframes notificationAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notifications__autosearch__header, .notifications__autosearch__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 0.2rem;
+}
+
+.notifications__autosearch__hide {
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--text-color-light);
+  font-size: 1.2rem;
+}
+
+.notifications__autosearch__hide:hover {
+  opacity: 1;
+}
+
+.notifications__autosearch__title,
+.notifications__plugins__title,
+.notifications__spyder__title {
+  padding: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.notifications__autosearch__identifier {
+  padding: 0 0.5rem;
+  font-size: 1.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-grow: 0;
+  opacity: 0.7;
+}
+
+.notifications__autosearch__resume {
+  padding: 0.5rem 1rem 0.5rem 3.5rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  background-image: url(../../assets/icon-auto-search.svg);
+  background-position: center left 0.5rem;
+  background-size: 2rem;
+  background-repeat: no-repeat;
+  padding-left: 3.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--button-background);
+  color: var(--button-text);
+  cursor: pointer;
+  transition: all 250ms;
+}
+
+.notifications__autosearch__resume:hover {
+  background-color: var(--bright-color);
+}
+
+.notifications__plugins,
+.notifications__spyder {
+  width: 100%;
+  background-color: var(--popup-background);
+  padding: 0.5rem;
+  box-sizing: border-box;
+  color: var(--popup-text);
+  transition: all 250ms;
+  opacity: 0;
+  box-shadow: var(--shadow);
+  animation-name: notificationAnimation;
+  animation-fill-mode: forwards;
+  animation-duration: 750ms;
+}
+
+.notifications__plugins__install {
+  padding: 0.8rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 0 0.5rem 0.5rem 0.5rem;
+  background-image: url(../../assets/icon-external.svg);
+  background-position: center right 0.6rem;
+  background-size: 2rem;
+  background-repeat: no-repeat;
+  padding-left: 0.5rem;
+  padding-right: 3.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--button-background);
+  color: var(--button-text);
+  cursor: pointer;
+  transition: all 250ms;
+}
+
+.notifications__plugins__header,
+.notifications__spyder__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.notifications__plugins__content,
+.notifications__spyder__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.notifications__plugins__content > * + * {
+  margin-top: 1rem;
+}
+
+.notifications__plugins__hide,
+.notifications__spyder__hide {
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--text-color-light);
+  font-size: 1.2rem;
+}
+.notifications__plugins__hide:hover,
+.notifications__spyder__header:hover {
+  color: var(--bright-color);
+}
+
+.notifications__plugins__p,
+.notifications__spyder__p,
+.notifications__text {
+  padding: 1rem 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  flex-grow: 0;
+}
+
+.notifications__plugins__a--bold,
+.notifications__plugins__p--bold {
+  font-weight: 600;
+}
+
+.notifications__plugins__a,
+.notifications__plugins__a--bold,
+.notifications__spyder__a
+{
+  color: var(--text-color-light);
+}
+
+.notifications__plugins__a:hover,
+.notifications__plugins__a--bold:hover,
+.notifications__spyder__a:hover
+{
+  color: var(--bright-color);
+}
+
+.notifications__plugins__name {
+  font-weight: bold;
+}
+
+.notifications__plugins__icon {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0.5rem;
+  vertical-align: middle;
+}
+
+.notifications__spyder__a {
+  display: block;
+  margin-top: .8rem;
+}
+
+.notifications__spyder__apply {
+  padding: 0.4rem 0.8rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--button-background);
+  color: var(--button-text);
+  cursor: pointer;
+  transition: all 250ms;
+}

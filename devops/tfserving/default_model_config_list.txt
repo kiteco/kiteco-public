@@ -1,0 +1,7 @@
+model_config_list: {
+    config: {
+        name: "go-large",
+        base_path: "s3://kite-data/run-db/2020-05-22T18:41:22Z_lexical-model-experiments/out_go_lexical_context_512_embedding_720_layer_12_head_12_vocab_10000_steps_4000000_batch_40/tfserving",
+        model_platform: "tensorflow"
+    }
+}

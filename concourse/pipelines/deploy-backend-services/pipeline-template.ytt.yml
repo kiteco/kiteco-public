@@ -1,0 +1,166 @@
+#@ load("@ytt:data", "data")
+resource_types:
+  - name: terraform
+    type: docker-image
+    source:
+      repository: ljfranklin/terraform-resource
+      tag: latest
+
+#@yaml/text-templated-strings
+resources:
+  - name: kiteco
+    type: git
+    source:
+      uri: git@github.com:kiteco/kiteco.git
+      private_key: ((ssh.private))
+      disable_ci_skip: true
+      #@ if data.values.dev_branch != '':
+      branch: (@= data.values.dev_branch @)
+      #@ else:
+      branch: release
+      fetch_tags: true
+      tag_filter: v2*
+      #@ end
+  - name: kite-deploy-package
+    type: s3
+    source:
+      bucket: kite-deploys
+      regexp: v(.*)/(@= data.values.package_regexp @)
+      region_name: us-west-1
+      access_key_id: ((aws.id))
+      secret_access_key: ((aws.secret))
+  - name: terraform
+    type: terraform
+    source:
+      backend_type: s3
+      env_name: production
+      terraform_source: "kiteco/devops/terraform/cloud/deployments/(@= data.values.terraform_location @)/"
+      backend_config:
+        access_key: ((aws.id))
+        bucket: kite-terraform-state
+        key: terraform.tfstate
+        region: us-west-1
+        secret_key: ((aws.secret))
+        workspace_key_prefix: deployments/(@= data.values.terraform_location @)
+      env:
+        AWS_ACCESS_KEY_ID: ((aws.id))
+        AWS_SECRET_ACCESS_KEY: ((aws.secret))
+        GOOGLE_CREDENTIALS: ((gcloud))
+
+jobs:
+- name: stage-jump-instances-plan
+  plan:
+  - get: kiteco
+    params: &kiteco_get_params
+      depth: 10
+      submodules: none
+      disable_git_lfs: true
+  - get: kite-deploy-package
+    trigger: true
+  - load_var: version-tag
+    file: kite-deploy-package/version
+  - put: terraform
+    params:
+      plan_only: true
+      vars:
+        versions:
+          gray: ((.:version-tag))
+          blue: blue
+
+- name: stage-jump-instances-apply
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [stage-jump-instances-plan]
+  - put: terraform
+    params:
+      plan_run: true
+
+- name: stage-add-to-lb-plan
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [stage-jump-instances-apply]
+    trigger: true
+  - put: terraform
+    params:
+      plan_only: true
+      vars:
+        versions:
+          blue: blue
+          green: gray
+
+- name: stage-add-to-lb-apply
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [stage-add-to-lb-plan]
+  - put: terraform
+    params:
+      plan_run: true
+
+- name: switch-plan
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [stage-add-to-lb-apply]
+    trigger: true
+  - put: terraform
+    params:
+      plan_only: true
+      vars:
+        versions:
+          green: blue
+          blue: green
+
+- name: switch-apply
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [switch-plan]
+  - put: terraform
+    params:
+      plan_run: true
+
+- name: retire-remove-lb-plan
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+  - put: terraform
+    params:
+      plan_only: true
+      vars:
+        versions:
+          blue: blue
+          gray: green
+
+- name: retire-remove-lb-apply
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [retire-remove-lb-plan]
+  - put: terraform
+    params:
+      plan_run: true
+
+- name: retire-terminate-plan
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [retire-remove-lb-apply]
+    trigger: true
+  - put: terraform
+    params:
+      plan_only: true
+      vars:
+        versions:
+          blue: blue
+
+- name: retire-terminate-apply
+  plan:
+  - get: kiteco
+    params: *kiteco_get_params
+    passed: [retire-terminate-plan]
+  - put: terraform
+    params:
+      plan_run: true

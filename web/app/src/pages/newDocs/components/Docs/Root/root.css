@@ -1,0 +1,98 @@
+.Root {
+  grid-column: nav-start / item-end;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: [nav-start] var(--nav-column-width) [item-start] auto [item-end];
+  grid-template-rows: [intro-start] var(--fixed-height-intro-height) [content-start] auto [content-end];
+}
+.Root__left-spacer {
+  padding: 0 var(--padding-2) 0 var(--padding-1);
+  grid-column: nav-start / item-start;
+  grid-row: intro-start / content-end;
+}
+.Root__top-spacer {
+  padding-top: var(--padding-1);
+  padding-bottom: var(--padding-2);
+  grid-column: item-start / item-end;
+  box-sizing: border-box;
+  grid-row: intro-start / content-start;
+}
+.Root__bottom-spacer {
+  padding-top: var(--padding-1);
+  padding-bottom: var(--padding-2);
+  grid-column: item-start / item-end;
+  box-sizing: border-box;
+}
+.Root__content {
+  grid-row: content-start / content-end;
+  grid-column: item-start / item-end;
+  min-height: 480px;
+}
+
+.Root__content .search {
+  white-space: nowrap;
+  flex: auto;
+  padding-top: var(--padding-1);
+  padding-bottom: var(--padding-1);
+  text-indent: calc(-1 * var(--inner-padding-2));
+}
+
+.Root__content .search-wrapper > * {
+  max-width: 500px;
+}
+
+.Root__content .search input {
+  border-radius: var(--border-radius);
+  background: var(--background);
+  border: 1px solid var(--external-text-subtle);
+  padding-top: var(--inner-padding-1);
+  padding-bottom: var(--inner-padding-1);
+  text-indent: var(--inner-padding-2);
+}
+
+.Root__content .search input:focus {
+  border-color: var(--hover);
+  outline: none;
+}
+
+.Root__content .search__completions {
+  padding-left: var(--inner-padding-2);
+  margin-left: calc(-1 * var(--inner-padding-2));
+  flex: auto;
+  position: relative;
+}
+.Root__content .search__completion,
+.Root__content .search__completion__title {
+  padding-left: 14px;
+  margin-left: calc(-1 * var(--inner-padding-2));
+}
+.Root__content .search__no-completions {
+  margin-left: 0;
+  padding-left: var(--inner-padding-2);
+}
+
+.Documentation .Root h3 {
+  border-top: none;
+}
+
+.Root {
+  --nav-column-width: var(--padding-2);
+}
+
+/* 768px–1024px (tablets) */
+@media only screen and (max-width: 1024px) {
+  .Documentation .Root {
+    --fixed-height-intro-height: 150px;
+  }
+  .Documentation .Root .Root__content {
+    padding-right: var(--padding-1);
+  }
+}
+
+/* 0–768px (mobile phones) */
+@media only screen and (max-width: 768px) {
+  .Documentation .Root .Root__content {
+    margin-left: var(--padding-2);
+    padding-right: var(--padding-1);
+  }
+}

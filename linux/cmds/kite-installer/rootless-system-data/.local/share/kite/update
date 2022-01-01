@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# wrap commands to handle changes at runtime (the script is removed itself during uninstallation)
+{
+    ROOT="$HOME/.local/share/kite"
+    CURRENT="$ROOT/current"
+
+    CURRENT_VERSION="$(basename "$(readlink -f "$CURRENT")" | grep "kite-v" | sed -e 's/^kite-v//g')"
+    [ -z "$CURRENT_VERSION" ] && echo "No kite version found at $ROOT. Terminating." && exit 1
+
+    exec "$ROOT/kite-v$CURRENT_VERSION/kite-update" update
+}

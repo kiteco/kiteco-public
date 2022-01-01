@@ -1,0 +1,27 @@
+@import "../../../assets/styles/less/variables.less";
+
+.ant-form-item {
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+
+  &.custom-required {
+    label::before {
+      display: inline-block;
+      margin-right: 4px;
+      color: @sunset-orange;
+      font-size: 10px;
+      line-height: 1;
+      content: "*";
+    }
+  }
+}
+
+.ant-form-item-explain {
+  font-size: 10px;
+  text-transform: uppercase;
+  line-height: 18px;
+  min-height: initial;
+  margin-bottom: -18px;
+  text-align: right;
+  letter-spacing: 1px;
+}

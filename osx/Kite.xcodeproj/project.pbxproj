@@ -1,0 +1,950 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		469100CC23CF3D8400D78C31 /* com.kite.KiteHelper.plist in Resources */ = {isa = PBXBuildFile; fileRef = 469100CB23CF3D8400D78C31 /* com.kite.KiteHelper.plist */; };
+		469100CE23CF3DD800D78C31 /* com.kite.KiteHelper.plist in Copy Files */ = {isa = PBXBuildFile; fileRef = 469100CB23CF3D8400D78C31 /* com.kite.KiteHelper.plist */; };
+		46EC3C04252252D50057BCBB /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EC3C03252252D50057BCBB /* Sparkle.framework */; };
+		46EC3C06252253120057BCBB /* Sparkle.framework in Copy Sparkle, libtensorflow */ = {isa = PBXBuildFile; fileRef = 46EC3C03252252D50057BCBB /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F0CB1D01BAF7398007884C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0CB1CF1BAF7398007884C2 /* AppDelegate.m */; };
+		4F0CB1D21BAF7398007884C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0CB1D11BAF7398007884C2 /* main.m */; };
+		4F0CB1D41BAF7398007884C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F0CB1D31BAF7398007884C2 /* Images.xcassets */; };
+		4F0CB1E31BAF7398007884C2 /* KiteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0CB1E21BAF7398007884C2 /* KiteTests.m */; };
+		4F12924C1BB4E6A5009C503C /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4F12924B1BB4E6A5009C503C /* dsa_pub.pem */; };
+		770017C6241BFB3500730E99 /* KiteAutostart.app in Copy KiteAutostart */ = {isa = PBXBuildFile; fileRef = 77055518241BED58009D3D9C /* KiteAutostart.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		770E0826253702AE00D4CE86 /* Rollbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770E08172536FAB100D4CE86 /* Rollbar.framework */; };
+		770E0827253702AE00D4CE86 /* Rollbar.framework in Copy Sparkle, libtensorflow */ = {isa = PBXBuildFile; fileRef = 770E08172536FAB100D4CE86 /* Rollbar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		773BCA2125370CD1001ADB2E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 773BCA2025370CD1001ADB2E /* libc++.tbd */; };
+		944346A22440E2A5008BC6EA /* kite-lsp in Copy Kite LSP */ = {isa = PBXBuildFile; fileRef = 9443469C2440E062008BC6EA /* kite-lsp */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		ED2E9F3223F74EEB000CC568 /* Kite.app in Copy Electron */ = {isa = PBXBuildFile; fileRef = ED2E9F3123F74EEB000CC568 /* Kite.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		ED436C262399C879005C47CE /* libtensorflow.1.15.0.dylib in Copy Sparkle, libtensorflow */ = {isa = PBXBuildFile; fileRef = ED436C242399C824005C47CE /* libtensorflow.1.15.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		ED436C272399C87D005C47CE /* libtensorflow_framework.1.15.0.dylib in Copy Sparkle, libtensorflow */ = {isa = PBXBuildFile; fileRef = ED436C222399C813005C47CE /* libtensorflow_framework.1.15.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		F762DA651C5AE4720041B2CD /* libkited.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F762DA611C5AE4140041B2CD /* libkited.a */; };
+		F7C757151BC33B2300531F34 /* KiteHelper.app in Copy KiteHelper */ = {isa = PBXBuildFile; fileRef = F7C7570B1BC3397700531F34 /* KiteHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F0CB1DD1BAF7398007884C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F0CB1C11BAF7398007884C2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F0CB1C81BAF7398007884C2;
+			remoteInfo = Kite;
+		};
+		77055517241BED58009D3D9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77055513241BED58009D3D9C /* KiteAutostart.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F7C756F21BC3397600531F34;
+			remoteInfo = KiteAutostart;
+		};
+		77F81365241BF1C8001DED6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77055513241BED58009D3D9C /* KiteAutostart.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F7C756F11BC3397600531F34;
+			remoteInfo = KiteAutostart;
+		};
+		F7C7570A1BC3397700531F34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7C757061BC3397600531F34 /* KiteHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F7C756F21BC3397600531F34;
+			remoteInfo = KiteHelper;
+		};
+		F7C757121BC33AF700531F34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7C757061BC3397600531F34 /* KiteHelper.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F7C756F11BC3397600531F34;
+			remoteInfo = KiteHelper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		469100CD23CF3DC200D78C31 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = $HOME/Library/LaunchAgents;
+			dstSubfolderSpec = 0;
+			files = (
+				469100CE23CF3DD800D78C31 /* com.kite.KiteHelper.plist in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F0CB1FF1BAF87C4007884C2 /* Copy Sparkle, libtensorflow */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				ED436C272399C87D005C47CE /* libtensorflow_framework.1.15.0.dylib in Copy Sparkle, libtensorflow */,
+				ED436C262399C879005C47CE /* libtensorflow.1.15.0.dylib in Copy Sparkle, libtensorflow */,
+				46EC3C06252253120057BCBB /* Sparkle.framework in Copy Sparkle, libtensorflow */,
+				770E0827253702AE00D4CE86 /* Rollbar.framework in Copy Sparkle, libtensorflow */,
+			);
+			name = "Copy Sparkle, libtensorflow";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77F8136A241BF2A2001DED6D /* Copy KiteAutostart */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				770017C6241BFB3500730E99 /* KiteAutostart.app in Copy KiteAutostart */,
+			);
+			name = "Copy KiteAutostart";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		944346A12440E28B008BC6EA /* Copy Kite LSP */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				944346A22440E2A5008BC6EA /* kite-lsp in Copy Kite LSP */,
+			);
+			name = "Copy Kite LSP";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7AB45251F8EDF5A00FAE00E /* Copy Electron */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				ED2E9F3223F74EEB000CC568 /* Kite.app in Copy Electron */,
+			);
+			name = "Copy Electron";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7C757141BC33B0800531F34 /* Copy KiteHelper */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				F7C757151BC33B2300531F34 /* KiteHelper.app in Copy KiteHelper */,
+			);
+			name = "Copy KiteHelper";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		469100CB23CF3D8400D78C31 /* com.kite.KiteHelper.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.kite.KiteHelper.plist; sourceTree = "<group>"; };
+		46EC3C03252252D50057BCBB /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		4F0CB1C91BAF7398007884C2 /* Kite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kite.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F0CB1CD1BAF7398007884C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F0CB1CE1BAF7398007884C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F0CB1CF1BAF7398007884C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F0CB1D11BAF7398007884C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F0CB1D31BAF7398007884C2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4F0CB1DC1BAF7398007884C2 /* KiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F0CB1E11BAF7398007884C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F0CB1E21BAF7398007884C2 /* KiteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KiteTests.m; sourceTree = "<group>"; };
+		4F12924B1BB4E6A5009C503C /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Kite/dsa_pub.pem; sourceTree = "<group>"; };
+		77055513241BED58009D3D9C /* KiteAutostart.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KiteAutostart.xcodeproj; path = KiteHelper/KiteAutostart.xcodeproj; sourceTree = "<group>"; };
+		770E08172536FAB100D4CE86 /* Rollbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rollbar.framework; sourceTree = "<group>"; };
+		773BCA2025370CD1001ADB2E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		9443469C2440E062008BC6EA /* kite-lsp */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "kite-lsp"; sourceTree = "<group>"; };
+		ED2E9F3123F74EEB000CC568 /* Kite.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Kite.app; path = ../sidebar/dist/mac/Kite.app; sourceTree = "<group>"; };
+		ED3595532358C38100BA7132 /* Kite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kite.entitlements; sourceTree = "<group>"; };
+		ED436C1F2399C7BE005C47CE /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = tensorflow/lib; sourceTree = "<group>"; };
+		ED436C222399C813005C47CE /* libtensorflow_framework.1.15.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow_framework.1.15.0.dylib; path = tensorflow/lib/libtensorflow_framework.1.15.0.dylib; sourceTree = "<group>"; };
+		ED436C242399C824005C47CE /* libtensorflow.1.15.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow.1.15.0.dylib; path = tensorflow/lib/libtensorflow.1.15.0.dylib; sourceTree = "<group>"; };
+		F75D7D3E1ECCF3F60090BE17 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		F762DA611C5AE4140041B2CD /* libkited.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkited.a; path = libkited/libkited.a; sourceTree = "<group>"; };
+		F762DA621C5AE4140041B2CD /* libkited.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libkited.h; path = libkited/libkited.h; sourceTree = "<group>"; };
+		F7AB45231F8EDE7C00FAE00E /* Kite.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Kite.app; path = electron/Kite.app; sourceTree = "<group>"; };
+		F7C757061BC3397600531F34 /* KiteHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KiteHelper.xcodeproj; path = KiteHelper/KiteHelper.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F0CB1C61BAF7398007884C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				773BCA2125370CD1001ADB2E /* libc++.tbd in Frameworks */,
+				770E0826253702AE00D4CE86 /* Rollbar.framework in Frameworks */,
+				F762DA651C5AE4720041B2CD /* libkited.a in Frameworks */,
+				46EC3C04252252D50057BCBB /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F0CB1D91BAF7398007884C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F0CB1C01BAF7398007884C2 = {
+			isa = PBXGroup;
+			children = (
+				ED2E9F3123F74EEB000CC568 /* Kite.app */,
+				ED436C1F2399C7BE005C47CE /* lib */,
+				F70625C3213A18D500DFDCBD /* tensorflow */,
+				F7AB45221F8EDE6600FAE00E /* electron */,
+				77055513241BED58009D3D9C /* KiteAutostart.xcodeproj */,
+				F7C757061BC3397600531F34 /* KiteHelper.xcodeproj */,
+				4F0CB1CB1BAF7398007884C2 /* Kite */,
+				F762DA601C5AE3DF0041B2CD /* libkited */,
+				9443469B2440E01D008BC6EA /* kitelsp */,
+				4F0CB1DF1BAF7398007884C2 /* KiteTests */,
+				4F0CB1CA1BAF7398007884C2 /* Products */,
+				4F1292411BB4B838009C503C /* Frameworks */,
+				4FA227231BB234C000CC50EC /* Resources */,
+			);
+			sourceTree = "<group>";
+		};
+		4F0CB1CA1BAF7398007884C2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F0CB1C91BAF7398007884C2 /* Kite.app */,
+				4F0CB1DC1BAF7398007884C2 /* KiteTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F0CB1CB1BAF7398007884C2 /* Kite */ = {
+			isa = PBXGroup;
+			children = (
+				ED3595532358C38100BA7132 /* Kite.entitlements */,
+				4F0CB1CE1BAF7398007884C2 /* AppDelegate.h */,
+				4F0CB1CF1BAF7398007884C2 /* AppDelegate.m */,
+				4F0CB1D31BAF7398007884C2 /* Images.xcassets */,
+				4F0CB1CC1BAF7398007884C2 /* Supporting Files */,
+				F75D7D3E1ECCF3F60090BE17 /* Constants.h */,
+			);
+			path = Kite;
+			sourceTree = "<group>";
+		};
+		4F0CB1CC1BAF7398007884C2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4F0CB1CD1BAF7398007884C2 /* Info.plist */,
+				4F0CB1D11BAF7398007884C2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F0CB1DF1BAF7398007884C2 /* KiteTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F0CB1E21BAF7398007884C2 /* KiteTests.m */,
+				4F0CB1E01BAF7398007884C2 /* Supporting Files */,
+			);
+			path = KiteTests;
+			sourceTree = "<group>";
+		};
+		4F0CB1E01BAF7398007884C2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4F0CB1E11BAF7398007884C2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F1292411BB4B838009C503C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				773BCA2025370CD1001ADB2E /* libc++.tbd */,
+				770E08172536FAB100D4CE86 /* Rollbar.framework */,
+				ED436C242399C824005C47CE /* libtensorflow.1.15.0.dylib */,
+				ED436C222399C813005C47CE /* libtensorflow_framework.1.15.0.dylib */,
+				46EC3C03252252D50057BCBB /* Sparkle.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4FA227231BB234C000CC50EC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				469100CB23CF3D8400D78C31 /* com.kite.KiteHelper.plist */,
+				4F12924B1BB4E6A5009C503C /* dsa_pub.pem */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		77055514241BED58009D3D9C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77055518241BED58009D3D9C /* KiteAutostart.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9443469B2440E01D008BC6EA /* kitelsp */ = {
+			isa = PBXGroup;
+			children = (
+				9443469C2440E062008BC6EA /* kite-lsp */,
+			);
+			path = kitelsp;
+			sourceTree = "<group>";
+		};
+		F70625C3213A18D500DFDCBD /* tensorflow */ = {
+			isa = PBXGroup;
+			children = (
+				F70625CC213A18D500DFDCBD /* lib */,
+			);
+			path = tensorflow;
+			sourceTree = "<group>";
+		};
+		F70625CC213A18D500DFDCBD /* lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		F762DA601C5AE3DF0041B2CD /* libkited */ = {
+			isa = PBXGroup;
+			children = (
+				F762DA611C5AE4140041B2CD /* libkited.a */,
+				F762DA621C5AE4140041B2CD /* libkited.h */,
+			);
+			name = libkited;
+			sourceTree = "<group>";
+		};
+		F7AB45221F8EDE6600FAE00E /* electron */ = {
+			isa = PBXGroup;
+			children = (
+				F7AB45231F8EDE7C00FAE00E /* Kite.app */,
+			);
+			name = electron;
+			sourceTree = "<group>";
+		};
+		F7C757071BC3397600531F34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F7C7570B1BC3397700531F34 /* KiteHelper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F0CB1C81BAF7398007884C2 /* Kite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F0CB1E61BAF7398007884C2 /* Build configuration list for PBXNativeTarget "Kite" */;
+			buildPhases = (
+				4F5AE1521BBE5D8900C9045D /* Build Go */,
+				F7AB45201F8EDE3800FAE00E /* Build Electron */,
+				9443469E2440E074008BC6EA /* Build Kite LSP */,
+				4F0CB1C51BAF7398007884C2 /* Sources */,
+				4F0CB1C61BAF7398007884C2 /* Frameworks */,
+				4F0CB1C71BAF7398007884C2 /* Resources */,
+				4F0CB1FF1BAF87C4007884C2 /* Copy Sparkle, libtensorflow */,
+				F7AB45251F8EDF5A00FAE00E /* Copy Electron */,
+				AC81D97323D116090073451E /* Sign Electron */,
+				F7C757141BC33B0800531F34 /* Copy KiteHelper */,
+				77F8136A241BF2A2001DED6D /* Copy KiteAutostart */,
+				944346A12440E28B008BC6EA /* Copy Kite LSP */,
+				469100CD23CF3DC200D78C31 /* Copy Files */,
+				4FC07AC11C0520A1005DBE9F /* Rollbar Upload dSYM */,
+				ED1DFD85239706AC00DDA19E /* libtensorflow Symbolic Links */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7C757131BC33AF700531F34 /* PBXTargetDependency */,
+				77F81366241BF1C8001DED6D /* PBXTargetDependency */,
+			);
+			name = Kite;
+			productName = Kite;
+			productReference = 4F0CB1C91BAF7398007884C2 /* Kite.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4F0CB1DB1BAF7398007884C2 /* KiteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F0CB1E91BAF7398007884C2 /* Build configuration list for PBXNativeTarget "KiteTests" */;
+			buildPhases = (
+				4F0CB1D81BAF7398007884C2 /* Sources */,
+				4F0CB1D91BAF7398007884C2 /* Frameworks */,
+				4F0CB1DA1BAF7398007884C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F0CB1DE1BAF7398007884C2 /* PBXTargetDependency */,
+			);
+			name = KiteTests;
+			productName = KiteTests;
+			productReference = 4F0CB1DC1BAF7398007884C2 /* KiteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F0CB1C11BAF7398007884C2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Manhattan Engineering";
+				TargetAttributes = {
+					4F0CB1C81BAF7398007884C2 = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = A92TXSM8EL;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
+						};
+					};
+					4F0CB1DB1BAF7398007884C2 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 4F0CB1C81BAF7398007884C2;
+					};
+				};
+			};
+			buildConfigurationList = 4F0CB1C41BAF7398007884C2 /* Build configuration list for PBXProject "Kite" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+			);
+			mainGroup = 4F0CB1C01BAF7398007884C2;
+			productRefGroup = 4F0CB1CA1BAF7398007884C2 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 77055514241BED58009D3D9C /* Products */;
+					ProjectRef = 77055513241BED58009D3D9C /* KiteAutostart.xcodeproj */;
+				},
+				{
+					ProductGroup = F7C757071BC3397600531F34 /* Products */;
+					ProjectRef = F7C757061BC3397600531F34 /* KiteHelper.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				4F0CB1C81BAF7398007884C2 /* Kite */,
+				4F0CB1DB1BAF7398007884C2 /* KiteTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		77055518241BED58009D3D9C /* KiteAutostart.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = KiteAutostart.app;
+			remoteRef = 77055517241BED58009D3D9C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F7C7570B1BC3397700531F34 /* KiteHelper.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = KiteHelper.app;
+			remoteRef = F7C7570A1BC3397700531F34 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F0CB1C71BAF7398007884C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F12924C1BB4E6A5009C503C /* dsa_pub.pem in Resources */,
+				4F0CB1D41BAF7398007884C2 /* Images.xcassets in Resources */,
+				469100CC23CF3D8400D78C31 /* com.kite.KiteHelper.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F0CB1DA1BAF7398007884C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4F5AE1521BBE5D8900C9045D /* Build Go */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Go";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/libkited.a",
+				"$(DERIVED_FILE_DIR)/libkited.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash -l ./build_libkited.sh\n";
+		};
+		4FC07AC11C0520A1005DBE9F /* Rollbar Upload dSYM */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Rollbar Upload dSYM";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/python;
+			shellScript = "\"\"\"\nPython script that zips and uploads a dSYM file package to Rollbar\nduring an iOS app's build process.\n\nFor instructions on setting up this script for your app in Xcode, see\nthe README at https://github.com/rollbar/rollbar-ios/blob/master/README.md.\n\"\"\"\n\nimport os\nimport subprocess\nimport zipfile\n\nif (os.environ.get('DEBUG_INFORMATION_FORMAT') != 'dwarf-with-dsym' or\n        os.environ.get('EFFECTIVE_PLATFORM_NAME') == '-iphonesimulator'):\n    exit(0)\n\nACCESS_TOKEN = '2fe92cbe259f4fe8b42d4e4a6831491b'\n\ndsym_file_path = os.path.join(os.environ['DWARF_DSYM_FOLDER_PATH'],\n                              os.environ['DWARF_DSYM_FILE_NAME'])\nzip_location = '%s.zip' % (dsym_file_path)\n\nos.chdir(os.environ['DWARF_DSYM_FOLDER_PATH'])\nwith zipfile.ZipFile(zip_location, 'w', zipfile.ZIP_DEFLATED) as zipf:\n    for root, dirs, files in os.walk(os.environ['DWARF_DSYM_FILE_NAME']):\n        zipf.write(root)\n\n        for f in files:\n            zipf.write(os.path.join(root, f))\n\n# You may need to change the following path to match your application\n# settings and Xcode version\nplist_command = '/usr/libexec/PlistBuddy -c \"Print :CFBundleVersion\" \"%s\"'\np = subprocess.Popen(plist_command % os.environ['PRODUCT_SETTINGS_PATH'],\n                     stdout=subprocess.PIPE, shell=True)\nstdout, stderr = p.communicate()\nversion = stdout.strip()\n\ncurl_command = ('curl -X POST \"https://api.rollbar.com/api/1/dsym\" '\n                '-F access_token=%s -F version=%s -F bundle_identifier=\"%s\" '\n                '-F dsym=@\"%s\"')\np = subprocess.Popen(curl_command % (ACCESS_TOKEN, version,\n                     os.environ['PRODUCT_BUNDLE_IDENTIFIER'], zip_location),\n                     shell=True)\np.communicate()\n";
+		};
+		9443469E2440E074008BC6EA /* Build Kite LSP */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Kite LSP";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/kite-lsp",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash -l ./build_kitelsp.sh\n";
+		};
+		AC81D97323D116090073451E /* Sign Electron */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Sign Electron";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}/Kite.app/Contents/Resources\"\n\n# By default, use the configured code signing identity for the project/target\nIDENTITY=\"${CODE_SIGN_IDENTITY}\"\nif [ -z \"$IDENTITY\" ]\nthen\n    exit 0\nfi\n\ncodesign --verbose --force --deep -o runtime --entitlements ../sidebar/entitlements.mac.plist --sign \"$IDENTITY\" \"$LOCATION/Kite.app\"\n";
+		};
+		ED1DFD85239706AC00DDA19E /* libtensorflow Symbolic Links */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "libtensorflow Symbolic Links";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd $CODESIGNING_FOLDER_PATH/Contents/Frameworks\nln -f -s libtensorflow.1.15.0.dylib libtensorflow.1.dylib\nln -f -s libtensorflow.1.dylib libtensorflow.dylib\nln -f -s libtensorflow_framework.1.15.0.dylib libtensorflow_framework.1.dylib\nln -f -s libtensorflow_framework.1.dylib libtensorflow_framework.dylib\n";
+		};
+		F7AB45201F8EDE3800FAE00E /* Build Electron */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Electron";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Kite.app",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash -l ./build_electron.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F0CB1C51BAF7398007884C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F0CB1D21BAF7398007884C2 /* main.m in Sources */,
+				4F0CB1D01BAF7398007884C2 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F0CB1D81BAF7398007884C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F0CB1E31BAF7398007884C2 /* KiteTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F0CB1DE1BAF7398007884C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F0CB1C81BAF7398007884C2 /* Kite */;
+			targetProxy = 4F0CB1DD1BAF7398007884C2 /* PBXContainerItemProxy */;
+		};
+		77F81366241BF1C8001DED6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KiteAutostart;
+			targetProxy = 77F81365241BF1C8001DED6D /* PBXContainerItemProxy */;
+		};
+		F7C757131BC33AF700531F34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KiteHelper;
+			targetProxy = F7C757121BC33AF700531F34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4F0CB1E41BAF7398007884C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_DISPLAY_NAME = "Kite Engine";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kite.Kite;
+				PRODUCT_NAME = Kite;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		4F0CB1E51BAF7398007884C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_DISPLAY_NAME = "Kite Engine";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kite.Kite;
+				PRODUCT_NAME = Kite;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4F0CB1E71BAF7398007884C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Kite/Kite.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A92TXSM8EL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libkited",
+				);
+				INFOPLIST_FILE = Kite/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libkited",
+					"$(PROJECT_DIR)/tensorflow/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = (
+					"-Wl,-rpath,@loader_path/../Frameworks,-undefined,dynamic_lookup",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kite.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Debug;
+		};
+		4F0CB1E81BAF7398007884C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Kite/Kite.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A92TXSM8EL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libkited",
+				);
+				INFOPLIST_FILE = Kite/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libkited",
+					"$(PROJECT_DIR)/tensorflow/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = (
+					"-Wl,-rpath,@loader_path/../Frameworks,-undefined,dynamic_lookup",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kite.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Release;
+		};
+		4F0CB1EA1BAF7398007884C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KiteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kite.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kite.app/Contents/MacOS/Kite";
+			};
+			name = Debug;
+		};
+		4F0CB1EB1BAF7398007884C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KiteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kite.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kite.app/Contents/MacOS/Kite";
+			};
+			name = Release;
+		};
+		F75D7D2F1ECA81DE0090BE17 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_DISPLAY_NAME = "Kite Engine (Enterprise)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "ENTERPRISE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = enterprise.kite.Kite;
+				PRODUCT_NAME = "Kite Enterprise";
+				SDKROOT = macosx;
+			};
+			name = Enterprise;
+		};
+		F75D7D301ECA81DE0090BE17 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Kite/Kite.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = A92TXSM8EL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libkited",
+				);
+				INFOPLIST_FILE = Kite/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/libkited",
+					"$(PROJECT_DIR)/tensorflow/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				OTHER_LDFLAGS = (
+					"-Wl,-rpath,@loader_path/../Frameworks,-undefined,dynamic_lookup",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = enterprise.kite.Kite;
+				PRODUCT_NAME = "Kite Enterprise";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Enterprise;
+		};
+		F75D7D311ECA81DE0090BE17 /* Enterprise */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = KiteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kite.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Kite.app/Contents/MacOS/Kite";
+			};
+			name = Enterprise;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F0CB1C41BAF7398007884C2 /* Build configuration list for PBXProject "Kite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F0CB1E41BAF7398007884C2 /* Debug */,
+				4F0CB1E51BAF7398007884C2 /* Release */,
+				F75D7D2F1ECA81DE0090BE17 /* Enterprise */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F0CB1E61BAF7398007884C2 /* Build configuration list for PBXNativeTarget "Kite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F0CB1E71BAF7398007884C2 /* Debug */,
+				4F0CB1E81BAF7398007884C2 /* Release */,
+				F75D7D301ECA81DE0090BE17 /* Enterprise */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F0CB1E91BAF7398007884C2 /* Build configuration list for PBXNativeTarget "KiteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F0CB1EA1BAF7398007884C2 /* Debug */,
+				4F0CB1EB1BAF7398007884C2 /* Release */,
+				F75D7D311ECA81DE0090BE17 /* Enterprise */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F0CB1C11BAF7398007884C2 /* Project object */;
+}

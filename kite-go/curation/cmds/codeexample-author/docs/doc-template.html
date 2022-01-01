@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html>
+
+<head>
+<title>{{title}}</title>
+<link rel="stylesheet" href="github.css">
+<link rel="stylesheet" href="curation-docs.css">
+</head>
+
+<body>
+{{{body}}}
+<script type="text/javascript">
+/* Dang. What a hack. We notate .lang-bad and .lang-good in the code examples by using
+ * Github-style language tags, but those classes get applied to the <code> tag inside
+ * the <pre> tag.  Since <code> is an inline tag, setting background-color on it only
+ * paints the color behind text (ie, not to the full width of the enclosing <pre>).  So
+ * here we copy the lang-good and lang-bad classes (on the <code> tags) to their parent
+ * tags (the <pre> tags), which can then style the background-color properly.
+ */
+function copyClassToParent(className) {
+  var tags = document.getElementsByClassName(className);
+  for (var i = 0; i < tags.length; i++) {
+    tags[i].parentElement.classList.add(className);
+  }
+}
+copyClassToParent('lang-bad');
+copyClassToParent('lang-good');
+</script>
+</body>
+
+</html>

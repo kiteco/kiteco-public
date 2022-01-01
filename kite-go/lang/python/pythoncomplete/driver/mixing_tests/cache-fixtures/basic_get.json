@@ -1,0 +1,597 @@
+{
+    "cache": [
+        {
+            "source": {
+                "text": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get()",
+                "selection": {
+                    "begin": 70,
+                    "end": 70
+                }
+            },
+            "provider": {
+                "type": 3,
+                "Provider": {
+                    "type": 3
+                }
+            },
+            "completions": [
+                {
+                    "meta": {
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 6
+                                }
+                            ],
+                            "text": "([url])"
+                        },
+                        "replace": {
+                            "begin": 69,
+                            "end": 71
+                        },
+                        "render_meta": {},
+                        "source": "global_popular_pattern",
+                        "score": 0.36000000000000004,
+                        "normalized_score": 0,
+                        "arg_spec_meta": null,
+                        "call_pattern_meta": {
+                            "ArgSpec": {
+                                "node_id": 0,
+                                "args": [
+                                    {
+                                        "name": "url",
+                                        "default_type": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "default_value": "",
+                                        "types": null
+                                    },
+                                    {
+                                        "name": "params",
+                                        "default_type": "types.NoneType",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "default_value": "None",
+                                        "types": null
+                                    }
+                                ],
+                                "vararg": "",
+                                "kwarg": "kwargs"
+                            },
+                            "ArgumentCount": 0
+                        },
+                        "call_model_meta": null,
+                        "attr_model_meta": null,
+                        "name_model_meta": null,
+                        "expr_model_meta": null,
+                        "keyword_model_meta": false,
+                        "traditional_meta": null,
+                        "dict_meta": null,
+                        "empty_call_meta": null,
+                        "mixing_meta": {
+                            "DistanceFromRoot": 0,
+                            "provider": {
+                                "type": 3,
+                                "Provider": {
+                                    "type": 3
+                                }
+                            },
+                            "hide_completion": false,
+                            "do_not_compose": false
+                        },
+                        "ggnn_meta": null,
+                        "LexicalFiltersMeta": null,
+                        "LexicalMeta": null,
+                        "LexicalMetrics": null,
+                        "FromSmartProvider": true
+                    },
+                    "target": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get([url])"
+                },
+                {
+                    "meta": {
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 6
+                                },
+                                {
+                                    "begin": 16,
+                                    "end": 22
+                                }
+                            ],
+                            "text": "([url], headers=[dict])"
+                        },
+                        "replace": {
+                            "begin": 69,
+                            "end": 71
+                        },
+                        "render_meta": {},
+                        "source": "global_popular_pattern",
+                        "score": 0.28,
+                        "normalized_score": 0,
+                        "arg_spec_meta": null,
+                        "call_pattern_meta": {
+                            "ArgSpec": {
+                                "node_id": 0,
+                                "args": [
+                                    {
+                                        "name": "url",
+                                        "default_type": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "default_value": "",
+                                        "types": null
+                                    },
+                                    {
+                                        "name": "params",
+                                        "default_type": "types.NoneType",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "default_value": "None",
+                                        "types": null
+                                    }
+                                ],
+                                "vararg": "",
+                                "kwarg": "kwargs"
+                            },
+                            "ArgumentCount": 0
+                        },
+                        "call_model_meta": null,
+                        "attr_model_meta": null,
+                        "name_model_meta": null,
+                        "expr_model_meta": null,
+                        "keyword_model_meta": false,
+                        "traditional_meta": null,
+                        "dict_meta": null,
+                        "empty_call_meta": null,
+                        "mixing_meta": {
+                            "DistanceFromRoot": 0,
+                            "provider": {
+                                "type": 3,
+                                "Provider": {
+                                    "type": 3
+                                }
+                            },
+                            "hide_completion": false,
+                            "do_not_compose": false
+                        },
+                        "ggnn_meta": null,
+                        "LexicalFiltersMeta": null,
+                        "LexicalMeta": null,
+                        "LexicalMetrics": null,
+                        "FromSmartProvider": true
+                    },
+                    "target": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get([url], headers=[dict])"
+                },
+                {
+                    "meta": {
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 6
+                                },
+                                {
+                                    "begin": 15,
+                                    "end": 21
+                                }
+                            ],
+                            "text": "([url], params=[dict])"
+                        },
+                        "replace": {
+                            "begin": 69,
+                            "end": 71
+                        },
+                        "render_meta": {},
+                        "source": "global_popular_pattern",
+                        "score": 0.2,
+                        "normalized_score": 0,
+                        "arg_spec_meta": null,
+                        "call_pattern_meta": {
+                            "ArgSpec": {
+                                "node_id": 0,
+                                "args": [
+                                    {
+                                        "name": "url",
+                                        "default_type": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "default_value": "",
+                                        "types": null
+                                    },
+                                    {
+                                        "name": "params",
+                                        "default_type": "types.NoneType",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "default_value": "None",
+                                        "types": null
+                                    }
+                                ],
+                                "vararg": "",
+                                "kwarg": "kwargs"
+                            },
+                            "ArgumentCount": 0
+                        },
+                        "call_model_meta": null,
+                        "attr_model_meta": null,
+                        "name_model_meta": null,
+                        "expr_model_meta": null,
+                        "keyword_model_meta": false,
+                        "traditional_meta": null,
+                        "dict_meta": null,
+                        "empty_call_meta": null,
+                        "mixing_meta": {
+                            "DistanceFromRoot": 0,
+                            "provider": {
+                                "type": 3,
+                                "Provider": {
+                                    "type": 3
+                                }
+                            },
+                            "hide_completion": false,
+                            "do_not_compose": false
+                        },
+                        "ggnn_meta": null,
+                        "LexicalFiltersMeta": null,
+                        "LexicalMeta": null,
+                        "LexicalMetrics": null,
+                        "FromSmartProvider": true
+                    },
+                    "target": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get([url], params=[dict])"
+                },
+                {
+                    "meta": {
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 6
+                                },
+                                {
+                                    "begin": 16,
+                                    "end": 21
+                                }
+                            ],
+                            "text": "([url], timeout=[int])"
+                        },
+                        "replace": {
+                            "begin": 69,
+                            "end": 71
+                        },
+                        "render_meta": {},
+                        "source": "global_popular_pattern",
+                        "score": 0.12,
+                        "normalized_score": 0,
+                        "arg_spec_meta": null,
+                        "call_pattern_meta": {
+                            "ArgSpec": {
+                                "node_id": 0,
+                                "args": [
+                                    {
+                                        "name": "url",
+                                        "default_type": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "default_value": "",
+                                        "types": null
+                                    },
+                                    {
+                                        "name": "params",
+                                        "default_type": "types.NoneType",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "default_value": "None",
+                                        "types": null
+                                    }
+                                ],
+                                "vararg": "",
+                                "kwarg": "kwargs"
+                            },
+                            "ArgumentCount": 0
+                        },
+                        "call_model_meta": null,
+                        "attr_model_meta": null,
+                        "name_model_meta": null,
+                        "expr_model_meta": null,
+                        "keyword_model_meta": false,
+                        "traditional_meta": null,
+                        "dict_meta": null,
+                        "empty_call_meta": null,
+                        "mixing_meta": {
+                            "DistanceFromRoot": 0,
+                            "provider": {
+                                "type": 3,
+                                "Provider": {
+                                    "type": 3
+                                }
+                            },
+                            "hide_completion": false,
+                            "do_not_compose": false
+                        },
+                        "ggnn_meta": null,
+                        "LexicalFiltersMeta": null,
+                        "LexicalMeta": null,
+                        "LexicalMetrics": null,
+                        "FromSmartProvider": true
+                    },
+                    "target": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get([url], timeout=[int])"
+                },
+                {
+                    "meta": {
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 6
+                                },
+                                {
+                                    "begin": 15,
+                                    "end": 21
+                                }
+                            ],
+                            "text": "([url], stream=[bool])"
+                        },
+                        "replace": {
+                            "begin": 69,
+                            "end": 71
+                        },
+                        "render_meta": {},
+                        "source": "global_popular_pattern",
+                        "score": 0.040000000000000036,
+                        "normalized_score": 0,
+                        "arg_spec_meta": null,
+                        "call_pattern_meta": {
+                            "ArgSpec": {
+                                "node_id": 0,
+                                "args": [
+                                    {
+                                        "name": "url",
+                                        "default_type": "",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "default_value": "",
+                                        "types": null
+                                    },
+                                    {
+                                        "name": "params",
+                                        "default_type": "types.NoneType",
+                                        "has_default_value": false,
+                                        "keyword_only": false,
+                                        "default_value": "None",
+                                        "types": null
+                                    }
+                                ],
+                                "vararg": "",
+                                "kwarg": "kwargs"
+                            },
+                            "ArgumentCount": 0
+                        },
+                        "call_model_meta": null,
+                        "attr_model_meta": null,
+                        "name_model_meta": null,
+                        "expr_model_meta": null,
+                        "keyword_model_meta": false,
+                        "traditional_meta": null,
+                        "dict_meta": null,
+                        "empty_call_meta": null,
+                        "mixing_meta": {
+                            "DistanceFromRoot": 0,
+                            "provider": {
+                                "type": 3,
+                                "Provider": {
+                                    "type": 3
+                                }
+                            },
+                            "hide_completion": false,
+                            "do_not_compose": false
+                        },
+                        "ggnn_meta": null,
+                        "LexicalFiltersMeta": null,
+                        "LexicalMeta": null,
+                        "LexicalMetrics": null,
+                        "FromSmartProvider": true
+                    },
+                    "target": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get([url], stream=[bool])"
+                }
+            ]
+        },
+        {
+            "source": {
+                "text": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.g",
+                "selection": {
+                    "begin": 67,
+                    "end": 67
+                }
+            },
+            "provider": {
+                "type": 5,
+                "Provider": {
+                    "type": 5,
+                    "user_default_references": false
+                }
+            },
+            "completions": [
+                {
+                    "meta": {
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "get"
+                        },
+                        "replace": {
+                            "begin": 66,
+                            "end": 67
+                        },
+                        "render_meta": {},
+                        "source": "traditional",
+                        "score": 1,
+                        "normalized_score": 0,
+                        "arg_spec_meta": null,
+                        "call_pattern_meta": null,
+                        "call_model_meta": null,
+                        "attr_model_meta": null,
+                        "name_model_meta": null,
+                        "expr_model_meta": null,
+                        "keyword_model_meta": false,
+                        "traditional_meta": {
+                            "Situation": "Attribute"
+                        },
+                        "dict_meta": null,
+                        "empty_call_meta": null,
+                        "mixing_meta": {
+                            "DistanceFromRoot": 0,
+                            "provider": {
+                                "type": 5,
+                                "Provider": {
+                                    "type": 5,
+                                    "user_default_references": false
+                                }
+                            },
+                            "hide_completion": false,
+                            "do_not_compose": false
+                        },
+                        "ggnn_meta": null,
+                        "LexicalFiltersMeta": null,
+                        "LexicalMeta": null,
+                        "LexicalMetrics": null,
+                        "FromSmartProvider": false
+                    },
+                    "target": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get"
+                }
+            ]
+        },
+        {
+            "source": {
+                "text": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get",
+                "selection": {
+                    "begin": 69,
+                    "end": 69
+                }
+            },
+            "provider": {
+                "type": 2,
+                "Provider": {
+                    "type": 2
+                }
+            },
+            "completions": [
+                {
+                    "meta": {
+                        "snippet": {
+                            "placeholders": [
+                                {
+                                    "begin": 1,
+                                    "end": 1
+                                }
+                            ],
+                            "text": "()"
+                        },
+                        "replace": {
+                            "begin": 69,
+                            "end": 69
+                        },
+                        "render_meta": {},
+                        "source": "empty_call",
+                        "score": 1,
+                        "normalized_score": 0,
+                        "arg_spec_meta": null,
+                        "call_pattern_meta": null,
+                        "call_model_meta": null,
+                        "attr_model_meta": null,
+                        "name_model_meta": null,
+                        "expr_model_meta": null,
+                        "keyword_model_meta": false,
+                        "traditional_meta": null,
+                        "dict_meta": null,
+                        "empty_call_meta": {
+                            "IsTypeKind": false
+                        },
+                        "mixing_meta": {
+                            "DistanceFromRoot": 0,
+                            "provider": {
+                                "type": 2,
+                                "Provider": {
+                                    "type": 2
+                                }
+                            },
+                            "hide_completion": false,
+                            "do_not_compose": false
+                        },
+                        "ggnn_meta": null,
+                        "LexicalFiltersMeta": null,
+                        "LexicalMeta": null,
+                        "LexicalMetrics": null,
+                        "FromSmartProvider": false
+                    },
+                    "target": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get()"
+                }
+            ]
+        },
+        {
+            "source": {
+                "text": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get",
+                "selection": {
+                    "begin": 69,
+                    "end": 69
+                }
+            },
+            "provider": {
+                "type": 5,
+                "Provider": {
+                    "type": 5,
+                    "user_default_references": false
+                }
+            },
+            "completions": [
+                {
+                    "meta": {
+                        "snippet": {
+                            "placeholders": null,
+                            "text": "get"
+                        },
+                        "replace": {
+                            "begin": 66,
+                            "end": 69
+                        },
+                        "render_meta": {},
+                        "source": "traditional",
+                        "score": 1,
+                        "normalized_score": 0,
+                        "arg_spec_meta": null,
+                        "call_pattern_meta": null,
+                        "call_model_meta": null,
+                        "attr_model_meta": null,
+                        "name_model_meta": null,
+                        "expr_model_meta": null,
+                        "keyword_model_meta": false,
+                        "traditional_meta": {
+                            "Situation": "Attribute"
+                        },
+                        "dict_meta": null,
+                        "empty_call_meta": null,
+                        "mixing_meta": {
+                            "DistanceFromRoot": 0,
+                            "provider": {
+                                "type": 5,
+                                "Provider": {
+                                    "type": 5,
+                                    "user_default_references": false
+                                }
+                            },
+                            "hide_completion": false,
+                            "do_not_compose": false
+                        },
+                        "ggnn_meta": null,
+                        "LexicalFiltersMeta": null,
+                        "LexicalMeta": null,
+                        "LexicalMetrics": null,
+                        "FromSmartProvider": false
+                    },
+                    "target": "import requests\n\nmy_url = \"www.google.za\"\nthe_data = {}\n\nrequests.get"
+                }
+            ]
+        }
+    ]
+}

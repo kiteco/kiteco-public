@@ -1,0 +1,108 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.title_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.title h4 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.filename {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.filepath {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.file_line {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.graphic {
+    width: 4rem;
+    height: 4rem;
+    mask-image: url(../../assets/icon-related-code.svg);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: var(--text-color-richer);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.subtitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.subtitle_label {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.subtitle_tooltip {
+    display: inline-block;
+    color: var(--link-color);
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: 1px solid var(--link-color);
+    height: 1.2rem;
+    width: 1.2rem;
+    border-radius: 1.2rem;
+    text-align: center;
+    line-height: 1.2rem;
+    margin-left: 0.6rem;
+}
+
+.subtitle_tooltip:hover {
+    cursor: pointer;
+}
+
+.icon_git {
+    width: 1.6rem;
+    height: 1.6rem;
+    mask-image: url(../../assets/icon-git.svg);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: var(--text-color-richer);
+    padding-right: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon_github {
+    width: 1.6rem;
+    height: 1.6rem;
+    mask-image: url(../../assets/icon-github.svg);
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: var(--text-color-richer);
+    padding-right: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.project_tag {
+    font-size: 1.2rem;
+}

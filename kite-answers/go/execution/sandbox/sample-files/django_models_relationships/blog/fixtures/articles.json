@@ -1,0 +1,45 @@
+[
+{
+    "model": "blog.article",
+    "pk": 0,
+    "fields": {
+        "title": "Article 0"
+    }
+},
+{
+    "model": "blog.article",
+    "pk": 1,
+    "fields": {
+        "title": "Article 1"
+    }
+},
+{
+    "model": "blog.article",
+    "pk": 2,
+    "fields": {
+        "title": "Article 2"
+    }
+},
+{
+    "model": "blog.author",
+    "pk": 0,
+    "fields": {
+        "name": "Author 0",
+        "articles": [
+            0,
+            1
+        ]
+    }
+},
+{
+    "model": "blog.author",
+    "pk": 1,
+    "fields": {
+        "name": "Author 1",
+        "articles": [
+            1,
+            2
+        ]
+    }
+}
+]

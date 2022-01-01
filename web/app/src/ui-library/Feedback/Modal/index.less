@@ -1,0 +1,70 @@
+@import "../../../assets/styles/less/variables.less";
+
+.ant-modal-mask {
+  background: rgba(12, 25, 53, 0.8);
+}
+
+.ant-modal-header {
+  padding: 30px 25px 0;
+  border-bottom: none;
+}
+
+.ant-modal-title {
+  font-size: 30px;
+  line-height: 35px;
+  text-align: center;
+  color: @blue-zodiac;
+  font-weight: 300;
+}
+
+.ant-modal-close {
+  position: absolute;
+  right: 0;
+  top: -35px;
+
+  &-x {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: -15px;
+
+    svg {
+      fill: @white;
+      position: relative;
+      left: 0;
+    }
+  }
+}
+
+.ant-modal-content {
+  padding: 0 56px;
+}
+
+.ant-modal-body {
+  padding: 25px 0 20px;
+}
+
+.ant-modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: none;
+  padding: 0 0 25px;
+
+  button + button {
+    margin-left: 0;
+  }
+
+  .ant-btn:not(.ant-btn-primary) {
+    order: 2;
+    margin-top: 25px;
+    padding: 0;
+    border: none;
+    font-size: 18px;
+    line-height: 32px;
+    color: @primary-color;
+  }
+
+  .ant-btn-primary {
+    order: 1;
+  }
+}

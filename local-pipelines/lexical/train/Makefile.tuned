@@ -1,0 +1,112 @@
+LANG := text__python-go-javascript-jsx-vue-css-html-less-typescript-tsx-java-scala-kotlin-c-cpp-objectivec-csharp-php-ruby-bash
+ifeq ($(LANG),text__python-go-javascript-jsx-vue-css-html-less-typescript-tsx-java-scala-kotlin-c-cpp-objectivec-csharp-php-ruby-bash)
+	ORIG_MODEL := all-langs-large
+endif
+ifeq ($(LANG),go)
+	ORIG_MODEL := go-large
+endif
+ifeq ($(LANG),python)
+	ORIG_MODEL := py-large
+endif
+ifeq ($(LANG),javascript)
+	ORIG_MODEL := js-large
+endif
+
+VOCAB_ITER := 400
+MODEL_NAME := lang-$(LANG)-vocab-$(VOCAB_ITER)
+REPO_NAME :=
+
+MODELS_ROOT := /models
+TUNED_MODELS_ROOT := /tuned-models
+REPOSITORY_ROOT := /repositories
+WORKSPACE_ROOT := /workspace
+TFSERVING_ROOT := $(MODELS_ROOT)/$(ORIG_MODEL)/tfserving
+TIMESTAMP := $(shell date "+%Y%m%d-%H%M%S")
+OUTPUT_ROOT := $(TUNED_MODELS_ROOT)/tuned-$(REPO_NAME)-$(TIMESTAMP)/tfserving/1
+
+BATCH := 5
+TRAIN_DIR := train
+VALIDATE_DIR := validate
+SAVED_MODEL_PATH := saved_model
+FROZEN_MODEL_PATH := lexical_model.frozen.pb
+CONFIG_FILE := config.json
+SEARCH_CONFIG_FILE := searchconfig.json
+VOCAB_FILE := ident-vocab-entries.bpe
+
+TUNED_ROOT := $(WORKSPACE_ROOT)/tuned-$(MODEL_NAME)
+TUNED_OUT := $(TUNED_ROOT)/out
+TUNED_TMP := $(TUNED_ROOT)/tmp
+TUNED_DATA := $(TUNED_ROOT)/data
+TUNED_VOCAB_SAVED_MODEL := $(TUNED_OUT)/vocab_$(SAVED_MODEL_PATH)
+TUNED_SAVED_MODEL := $(TUNED_OUT)/saved_model
+TUNED_TFSERVING_MODEL := $(TUNED_OUT)/tfserving/1
+TUNED_TENSORBOARD := $(LOCAL)/tensorboard/$(MODEL_NAME)
+
+BASE_MODEL := $(TUNED_ROOT)/basemodel
+TUNED_STEPS := 2000
+
+DIRS_TO_CREATE := $(TUNED_ROOT) $(TUNED_OUT) $(TUNED_TMP) $(TUNED_DATA) $(BASE_MODEL) $(TUNED_SAVED_MODEL) $(TUNED_PREPPED_MODEL) $(TUNED_TENSORBOARD) $(TUNED_MODELS_ROOT)
+
+clean:
+	rm -rf $(TUNED_ROOT)
+
+clean-workspace:
+	rm -rf $(WORKSPACE_ROOT)/*
+
+initialize:
+	$(shell mkdir -p $(DIRS_TO_CREATE))
+	cp -r $(MODELS_ROOT)/$(ORIG_MODEL)/* $(BASE_MODEL)/
+
+update_vocab:
+	cp $(BASE_MODEL)/$(SEARCH_CONFIG_FILE) $(TUNED_OUT)/$(SEARCH_CONFIG_FILE)
+
+	localtrain \
+		--maxtrainiters=$(TUNED_STEPS) \
+		--vocabiters=$(VOCAB_ITER) \
+		--localdataroot=$(REPOSITORY_ROOT)/$(REPO_NAME) \
+		--language=$(LANG) \
+		--globalmodel=$(BASE_MODEL) \
+		--outvocabidents=$(TUNED_OUT)/$(VOCAB_FILE) \
+		--outvocabembeddings=$(TUNED_OUT)/wte-updated.json \
+		--outvalidatesamples=$(TUNED_DATA)/$(VALIDATE_DIR) \
+		--outtrainsamples=$(TUNED_DATA)/$(TRAIN_DIR)
+
+	python update_vocab_embedding.py \
+		--in_saved_model=$(BASE_MODEL)/$(SAVED_MODEL_PATH) \
+		--original_config=$(BASE_MODEL)/$(CONFIG_FILE) \
+		--extra_vocab_size=$(VOCAB_ITER) \
+		--new_embedding=$(TUNED_OUT)/wte-updated.json \
+		--out_saved_model=$(TUNED_VOCAB_SAVED_MODEL) \
+		--out_config=$(TUNED_OUT)/$(CONFIG_FILE)
+
+train:
+	python train.py \
+		--steps=$(TUNED_STEPS) \
+		--config=$(TUNED_OUT)/$(CONFIG_FILE) \
+		--train_samples=$(TUNED_DATA)/$(TRAIN_DIR) \
+		--validate_samples=$(TUNED_DATA)/$(VALIDATE_DIR) \
+		--checkpoint_path=$(TUNED_TMP)/$(CKPT_PATH) \
+		--tensorboard=$(TUNED_TENSORBOARD) \
+		--train_batch_size=$(BATCH) \
+		--validate_batch_size=$(BATCH) \
+		--load_model=$(TUNED_VOCAB_SAVED_MODEL) \
+		--out_dir=$(TUNED_SAVED_MODEL)
+
+	python tfserve_model.py \
+		--in_saved_model=$(TUNED_SAVED_MODEL) \
+		--config=$(TUNED_OUT)/$(CONFIG_FILE) \
+		--search_config=$(TUNED_OUT)/$(SEARCH_CONFIG_FILE) \
+		--out_saved_model=$(TUNED_TFSERVING_MODEL)
+
+	python tfserve_warmup_assets.py \
+		--model=$(ORIG_MODEL) \
+		--config=$(TUNED_OUT)/$(CONFIG_FILE) \
+		--out_assets_extra=$(TUNED_TFSERVING_MODEL)
+
+	cp $(TUNED_OUT)/$(SEARCH_CONFIG_FILE) $(TUNED_TFSERVING_MODEL)/assets.extra/
+	cp $(TUNED_OUT)/$(CONFIG_FILE) $(TUNED_TFSERVING_MODEL)/assets.extra/
+	cp $(TUNED_OUT)/$(VOCAB_FILE) $(TUNED_TFSERVING_MODEL)/assets.extra/
+
+	mkdir -p $(OUTPUT_ROOT)
+	cp -r $(TUNED_TFSERVING_MODEL)/* $(OUTPUT_ROOT)
+	rm -rf $(TUNED_ROOT)

@@ -1,0 +1,19 @@
+body {
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: Helvetica Neue;
+  margin-bottom: 15%;
+}
+
+pre {
+  padding: 1em;
+  margin-bottom: 2em;
+}
+
+pre.lang-bad {
+  background-color: #ffecec;
+}
+
+pre.lang-good {
+  background-color: #eaffea;    
+}

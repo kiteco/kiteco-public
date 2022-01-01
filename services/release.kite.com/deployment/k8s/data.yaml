@@ -1,0 +1,12 @@
+#@data/values
+---
+tag:
+namespace:
+hostname:
+name: release-kite-com
+env:
+project:
+port:
+ingressHostnames: []
+certificateDomains: []
+

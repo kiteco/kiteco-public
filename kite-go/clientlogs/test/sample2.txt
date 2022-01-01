@@ -1,0 +1,640 @@
+[kited] 2020/10/02 19:00:31.696488 handlers.go:63: POST /clientapi/editor/event 200 0 0s
+[kited] 2020/10/02 19:00:32.016633 handlers.go:63: POST /clientapi/editor/event 200 0 997.5Âµs
+[kited] 2020/10/02 19:00:32.415707 handlers.go:63: POST /clientapi/editor/event 200 0 0s
+fatal error: concurrent map writes
+fatal error: concurrent map writes
+
+goroutine 70 [running]:
+runtime.throw(0x14445005, 0x15)
+	c:/go/src/runtime/panic.go:1116 +0x79 fp=0xc00dbdf8a0 sp=0xc00dbdf870 pc=0x439c29
+runtime.mapassign_faststr(0x141f8c80, 0xc000c83ec0, 0xc010134540, 0x6, 0xc000306420)
+	c:/go/src/runtime/map_faststr.go:291 +0x3e5 fp=0xc00dbdf908 sp=0xc00dbdf8a0 pc=0x415c35
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/completions.(*Manager).ProcessedEvent(0xc000c81500, 0xc00e4c5ef0, 0xc000a355f0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/completions/manager.go:158 +0x81 fp=0xc00dbdf9b8 sp=0xc00dbdf908 pc=0x10883c1
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal.(*Manager).ProcessedEvent(0xc000704600, 0xc00e4c5ef0, 0xc000a355f0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/manager.go:330 +0x4d fp=0xc00dbdf9e0 sp=0xc00dbdf9b8 pc=0x10f0aed
+github.com/kiteco/kiteco/kite-go/client/component.(*Manager).ProcessedEvent.func1.1(0xc000338180, 0x143aba40, 0xc000704600, 0x40662580, 0xc000704600, 0xc00e4c5ef0, 0xc000a355f0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/component/component.go:201 +0xde fp=0xc00dbdfa50 sp=0xc00dbdf9e0 pc=0xa2d8fe
+github.com/kiteco/kiteco/kite-go/client/component.(*Manager).ProcessedEvent.func1(0x14170b60, 0xc00030b3a0, 0x143aba40, 0xc000704600, 0xc000226801)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/component/component.go:202 +0xb6 fp=0xc00dbdfab0 sp=0xc00dbdfa50 pc=0xa2da16
+sync.(*Map).Range(0xc000338180, 0xc00dbdfb98)
+	c:/go/src/sync/map.go:333 +0x1cc fp=0xc00dbdfb88 sp=0xc00dbdfab0 pc=0x473fec
+github.com/kiteco/kiteco/kite-go/client/component.(*Manager).ProcessedEvent(0xc000338180, 0xc00e4c5ef0, 0xc000a355f0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/component/component.go:197 +0x70 fp=0xc00dbdfbc8 sp=0xc00dbdfb88 pc=0xa2bd40
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal.(*Manager).processEvent(0xc000704600, 0xc000a355f0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/editor.go:74 +0x209 fp=0xc00dbdfee0 sp=0xc00dbdfbc8 pc=0x10e8169
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal.(*Manager).handleEditorEvent.func1(0xc00dbdff70, 0xc00dbdff48)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/editor.go:45 +0x3a fp=0xc00dbdff00 sp=0xc00dbdfee0 pc=0x10f170a
+github.com/kiteco/kiteco/kite-golib/workerpool.(*Pool).worker(0xc000226cd0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/workerpool/pool.go:114 +0x10f fp=0xc00dbdffd0 sp=0xc00dbdff00 pc=0xa7f41f
+runtime.goexit()
+	c:/go/src/runtime/asm_amd64.s:1373 +0x1 fp=0xc00dbdffd8 sp=0xc00dbdffd0 pc=0x46aea1
+created by github.com/kiteco/kiteco/kite-golib/workerpool.NewWithCtx
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/workerpool/pool.go:38 +0x119
+
+goroutine 1 [select]:
+github.com/kiteco/kiteco/kite-go/client/internal/client.(*Client).processHTTP(0xc0002f9110, 0x146d2520, 0xc0032ba440, 0x14448c69, 0x17, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/client/http.go:136 +0x851
+github.com/kiteco/kiteco/kite-go/client/internal/client.(*Client).Connect(0xc0002f9110, 0x14448c69, 0x17, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/client/client.go:317 +0x1a2
+main.main()
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/cmds/kited/main.go:56 +0x19c
+
+goroutine 5 [chan receive, 80 minutes]:
+github.com/kiteco/kiteco/vendor/github.com/rollbar/rollbar-go.NewAsyncTransport.func1(0xc0000434a0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/rollbar/rollbar-go/async_transport.go:51 +0x69
+created by github.com/kiteco/kiteco/vendor/github.com/rollbar/rollbar-go.NewAsyncTransport
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/rollbar/rollbar-go/async_transport.go:50 +0xe7
+
+goroutine 34 [select]:
+github.com/kiteco/kiteco/kite-golib/telemetry.(*httpClientAPI).eventLoop(0xc000392200)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/telemetry/http.go:38 +0x106
+created by github.com/kiteco/kiteco/kite-golib/telemetry.(*httpClientAPI).init
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/telemetry/http.go:31 +0xba
+
+goroutine 54 [chan receive]:
+github.com/kiteco/kiteco/kite-go/client/visibility.(*checker).loop(0xc0002c1b30)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/visibility/checker.go:80 +0x7f
+created by github.com/kiteco/kiteco/kite-go/client/visibility.newChecker
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/visibility/checker.go:59 +0xb2
+
+goroutine 21 [select]:
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/indexing.(*manager).changeOrRequest(0xc0001fc160, 0x146d2520, 0xc003382040, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/indexing/manager.go:235 +0x18b
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/indexing.(*manager).indexingLoop(0xc0001fc160, 0x146d2520, 0xc003382040)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/indexing/manager.go:222 +0x46
+created by github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/indexing.newManager
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/indexing/manager.go:102 +0x178
+
+goroutine 10 [select]:
+github.com/kiteco/kiteco/kite-go/client/internal/performance.loopLoadAvg(0xc000612060)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/performance/loadavg_windows.go:52 +0xf3
+created by github.com/kiteco/kiteco/kite-go/client/internal/performance.init.0
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/performance/loadavg_windows.go:39 +0x1d3
+
+goroutine 11 [chan receive]:
+github.com/kiteco/kiteco/kite-go/client/sysidle.(*checker).loop(0xc00061dd40)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/sysidle/checker.go:51 +0x7e
+created by github.com/kiteco/kiteco/kite-go/client/sysidle.newChecker
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/sysidle/checker.go:30 +0xa7
+
+goroutine 12 [syscall, 80 minutes]:
+os/signal.signal_recv(0x0)
+	c:/go/src/runtime/sigqueue.go:147 +0xa3
+os/signal.loop()
+	c:/go/src/os/signal/signal_unix.go:23 +0x29
+created by os/signal.Notify.func1
+	c:/go/src/os/signal/signal.go:127 +0x4b
+
+goroutine 13 [select, 80 minutes]:
+github.com/kiteco/kiteco/kite-go/client/internal/clientapp.StartPort.func2(0x146d2560, 0xc0001160c8, 0xc000391920)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/clientapp/app.go:201 +0x11c
+created by github.com/kiteco/kiteco/kite-go/client/internal/clientapp.StartPort
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/clientapp/app.go:199 +0xfb3
+
+goroutine 14 [select]:
+github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics.(*cpuMetrics).loop(0xc0004f83c0, 0x146d2520, 0xc000147400)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics/cpumetrics.go:147 +0x197
+created by github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics.newCPUMetrics
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics/cpumetrics.go:38 +0xc2
+
+goroutine 15 [select]:
+net/http.(*persistConn).roundTrip(0xc00dbe1200, 0xc0116eef00, 0x0, 0x0, 0x0)
+	c:/go/src/net/http/transport.go:2498 +0x75d
+net/http.(*Transport).roundTrip(0xc000113180, 0xc0030e0500, 0xc00c0a4410, 0x8, 0x40f34f)
+	c:/go/src/net/http/transport.go:565 +0xae0
+net/http.(*Transport).RoundTrip(0xc000113180, 0xc0030e0500, 0xc000113180, 0x0, 0x0)
+	c:/go/src/net/http/roundtrip.go:17 +0x3c
+net/http.send(0xc0030e0500, 0x146a7800, 0xc000113180, 0x0, 0x0, 0x0, 0xc01057ebb0, 0x203000c, 0x1, 0x0)
+	c:/go/src/net/http/client.go:252 +0x445
+net/http.(*Client).send(0x1526a360, 0xc0030e0500, 0x0, 0x0, 0x0, 0xc01057ebb0, 0x0, 0x1, 0xc0030e0500)
+	c:/go/src/net/http/client.go:176 +0x101
+net/http.(*Client).do(0x1526a360, 0xc0030e0500, 0x0, 0x0, 0x0)
+	c:/go/src/net/http/client.go:699 +0x451
+net/http.(*Client).Do(...)
+	c:/go/src/net/http/client.go:567
+net/http.(*Client).Get(0x1526a360, 0xc00fa2ccc0, 0x28, 0xc0102d1e80, 0x0, 0x0)
+	c:/go/src/net/http/client.go:456 +0xc2
+net/http.Get(...)
+	c:/go/src/net/http/client.go:428
+github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics.(*Manager).editorStatuses(0xc000435200, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics/manager.go:770 +0xa9
+github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics.(*Manager).statusAt(0xc000435200, 0xbfd5e8bd5ec15250, 0x45dbd5c7fdd, 0x1526d6a0, 0xc00af08d01, 0xc000704988)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics/manager.go:575 +0xb42
+github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics.(*Manager).sendStatusMetrics(0xc000435200)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics/manager.go:818 +0xba
+github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics.(*Manager).startStatusTracking.func1(0x146d2520, 0xc000147380, 0xc000435200)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics/manager.go:851 +0x8e
+created by github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics.(*Manager).startStatusTracking
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/metrics/livemetrics/manager.go:837 +0x5a
+
+goroutine 20 [select]:
+github.com/kiteco/kiteco/kite-golib/workerpool.(*Pool).worker(0xc003384050, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/workerpool/pool.go:112 +0xf7
+created by github.com/kiteco/kiteco/kite-golib/workerpool.NewWithCtx
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/workerpool/pool.go:38 +0x119
+
+goroutine 66 [select]:
+github.com/kiteco/kiteco/kite-go/client/internal/ws.(*Manager).broadcaster(0xc000338690, 0x146d2520, 0xc000147540, 0xc000612de0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/ws/manager.go:155 +0x2aa
+created by github.com/kiteco/kiteco/kite-go/client/internal/ws.NewManager
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/ws/manager.go:35 +0x137
+
+goroutine 67 [select]:
+github.com/kiteco/kiteco/kite-go/client/internal/ws.(*Manager).broadcaster(0xc0003386f0, 0x146d2520, 0xc000147580, 0xc000612f00)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/ws/manager.go:155 +0x2aa
+created by github.com/kiteco/kiteco/kite-go/client/internal/ws.NewManager
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/ws/manager.go:35 +0x137
+
+goroutine 68 [select, 9 minutes]:
+github.com/kiteco/kiteco/kite-golib/telemetry.(*httpClientAPI).eventLoop(0xc00033c900)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/telemetry/http.go:38 +0x106
+created by github.com/kiteco/kiteco/kite-golib/telemetry.(*httpClientAPI).init
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/telemetry/http.go:31 +0xba
+
+goroutine 69 [select]:
+github.com/kiteco/kiteco/kite-go/client/internal/network.(*Manager).checkLoop(0xc000147340, 0x146d2520, 0xc000147640)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/network/network.go:108 +0x13b
+created by github.com/kiteco/kiteco/kite-go/client/internal/network.(*Manager).Initialize
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/network/network.go:53 +0x94
+
+goroutine 71 [running]:
+	goroutine running on other thread; stack unavailable
+created by github.com/kiteco/kiteco/kite-golib/workerpool.NewWithCtx
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/workerpool/pool.go:38 +0x119
+
+goroutine 72 [select]:
+github.com/kiteco/kiteco/kite-go/lang/python/pythonresource.(*manager).unloader(0xc000147f00, 0x146d2520, 0xc000147300)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythonresource/manager.go:295 +0x122
+created by github.com/kiteco/kiteco/kite-go/lang/python/pythonresource.NewManagerWithCtx
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythonresource/manager.go:168 +0x187
+
+goroutine 77 [select, 5 minutes]:
+github.com/kiteco/kiteco/kite-go/lang/lexical/lexicalcomplete/api.New.func1(0xd18c2e2800, 0x146d2520, 0xc0032d8640, 0xc000bb6230, 0xc0000a22d0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/lexical/lexicalcomplete/api/api.go:58 +0x14b
+created by github.com/kiteco/kiteco/kite-go/lang/lexical/lexicalcomplete/api.New
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/lexical/lexicalcomplete/api/api.go:53 +0x1c1
+
+goroutine 76 [select, 5 minutes]:
+github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/api.New.func1(0xd18c2e2800, 0x146d2520, 0xc0032d8640, 0xc00010ff40, 0x146f8fe0, 0xc000147f00, 0xc0032f7440, 0xc0000a22d0, 0x146a2ee0, 0xc003380040, ...)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/api/api.go:87 +0x16c
+created by github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/api.New
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/api/api.go:82 +0x257
+
+goroutine 75 [select]:
+github.com/kiteco/kiteco/kite-go/lang/python/pythonexpr.(*ShardedModel).modelTimeout(0xc000391f80, 0x146d2520, 0xc000147300)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythonexpr/sharded_model.go:238 +0x11a
+created by github.com/kiteco/kiteco/kite-go/lang/python/pythonexpr.NewShardedModel
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythonexpr/sharded_model.go:148 +0x241
+
+goroutine 58 [syscall, 80 minutes]:
+github.com/kiteco/kiteco/kite-golib/systray._Cfunc_nativeLoop(0x0)
+	_cgo_gotypes.go:168 +0x50
+github.com/kiteco/kiteco/kite-golib/systray.Run(0xc000510080)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/systray/systray.go:140 +0x4b
+created by github.com/kiteco/kiteco/kite-go/client/internal/statusicon.(*UI).start
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/statusicon/statusicon.go:83 +0x84
+
+goroutine 79 [chan receive, 80 minutes]:
+github.com/kiteco/kiteco/kite-golib/readdirchanges.(*Monitor).watchCancellation(0xc0001c1900, 0x146d2520, 0xc0032d8700, 0x0, 0x2030002)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/readdirchanges/readdirchanges_windows.go:107 +0x53
+created by github.com/kiteco/kiteco/kite-golib/readdirchanges.New
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/readdirchanges/readdirchanges_windows.go:99 +0x1bc
+
+goroutine 80 [chan receive, 80 minutes]:
+github.com/kiteco/kiteco/kite-go/client/internal/watch.printErrors(0xc0003905a0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/watch/watcher_windows.go:33 +0x79
+created by github.com/kiteco/kiteco/kite-go/client/internal/watch.watchPath
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/watch/watcher_windows.go:56 +0x1c7
+
+goroutine 81 [syscall, locked to thread]:
+syscall.Syscall6(0x7ff90ae465d0, 0x5, 0x55c, 0xc003389f40, 0xc003389f44, 0xc003389f58, 0xffffffff, 0x0, 0x0, 0x0, ...)
+	c:/go/src/runtime/syscall_windows.go:201 +0xf2
+syscall.GetQueuedCompletionStatus(0x55c, 0xc003389f40, 0xc003389f44, 0xc003389f58, 0xffffffff, 0xc000644f60, 0x0)
+	c:/go/src/syscall/zsyscall_windows.go:556 +0xb6
+github.com/kiteco/kiteco/kite-golib/readdirchanges.(*Monitor).loop(0xc0001c1900)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/readdirchanges/readdirchanges_windows.go:191 +0x2b2
+created by github.com/kiteco/kiteco/kite-golib/readdirchanges.(*Monitor).Start
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/readdirchanges/readdirchanges_windows.go:169 +0x3cb
+
+goroutine 82 [chan receive]:
+github.com/kiteco/kiteco/kite-go/client/internal/watch.watchPath.func1(0xc0001c1900, 0xc0003904e0, 0x14490488, 0x1dcd6500)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/watch/watcher_windows.go:64 +0x65
+created by github.com/kiteco/kiteco/kite-go/client/internal/watch.watchPath
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/watch/watcher_windows.go:63 +0x252
+
+goroutine 83 [select]:
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/filesystem.(*watcher).watchRootDir(0xc001288000, 0xc0003904e0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/filesystem/manager.go:269 +0x284
+created by github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/filesystem.(*watcher).initialize
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/filesystem/manager.go:258 +0x131
+
+goroutine 84 [select]:
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/filesystem.(*LocalFS).watchCaches(0xc003382000)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/filesystem/manager.go:739 +0x16d
+created by github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/filesystem.(*LocalFS).initialize
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/filesystem/manager.go:517 +0x62
+
+goroutine 59 [IO wait]:
+internal/poll.runtime_pollWait(0x40cde940, 0x72, 0x146a97a0)
+	c:/go/src/runtime/netpoll.go:203 +0x5c
+internal/poll.(*pollDesc).wait(0xc0003a8bc8, 0x72, 0x1423d00, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_poll_runtime.go:87 +0x4c
+internal/poll.(*ioSrv).ExecIO(0x152635f0, 0xc0003a8a18, 0xc00e5081a0, 0x1, 0x0, 0xf08)
+	c:/go/src/internal/poll/fd_windows.go:228 +0x121
+internal/poll.(*FD).acceptOne(0xc0003a8a00, 0xf08, 0xc00c8a94a0, 0x2, 0x2, 0xc0003a8a18, 0x98000004, 0xc000739dcc, 0xc, 0x0)
+	c:/go/src/internal/poll/fd_windows.go:896 +0xa9
+internal/poll.(*FD).Accept(0xc0003a8a00, 0xc000739dd0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	c:/go/src/internal/poll/fd_windows.go:930 +0x15f
+net.(*netFD).accept(0xc0003a8a00, 0xf6d153f3249b2155, 0x0, 0xf6d153f3249b2155)
+	c:/go/src/net/fd_windows.go:193 +0x7b
+net.(*TCPListener).accept(0xc000110a80, 0xc0107da320, 0xc000101bc8, 0x4d6c0d)
+	c:/go/src/net/tcpsock_posix.go:139 +0x39
+net.(*TCPListener).Accept(0xc000110a80, 0xc000739eb8, 0x18, 0xc000604f00, 0x73a753)
+	c:/go/src/net/tcpsock.go:261 +0x6b
+net/http.(*Server).Serve(0xc0004da1c0, 0x146ca760, 0xc000110a80, 0x0, 0x0)
+	c:/go/src/net/http/server.go:2901 +0x264
+created by github.com/kiteco/kiteco/kite-go/client/internal/clientapp.StartPort
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/clientapp/app.go:320 +0x1eef
+
+goroutine 60 [select, 20 minutes]:
+github.com/kiteco/kiteco/kite-go/client/internal/plugins_new.(*Manager).BackgroundTask(0xc000174370, 0x146d2560, 0xc0001160c8, 0x1a3185c5000, 0x1)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/plugins_helpers.go:89 +0x19e
+created by github.com/kiteco/kiteco/kite-go/client/internal/clientapp.StartPort
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/clientapp/app.go:323 +0x1f74
+
+goroutine 61 [chan receive, 80 minutes]:
+github.com/kiteco/kiteco/kite-golib/kitectx.Context.waitExpiry(0x146d2520, 0xc0032ba480, 0xc00008e488, 0x15268e80)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/context.go:41 +0x75
+created by github.com/kiteco/kiteco/kite-golib/kitectx.Context.withContext
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/context.go:51 +0x7d
+
+goroutine 62 [IO wait, 20 minutes]:
+internal/poll.runtime_pollWait(0x40cde860, 0x72, 0x146a97a0)
+	c:/go/src/runtime/netpoll.go:203 +0x5c
+internal/poll.(*pollDesc).wait(0xc00a6f81c8, 0x72, 0x1423d00, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_poll_runtime.go:87 +0x4c
+internal/poll.(*ioSrv).ExecIO(0x152635f0, 0xc00a6f8018, 0x14494640, 0x1000000004759ce, 0x1, 0x9)
+	c:/go/src/internal/poll/fd_windows.go:228 +0x121
+internal/poll.(*FD).Read(0xc00a6f8000, 0xc0134ef000, 0xf6c, 0xf6c, 0x0, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_windows.go:527 +0x2fc
+net.(*netFD).Read(0xc00a6f8000, 0xc0134ef000, 0xf6c, 0xf6c, 0x146685cd, 0x0, 0x4)
+	c:/go/src/net/fd_windows.go:152 +0x56
+net.(*conn).Read(0xc02a34c3b0, 0xc0134ef000, 0xf6c, 0xf6c, 0x0, 0x0, 0x0)
+	c:/go/src/net/net.go:184 +0x95
+crypto/tls.(*atLeastReader).Read(0xc020029140, 0xc0134ef000, 0xf6c, 0xf6c, 0xc00055ba20, 0x0, 0xc0006e3478)
+	c:/go/src/crypto/tls/conn.go:760 +0x67
+bytes.(*Buffer).ReadFrom(0xc01e220cd8, 0x146a2aa0, 0xc020029140, 0x40c7ac, 0x1422a8e0, 0x143ccf20)
+	c:/go/src/bytes/buffer.go:204 +0xb8
+crypto/tls.(*Conn).readFromUntil(0xc01e220a80, 0x40a9a038, 0xc02a34c3b0, 0x5, 0xc02a34c3b0, 0x18)
+	c:/go/src/crypto/tls/conn.go:782 +0xf3
+crypto/tls.(*Conn).readRecordOrCCS(0xc01e220a80, 0x0, 0x0, 0xc012064120)
+	c:/go/src/crypto/tls/conn.go:589 +0x11c
+crypto/tls.(*Conn).readRecord(...)
+	c:/go/src/crypto/tls/conn.go:557
+crypto/tls.(*Conn).Read(0xc01e220a80, 0xc0006b9000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	c:/go/src/crypto/tls/conn.go:1233 +0x162
+net/http.(*readWriteCloserBody).Read(0xc020462300, 0xc0006b9000, 0x1000, 0x1000, 0x20000146685cc, 0x0, 0x1)
+	c:/go/src/net/http/transport.go:2266 +0x103
+bufio.(*Reader).fill(0xc00018af60)
+	c:/go/src/bufio/bufio.go:100 +0x10a
+bufio.(*Reader).ReadByte(0xc00018af60, 0xc000391188, 0xc0006e38c8, 0xc000605500)
+	c:/go/src/bufio/bufio.go:252 +0x40
+github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket.readFrameHeader(0xc00018af60, 0xc015760060, 0x8, 0x8, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket/frame.go:54 +0xcb
+github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket.(*Conn).readFrameHeader(0xc015760000, 0x146d2520, 0xc0032ba480, 0x0, 0x0, 0x0, 0x0, 0x0, 0xc00f187260)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket/read.go:188 +0x147
+github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket.(*Conn).readLoop(0xc015760000, 0x146d2520, 0xc0032ba480, 0x0, 0x0, 0x0, 0x0, 0x146d25a0, 0xc014f401e0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket/read.go:146 +0x77
+github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket.(*Conn).reader(0xc015760000, 0x146d2520, 0xc0032ba480, 0x0, 0x0, 0x0, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket/read.go:312 +0x17d
+github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket.(*Conn).Reader(...)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket/read.go:30
+github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket.(*Conn).Read(0xc015760000, 0x146d2520, 0xc0032ba480, 0x15268e80, 0x37e11d600, 0xc0006e3d68, 0x0, 0x0, 0xb7)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket/read.go:36 +0x4a
+github.com/kiteco/kiteco/kite-golib/remotectrl.(*Listener).listen(0xc002efa2a0, 0x146d2520, 0xc0032ba480, 0xc00008e488, 0x15268e80, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/remotectrl/listener.go:153 +0x41e
+github.com/kiteco/kiteco/kite-golib/remotectrl.Listen.func1(0x146d2520, 0xc0032ba480, 0xc00008e488, 0x15268e80, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/remotectrl/listener.go:56 +0x6f
+github.com/kiteco/kiteco/kite-golib/kitectx.Context.ClosureWithCancel.func1(0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/abort.go:115 +0xfb
+github.com/kiteco/kiteco/kite-golib/kitectx.Go.func1.2(0xc000e996e0, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/async.go:22 +0x70
+github.com/kiteco/kiteco/kite-golib/kitectx.Go.func1(0xc000e996e0, 0xc000e99740)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/async.go:23 +0x58
+created by github.com/kiteco/kiteco/kite-golib/kitectx.Go
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/async.go:13 +0x6e
+
+goroutine 28691 [select, 20 minutes]:
+github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket.(*Conn).timeoutLoop(0xc015760000)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket/conn_notjs.go:153 +0x1d6
+created by github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket.newConn
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/kiteco/websocket/conn_notjs.go:114 +0x3f2
+
+goroutine 43195 [chan receive]:
+github.com/kiteco/kiteco/kite-go/client/internal/client.(*Client).componentGoTick.func1(0x146d2520, 0xc0032ba440, 0xc0002f9110)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/client/http.go:182 +0xd9
+created by github.com/kiteco/kiteco/kite-go/client/internal/client.(*Client).componentGoTick
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/client/http.go:176 +0x5a
+
+goroutine 29311 [select]:
+net/http.(*persistConn).writeLoop(0xc01e46e000)
+	c:/go/src/net/http/transport.go:2277 +0x123
+created by net/http.(*Transport).dialConn
+	c:/go/src/net/http/transport.go:1648 +0xc82
+
+goroutine 29761 [semacquire, 5 minutes]:
+sync.runtime_Semacquire(0xc00491a098)
+	c:/go/src/runtime/sema.go:56 +0x49
+sync.(*WaitGroup).Wait(0xc00491a090)
+	c:/go/src/sync/waitgroup.go:130 +0x6b
+github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver.New.func1(0x146d2520, 0xc0038d00c0, 0xc000cf6980, 0x15268e80, 0xc018ac3b00, 0x44305d)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver/driver.go:78 +0x1ed
+github.com/kiteco/kiteco/kite-golib/kitectx.Context.ClosureWithCancel.func1(0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/abort.go:115 +0xfb
+created by github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver.New
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver/driver.go:83 +0x295
+
+goroutine 43232 [IO wait]:
+internal/poll.runtime_pollWait(0x40cde780, 0x72, 0x146a97a0)
+	c:/go/src/runtime/netpoll.go:203 +0x5c
+internal/poll.(*pollDesc).wait(0xc00f1a46c8, 0x72, 0x1423d00, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_poll_runtime.go:87 +0x4c
+internal/poll.(*ioSrv).ExecIO(0x152635f0, 0xc00f1a4518, 0x14494640, 0x1, 0x28, 0x5)
+	c:/go/src/internal/poll/fd_windows.go:228 +0x121
+internal/poll.(*FD).Read(0xc00f1a4500, 0xc0116ef091, 0x1, 0x1, 0x0, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_windows.go:527 +0x2fc
+net.(*netFD).Read(0xc00f1a4500, 0xc0116ef091, 0x1, 0x1, 0x1, 0x1, 0xc0106f9f68)
+	c:/go/src/net/fd_windows.go:152 +0x56
+net.(*conn).Read(0xc010288530, 0xc0116ef091, 0x1, 0x1, 0x0, 0x0, 0x0)
+	c:/go/src/net/net.go:184 +0x95
+net/http.(*connReader).backgroundRead(0xc0116ef080)
+	c:/go/src/net/http/server.go:678 +0x5f
+created by net/http.(*connReader).startBackgroundRead
+	c:/go/src/net/http/server.go:674 +0xd7
+
+goroutine 29772 [sync.Cond.Wait]:
+runtime.goparkunlock(...)
+	c:/go/src/runtime/proc.go:310
+sync.runtime_notifyListWait(0xc0038d0090, 0xbfd5e8bb000001e5)
+	c:/go/src/runtime/sema.go:513 +0x106
+sync.(*Cond).Wait(0xc0038d0080)
+	c:/go/src/sync/cond.go:56 +0xa4
+github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver.Driver.workLoop.func1(0xc006fe0b40, 0xc006fe0ab0, 0xc0038d0080, 0xc002f4e600, 0x146d2520, 0xc0038d00c0, 0xc000cf6980, 0x15268e80, 0xc00edf5eb8)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver/driver.go:407 +0xe8
+github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver.Driver.workLoop(0xc006fe0b40, 0xc006fe0ab0, 0xc0038d0080, 0xc002f4e600, 0x146d2520, 0xc0038d00c0, 0xc000cf6980, 0x15268e80)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver/driver.go:412 +0xa1
+github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver.New.func1.1(0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver/driver.go:66 +0xa6
+github.com/kiteco/kiteco/kite-golib/kitectx.Go.func1.2(0xc003a18000, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/async.go:22 +0x70
+github.com/kiteco/kiteco/kite-golib/kitectx.Go.func1(0xc003a18000, 0xc024266540)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/async.go:23 +0x58
+created by github.com/kiteco/kiteco/kite-golib/kitectx.Go
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/async.go:13 +0x6e
+
+goroutine 43230 [IO wait]:
+internal/poll.runtime_pollWait(0x40cde4e0, 0x72, 0x146a97a0)
+	c:/go/src/runtime/netpoll.go:203 +0x5c
+internal/poll.(*pollDesc).wait(0xc00e4d5848, 0x72, 0x1423d00, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_poll_runtime.go:87 +0x4c
+internal/poll.(*ioSrv).ExecIO(0x152635f0, 0xc00e4d5698, 0x14494640, 0x0, 0xc00079baa0, 0x100)
+	c:/go/src/internal/poll/fd_windows.go:228 +0x121
+internal/poll.(*FD).Read(0xc00e4d5680, 0xc00db20000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_windows.go:527 +0x2fc
+net.(*netFD).Read(0xc00e4d5680, 0xc00db20000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	c:/go/src/net/fd_windows.go:152 +0x56
+net.(*conn).Read(0xc01057ebc0, 0xc00db20000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	c:/go/src/net/net.go:184 +0x95
+net/http.(*persistConn).Read(0xc00dbe1200, 0xc00db20000, 0x1000, 0x1000, 0x406774, 0x60, 0x0)
+	c:/go/src/net/http/transport.go:1825 +0x7c
+bufio.(*Reader).fill(0xc00da46f00)
+	c:/go/src/bufio/bufio.go:100 +0x10a
+bufio.(*Reader).Peek(0xc00da46f00, 0x1, 0xc000e43860, 0xc0012a0180, 0xc00079bcd0, 0x443bc3, 0xc0012a0180)
+	c:/go/src/bufio/bufio.go:138 +0x56
+net/http.(*persistConn).readLoop(0xc00dbe1200)
+	c:/go/src/net/http/transport.go:1978 +0x1af
+created by net/http.(*Transport).dialConn
+	c:/go/src/net/http/transport.go:1647 +0xc5d
+
+goroutine 43231 [select]:
+net/http.(*persistConn).writeLoop(0xc00dbe1200)
+	c:/go/src/net/http/transport.go:2277 +0x123
+created by net/http.(*Transport).dialConn
+	c:/go/src/net/http/transport.go:1648 +0xc82
+
+goroutine 42277 [syscall, locked to thread]:
+syscall.Syscall6(0x7ff90ae52410, 0x5, 0xcb4, 0xc00c9f8200, 0x200, 0xc0087fbd3c, 0x0, 0x0, 0x0, 0x0, ...)
+	c:/go/src/runtime/syscall_windows.go:201 +0xf2
+syscall.ReadFile(0xcb4, 0xc00c9f8200, 0x200, 0x200, 0xc0087fbd3c, 0x0, 0x7ffff800000, 0x2)
+	c:/go/src/syscall/zsyscall_windows.go:313 +0xd2
+syscall.Read(0xcb4, 0xc00c9f8200, 0x200, 0x200, 0xc0087fbda0, 0x44f333, 0x50fad2)
+	c:/go/src/syscall/syscall_windows.go:364 +0x6f
+internal/poll.(*FD).Read(0xc011d5b180, 0xc00c9f8200, 0x200, 0x200, 0x0, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_windows.go:513 +0x221
+os.(*File).read(...)
+	c:/go/src/os/file_windows.go:220
+os.(*File).Read(0xc00fdb8128, 0xc00c9f8200, 0x200, 0x200, 0xc000ae82a0, 0xc000ae82a0, 0xc0087fbea0)
+	c:/go/src/os/file.go:116 +0x78
+bytes.(*Buffer).ReadFrom(0xc00c1fac90, 0x146a7ba0, 0xc00fdb8128, 0x40cd40d0, 0xc00c1fac90, 0xa7f001)
+	c:/go/src/bytes/buffer.go:204 +0xb8
+io.copyBuffer(0x146a2960, 0xc00c1fac90, 0x146a7ba0, 0xc00fdb8128, 0x0, 0x0, 0x0, 0x0, 0x1, 0x0)
+	c:/go/src/io/io.go:391 +0x303
+io.Copy(...)
+	c:/go/src/io/io.go:364
+os/exec.(*Cmd).writerDescriptor.func1(0x1, 0x1)
+	c:/go/src/os/exec/exec.go:311 +0x6a
+os/exec.(*Cmd).Start.func1(0xc00e10e9a0, 0xc009e4e240)
+	c:/go/src/os/exec/exec.go:441 +0x2e
+created by os/exec.(*Cmd).Start
+	c:/go/src/os/exec/exec.go:440 +0x6b3
+
+goroutine 43330 [select]:
+github.com/kiteco/kiteco/kite-golib/workerpool.(*Pool).addBlocking(0xc000226cd0, 0xc01017a120, 0x1, 0x1)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/workerpool/pool.go:63 +0x110
+github.com/kiteco/kiteco/kite-golib/workerpool.(*Pool).Add.func1(0xc000226cd0, 0xc01017a120, 0x1, 0x1)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/workerpool/pool.go:48 +0x50
+created by github.com/kiteco/kiteco/kite-golib/workerpool.(*Pool).Add
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/workerpool/pool.go:47 +0x82
+
+goroutine 17303 [IO wait]:
+internal/poll.runtime_pollWait(0x40cde5c0, 0x72, 0x146a97a0)
+	c:/go/src/runtime/netpoll.go:203 +0x5c
+internal/poll.(*pollDesc).wait(0xc006c7f348, 0x72, 0x1423d00, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_poll_runtime.go:87 +0x4c
+internal/poll.(*ioSrv).ExecIO(0x152635f0, 0xc006c7f198, 0x14494640, 0x0, 0xc006c7f270, 0xc006c7f2a0)
+	c:/go/src/internal/poll/fd_windows.go:228 +0x121
+internal/poll.(*FD).Read(0xc006c7f180, 0xc000c13000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_windows.go:527 +0x2fc
+net.(*netFD).Read(0xc006c7f180, 0xc000c13000, 0x1000, 0x1000, 0xc006c7f180, 0x0, 0xc006c7f100)
+	c:/go/src/net/fd_windows.go:152 +0x56
+net.(*conn).Read(0xc025f5f378, 0xc000c13000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	c:/go/src/net/net.go:184 +0x95
+net/http.(*connReader).Read(0xc013cfeea0, 0xc000c13000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	c:/go/src/net/http/server.go:786 +0xfb
+bufio.(*Reader).fill(0xc00074ff20)
+	c:/go/src/bufio/bufio.go:100 +0x10a
+bufio.(*Reader).Peek(0xc00074ff20, 0x4, 0x0, 0x0, 0x0, 0x0, 0x43c695)
+	c:/go/src/bufio/bufio.go:138 +0x56
+net/http.(*conn).readRequest(0xc01cdd1860, 0x146d2520, 0xc01bebf240, 0x0, 0x0, 0x0)
+	c:/go/src/net/http/server.go:963 +0xc7d
+net/http.(*conn).serve(0xc01cdd1860, 0x146d2520, 0xc01bebf240)
+	c:/go/src/net/http/server.go:1822 +0x6db
+created by net/http.(*Server).Serve
+	c:/go/src/net/http/server.go:2933 +0x363
+
+goroutine 29773 [select]:
+github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver.Driver.garbageCollector(0xc006fe0b40, 0xc006fe0ab0, 0xc0038d0080, 0xc002f4e600, 0x146d2520, 0xc0038d00c0, 0xc000cf6980, 0x15268e80)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver/driver.go:125 +0x11a
+github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver.New.func1.2(0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/lang/python/pythoncomplete/driver/driver.go:74 +0xa6
+github.com/kiteco/kiteco/kite-golib/kitectx.Go.func1.2(0xc003a18040, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/async.go:22 +0x70
+github.com/kiteco/kiteco/kite-golib/kitectx.Go.func1(0xc003a18040, 0xc0242667e0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/async.go:23 +0x58
+created by github.com/kiteco/kiteco/kite-golib/kitectx.Go
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/async.go:13 +0x6e
+
+goroutine 29310 [IO wait]:
+internal/poll.runtime_pollWait(0x40cde6a0, 0x72, 0x146a97a0)
+	c:/go/src/runtime/netpoll.go:203 +0x5c
+internal/poll.(*pollDesc).wait(0xc01ed315c8, 0x72, 0x1423d00, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_poll_runtime.go:87 +0x4c
+internal/poll.(*ioSrv).ExecIO(0x152635f0, 0xc01ed31418, 0x14494640, 0x4d6c0d, 0x5f772b76, 0x47c2659c470)
+	c:/go/src/internal/poll/fd_windows.go:228 +0x121
+internal/poll.(*FD).Read(0xc01ed31400, 0xc01fd3c000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_windows.go:527 +0x2fc
+net.(*netFD).Read(0xc01ed31400, 0xc01fd3c000, 0x1000, 0x1000, 0xc01fb27200, 0xc00e047da8, 0xc00e047c38)
+	c:/go/src/net/fd_windows.go:152 +0x56
+net.(*conn).Read(0xc0118e8028, 0xc01fd3c000, 0x1000, 0x1000, 0x0, 0x0, 0x0)
+	c:/go/src/net/net.go:184 +0x95
+net/http.(*persistConn).Read(0xc01e46e000, 0xc01fd3c000, 0x1000, 0x1000, 0xc00e047eb0, 0x468600, 0xc00e047eb0)
+	c:/go/src/net/http/transport.go:1825 +0x7c
+bufio.(*Reader).fill(0xc015ed0840)
+	c:/go/src/bufio/bufio.go:100 +0x10a
+bufio.(*Reader).Peek(0xc015ed0840, 0x1, 0x2, 0x0, 0x0, 0xc001f34f00, 0x0)
+	c:/go/src/bufio/bufio.go:138 +0x56
+net/http.(*persistConn).readLoop(0xc01e46e000)
+	c:/go/src/net/http/transport.go:1978 +0x1af
+created by net/http.(*Transport).dialConn
+	c:/go/src/net/http/transport.go:1647 +0xc5d
+
+goroutine 42276 [syscall, locked to thread]:
+syscall.Syscall6(0x7ff90ae52410, 0x5, 0xff0, 0xc00f3c6000, 0x200, 0xc00c8d5d3c, 0x0, 0x0, 0x0, 0x0, ...)
+	c:/go/src/runtime/syscall_windows.go:201 +0xf2
+syscall.ReadFile(0xff0, 0xc00f3c6000, 0x200, 0x200, 0xc00c8d5d3c, 0x0, 0x7ffff800000, 0x2)
+	c:/go/src/syscall/zsyscall_windows.go:313 +0xd2
+syscall.Read(0xff0, 0xc00f3c6000, 0x200, 0x200, 0xc00c8d5da0, 0x44f333, 0x50fad2)
+	c:/go/src/syscall/syscall_windows.go:364 +0x6f
+internal/poll.(*FD).Read(0xc011d5ac80, 0xc00f3c6000, 0x200, 0x200, 0x0, 0x0, 0x0)
+	c:/go/src/internal/poll/fd_windows.go:513 +0x221
+os.(*File).read(...)
+	c:/go/src/os/file_windows.go:220
+os.(*File).Read(0xc00fdb8110, 0xc00f3c6000, 0x200, 0x200, 0x659b8a60, 0xc00c8d5ea0, 0xc00c8d5ea0)
+	c:/go/src/os/file.go:116 +0x78
+bytes.(*Buffer).ReadFrom(0xc00c1fab10, 0x146a7ba0, 0xc00fdb8110, 0x40cd40d0, 0xc00c1fab10, 0x1000000000001)
+	c:/go/src/bytes/buffer.go:204 +0xb8
+io.copyBuffer(0x146a2960, 0xc00c1fab10, 0x146a7ba0, 0xc00fdb8110, 0x0, 0x0, 0x0, 0xc011c1a000, 0xc011c1a000, 0xc00c8d5fb0)
+	c:/go/src/io/io.go:391 +0x303
+io.Copy(...)
+	c:/go/src/io/io.go:364
+os/exec.(*Cmd).writerDescriptor.func1(0x14494e90, 0x0)
+	c:/go/src/os/exec/exec.go:311 +0x6a
+os/exec.(*Cmd).Start.func1(0xc00e10e9a0, 0xc009e4e200)
+	c:/go/src/os/exec/exec.go:441 +0x2e
+created by os/exec.(*Cmd).Start
+	c:/go/src/os/exec/exec.go:440 +0x6b3
+
+goroutine 29760 [chan receive, 5 minutes]:
+github.com/kiteco/kiteco/kite-golib/kitectx.Context.waitExpiry(0x146d2520, 0xc0038d00c0, 0xc000cf6980, 0x15268e80)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/context.go:41 +0x75
+created by github.com/kiteco/kiteco/kite-golib/kitectx.Context.withContext
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/kitectx/context.go:51 +0x7d
+
+goroutine 43162 [syscall, locked to thread]:
+syscall.Syscall(0x7ff90ae52000, 0x2, 0xc08, 0xffffffff, 0x0, 0x0, 0x0, 0x0)
+	c:/go/src/runtime/syscall_windows.go:188 +0xe9
+syscall.WaitForSingleObject(0xc08, 0xc0ffffffff, 0x0, 0x0, 0x5)
+	c:/go/src/syscall/zsyscall_windows.go:738 +0x6b
+os.(*Process).wait(0xc00f9276b0, 0x0, 0x0, 0x0)
+	c:/go/src/os/exec_windows.go:18 +0x87
+os.(*Process).Wait(...)
+	c:/go/src/os/exec.go:125
+os/exec.(*Cmd).Wait(0xc00e10e9a0, 0x0, 0x0)
+	c:/go/src/os/exec/exec.go:507 +0x67
+os/exec.(*Cmd).Run(0xc00e10e9a0, 0xc00c1fac90, 0xc00d24fc40)
+	c:/go/src/os/exec/exec.go:341 +0x63
+github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/process.runProcess(0xc00f927140, 0x2c, 0x0, 0x0, 0x0, 0xc00d24fc40, 0x4, 0x4, 0x40f34f, 0x40, ...)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/process/shared.go:57 +0x137
+github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/process.(*processManager).Run(0x152a2ba8, 0xc00f927140, 0x2c, 0xc00d24fc40, 0x4, 0x4, 0xc001004700, 0x1b2fa0, 0x0, 0xc00fde8c80, ...)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/process/manager_windows.go:133 +0x7e
+github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/internal/spyder.(*windowsSpyder).loadCondaPackages(0xc00030b5b0, 0x146d25e0, 0xc0116ef200, 0xc00fde8cc0, 0x19, 0x10fe745, 0xc0006e70e8, 0x0, 0x0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/internal/spyder/spyder_windows.go:141 +0x1ad
+github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/internal/spyder.(*windowsSpyder).EditorConfig(0xc00030b5b0, 0x146d25e0, 0xc0116ef200, 0xc00fde8cc0, 0x19, 0x0, 0x0, 0x0, 0x0, 0x0, ...)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/internal/spyder/spyder_windows.go:83 +0xa1
+github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/internal/shared.MapEditors(0x146d25e0, 0xc0116ef200, 0xc010aee740, 0x1, 0x1, 0x146ea880, 0xc00030b5b0, 0x0, 0x0, 0xc00097d408)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/internal/shared/shared.go:26 +0x10f
+github.com/kiteco/kiteco/kite-go/client/internal/plugins_new.(*Manager).detectEditors(0xc000174370, 0x146d25e0, 0xc0116ef200, 0x146ea880, 0xc00030b5b0, 0x0, 0x0, 0xc00418c7c0, 0x0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/plugins_helpers.go:36 +0x1b4
+github.com/kiteco/kiteco/kite-go/client/internal/plugins_new.(*Manager).handleStatusAll(0xc000174370, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0d00)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/plugins_new/plugins.go:321 +0x170
+net/http.HandlerFunc.ServeHTTP(0xc000511e90, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0d00)
+	c:/go/src/net/http/server.go:2012 +0x4b
+github.com/kiteco/kiteco/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc000391d40, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0900)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/gorilla/mux/mux.go:133 +0x115
+github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni.Wrap.func1(0x42c3c4d8, 0xc0038c9b80, 0xc0030e0900, 0xc007a35b00)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni/negroni.go:41 +0x54
+github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni.HandlerFunc.ServeHTTP(0xc0001a0d80, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0900, 0xc007a35b00)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni/negroni.go:24 +0x55
+github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni.middleware.ServeHTTP(0x146a88e0, 0xc0001a0d80, 0xc0001a0ec0, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0900)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni/negroni.go:33 +0xa3
+net/http.HandlerFunc.ServeHTTP(...)
+	c:/go/src/net/http/server.go:2012
+github.com/kiteco/kiteco/kite-go/client/internal/clientapp.(*segmentTracker).ServeHTTP(0xc002eee2d0, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0900, 0xc007a35ae0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/clientapp/app.go:419 +0xca
+github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni.middleware.ServeHTTP(0x146a2de0, 0xc002eee2d0, 0xc0001a0ea0, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0900)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni/negroni.go:33 +0xa3
+github.com/kiteco/kiteco/kite-go/web/midware.(*Logger).ServeHTTP(0xc00008e480, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0900, 0xc007a35aa0)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/web/midware/handlers.go:45 +0x98
+github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni.middleware.ServeHTTP(0x146a3220, 0xc00008e480, 0xc0001a0e80, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0900)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni/negroni.go:33 +0xa3
+github.com/kiteco/kiteco/kite-go/web/midware.(*Recovery).ServeHTTP(0xc000726b60, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0900, 0xc007a35a60)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/web/midware/handlers.go:117 +0x9e
+github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni.middleware.ServeHTTP(0x146a3240, 0xc000726b60, 0xc0001a0e00, 0x42c3c4d8, 0xc0038c9b80, 0xc0030e0900)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni/negroni.go:33 +0xa3
+github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni.(*Negroni).ServeHTTP(0xc002eee390, 0x146ca9e0, 0xc003a742a0, 0xc0030e0900)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/vendor/github.com/codegangsta/negroni/negroni.go:73 +0xda
+net/http.serverHandler.ServeHTTP(0xc0004da1c0, 0x146ca9e0, 0xc003a742a0, 0xc0030e0900)
+	c:/go/src/net/http/server.go:2807 +0xaa
+net/http.(*conn).serve(0xc0107da320, 0x146d2520, 0xc0038c9a80)
+	c:/go/src/net/http/server.go:1895 +0x873
+created by net/http.(*Server).Serve
+	c:/go/src/net/http/server.go:2933 +0x363
+
+goroutine 71 [running]:
+runtime.throw(0x14445005, 0x15)
+	c:/go/src/runtime/panic.go:1116 +0x79 fp=0xc011dfb8a0 sp=0xc011dfb870 pc=0x439c29
+runtime.mapassign_faststr(0x141f8c80, 0xc000c83ec0, 0xc00e32a230, 0x6, 0xc000306420)
+	c:/go/src/runtime/map_faststr.go:291 +0x3e5 fp=0xc011dfb908 sp=0xc011dfb8a0 pc=0x415c35
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/completions.(*Manager).ProcessedEvent(0xc000c81500, 0xc00c3364b0, 0xc00e69e480)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/internal/completions/manager.go:158 +0x81 fp=0xc011dfb9b8 sp=0xc011dfb908 pc=0x10883c1
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal.(*Manager).ProcessedEvent(0xc000704600, 0xc00c3364b0, 0xc00e69e480)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/manager.go:330 +0x4d fp=0xc011dfb9e0 sp=0xc011dfb9b8 pc=0x10f0aed
+github.com/kiteco/kiteco/kite-go/client/component.(*Manager).ProcessedEvent.func1.1(0xc000338180, 0x143aba40, 0xc000704600, 0x40662580, 0xc000704600, 0xc00c3364b0, 0xc00e69e480)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/component/component.go:201 +0xde fp=0xc011dfba50 sp=0xc011dfb9e0 pc=0xa2d8fe
+github.com/kiteco/kiteco/kite-go/client/component.(*Manager).ProcessedEvent.func1(0x14170b60, 0xc00030b3a0, 0x143aba40, 0xc000704600, 0xc000147101)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/component/component.go:202 +0xb6 fp=0xc011dfbab0 sp=0xc011dfba50 pc=0xa2da16
+sync.(*Map).Range(0xc000338180, 0xc011dfbb98)
+	c:/go/src/sync/map.go:333 +0x1cc fp=0xc011dfbb88 sp=0xc011dfbab0 pc=0x473fec
+github.com/kiteco/kiteco/kite-go/client/component.(*Manager).ProcessedEvent(0xc000338180, 0xc00c3364b0, 0xc00e69e480)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/component/component.go:197 +0x70 fp=0xc011dfbbc8 sp=0xc011dfbb88 pc=0xa2bd40
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal.(*Manager).processEvent(0xc000704600, 0xc00e69e480)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/editor.go:74 +0x209 fp=0xc011dfbee0 sp=0xc011dfbbc8 pc=0x10e8169
+github.com/kiteco/kiteco/kite-go/client/internal/kitelocal.(*Manager).handleEditorEvent.func1(0xc011dfbf70, 0xc011dfbf48)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-go/client/internal/kitelocal/editor.go:45 +0x3a fp=0xc011dfbf00 sp=0xc011dfbee0 pc=0x10f170a
+github.com/kiteco/kiteco/kite-golib/workerpool.(*Pool).worker(0xc000226cd0, 0x1)
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/workerpool/pool.go:114 +0x10f fp=0xc011dfbfd0 sp=0xc011dfbf00 pc=0xa7f41f
+runtime.goexit()
+	c:/go/src/runtime/asm_amd64.s:1373 +0x1 fp=0xc011dfbfd8 sp=0xc011dfbfd0 pc=0x46aea1
+created by github.com/kiteco/kiteco/kite-golib/workerpool.NewWithCtx
+	D:/containers/containers/0000334m60r/tmp/build/140ee389/gopath/src/github.com/kiteco/kiteco/kite-golib/workerpool/pool.go:38 +0x119

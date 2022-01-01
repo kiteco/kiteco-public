@@ -1,0 +1,32 @@
+.livePreviewer {
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+}
+
+.liveAnswersContainer {
+  border-left: 3px solid whitesmoke;
+  flex: 0 1 60%;
+  overflow: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.markdownContainer {
+  flex: 0 1 40%;
+  padding-right: 1em;
+}
+
+.markdownContainer textarea {
+  font-family: monospace;
+  font-size: 14px;
+  height: calc(96vh - 20px);
+  width: calc(40vw);
+}
+
+.liveAnswersContainer h2 > code,
+.liveAnswersContainer p > code,
+.liveAnswersContainer h2 a:not([href]) code,
+.liveAnswersContainer p a:not([href]) code {
+  color: red;
+}

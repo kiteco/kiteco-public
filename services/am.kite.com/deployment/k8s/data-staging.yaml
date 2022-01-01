@@ -1,0 +1,8 @@
+#@data/values
+---
+env: staging
+hostname: am-staging.kite.com
+user_mux_cpu: 25m
+user_mux_mem: 2Gi
+user_node_mem: 1Gi
+user_node_cpu: 100m

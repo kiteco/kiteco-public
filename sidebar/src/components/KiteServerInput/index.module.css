@@ -1,0 +1,12 @@
+.msg {
+  font-size: 1rem;
+  margin-block-start: .5em;
+}
+
+.ping {
+  font-style: italic;
+}
+
+.error {
+  color: var(--error-color);
+}

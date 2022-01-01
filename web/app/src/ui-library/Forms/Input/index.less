@@ -1,0 +1,15 @@
+@import "../../../assets/styles/less/variables.less";
+
+.ant-input,
+.ant-input-affix-wrapper {
+  border: 1px solid @alto;
+  border-radius: 4px;
+  padding: 11px 5px 11px 20px;
+}
+
+.ant-input,
+.ant-input-affix-wrapper > .ant-input {
+  &::placeholder {
+    color: rgba(@black, 0.5);
+  }
+}

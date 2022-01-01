@@ -1,0 +1,48 @@
+.examples__output {
+  margin: 0;
+  padding: 0.4rem 1rem;
+  font-family: "Hack", monospace;
+}
+
+.examples__output__image {
+  max-width: 20rem;
+  /* Instead of white background, use the light background provided in CSS. */
+  mix-blend-mode: multiply;
+}
+
+html[data-theme='dark'] .examples__output__image,
+html[data-theme='high-contrast'] .examples__output__image {
+  /* Invert black and white; 180deg hue rotate means the colours will remain roughly the same */
+  filter: invert(100%) hue-rotate(180deg);
+  /* Instead of black background, use the light background provided in CSS. */
+  mix-blend-mode: screen;
+}
+
+.examples__output__caption {
+  font-size: 1rem;
+}
+
+.examples__output__content {
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  display: inline-block;
+  tab-size: 2;
+  color: var(--text-color-normal);
+  background-color: var(--background);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  white-space: normal;
+  max-width: 80%;
+}
+
+.examples__output__content__dir-table {
+  text-align: left;
+}
+
+.examples__output__content__dir-tree {
+  white-space: pre;
+}
+
+.examples__output__content__dir-table tr > * + * {
+  padding-left: 3rem;
+}

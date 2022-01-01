@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# Removes installed versions of kite, which are older than the current version
+removeOldVersions() {
+  [ -z "$ROOT" ] && return
+  [ -z "$CURRENT_DIRNAME" ] && return
+
+  for path in $(find "$ROOT" -name 'kite-v*' | sort); do
+    if [ "$CURRENT_DIRNAME" = "$(basename "$path")" ]; then
+      # don't remove current version and later versions
+      return
+    else
+      echo "Removing old version of Kite: $path"
+      rm -rf "$path"
+    fi
+  done
+}
+
+ROOT="$HOME/.local/share/kite"
+CURRENT="$ROOT/current"
+
+CURRENT_DIRNAME="$(basename "$(readlink -f "$CURRENT")" | grep "kite-v")"
+CURRENT_VERSION="$(echo "$CURRENT_DIRNAME" | sed -e 's/^kite-v//g')"
+[ -z "$CURRENT_VERSION" ] && echo "no kite version found at $ROOT. terminating." && exit 1
+
+KITED_FLAGS="$@"
+
+export GODEBUG="madvdontneed=1"
+
+echo "starting kited $CURRENT_VERSION" "$KITED_FLAGS"
+until "$ROOT/kite-v$CURRENT_VERSION/kited" $KITED_FLAGS; do
+    KITED_EXIT="$?"
+    if [ "$KITED_EXIT" = "10" ]; then
+        # cleanup old versions after kite requested a restart
+        # this is needed for a self-update of kited
+        # if kite-updater triggered the restart, then the old dirs have already been removed
+        CURRENT_DIRNAME="$(basename "$(readlink -f "$CURRENT")" | grep "kite-v")"
+        CURRENT_VERSION="$(echo "$CURRENT_DIRNAME" | sed -e 's/^kite-v//g')"
+        removeOldVersions
+
+        KITED_FLAGS="--relaunch-after-update"
+        [ -z "$CURRENT_VERSION" ] && echo "No kite version found at $ROOT after restart was requested. terminating." && exit 1
+        echo "kited terminated with exit code $KITED_EXIT to request a restart. restarting kited, version $CURRENT_VERSION"
+        sleep 1
+    else
+        echo "kited terminated with exit code $KITED_EXIT. terminating."
+        exit "$KITED_EXIT"
+    fi
+done

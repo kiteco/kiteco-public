@@ -1,0 +1,866 @@
+{
+  "language": "python",
+  "callee": {
+    "id": "python;",
+    "kind": "type",
+    "repr": "Dog",
+    "type": "type",
+    "type_id": "python;__builtin__.type",
+    "synopsis": "",
+    "detail": {
+      "bases": null,
+      "components": null,
+      "members": [
+        {
+          "id": "python;",
+          "name": "name",
+          "namespace": {
+            "id": "python;",
+            "kind": "type",
+            "repr": "Dog",
+            "type": "type",
+            "type_id": "python;__builtin__.type"
+          },
+          "value": [
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "str",
+              "type": "str",
+              "type_id": "python;__builtin__.str"
+            }
+          ]
+        },
+        {
+          "id": "python;",
+          "name": "__bases__",
+          "namespace": {
+            "id": "python;",
+            "kind": "type",
+            "repr": "Dog",
+            "type": "type",
+            "type_id": "python;__builtin__.type"
+          },
+          "value": [
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "list",
+              "type": "list",
+              "type_id": "python;__builtin__.list"
+            }
+          ]
+        },
+        {
+          "id": "python;",
+          "name": "__class__",
+          "namespace": {
+            "id": "python;",
+            "kind": "type",
+            "repr": "Dog",
+            "type": "type",
+            "type_id": "python;__builtin__.type"
+          },
+          "value": [
+            {
+              "id": "python;",
+              "kind": "type",
+              "repr": "Dog",
+              "type": "type",
+              "type_id": "python;__builtin__.type"
+            }
+          ]
+        },
+        {
+          "id": "python;",
+          "name": "__delattr__",
+          "namespace": {
+            "id": "python;",
+            "kind": "type",
+            "repr": "Dog",
+            "type": "type",
+            "type_id": "python;__builtin__.type"
+          },
+          "value": null
+        },
+        {
+          "id": "python;",
+          "name": "__dict__",
+          "namespace": {
+            "id": "python;",
+            "kind": "type",
+            "repr": "Dog",
+            "type": "type",
+            "type_id": "python;__builtin__.type"
+          },
+          "value": null
+        }
+      ],
+      "total_members": 21,
+      "constructor": {
+        "receiver": {
+          "name": "self",
+          "default_value": null,
+          "inferred_value": [
+            {
+              "id": "python;",
+              "kind": "instance",
+              "repr": "Dog",
+              "type": "Dog",
+              "type_id": "python;"
+            }
+          ],
+          "annotation": null,
+          "keyword_only": false,
+          "synopsis": "",
+          "language_details": {
+            "python": null
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "default_value": null,
+            "inferred_value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              }
+            ],
+            "annotation": null,
+            "keyword_only": false,
+            "synopsis": "",
+            "language_details": {
+              "python": {
+                "default_value": null,
+                "annotation": null,
+                "keyword_only": false
+              }
+            }
+          }
+        ],
+        "vararg": {
+          "name": "nickName",
+          "default_value": null,
+          "inferred_value": null,
+          "annotation": null,
+          "keyword_only": false,
+          "synopsis": "",
+          "language_details": {
+            "python": null
+          }
+        },
+        "kwarg": {
+          "name": "kwargs",
+          "default_value": null,
+          "inferred_value": null,
+          "annotation": null,
+          "keyword_only": false,
+          "synopsis": "",
+          "language_details": {
+            "python": null
+          }
+        },
+        "kwarg_parameters": [
+          {
+            "name": "kw1",
+            "default_value": null,
+            "inferred_value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              }
+            ],
+            "annotation": null,
+            "keyword_only": false,
+            "synopsis": "",
+            "language_details": {
+              "python": null
+            }
+          }
+        ],
+        "return_value": null,
+        "return_annotation": null,
+        "signatures": [],
+        "language_details": {
+          "python": {
+            "receiver": {
+              "name": "self",
+              "default_value": null,
+              "inferred_value": [
+                {
+                  "id": "python;",
+                  "kind": "instance",
+                  "repr": "Dog",
+                  "type": "Dog",
+                  "type_id": "python;"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": null
+              }
+            },
+            "vararg": {
+              "name": "nickName",
+              "default_value": null,
+              "inferred_value": null,
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": null
+              }
+            },
+            "kwarg": {
+              "name": "kwargs",
+              "default_value": null,
+              "inferred_value": null,
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": null
+              }
+            },
+            "kwarg_parameters": [
+              {
+                "name": "kw1",
+                "default_value": null,
+                "inferred_value": [
+                  {
+                    "id": "python;",
+                    "kind": "instance",
+                    "repr": "str",
+                    "type": "str",
+                    "type_id": "python;__builtin__.str"
+                  }
+                ],
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": null
+                }
+              }
+            ],
+            "return_annotation": null
+          }
+        }
+      },
+      "language_details": {
+        "python": {
+          "bases": null,
+          "constructor": {
+            "receiver": {
+              "name": "self",
+              "default_value": null,
+              "inferred_value": [
+                {
+                  "id": "python;",
+                  "kind": "instance",
+                  "repr": "Dog",
+                  "type": "Dog",
+                  "type_id": "python;"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": null
+              }
+            },
+            "parameters": [
+              {
+                "name": "name",
+                "default_value": null,
+                "inferred_value": [
+                  {
+                    "id": "python;",
+                    "kind": "instance",
+                    "repr": "str",
+                    "type": "str",
+                    "type_id": "python;__builtin__.str"
+                  }
+                ],
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": {
+                    "default_value": null,
+                    "annotation": null,
+                    "keyword_only": false
+                  }
+                }
+              }
+            ],
+            "vararg": {
+              "name": "nickName",
+              "default_value": null,
+              "inferred_value": null,
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": null
+              }
+            },
+            "kwarg": {
+              "name": "kwargs",
+              "default_value": null,
+              "inferred_value": null,
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": null
+              }
+            },
+            "kwarg_parameters": [
+              {
+                "name": "kw1",
+                "default_value": null,
+                "inferred_value": [
+                  {
+                    "id": "python;",
+                    "kind": "instance",
+                    "repr": "str",
+                    "type": "str",
+                    "type_id": "python;__builtin__.str"
+                  }
+                ],
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": null
+                }
+              }
+            ],
+            "return_value": null,
+            "return_annotation": null,
+            "signatures": [],
+            "language_details": {
+              "python": {
+                "receiver": {
+                  "name": "self",
+                  "default_value": null,
+                  "inferred_value": [
+                    {
+                      "id": "python;",
+                      "kind": "instance",
+                      "repr": "Dog",
+                      "type": "Dog",
+                      "type_id": "python;"
+                    }
+                  ],
+                  "annotation": null,
+                  "keyword_only": false,
+                  "synopsis": "",
+                  "language_details": {
+                    "python": null
+                  }
+                },
+                "vararg": {
+                  "name": "nickName",
+                  "default_value": null,
+                  "inferred_value": null,
+                  "annotation": null,
+                  "keyword_only": false,
+                  "synopsis": "",
+                  "language_details": {
+                    "python": null
+                  }
+                },
+                "kwarg": {
+                  "name": "kwargs",
+                  "default_value": null,
+                  "inferred_value": null,
+                  "annotation": null,
+                  "keyword_only": false,
+                  "synopsis": "",
+                  "language_details": {
+                    "python": null
+                  }
+                },
+                "kwarg_parameters": [
+                  {
+                    "name": "kw1",
+                    "default_value": null,
+                    "inferred_value": [
+                      {
+                        "id": "python;",
+                        "kind": "instance",
+                        "repr": "str",
+                        "type": "str",
+                        "type_id": "python;__builtin__.str"
+                      }
+                    ],
+                    "annotation": null,
+                    "keyword_only": false,
+                    "synopsis": "",
+                    "language_details": {
+                      "python": null
+                    }
+                  }
+                ],
+                "return_annotation": null
+              }
+            }
+          }
+        }
+      }
+    },
+    "details": {
+      "function": null,
+      "type": {
+        "bases": null,
+        "components": null,
+        "members": [
+          {
+            "id": "python;",
+            "name": "name",
+            "namespace": {
+              "id": "python;",
+              "kind": "type",
+              "repr": "Dog",
+              "type": "type",
+              "type_id": "python;__builtin__.type"
+            },
+            "value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "str",
+                "type": "str",
+                "type_id": "python;__builtin__.str"
+              }
+            ]
+          },
+          {
+            "id": "python;",
+            "name": "__bases__",
+            "namespace": {
+              "id": "python;",
+              "kind": "type",
+              "repr": "Dog",
+              "type": "type",
+              "type_id": "python;__builtin__.type"
+            },
+            "value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "list",
+                "type": "list",
+                "type_id": "python;__builtin__.list"
+              }
+            ]
+          },
+          {
+            "id": "python;",
+            "name": "__class__",
+            "namespace": {
+              "id": "python;",
+              "kind": "type",
+              "repr": "Dog",
+              "type": "type",
+              "type_id": "python;__builtin__.type"
+            },
+            "value": [
+              {
+                "id": "python;",
+                "kind": "type",
+                "repr": "Dog",
+                "type": "type",
+                "type_id": "python;__builtin__.type"
+              }
+            ]
+          },
+          {
+            "id": "python;",
+            "name": "__delattr__",
+            "namespace": {
+              "id": "python;",
+              "kind": "type",
+              "repr": "Dog",
+              "type": "type",
+              "type_id": "python;__builtin__.type"
+            },
+            "value": null
+          },
+          {
+            "id": "python;",
+            "name": "__dict__",
+            "namespace": {
+              "id": "python;",
+              "kind": "type",
+              "repr": "Dog",
+              "type": "type",
+              "type_id": "python;__builtin__.type"
+            },
+            "value": null
+          }
+        ],
+        "total_members": 21,
+        "constructor": {
+          "receiver": {
+            "name": "self",
+            "default_value": null,
+            "inferred_value": [
+              {
+                "id": "python;",
+                "kind": "instance",
+                "repr": "Dog",
+                "type": "Dog",
+                "type_id": "python;"
+              }
+            ],
+            "annotation": null,
+            "keyword_only": false,
+            "synopsis": "",
+            "language_details": {
+              "python": null
+            }
+          },
+          "parameters": [
+            {
+              "name": "name",
+              "default_value": null,
+              "inferred_value": [
+                {
+                  "id": "python;",
+                  "kind": "instance",
+                  "repr": "str",
+                  "type": "str",
+                  "type_id": "python;__builtin__.str"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": {
+                  "default_value": null,
+                  "annotation": null,
+                  "keyword_only": false
+                }
+              }
+            }
+          ],
+          "vararg": {
+            "name": "nickName",
+            "default_value": null,
+            "inferred_value": null,
+            "annotation": null,
+            "keyword_only": false,
+            "synopsis": "",
+            "language_details": {
+              "python": null
+            }
+          },
+          "kwarg": {
+            "name": "kwargs",
+            "default_value": null,
+            "inferred_value": null,
+            "annotation": null,
+            "keyword_only": false,
+            "synopsis": "",
+            "language_details": {
+              "python": null
+            }
+          },
+          "kwarg_parameters": [
+            {
+              "name": "kw1",
+              "default_value": null,
+              "inferred_value": [
+                {
+                  "id": "python;",
+                  "kind": "instance",
+                  "repr": "str",
+                  "type": "str",
+                  "type_id": "python;__builtin__.str"
+                }
+              ],
+              "annotation": null,
+              "keyword_only": false,
+              "synopsis": "",
+              "language_details": {
+                "python": null
+              }
+            }
+          ],
+          "return_value": null,
+          "return_annotation": null,
+          "signatures": [],
+          "language_details": {
+            "python": {
+              "receiver": {
+                "name": "self",
+                "default_value": null,
+                "inferred_value": [
+                  {
+                    "id": "python;",
+                    "kind": "instance",
+                    "repr": "Dog",
+                    "type": "Dog",
+                    "type_id": "python;"
+                  }
+                ],
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": null
+                }
+              },
+              "vararg": {
+                "name": "nickName",
+                "default_value": null,
+                "inferred_value": null,
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": null
+                }
+              },
+              "kwarg": {
+                "name": "kwargs",
+                "default_value": null,
+                "inferred_value": null,
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": null
+                }
+              },
+              "kwarg_parameters": [
+                {
+                  "name": "kw1",
+                  "default_value": null,
+                  "inferred_value": [
+                    {
+                      "id": "python;",
+                      "kind": "instance",
+                      "repr": "str",
+                      "type": "str",
+                      "type_id": "python;__builtin__.str"
+                    }
+                  ],
+                  "annotation": null,
+                  "keyword_only": false,
+                  "synopsis": "",
+                  "language_details": {
+                    "python": null
+                  }
+                }
+              ],
+              "return_annotation": null
+            }
+          }
+        },
+        "language_details": {
+          "python": {
+            "bases": null,
+            "constructor": {
+              "receiver": {
+                "name": "self",
+                "default_value": null,
+                "inferred_value": [
+                  {
+                    "id": "python;",
+                    "kind": "instance",
+                    "repr": "Dog",
+                    "type": "Dog",
+                    "type_id": "python;"
+                  }
+                ],
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": null
+                }
+              },
+              "parameters": [
+                {
+                  "name": "name",
+                  "default_value": null,
+                  "inferred_value": [
+                    {
+                      "id": "python;",
+                      "kind": "instance",
+                      "repr": "str",
+                      "type": "str",
+                      "type_id": "python;__builtin__.str"
+                    }
+                  ],
+                  "annotation": null,
+                  "keyword_only": false,
+                  "synopsis": "",
+                  "language_details": {
+                    "python": {
+                      "default_value": null,
+                      "annotation": null,
+                      "keyword_only": false
+                    }
+                  }
+                }
+              ],
+              "vararg": {
+                "name": "nickName",
+                "default_value": null,
+                "inferred_value": null,
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": null
+                }
+              },
+              "kwarg": {
+                "name": "kwargs",
+                "default_value": null,
+                "inferred_value": null,
+                "annotation": null,
+                "keyword_only": false,
+                "synopsis": "",
+                "language_details": {
+                  "python": null
+                }
+              },
+              "kwarg_parameters": [
+                {
+                  "name": "kw1",
+                  "default_value": null,
+                  "inferred_value": [
+                    {
+                      "id": "python;",
+                      "kind": "instance",
+                      "repr": "str",
+                      "type": "str",
+                      "type_id": "python;__builtin__.str"
+                    }
+                  ],
+                  "annotation": null,
+                  "keyword_only": false,
+                  "synopsis": "",
+                  "language_details": {
+                    "python": null
+                  }
+                }
+              ],
+              "return_value": null,
+              "return_annotation": null,
+              "signatures": [],
+              "language_details": {
+                "python": {
+                  "receiver": {
+                    "name": "self",
+                    "default_value": null,
+                    "inferred_value": [
+                      {
+                        "id": "python;",
+                        "kind": "instance",
+                        "repr": "Dog",
+                        "type": "Dog",
+                        "type_id": "python;"
+                      }
+                    ],
+                    "annotation": null,
+                    "keyword_only": false,
+                    "synopsis": "",
+                    "language_details": {
+                      "python": null
+                    }
+                  },
+                  "vararg": {
+                    "name": "nickName",
+                    "default_value": null,
+                    "inferred_value": null,
+                    "annotation": null,
+                    "keyword_only": false,
+                    "synopsis": "",
+                    "language_details": {
+                      "python": null
+                    }
+                  },
+                  "kwarg": {
+                    "name": "kwargs",
+                    "default_value": null,
+                    "inferred_value": null,
+                    "annotation": null,
+                    "keyword_only": false,
+                    "synopsis": "",
+                    "language_details": {
+                      "python": null
+                    }
+                  },
+                  "kwarg_parameters": [
+                    {
+                      "name": "kw1",
+                      "default_value": null,
+                      "inferred_value": [
+                        {
+                          "id": "python;",
+                          "kind": "instance",
+                          "repr": "str",
+                          "type": "str",
+                          "type_id": "python;__builtin__.str"
+                        }
+                      ],
+                      "annotation": null,
+                      "keyword_only": false,
+                      "synopsis": "",
+                      "language_details": {
+                        "python": null
+                      }
+                    }
+                  ],
+                  "return_annotation": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "instance": null,
+      "module": null
+    }
+  },
+  "report": {
+    "definition": {
+      "filename": "/home/jansorg/self-employment/customers/kite.com/source/python-test/TestModule/test3.py",
+      "line": 1
+    },
+    "description_text": "",
+    "description_html": "",
+    "examples": null,
+    "usages": [
+      {
+        "code": "Dog(\"name\", \"dog\", \"brutus\", kw1=\"first\")",
+        "filename": "/home/jansorg/self-employment/customers/kite.com/source/python-test/TestModule/test3.py",
+        "line": 5,
+        "begin_bytes": 88,
+        "begin_runes": 88
+      }
+    ],
+    "total_usages": 1,
+    "links": null,
+    "total_links": 0
+  },
+  "signatures": []
+}

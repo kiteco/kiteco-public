@@ -1,0 +1,151 @@
+
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css"></link>
+    <style type="text/css">
+    </style>
+    <title>Call Inspector</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <form onSubmit="return false;" align="center" class="mr-auto">
+                    <input id="search_text" class="form-control mr-sm-2" type="text" placeholder="Search symbol path" aria-label="Search">
+                    <button id="search" class="btn btn-primary" type="button">Search</button>
+                </form>
+            </div>
+            <div class="col-3"></div>
+        </div>
+        <div class="row">
+            <h4 align="center" class="col-12" id="status">status...</h4>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 align="center">Calls</h3>
+                <pre id="calls"></pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 align="center">Patterns</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12" id="patterns"></div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 align="center">Arg Spec</h3>
+                <pre id="argspec"></pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3 align="center">Popular Signatures</h3>
+                <pre id="signatures"></pre>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function clearChildren(elem) {
+            while (elem.firstChild) {
+                elem.removeChild(elem.firstChild);
+            }
+        }
+        function renderText(elemName, text) {
+            var elem = document.querySelector("#"+elemName);
+            clearChildren(elem);
+            elem.appendChild(document.createTextNode(text));
+        }
+        function renderError(resp) {
+            resp.text()
+            .then(function(t) {
+                renderText("status", "Fetch error: " + resp.status + ": " + t);
+            });
+        }
+        function renderPatterns(patterns) {
+            var patternsElem = document.querySelector("#"+"patterns");
+            clearChildren(patternsElem);
+            patterns.forEach(function(pattern, index){
+                var p = document.createElement("p");
+                patternsElem.appendChild(p);
+                var pre = document.createElement("pre");
+                pre.appendChild(document.createTextNode(pattern.display));
+                p.appendChild(pre);
+
+                var collapse = document.createElement("button");
+                collapse.className += " btn btn-primary";
+                collapse.dataset.toggle = "collapse";
+                collapse.dataset.target = "#pattern" + index.toString() + "Collapsed";
+                collapse.appendChild(document.createTextNode("hashes: "+pattern.hashes.length.toString()));
+                patternsElem.appendChild(collapse);
+
+                var hashes = document.createElement("div");
+                hashes.className += " collapse"
+                hashes.id = "pattern" + index.toString() + "Collapsed";
+                patternsElem.appendChild(hashes);
+                
+                var list = document.createElement("ul");
+                list.className += " list-group";
+                hashes.appendChild(list);
+                pattern.hashes.forEach(function(hc) {
+                    var li = document.createElement("li");
+                    li.className += " list-group-item";
+                    list.appendChild(li);
+                    var url = new URL('/source', location.origin);
+                    url.search = new URLSearchParams({
+                        hash: hc.str,
+                    });
+                    var a = document.createElement("a");
+                    a.href = url.href;
+                    a.target = "_blank";
+                    a.appendChild(document.createTextNode("Hash: " + hc.str + " Count: " + hc.count.toString()));
+                    li.appendChild(a);
+                });
+            });
+        }
+        function render(body) {
+            console.log(body);
+            renderText("status", "got results for "+body.symbol);
+            renderText("calls", body.calls);
+            renderText("patterns", body.patterns);
+            renderText("argspec", body.argspec);
+            renderText("signatures", body.signatures)
+        }
+        function search() {
+            renderText("status", "searching...");
+            var url = new URL("/search", location.origin);
+            url.searchParams.set("q", document.querySelector("#search_text").value);
+            fetch(url)
+            .then(function(response){
+                if (!response.ok) {
+                    renderError(response);
+                    throw Error(response.statusText);
+                }
+                return response
+            })
+            .then(response => response.json())
+            .then(body => render(body));
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector("#search").onclick = function(ev) {
+                search();
+            };
+            document.querySelector("#search_text").onkeypress = function(ev) {
+                var key = ev.which || ev.keyCode;
+                if (key == 13) {
+                    search();
+                }
+            };
+        });
+    </script>
+</body>
+</html>

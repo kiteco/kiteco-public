@@ -1,0 +1,238 @@
+{
+  package pigeon
+
+  import (
+    "errors"
+  )
+}
+
+// NOTE: Rules that start with `Grammar` are entrypoints exported by the
+// python/epytext API. Rules that start with `Test` are entrypoints used to
+// test a subset of the grammar in isolation, not exported by the API.
+
+// See http://epydoc.sourceforge.net/epytext.html
+Grammar <-
+  #{
+    return initState(c)
+  }
+  blocks:Block* _ Whitespace* EOF
+  {
+    return grammarAction(c, toIfaceSlice(blocks))
+  }
+
+TestInternalBlocks <-
+  #{
+    return initState(c)
+  }
+  blocks:Block* _ Whitespace* EOF
+  {
+    return blocks, nil
+  }
+
+Block <-
+  // The state code blocks alter the return value (it is considered a value just
+  // like predicate code blocks), so an action code block is required to make sure
+  // the right block value is returned instead of a slice []interface{}.
+  block:(
+      lit:Literal #{ return literalPostState(c, lit.(literal)) } { return lit, nil }
+    / Section
+    / doc:Doctest #{ return doctestPostState(c, doc.(doctest)) } { return doc, nil }
+    / l:List      #{ return listPostState(c, l.(list)) } { return l, nil }
+    / f:Field     #{ return fieldPostState(c, f.(field)) } { return f, nil }
+    / p:Paragraph #{ return paragraphPostState(c, p.(paragraph)) } { return p, nil }
+  )
+  {
+    return block, nil
+  }
+
+// Literal
+// -------
+// See http://epydoc.sourceforge.net/epytext.html#literal
+// Starts after a paragraph that ends with "::" and stops
+// at the first line with an indent equal to or smaller
+// than the paragraph that introduced the literal.
+Literal <-
+  &{
+    // matches only if introduced by a paragraph that ends with "::"
+    return literalIntroPredicate(c)
+  }
+  lines:(
+    _ line:NonBlankLine
+    &{
+      return literalLinePredicate(c, line.(plainText))
+    }
+  )+
+  {
+    return literalAction(c, toIfaceSlice(lines))
+  }
+
+// Section
+// -------
+// See http://epydoc.sourceforge.net/epytext.html#section
+// The indent and the number of characters must match in the
+// header and in the underline.
+Section <-
+  _ header:NonBlankLine underline:UnderlineLine
+  &{
+    return sectionMatchPredicate(c, header.(plainText), underline.(plainText))
+  }
+  {
+    return sectionAction(c, header.(plainText), underline.(plainText))
+  }
+
+UnderlineLine <- Indent underline:SectionUnderline EOL
+  {
+    return underline, nil
+  }
+
+SectionUnderline <- ( '='+ / '-'+ / '~'+ )
+  {
+    return sectionUnderlineAction(c)
+  }
+
+// List
+// ----
+// See http://epydoc.sourceforge.net/epytext.html#list
+// Can nest, contain other blocks, but only a paragraph can follow
+// the list bullet on the same line (including a paragraph only made
+// of "::", the literal block introduction).
+List <- _ Indent bullet:ListBullet text:( Whitespace ( !EOL . )* )? EOL blank:( &BlankLine { return true, nil } )?
+  {
+    var hasBlank bool
+    if blank != nil {
+      hasBlank = blank.(bool)
+    }
+    return listAction(c, bullet.(string), toIfaceSlice(text), hasBlank)
+  }
+
+ListBullet <- bullet:( OrderedListBullet / UnorderedListBullet )
+  {
+    return bullet, nil
+  }
+
+OrderedListBullet <- ( Number Dot )+
+  {
+    return string(c.text), nil
+  }
+
+UnorderedListBullet <- '-'
+  {
+    return string(c.text), nil
+  }
+
+// Field
+// -----
+// See http://epydoc.sourceforge.net/epytext.html#fieldlist
+// A field starts with a field tag followed by an optional
+// field argument and a colon. As for lists, can nest,
+// contain other blocks, but only a paragraph can follow
+// the field tag on the same line (including a paragraph only made
+// of "::", the literal block introduction).
+Field <- _ Indent tag:FieldTag text:( !EOL . )* EOL blank:( &BlankLine { return true, nil } )?
+  {
+    var hasBlank bool
+    if blank != nil {
+      hasBlank = blank.(bool)
+    }
+    return fieldAction(c, tag.(fieldTag), toIfaceSlice(text), hasBlank)
+  }
+
+// The rule doesn't allow only well-known fields because custom fields can be defined, see
+// http://epydoc.sourceforge.net/fields.html#newfield
+//
+// Regarding field name, it cannot be a Python Identifier because a valid field name
+// is `@(c)` for `copyright`. Field arguments could be limited to Python Identifier rules,
+// but this isn't totally clear with e.g. the `@group` field, where a group name is given
+// as argument - nothing mentions that this should follow Python Identifier rules.
+// For this reason, both field name and field argument follow more relaxed rules.
+FieldTag <- '@' field:FieldLabel arg:( Whitespace+ FieldLabel )? Whitespace* ':'
+  {
+    return fieldTagAction(c, field.(string), toIfaceSlice(arg))
+  }
+
+FieldLabel <- [^\p{White_Space}:]+ // any character that is not Unicode whitespace or ":"
+  {
+    return string(c.text), nil
+  }
+
+// Paragraph
+// ---------
+// See http://epydoc.sourceforge.net/epytext.html#paragraph
+// Can nest, contain inline markup, other blocks.
+Paragraph <-
+  _ first:NonBlankLine
+  #{
+    // store the current paragraph's indentation
+    return paragraphFirstLineState(c, first.(plainText))
+  }
+  rest:(
+    line:NonBlankLine
+    &{
+      // matches only if the indentation of the line is the same as the
+      // first line in the paragraph.
+      return paragraphNextLinePredicate(c, line.(plainText))
+    }
+  )*
+  {
+    return paragraphAction(c, first.(plainText), toIfaceSlice(rest))
+  }
+
+// Doctest
+// -------
+// See http://epydoc.sourceforge.net/epytext.html#doctest
+// Do not consume the trailing blank line, it could be the
+// start of another doctest block.
+Doctest <- BlankLine+ doctest:DoctestLines ( &BlankLine / EOF )
+  {
+    return doctest, nil
+  }
+
+DoctestLines <-
+  first:FirstDoctestLine
+  #{
+    // store the current doctest's indentation
+    return doctestFirstLineState(c, first.(plainText))
+  }
+  rest:(
+    line:NonBlankLine
+    &{
+      // matches only if the indentation of the line is the same as the
+      // first line in the doctest.
+      return doctestNextLinePredicate(c, line.(plainText))
+    }
+  )*
+  {
+    return doctestLinesAction(c, first.(plainText), toIfaceSlice(rest))
+  }
+
+FirstDoctestLine <- Indent text:( ">>>" Whitespace ( !EOL . )* ) EOL
+  {
+    return firstDoctestLineAction(c, toIfaceSlice(text))
+  }
+
+NonBlankLine <- Indent text:( !EOL . )+ EOL
+  {
+    return nonBlankLineAction(c, toIfaceSlice(text))
+  }
+
+Digit <- [0-9]
+Number <- Digit+
+Dot <- '.'
+
+// Indentation
+// -----------
+// See https://docs.python.org/3.5/reference/lexical_analysis.html#indentation
+Indent <- indent:IndentSpace*
+  #{
+    return indentState(c, toIfaceSlice(indent))
+  }
+
+EOL <- ( '\r' '\n' / '\r' / '\n' )
+
+IndentSpace <- [ \t]
+Whitespace <- [ \t\f]
+BlankLine <- Whitespace* EOL
+_ <- BlankLine*
+
+EOF <- !.
+

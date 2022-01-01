@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDisplayName</key>
+    <string>HelperTemplate</string>
+
+	<key>CFBundleName</key>
+	<string>HelperTemplate</string>
+
+	<key>CFBundleIdentifier</key>
+	<string>com.kite.HelperTemplate</string>
+
+	<key>CFBundleExecutable</key>
+	<string>kited</string>
+
+    <key>CFBundleVersion</key>
+    <string>0.1.0</string>
+
+	<key>CFBundleShortVersionString</key>
+	<string>0.1.0</string>
+
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+
+	<key>CFBundleSignature</key>
+	<string>????</string>
+
+	<key>LSMinimumSystemVersion</key>
+	<string>10.12</string>
+
+	<key>LSUIElement</key>
+	<true/>
+
+    <key>LSBackgroundOnly</key>
+    <true/>
+
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2015 Manhattan Engineering Inc. All rights reserved.</string>
+</dict>
+</plist>

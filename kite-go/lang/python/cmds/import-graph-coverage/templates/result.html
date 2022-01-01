@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Import graph coverage</title>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+        <style>
+        body {
+            padding: 20px;
+        }
+        code {
+            tab-size: 4;
+        }
+        .count {
+          font-weight: bold;
+        }
+        .tooltip-inner {
+            white-space: pre-wrap;
+            max-width: 500px;
+            padding: 0;
+            text-align: left;
+        }
+        td {
+            font-family: monospace;
+        }
+        </style>
+        <script>
+        $(document).ready(function() {
+            $("[data-toggle='tooltip']").tooltip();
+        })
+        </script>
+    </head>
+    <body>
+      <div class="table">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Package</th>
+              <th>Found</th>
+              <th>Not Found</th>
+            </tr>
+          </thead>
+          <tbody>
+          {{range $i, $result := .Results}}
+            <tr>
+            <!-- <tr class="function" data-original-title="<pre>foo</pre>"
+                data-html="true" data-container="body" data-toggle="tooltip" data-placement="bottom" title=""> -->
+              <td>{{$result.Package}}</td>
+              <td class="count"data-html="true" data-container="body" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="
+                <pre>
+                  {{range $j, $ident := $result.TopFound}}
+                    {{$ident.Name}}: {{$ident.Count}}
+                  {{end}}
+                </pre>
+              ">{{$result.Found}}</td>
+              <td class="count"data-html="true" data-container="body" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="
+                <pre>
+                  {{range $j, $ident := $result.TopNotFound}}
+                    {{$ident.Name}}: {{$ident.Count}}
+                  {{end}}
+                </pre>
+              ">{{$result.NotFound}}</td>
+            </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </body>
+</html>

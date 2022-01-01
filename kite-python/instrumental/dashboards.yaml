@@ -1,0 +1,169 @@
+# Templates
+
+graph_templates:
+  bad_gateways:
+    title: "bad gateways"
+    metrics:
+      - "$region.aggregate.status.bad-gateway.count"
+    units: count
+
+  ratios:
+    title: "ratios"
+    metrics:
+      - "$region.aggregate.status.$status.p":
+          status:
+            - "slow-events"
+            - "usercontext-ever-had-index--made-request"
+            - "do-builder-error-rate"
+            - "do-builder-timeout"
+            - "do-list-files-error-rate"
+    units: percent
+
+  duration_samples:
+    title: "$sample duration samples"
+    metrics:
+      - "$region.aggregate.status.$sample.?.ms"
+    units: milliseconds
+
+  size_samples:
+    title: "$sample size samples"
+    metrics:
+      - "$region.aggregate.status.$sample.?.KB"
+    units: kilobytes
+
+  breakdowns:
+    title: "$breakdown breakdowns"
+    metrics:
+      - "$region.aggregate.status.$breakdown.?.p"
+    units: percent
+    stacked: true
+
+  memory_usage:
+    title: "$node memory usage"
+    metrics:
+      - "$region.$node.*.sys.mem.usage.p > 0"
+    units: percent
+
+  heap_objects:
+    title: "$node heap objects"
+    metrics:
+      - "$region.$node.*.proc.alloc.GB > 0"
+    units: gigabytes
+
+  gc_pause_growth:
+    title: "$node gc pause growth rate"
+    metrics:
+      - "growth_rate($region.$node.*.proc.gc-pause-total.ms) > 0"
+    units: milliseconds
+
+
+dashboard_templates:
+  headlines:
+    name: "Headlines - $region_title"
+    graphs:
+      - t_bad_gateways
+      - t_ratios
+
+      - t_duration_samples:
+          sample:
+            - "all-requests"
+            - "backend"
+            - "ping"
+            - "usercontext-first-request-to-first-artifact"
+            - "do"
+            - "handleuploadrequest"
+            - "requestserver-first-requested-to-completed"
+            - "requestserver-first-requested-to-selected"
+            - "server-handlecreatefile"
+            - "server-handlefilestream"
+
+      - t_size_samples:
+          sample: "response-size"
+
+      - t_breakdowns:
+          breakdown:
+            - "download-api"
+            - "editor-api"
+            - "file-sync-api"
+            - "local-code-worker-api"
+            - "login-api"
+
+
+  region_systems:
+    name: "$region_title Region"
+    graphs:
+      - t_memory_usage:
+          node:
+            - "user-node"
+            - "user-mux"
+            - "local-code-worker"
+      - t_heap_objects:
+          node:
+            - "user-node"
+            - "user-mux"
+            - "local-code-worker"
+      - t_gc_pause_growth:
+          node:
+            - "user-node"
+            - "user-mux"
+            - "local-code-worker"
+
+# Dashboards
+
+dashboards:
+
+  - t_headlines:
+      region: "global"
+      region_title: "Global"
+
+  - t_headlines:
+      region: "us-west-1"
+      region_title: "US West 1"
+
+  - t_headlines:
+      region: "us-east-1"
+      region_title: "US East 1"
+
+  - t_headlines:
+      region: "eu-west-1"
+      region_title: "EU West 1"
+
+  - t_region_systems:
+      region: "us-west-1"
+      region_title: "US West 1"
+
+  - t_region_systems:
+      region: "us-east-1"
+      region_title: "US East 1"
+
+  - t_region_systems:
+      region: "eu-west-1"
+      region_title: "EU West 1"
+
+  - t_headlines:
+      region: "azure-global"
+      region_title: "Azure Global"
+
+  - t_headlines:
+      region: "westus2"
+      region_title: "West US 2"
+
+  - t_headlines:
+      region: "eastus"
+      region_title: "East US"
+
+  - t_headlines:
+      region: "westeurope"
+      region_title: "West Europe"
+
+  - t_region_systems:
+      region: "westus2"
+      region_title: "West US 2"
+
+  - t_region_systems:
+      region: "eastus"
+      region_title: "East US"
+
+  - t_region_systems:
+      region: "westeurope"
+      region_title: "West Europe"

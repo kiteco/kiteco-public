@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.css">
+    <link rel="stylesheet" type="text/css" href="/server/static/related.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="header__content">
+        <img class="header__icon" src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/regular/file-alt.svg">
+        <div class="header__title">
+          <div class="code header__dir">
+            {{$.Parent.Path}}
+          </div>
+          <div class="code header__file">
+            {{$.File}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="files">
+      <div class="files__title">
+        Showing {{len .Links}} potentially related files
+      </div>
+      {{range $link := .Links}}
+        <div class="file">
+          <div class="file__header">
+            <div class="code link file__name">
+              <div class="file__name__path" onClick="window.location='http://localhost:46624/codenav/related/{{urlquery $link.FullPath}}'">{{$link.Path}}</div>
+              <div class="file__name__actions">
+                <img onClick="window.open('{{$link.GitHubURL}}', '_blank')" class="link file__name__actions__icon" src="https://simpleicons.org/icons/github.svg">
+                <img onClick="window.open('{{$link.VSCodeURL}}', '_blank')" class="link file__name__actions__icon" src="https://simpleicons.org/icons/visualstudiocode.svg">
+                <!-- <img class="link file__name__actions__icon" src="https://simpleicons.org/icons/intellijidea.svg"> -->
+              </div>
+            </div>
+            <div class="file__score">
+              {{$link.ScoreDisplay}} match
+            </div>
+          </div>
+          {{range $block := $link.Blocks}}
+            <div class="file__block">
+              <div class="file__block__contents">
+                <div class="file__block__actions">
+                  <div class="file__block__actions__score">
+                    {{$block.ScoreDisplay}}
+                  </div>
+                  <img onClick="window.open('{{$link.GitHubURL}}#L{{$block.FirstLine}}-L{{$block.LastLine}}', '_blank')" class="link file__block__actions__icon" src="https://simpleicons.org/icons/github.svg">
+                  <img onClick="window.open('{{$link.VSCodeURL}}:{{$block.FirstLine}}:1', '_blank')" class="link file__block__actions__icon" src="https://simpleicons.org/icons/visualstudiocode.svg">
+                  <!-- <img class="link file__block__actions__icon" src="https://simpleicons.org/icons/intellijidea.svg"> -->
+                </div>
+                <div class="file__block__lines">
+                  <pre>{{$block.Lines}}</pre>
+                </div>
+                <div class="file__block__source">
+                  <pre>{{$block.Content}}</pre>
+                </div>
+              </div>
+            </div>
+          {{end}}
+        </div>
+      {{end}}
+      <div class="more">
+        <a class="link" href="/codenav/related/{{$.RawPath}}?num={{$.NextNum}}">Show more files</a>
+      </div>
+    </div>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      document.querySelectorAll('.file__block__source pre').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+    });
+  </script>
+</html>

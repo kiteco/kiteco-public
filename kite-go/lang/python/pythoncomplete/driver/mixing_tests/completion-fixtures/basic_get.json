@@ -1,0 +1,160 @@
+{
+    "http_status": 200,
+    "offset_encoding": "utf-8",
+    "completions": [
+        {
+            "snippet": {
+                "placeholders": [
+                    {
+                        "begin": 4,
+                        "end": 4
+                    }
+                ],
+                "text": "get()"
+            },
+            "replace": {
+                "begin": 66,
+                "end": 67
+            },
+            "display": "get(…)",
+            "documentation": {
+                "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+            },
+            "web_id": "requests.get",
+            "local_id": "python;;;;requests.get",
+            "hint": "function",
+            "smart": false
+        },
+        {
+            "snippet": {
+                "placeholders": [
+                    {
+                        "begin": 4,
+                        "end": 9
+                    }
+                ],
+                "text": "get([url])"
+            },
+            "replace": {
+                "begin": 66,
+                "end": 67
+            },
+            "display": "get(\u003curl\u003e)",
+            "documentation": {
+                "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+            },
+            "web_id": "requests.get",
+            "local_id": "python;;;;requests.get",
+            "hint": "★ call",
+            "smart": true
+        },
+        {
+            "snippet": {
+                "placeholders": [
+                    {
+                        "begin": 4,
+                        "end": 9
+                    },
+                    {
+                        "begin": 19,
+                        "end": 25
+                    }
+                ],
+                "text": "get([url], headers=[dict])"
+            },
+            "replace": {
+                "begin": 66,
+                "end": 67
+            },
+            "display": "get(\u003curl\u003e, headers=\u003cdict\u003e)",
+            "documentation": {
+                "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+            },
+            "web_id": "requests.get",
+            "local_id": "python;;;;requests.get",
+            "hint": "★ call",
+            "smart": true
+        },
+        {
+            "snippet": {
+                "placeholders": [
+                    {
+                        "begin": 4,
+                        "end": 9
+                    },
+                    {
+                        "begin": 18,
+                        "end": 24
+                    }
+                ],
+                "text": "get([url], params=[dict])"
+            },
+            "replace": {
+                "begin": 66,
+                "end": 67
+            },
+            "display": "get(\u003curl\u003e, params=\u003cdict\u003e)",
+            "documentation": {
+                "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+            },
+            "web_id": "requests.get",
+            "local_id": "python;;;;requests.get",
+            "hint": "★ call",
+            "smart": true
+        },
+        {
+            "snippet": {
+                "placeholders": [
+                    {
+                        "begin": 4,
+                        "end": 9
+                    },
+                    {
+                        "begin": 19,
+                        "end": 24
+                    }
+                ],
+                "text": "get([url], timeout=[int])"
+            },
+            "replace": {
+                "begin": 66,
+                "end": 67
+            },
+            "display": "get(\u003curl\u003e, timeout=\u003cint\u003e)",
+            "documentation": {
+                "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+            },
+            "web_id": "requests.get",
+            "local_id": "python;;;;requests.get",
+            "hint": "★ call",
+            "smart": true
+        },
+        {
+            "snippet": {
+                "placeholders": [
+                    {
+                        "begin": 4,
+                        "end": 9
+                    },
+                    {
+                        "begin": 18,
+                        "end": 24
+                    }
+                ],
+                "text": "get([url], stream=[bool])"
+            },
+            "replace": {
+                "begin": 66,
+                "end": 67
+            },
+            "display": "get(\u003curl\u003e, stream=\u003cbool\u003e)",
+            "documentation": {
+                "text": "Sends a GET request.\n\nParameters:\n\n* *url* – URL for the new Request ( #requests.Request ) object.\n* *params* – (optional) Dictionary or bytes to be sent in the query string for the Request ( #requests.Request ) .\n* ***kwargs* – Optional arguments that request takes.\n\nReturns:\n\nResponse ( #requests.Response ) object\n\nReturn type:\n\nrequests.Response ( #requests.Response )"
+            },
+            "web_id": "requests.get",
+            "local_id": "python;;;;requests.get",
+            "hint": "★ call",
+            "smart": true
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+.venv/
+build/
+Pipfile
+Pipfile.lock
+
+test-client

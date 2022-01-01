@@ -1,0 +1,25 @@
+.related-examples {
+  padding: 0;
+  margin: 1rem 0;
+  margin-left: var(--sidebar-left-indent);
+  list-style: none;
+}
+
+.related-examples__li {
+  margin-top: 1rem;
+}
+
+.related-examples__link {
+  text-decoration: none;
+  color: var(--link-color);
+  font-size: 1.5rem;
+  display: block;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  border-left: 0.3rem solid var(--highlight-background);
+}
+
+.related-examples__link:hover {
+  color: var(--bright-color);
+  border-left-color: var(--bright-color);
+}

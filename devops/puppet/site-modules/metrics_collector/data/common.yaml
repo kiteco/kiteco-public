@@ -1,0 +1,5 @@
+---
+metrics_collector::streams:
+  - kite_status
+  - client_events
+  - kite_service

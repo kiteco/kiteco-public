@@ -1,0 +1,90 @@
+<html>
+<head>
+    <title>Model test</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <style>
+        td.prop-name {
+            color: #666;
+        }
+        .incorrect {
+            background-color: #ffd5d1;
+        }
+        .correct {
+            background-color: #e0ffe6;
+        }
+        dt {
+            width: 300px !important;
+            margin-right: 15px !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h5>Correctly identified name-or-keyword: {{.Stats.CorrectIsKeyword}}/{{.Stats.Total}}</h5>
+        <h5>Correctly identified specific keyword: {{.Stats.CorrectWhichKeyword}}/{{.Stats.TotalKeyword}}</h5>
+    </div>
+
+{{range $result := .Results}}
+    <div class="row">
+        <pre>{{$result.Src}}<strong>$</strong></pre>
+    </div>
+
+    <div class="row">
+        Words: {{$result.Words}}
+    </div>
+    <div class="row">
+        Expected: {{$result.Expected}}
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h5>Features</h5>
+            <dl class="dl-horizontal">
+            {{range $feat := $result.Features}}
+                <dt>{{$feat.Key}}</dt>
+                <dd>{{$feat.Val}}</dd>
+            {{end}}
+            </dl>
+        </div>
+
+        <div class="col-md-6">
+            <h5>IsKeyword prediction: {{if $result.IsKeyword}}keyword{{else}}name{{end}} (p = {{$result.IsKeywordProb}})</h5>
+            <dl class="dl-horizontal {{$result.IsKeywordClass}}">
+            {{range $feat := $result.IsKeywordContributions}}
+                <dt>{{$feat.Key}}</dt>
+                <dd>{{$feat.Val}}</dd>
+            {{end}}
+            </dl>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h5>WhichKeyword prediction: {{$result.WhichKeyword}} (p = {{$result.KeywordProb}})</h5>
+            <dl class="dl-horizontal {{$result.WhichKeywordClass}}">
+            {{range $feat := $result.WhichKeywordContributions}}
+                <dt>{{$feat.Key}}</dt>
+                <dd>{{$feat.Val}}</dd>
+            {{end}}
+            </dl>
+        </div>
+
+        <div class="col-md-6">
+            <h5>Expected: {{index $result.Expected 0}} (p == {{$result.ExpectedKeywordProb}})</h5>
+            <dl class="dl-horizontal">
+            {{range $feat := $result.ExpectedKeywordContributions}}
+                <dt>{{$feat.Key}}</dt>
+                <dd>{{$feat.Val}}</dd>
+            {{end}}
+            </dl>
+        </div>
+    </div>
+{{end}}
+</div>
+</body>
+</html>

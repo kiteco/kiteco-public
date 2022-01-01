@@ -1,0 +1,243 @@
+.not-found__screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #24273F;
+  overflow: hidden;
+}
+
+.not-found__screen::before,
+.not-found__screen::after {
+  position: absolute;
+  z-index: 1;
+  content: "";
+  width: 40.7rem;
+  height: 19.2rem;
+  background-image: url('./stars.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.not-found__screen::before {
+  top: 2.4rem;
+  right: calc(50% - 13.7rem);
+}
+
+.not-found__screen::after {
+  bottom: 4.8rem;
+  right: 4.8rem;
+  transform: scale(-1, 1);
+}
+
+.not-found__bg-image {
+  position: absolute;
+  z-index: 2;
+}
+
+.not-found__earth {
+  top: -39.1rem;
+  right: -27.2rem;
+  width: 80rem;
+  height: 78.2rem;
+  background-image: url(./earth.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.not-found__kite {
+  top: 33.6rem;
+  right: 4.8rem;
+  width: 56rem;
+  height: 15.5rem;
+  background-image: url(./kite.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: rotate(0deg);
+  transform-origin: right center;
+  animation: spaceKiteAnim 8s infinite ease-in-out;
+}
+
+.not-found__meteor {
+  bottom: 3.2rem;
+  right: 3.2rem;
+  width: 5rem;
+  height: 3.8rem;
+  background-image: url(./meteor.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.not-found__header {
+  position: relative;
+  z-index: 10;
+}
+
+.not-found__header .header__logo--expanded {
+  width: 8.1rem;
+  height: 3.2rem;
+}
+
+.not-found__content {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  z-index: 10;
+  color: #fff;
+}
+
+.not-found__content .homepage__section__content {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.not-found__info {
+  width: 100%;
+  max-width: 46rem;
+  margin-bottom: 3.5rem;
+}
+
+.not-found__title {
+  font-size: 12rem;
+  line-height: 0.8;
+  font-weight: 100;
+  color: #5DD8E4;
+}
+
+.not-found__subtitle {
+  position: relative;
+  font-size: 6.4rem;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 4rem;
+}
+
+.not-found__subtitle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+  width: 12rem;
+  height: .2rem;
+  background-color: #5DD8E4;
+}
+
+.not-found__text {
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1.7;
+  margin: 0 0 12rem;
+}
+
+.not-found__navigation-btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.not-found__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 21.4rem;
+  height: 5.4rem;
+  border-radius: 0.4rem;
+  border: 1px solid #14B4C3;
+  color: #14B4C3;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 200ms;
+}
+
+.not-found__btn.not-found__btn--fill {
+  background-color: #14B4C3;
+  color: #fff;
+}
+
+.not-found__btn:hover {
+  background-color: #5DD8E4;
+  border-color: #5DD8E4;
+  color: #fff;
+}
+
+@media only screen and (max-width: 1200px) {
+  .not-found__earth {
+    top: -50.1rem;
+    right: -40.2rem;
+  }
+  .not-found__kite,
+  .not-found__meteor {
+    display: none;
+    animation: none;
+  }
+
+  .not-found__text {
+    margin: 0 0 6rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .not-found__screen::before, .not-found__screen::after {
+    content: none;
+  }
+
+  .not-found__earth {
+    top: -58.1rem;
+    right: -61.2rem;
+  }
+
+  .not-found__content {
+    padding: 1rem 2rem;
+  }
+
+  .not-found__info {
+    max-width: none;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .not-found__title {
+    font-size: 9.6rem;
+    line-height: 9.6rem;
+  }
+
+  .not-found__subtitle {
+    font-size: 4.8rem;
+    line-height: 6.4rem;
+  }
+
+  .not-found__subtitle::after {
+    left: calc(50% - 6rem);
+  }
+
+  .not-found__text {
+    margin: 0 0 4rem;
+  }
+
+  .not-found__navigation-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .not-found__btn {
+    width: 100%;
+    margin-bottom: 2.4rem;
+  }
+}
+
+@keyframes spaceKiteAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(2deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}

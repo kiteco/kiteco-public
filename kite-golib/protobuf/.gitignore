@@ -1,0 +1,3 @@
+serving/*
+tf_repo/
+!tensorflow/serving/*

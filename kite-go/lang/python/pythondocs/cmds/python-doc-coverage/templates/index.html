@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Python Documentation Coverage</title>
+
+        <!-- Bootstrap -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    </head>
+    <body>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar"
+                aria-valuenow='{{.IncantationCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.IncantationCoverage | printf "%.0f"}}%;'>
+                HTML: {{.IncantationCoverage | printf "%.02f"}}% of incantations w/ desc
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar"
+                aria-valuenow='{{.DocstringCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.DocstringCoverage | printf "%.0f"}}%;'>
+                Docstrings: {{.DocstringCoverage | printf "%.02f"}}% of incantations w/ desc
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-info" role="progressbar"
+                aria-valuenow='{{.CombinedCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.CombinedCoverage | printf "%.0f"}}%;'>
+                Combined: {{.CombinedCoverage | printf "%.02f"}}% of incantations w/ desc
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar"
+                aria-valuenow='{{.NormalizedCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.NormalizedCoverage | printf "%.0f"}}%;'>
+                Normalized: {{.NormalizedCoverage | printf "%.02f"}}% of non-empty identifiers
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar"
+                aria-valuenow='{{.ValidCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.ValidCoverage | printf "%.0f"}}%;'>
+                Valid HTML: {{.ValidCoverage | printf "%.02f"}}% of non-empty identifiers
+            </div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar"
+                aria-valuenow='{{.StructuredCoverage | printf "%.0f"}}' aria-valuemin="0" aria-valuemax="100"
+                style='width: {{.StructuredCoverage | printf "%.0f"}}%;'>
+                Structured: {{.StructuredCoverage | printf "%.02f"}}% of incantations w/ desc
+            </div>
+        </div>
+
+        <h3>At least 1 func role: {{.FuncRoleCoverage | printf "%.02f"}}% of incantations w/ desc</h3>
+        <h3>At least 1 class role: {{.ClassRoleCoverage | printf "%.02f"}}% of incantations w/ desc</h3>
+        <h3>At least 1 meth role: {{.MethRoleCoverage | printf "%.02f"}}% of incantations w/ desc</h3>
+        <h3>At least 1 role (any kind): {{.HasRoleCoverage | printf "%.02f"}}% of incantations w/ desc</h3>
+
+        <table class="table table-hover table-condensed">
+            <tr>
+                <th>Package</th>
+                <th>Version</th>
+                <th>Methods</th>
+                <th>Incantations</th>
+                <th>% of Total Incantations</th>
+                <th>Incantation Coverage</th>
+                <th>Docstring Coverage</th>
+                <th>Combined Coverage</th>
+                <th>Structured Coverage</th>
+                <th>:func:</th>
+                <th>:class:</th>
+                <th>:meth:</th>
+                <th>Remaining Gain</th>
+                <th>Normalized</th>
+                <th>Valid</th>
+            </tr>
+            {{range .Packages}}
+            <tr class={{.RowClass}}>
+                <td><a href="/package?q={{.Package}}">{{.Package}}</a></td>
+                <td>{{.Version}}</td>
+                <td>{{.Methods}}</td>
+                <td>{{.Incantations}}</td>
+                <td>{{.PercentOfIncantations | printf "%.02f"}}</td>
+                <td>{{.IncantationCoverage | printf "%.02f"}}</td>
+                <td>{{.DocstringCoverage | printf "%.02f"}}</td>
+                <td>{{.CombinedCoverage | printf "%.02f"}}</td>
+                <td>{{.StructuredCoverage | printf "%.02f"}}</td>
+
+                {{ if gt .FuncRoleCoverage 0.00 }}
+                    <td class="kite_gain">{{.FuncRoleCoverage | printf "%.05f"}}</td>
+                {{ else }}
+                    <td>{{.FuncRoleCoverage | printf "%.02f"}}</td>
+                {{ end }}
+
+                {{ if gt .ClassRoleCoverage 0.00 }}
+                    <td class="kite_gain">{{.ClassRoleCoverage | printf "%.05f"}}</td>
+                {{ else }}
+                    <td>{{.ClassRoleCoverage | printf "%.02f"}}</td>
+                {{ end }}
+
+                {{ if gt .MethRoleCoverage 0.00 }}
+                    <td class="kite_gain">{{.MethRoleCoverage | printf "%.05f"}}</td>
+                {{ else }}
+                    <td>{{.MethRoleCoverage | printf "%.02f"}}</td>
+                {{ end }}
+
+                {{ if ge .RemainingGain 1.0 }}
+                    <td class="kite_gain">{{.RemainingGain | printf "%.02f"}}</td>
+                {{ else }}
+                    <td>{{.RemainingGain | printf "%.02f"}}</td>
+                {{ end }}
+                {{ if eq .Normalized "YES" }}
+                    <td class="valid">YES</td>
+                {{ else if eq .Normalized "NO" }}
+                    <td class="invalid">NO</td>
+                {{ else if eq .Normalized "" }}
+                    <td class="empty">EMPTY</td>
+                {{ end }}
+
+                {{ if eq .Valid "YES" }}
+                    <td class="valid">YES</td>
+                {{ else if eq .Valid "NO" }}
+                    <td class="invalid">NO</td>
+                {{ else if eq .Valid "" }}
+                    <td class="empty">EMPTY</td>
+                {{ end }}
+            </tr>
+            {{end}}
+        </table>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </body>
+</html>
+

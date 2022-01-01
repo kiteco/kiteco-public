@@ -1,0 +1,12 @@
+platform: linux
+image_resource:
+  type: docker-image
+  source: {repository: puppet/puppet-bolt}
+
+inputs:
+- name: kiteco
+outputs:
+- name: build
+
+run:
+  path: kiteco/concourse/tasks/build-puppet/run.bash

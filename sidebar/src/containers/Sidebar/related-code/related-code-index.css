@@ -1,0 +1,11 @@
+.related-code.main {
+    justify-content: flex-start;
+}
+
+.related-code-page {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    height: 100%;
+    overflow-y: auto;
+}

@@ -1,0 +1,53 @@
+<% $metrics_collector::streams.each |$stream| { -%>
+<source>
+  @type tail
+  path /var/log/metrics/<%= $stream %>_metrics.log
+  pos_file /var/log/td-agent/<%= $stream %>_metrics.pos
+  tag kite_metrics.<%= $stream %>
+
+  <parse>
+    @type none
+  </parse>
+</source>
+<% } -%>
+
+<filter kite_metrics.kite_service>
+  @type concat
+  key message
+  multiline_start_regexp /{/
+  multiline_end_regexp  /}}/
+</filter>
+
+<filter **>
+  @type parser
+  key_name message
+  <parse>
+    @type json
+  </parse>
+</filter>
+
+<% if $metrics_collector::stdout_output { -%>
+<filter **>
+  @type stdout
+  <inject>
+    time_key timestamp
+    time_type string
+    time_format %Y-%m-%dT%H:%M:%SZ
+  </inject>
+</filter>
+<% } -%>
+
+<% if $metrics_collector::kinesis_output { -%>
+<% $metrics_collector::streams.each |$stream| { -%>
+<match kite_metrics.<%= $stream %>>
+  @type kinesis_firehose
+  delivery_stream_name <%= inline_epp($metrics_collector::kinesis_output) %>
+  region us-east-1
+  <inject>
+    time_key timestamp
+    time_type string
+    time_format %Y-%m-%dT%H:%M:%SZ
+  </inject>
+</match>
+<% } -%>
+<% } -%>

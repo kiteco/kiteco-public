@@ -1,0 +1,5 @@
+boto==2.38.0
+spooky==2.0.0
+pyyaml==3.11
+scikit-learn>=0.15.2
+numpy>=1.9.2

@@ -1,0 +1,10 @@
+gitdb==0.6.4
+GitPython==2.0.6
+requests==2.10.0
+six==1.10.0
+smmap==0.9.0
+websocket-client==0.37.0
+awscli==1.11.95
+Fabric3==1.13.1.post1
+aiohttp==3.4.1
+slackclient==1.0.9

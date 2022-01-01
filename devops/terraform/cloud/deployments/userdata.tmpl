@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Format and setup the instance store
+if ! `findmnt -rno SOURCE /dev/xvdb > /dev/null`; then
+    if [[ -e /dev/xvdb ]]; then
+        mkfs -t ext4 /dev/xvdb
+        mount -a
+        mkdir /mnt/kite
+    fi
+fi
+
+apt-get -y update && apt-get -y install awscli
+mkdir /opt/puppet
+aws s3 cp s3://kite-deploys/v${release_version}/puppet.tar.gz /opt/puppet
+cd /opt/puppet && tar zxvf puppet.tar.gz
+
+/opt/puppetlabs/bin/puppet config set node_name_fact node_name
+/opt/puppetlabs/bin/puppet config set hiera_config /opt/puppet/hiera.yaml
+
+cat << 'EOF' > /opt/puppetlabs/facter/facts.d/local.json
+{"node_name": "${node_name}.kite.dev","kiteco_version":"${release_version}", "aws_region": "${region}", "kite_env": "production"}
+EOF
+
+cd /opt/puppet && /opt/puppetlabs/bin/puppet apply --modulepath=/opt/puppet/modules:/opt/puppet/site-modules site.pp

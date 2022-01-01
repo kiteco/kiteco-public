@@ -1,0 +1,56 @@
+.plan {
+  font-size: 1.4rem;
+  position: relative;
+  min-height: 3rem;
+  margin: 1rem 0;
+  background-color: var(--highlight-background);
+  border-radius: 0.5rem;
+  color: var(--text-color-normal);
+}
+
+.plan__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1rem;
+}
+
+.plan__title {
+  margin: 0;
+}
+
+.plan__plan-name {
+  text-transform: capitalize;
+  font-weight: 200;
+}
+
+.plan__refresh {
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  mask-image: url(./icon-refresh-white.svg);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background: var(--text-color-light);
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.plan__refresh:hover {
+  background: var(--bright-color);
+}
+
+.plan__upgrade {
+  background-color: var(--button-background);
+  color: var(--button-text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: all 250ms;
+}
+
+.plan__upgrade:hover {
+  background-color: var(--bright-color);
+}
+
+.plan__trial {
+  padding: 0 0 1rem 1.7rem;
+}

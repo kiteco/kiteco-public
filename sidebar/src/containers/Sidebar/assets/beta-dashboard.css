@@ -1,0 +1,72 @@
+html[data-theme='light'] {
+    --go-background-image: url(./golang-kite-light.svg);
+    --js-background-image: url(./js-kite-light.svg);
+}
+
+html {
+    --go-background-image: url(./golang-kite-dark.svg);
+    --js-background-image: url(./js-kite-dark.svg);
+}
+
+.beta-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.beta-item {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+p.beta-item {
+    margin-top: 0;
+}
+
+.beta-graphic {
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 7.5rem;
+    width: 15rem;
+    margin-top: 2rem;
+    margin-bottom: -2rem;
+    margin-left: auto;
+    margin-right:auto;
+    display: block;
+}
+
+.beta-graphic.go {
+    background-image: var(--go-background-image);
+}
+
+.beta-graphic.js {
+    background-image: var(--js-background-image);
+}
+
+button.beta-toggle {
+    margin-top: 1em;
+    background-color: var(--beta-button-background);
+    color: var(--button-text);
+
+}
+
+button.beta-toggle:hover {
+    background-color: var(--text-color-highlight);
+}
+
+button.beta-item {
+    margin-top: 1em;
+    align-self: center;
+    width: 50%;
+}
+
+p.beta-item.disclaimer {
+    font-size: x-small;
+}
+
+/* Button sizing in Sidebar component */
+button.sidebar.beta-toggle {
+    font-size: 1rem;
+    height: 2rem;
+    line-height: 0;
+}

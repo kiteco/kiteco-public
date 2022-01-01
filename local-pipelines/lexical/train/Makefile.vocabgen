@@ -1,0 +1,35 @@
+LANG :=
+RUNDB :=
+OUT_DIR := ./out_vocab_$(LANG)
+TMP_DIR := ./tmp
+DATA_DIR := ./data
+CHECKPOINTS_DIR := ./vocab-checkpoints
+
+DIRS_TO_CREATE := $(OUT_DIR) $(TMP_DIR)
+
+MIN_WORD_COUNT := 200
+WORDCOUNTS_PATH := wordcounts.json
+
+$(shell mkdir -p $(DIRS_TO_CREATE))
+
+clean:
+	rm -rf $(TMP_DIR)
+	rm -rf $(OUT_DIR)
+
+wordcount_on_cluster:
+	wordcount \
+		--lang=$(LANG) \
+		--mincount=$(MIN_WORD_COUNT) \
+		--output=$(TMP_DIR)/$(WORDCOUNTS_PATH)
+	cp $(TMP_DIR)/$(WORDCOUNTS_PATH) $(OUT_DIR)
+
+vocabgen_on_cluster:
+	vocabgen \
+		--lang=$(LANG) \
+		--words=$(OUT_DIR)/$(WORDCOUNTS_PATH) \
+		--checkpointsdir=$(TMP_DIR)/$(CHECKPOINTS_DIR)
+	cp -r $(TMP_DIR)/$(CHECKPOINTS_DIR) $(OUT_DIR)
+
+upload:
+	cp -r logs $(OUT_DIR)
+	rundb add-artifact $(RUNDB) $(OUT_DIR) $(OUT_DIR) --recursive

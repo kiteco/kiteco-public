@@ -1,0 +1,65 @@
+.container {
+    padding: 0.5rem;
+}
+
+.hint {
+    background-color: var(--highlight-background);
+    padding: 1.5rem 1.5rem 1.5rem 6rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    font-size: 0.9em;
+    background-repeat: no-repeat;
+}
+
+.hint span {
+    color: var(--text-color-highlight);
+    font-weight: 500;
+}
+
+.hint_paragraph {
+    margin-bottom: 2rem;
+}
+
+.hint_paragraph:only-child {
+    margin-bottom: 0;
+}
+
+.hint_link {
+    color: var(--link-color);
+    font-weight: 500;
+}
+
+.hint_link:hover {
+    cursor: pointer;
+}
+
+.hint_icon_graph {
+    background-size: 4rem;
+    background-position: left 1rem top 2.25rem;
+    background-image: url(../../assets/icon-graph.svg);
+    padding-left: 6.75rem;
+}
+
+.hint_icon_jetbrains {
+    background-size: 4rem;
+    background-position: left 1rem top 1.2rem;
+    background-image: url(../../assets/icon-jetbrains.svg);
+    padding-left: 6.75rem;
+}
+
+.hint_icon_vim {
+    background-size: 4rem;
+    background-position: left 1rem top 1.2rem;
+    background-image: url(../../assets/icon-vim.svg);
+    padding-left: 6.75rem;
+}
+
+.hint_icon_atom_sublime_vscode {
+    background:
+            url(../../assets/icon-atom.svg) left 1rem top 1rem no-repeat,
+            url(../../assets/icon-sublime.svg) left 2.2rem top 3rem no-repeat,
+            url(../../assets/icon-vscode.svg) left 3.4rem top 5rem no-repeat,
+            var(--highlight-background);
+    background-size: 2rem;
+    padding-left: 6.75rem;
+}

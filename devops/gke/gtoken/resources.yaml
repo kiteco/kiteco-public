@@ -1,0 +1,126 @@
+#@ load("@ytt:data", "data")
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gtoken-webhook-deployment
+  labels:
+    app: gtoken-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gtoken-webhook
+  template:
+    metadata:
+      labels:
+        app: gtoken-webhook
+    spec:
+      containers:
+      - name: gtoken-webhook
+        image: #@ data.values.gtoken_webhook_image
+        args:
+          - --log-level=debug
+          - server
+          - --tls-cert-file=/etc/webhook/certs/cert.pem
+          - --tls-private-key-file=/etc/webhook/certs/key.pem
+          - --pull-policy=Always
+        volumeMounts:
+          - name: webhook-certs
+            mountPath: /etc/webhook/certs
+            readOnly: true
+      serviceAccountName: gtoken-webhook-sa
+      volumes:
+        - name: webhook-certs
+          secret:
+            secretName: gtoken-webhook-certs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gtoken-webhook-svc
+  labels:
+    app: gtoken-webhook
+spec:
+  ports:
+  - port: 443
+    targetPort: 8443
+  selector:
+    app: gtoken-webhook
+---
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: mutating-gtoken-webhook-cfg
+  labels:
+    app: gtoken-webhook
+webhooks:
+  - name: gtoken.doit-intl.com
+    clientConfig:
+      service:
+        name: gtoken-webhook-svc
+        namespace: default
+        path: "/pods"
+      caBundle: #@ data.values.ca_bundle
+    rules:
+      - operations: [ "CREATE" ]
+        apiGroups: ["*"]
+        apiVersions: ["*"]
+        resources: ["pods"]
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gtoken-webhook-sa
+  labels:
+    app: gtoken-webhook
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: gtoken-webhook-cr
+  labels:
+    app: gtoken-webhook
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - events
+  verbs:
+  - "*"
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  - daemonsets
+  - replicasets
+  - statefulsets
+  verbs:
+  - "*"
+- apiGroups:
+  - autoscaling
+  resources:
+  - "*"
+  verbs:
+  - "*"
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - get
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: gtoken-webhook-crb
+  labels:
+    app: gtoken-webhook
+subjects:
+- kind: ServiceAccount
+  name: gtoken-webhook-sa
+  namespace: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: gtoken-webhook-cr

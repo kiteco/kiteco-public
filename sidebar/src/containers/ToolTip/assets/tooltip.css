@@ -1,0 +1,73 @@
+.tooltip {
+  margin-top: 1rem;
+  position: absolute;
+  background: var(--popup-background);
+  color: var(--popup-menu-text-color);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  font-size: 1.4rem;
+  width: 30rem;
+}
+
+.tooltip--unrendered {
+  visibility: hidden;
+}
+
+.tooltip > * + * {
+  margin-top: 1rem;
+}
+
+.tooltip--top:before {
+  position: absolute;
+  top: -1rem;
+  z-index: 1;
+  content: '▲';
+  font-size: 1rem;
+  color: var(--popup-background);
+}
+
+.tooltip--bottom:before {
+  position: absolute;
+  bottom: -0.8rem;
+  font-size: 1rem;
+  z-index: 1;
+  color: var(--popup-background);
+  content: '▼'
+}
+
+.tooltip--right:before {
+  margin-left: 92%;
+}
+
+.tooltip__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tooltip__title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin: 0;
+  margin-right: 1rem;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.tooltip__kind {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  max-width: 30%;
+}
+
+.tooltip-link {
+  position: relative;
+  overflow: visible;
+}
+
+.tooltip-span {
+  position: relative;
+  overflow: show;
+}

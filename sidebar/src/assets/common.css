@@ -1,0 +1,27 @@
+.section__disclaimer {
+  background-color: var(--highlight-background);
+  padding: 1rem 1.3rem;
+}
+
+.cta-button {
+  padding: 1rem 2rem;
+  border: none;
+  background-color: var(--button-background);
+  color: var(--button-text);
+  font-size: 1.6rem;
+}
+
+.cta-button:hover {
+  background-color: var(--text-color-highlight);
+  color: var(--button-text);
+}
+
+.cta-button--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.cta-button--disabled:hover {
+  background-color: var(--button-background);
+  color: var(--button-text);
+}

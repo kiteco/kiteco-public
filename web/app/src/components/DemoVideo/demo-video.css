@@ -1,0 +1,11 @@
+.demo-video {
+  margin-top: 2rem;
+  text-align: center;
+  max-width: 100%;
+}
+
+.demo-video video{
+  width: 100%;
+  max-height: 360px;
+  max-width:  640px;
+}

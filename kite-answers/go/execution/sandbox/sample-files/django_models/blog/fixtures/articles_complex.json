@@ -1,0 +1,92 @@
+[
+  {
+    "model": "blog.Article",
+    "pk": 0,
+    "fields": {
+      "title": "Article 0",
+      "published": "2010-10-10T12:00:00+00:00",
+      "view_count": 0
+    }
+  },
+  {
+    "model": "blog.Article",
+    "pk": 1,
+    "fields": {
+      "title": "Article 1",
+      "published": "2001-01-01T12:00:00+00:00",
+      "view_count": 10
+    }
+  },
+  {
+    "model": "blog.Article",
+    "pk": 2,
+    "fields": {
+      "title": "Article 2",
+      "published": "2002-02-02T12:00:00+00:00",
+      "view_count": 20
+    }
+  },
+  {
+    "model": "blog.Article",
+    "pk": 3,
+    "fields": {
+      "title": "Article 3",
+      "published": "2003-03-03T12:00:00+00:00",
+      "view_count": 30
+    }
+  },
+  {
+    "model": "blog.Article",
+    "pk": 4,
+    "fields": {
+      "title": "Article 4",
+      "published": "2004-04-04T12:00:00+00:00",
+      "view_count": 40
+    }
+  },
+  {
+    "model": "blog.Article",
+    "pk": 5,
+    "fields": {
+      "title": "Article 5",
+      "published": "2005-05-05T12:00:00+00:00",
+      "view_count": 50
+    }
+  },
+  {
+    "model": "blog.Article",
+    "pk": 6,
+    "fields": {
+      "title": "Article 6",
+      "published": "2006-06-06T12:00:00+00:00",
+      "view_count": 60
+    }
+  },
+  {
+    "model": "blog.Article",
+    "pk": 7,
+    "fields": {
+      "title": "Article 7",
+      "published": "2007-07-07T12:00:00+00:00",
+      "view_count": 70
+    }
+  },
+  {
+    "model": "blog.Article",
+    "pk": 8,
+    "fields": {
+      "title": "Article 8",
+      "published": "2008-08-08T12:00:00+00:00",
+      "view_count": 80
+    }
+  },
+  {
+    "model": "blog.Article",
+    "pk": 9,
+    "fields": {
+      "title": "Article 9",
+      "published": "2009-09-09T12:00:00+00:00",
+      "view_count": 90
+    }
+  }
+]

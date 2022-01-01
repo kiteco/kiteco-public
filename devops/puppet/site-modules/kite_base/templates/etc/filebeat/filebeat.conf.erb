@@ -1,0 +1,24 @@
+---
+shutdown_timeout: '0'
+cloud.id: metrics:XXXXXXX
+cloud.auth: "${cloud_auth}"
+tags: []
+fields: {}
+fields_under_root: false
+filebeat:
+  config.inputs:
+    enabled: true
+    path: "/etc/filebeat/conf.d/*.yml"
+  config.modules:
+    enabled: false
+    path: "/etc/filebeat/modules.d/*.yml"
+  shutdown_timeout: '0'
+  modules: []
+http: {}
+output:
+  elasticsearch: {}
+shipper: {}
+logging: {}
+runoptions: {}
+processors: []
+setup: {}

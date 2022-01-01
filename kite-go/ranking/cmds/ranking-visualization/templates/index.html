@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ranking Review Wrapper</title>
+
+	        <link rel="stylesheet" type="text/css" href="/static/style.css">
+	        <link rel="stylesheet" type="text/css" href="/static/syntaxcolors.css">
+
+	</head>
+	<body>
+		<div class="pageTitle">Ranking Review</div>
+		<div class="wrapper">
+			<div class="leftPanel">
+				<div class="content">
+					<h4>Queries</h4>
+					<ul>
+                                            {{ range .Queries }}
+
+                                            {{ if .IsActive }}
+                                                <li class="active">{{ printf "%s     %f" .Text .Score }}</li>
+                                            {{ else }}
+                                                <a href="{{ .URL }}"><li>{{ printf "%s     %f" .Text .Score  }}</li></a>
+                                            {{ end }}
+                                            {{ end }}
+					</ul>
+				</div>
+			</div>
+                        {{ range .Entries }}
+			<div class="rightPanel">
+				<div class="content">
+                                    <div class="score ndcg"><span class="diffLabel">NDCG Score</span><span class="diffCount">{{ .Score  }}</span></div>
+
+		                    {{range .Snippets}}
+		                    <div class="snippet">
+		                    	<div class="scores">
+                                    <div class="score"><span class="diffLabel">Relevance Score</span><span class="diffCount">{{ .Label  }}</span></div>
+                         			<div class="score"><span class="diffLabel">Expected Ranking</span><span class="diffCount">{{ .ExpectedRank  }}</span></div>
+                                    <div class="score"><span class="diffLabel">Predicted Ranking</span><span class="diffCount">{{ .Rank  }}</span></div>
+                                    <div class="titleScore"><span class="diffLabel">Features</span></div>
+                                    {{ $features := .Features }}
+                                    {{ range $index, $label := .FeatureLabels }}
+                                    <div class="score"><span class="diffLabel">{{ $label }}</span><span class="diffCount">{{ index $features $index  }}</span></div>
+                                    {{ end }}
+                                </div>
+                                <div class="result">
+                	                <div class="title">{{ .Title }}</div>
+			                		{{ if .IsSO }}
+			                            <div>
+			                               	{{ if .SOPage.Question.ShowID }}
+			                                	<p> {{printf "ID: %d" .SOPage.Question.ID}} </p>
+			                                {{ end }}
+			                                {{ if .SOPage.Question.ShowTitle }}
+			                                    <p> {{printf "Title: %s" .SOPage.Question.Title}} </p>
+			                                {{ end }}
+			                                {{if .SOPage.Question.ShowTags }}
+			                                	<p> {{printf "Tags: %s" .SOPage.Question.Tags}} </p>
+			                                {{ end }}
+			                                <p> {{printf "Body: %s" .SOPage.Question.Body}} </p>
+			                                {{ if .SOPage.Question.ShowCode }}
+			                                    <p> {{printf "Code: %s" .SOPage.Question.Code}} </p>
+			                                {{ end }}
+			                                {{ if .SOPage.Question.ShowScore }}
+			                                    <p> {{printf "Score: %d" .SOPage.Question.Score}} </p>
+			                                {{ end }}
+			                                {{ if .SOPage.Question.ShowVC }}
+			                                    <p> {{printf "ViewCount: %d" .SOPage.Question.ViewCount}} </p>
+			                                {{ end }}
+			                                {{ if .SOPage.Question.ShowAC }}
+			                                    <p> {{printf "AnswerCount: %d" .SOPage.Question.AnswerCount}} </p>
+			                                {{ end }}
+			                                {{ if .SOPage.Question.ShowCC }}
+			                                    <p> {{printf "CommentCount: %d" .SOPage.Question.CommentCount}} </p>
+			                                {{ end }}
+			                                {{ if .SOPage.Question.ShowFC }}
+			                                    <p> {{printf "FavoriteCount: %d" .SOPage.Question.FavoriteCount}} </p>
+			                                {{ end }}
+			                                {{ if .SOPage.Question.ShowAAID }}
+			                                    <p> {{printf "AcceptedAnswerID: %d" .SOPage.Question.AcceptedAnswerID}} </p>
+			                                {{ end }}
+			                            </div>
+				                        {{range $k,$ans := .SOPage.Answers }}
+				                            <div>
+				                            	{{ if $ans.ShowID }}
+				                                	<p> {{printf "ID: %d" $ans.ID}} </p>
+				                                {{ end }}
+				                                {{ if $ans.ShowTitle }}
+				                                    <p> {{printf "Title: %s" $ans.Title}} </p>
+				                                {{ end }}
+				                                {{if $ans.ShowTags }}
+			                                		<p> {{printf "Tags: %s" $ans.Tags}} </p>
+			                                	{{ end }}
+				                                <p> {{printf "Body: %s" $ans.Body}} </p>
+				                                {{ if $ans.ShowCode }}
+				                                    <p> {{printf "Code: %s" $ans.Code}} </p>
+				                                {{ end }}
+				                                {{ if $ans.ShowScore }}
+				                                    <p> {{printf "Score: %d" $ans.Score}} </p>
+				                                {{ end }}
+				                                {{ if $ans.ShowVC }}
+				                                    <p> {{printf "ViewCount: %d" $ans.ViewCount}} </p>
+				                                {{ end }}
+				                                {{ if $ans.ShowAC }}
+				                                    <p> {{printf "AnswerCount: %d" $ans.AnswerCount}} </p>
+				                                {{ end }}
+				                                {{ if $ans.ShowCC }}
+				                                    <p> {{printf "CommentCount: %d" $ans.CommentCount}} </p>
+				                                {{ end }}
+				                                {{ if $ans.ShowFC }}
+				                                    <p> {{printf "FavoriteCount: %d" $ans.FavoriteCount}} </p>
+				                                {{ end }}
+				                                {{ if $ans.ShowAAID }}
+				                                    <p> {{printf "AcceptedAnswerID: %d" $ans.AcceptedAnswerID}} </p>
+				                                {{ end }}
+				                            </div>
+				                        {{ end }} 
+			                		{{else}}
+				                		<div class="innerCode">
+				                    		<pre><code>{{colorize .Code}}</code></pre>
+				                		</div>
+			                		{{end}}
+		                    	</div>
+		                    </div>
+		                    {{end}}
+				</div>
+			</div>
+                        {{ end }}
+		</div>
+	</body>
+	<script type="text/javascript">
+	// This is for later
+	</script>
+</html>
