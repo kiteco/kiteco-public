@@ -1,3 +1,8 @@
+This is a public version of the main Kite repo
+=================================
+The main Kite repo (originally `kiteco/kiteco`) was intended for private use. It has been lightly adapted for publication here by replacing private information with `XXXXXXX`. As a result many components here may not work out of the box.
+
+
 Getting started with the codebase
 =================================
 
