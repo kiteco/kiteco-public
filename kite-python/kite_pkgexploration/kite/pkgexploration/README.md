@@ -1,6 +1,6 @@
 # pkgexploration: how it works
 
-See https://kite.quip.com/Lz4fAA9MKhWa/PkgExploration-Improvements for future improvements.
+See `PkgExploration-Improvements.md` for future improvements.
 This README describes only the current state of pkgexploration and associated notes/caveats.
 
 The entrypoint is `Explorer.explore_packages`, which takes a top-level package name, and optionally
