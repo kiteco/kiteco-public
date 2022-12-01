@@ -16,14 +16,14 @@ Here are some example tasks, with a particular focus on Python analysis:
 -   [Github crawler](https://github.com/kiteco/kiteco-public/blob/master/kite-go/cmds/github-crawler/crawler.go)
 -   [Package exploration](https://github.com/kiteco/kiteco-public/tree/master/kite-python/kite_pkgexploration/kite/pkgexploration), which imports and introspects Python packages (as you can imagine, this is very tricky code to get right); see the README.md in that directory
     -   Related: [import exploration](https://github.com/kiteco/kiteco-public/tree/master/local-pipelines/python-import-exploration), which, if I understand correctly, runs package exploration and other logic to e.g. upload results to s3
-    -   As an example of what package exploration produces, I'm attaching the graph it produced for numpy 1.14.0. For example, if you load the JSON object as `o`, then `o["shards"]["numpy"]["139784536077376"]` will give you the object `numpy.polynomial.tests.test_laguerre.TestEvaluation.c1d` (I just picked one node from the graph at random), and you will see that it has members like `min` `conjugate` and `tofile`, with pointers for each of those to their node from the graph.
+    -   As an example of what package exploration produces, I'm attaching (see the `readme_assets` folder) the graph it produced for numpy 1.14.0. For example, if you load the JSON object as `o`, then `o["shards"]["numpy"]["139784536077376"]` will give you the object `numpy.polynomial.tests.test_laguerre.TestEvaluation.c1d` (I just picked one node from the graph at random), and you will see that it has members like `min` `conjugate` and `tofile`, with pointers for each of those to their node from the graph.
     -   (also extracts docstrings)
 -   [Type induction](https://github.com/kiteco/kiteco-public/tree/master/local-pipelines/python-offline-metrics/cmds/type-induction) (the [logic](https://github.com/kiteco/kiteco-public/tree/70fa808fcdec5e776d8a7e3ecacd1960e6bfa4d6/kite-go/typeinduction)), which statistically estimates the return types of functions based on attributes accessed on their return values across Github
-    -   I'm attaching `type-induction-numpy.json.zip` which contains the output of type induction for numpy. For example, if this JSON file is loaded as `o`, if you look at `o[17]` you will see that there is a 51.9% probability that `numpy.matrix.argmin` returns a `numpy.matrix`.
+    -   I'm attaching (see the `readme_assets` folder) `type-induction-numpy.json.zip` which contains the output of type induction for numpy. For example, if this JSON file is loaded as `o`, if you look at `o[17]` you will see that there is a 51.9% probability that `numpy.matrix.argmin` returns a `numpy.matrix`.
 -   [Dynamic analysis](https://github.com/kiteco/kiteco-public/tree/master/kite-go/dynamicanalysis), which runs short Python scripts like [this one](https://www.kite.com/python/examples/4810/pandas-get-the-dimensions-of-a-%60dataframe%60) (we have a set of 2-3k of these that cover 50% of all open-source Python libraries when weighed by usages/popularity) and extracts type information at runtime
-    -   I'm attaching 20190320.json.zip which contains all of the information extracted from this process. As an example, the JSON object on line 34 tells us that `jinja2.environment.Template.render` is a function that returned a `__builtin__.unicode`
+    -   I'm attaching (see the `readme_assets` folder) `20190320.json.zip` which contains all of the information extracted from this process. As an example, the JSON object on line 34 tells us that `jinja2.environment.Template.render` is a function that returned a `__builtin__.unicode`
 -   [Extraction of return types from docs](https://github.com/kiteco/kiteco-public/blob/master/kite-go/lang/python/pythonresource/cmd/build/docs-returntypes/main.go)
-    -   I'm attaching docs_returntypes.json.zip which should be pretty self-explanatory. My main comment is that, as in other datasets, the large numbers are pointers to other nodes in the graph.
+    -   I'm attaching (see the `readme_assets` folder) `docs_returntypes.json.zip` which should be pretty self-explanatory. My main comment is that, as in other datasets, the large numbers are pointers to other nodes in the graph.
 
 Several return type sources are unified in [this command](https://github.com/kiteco/kiteco-public/blob/70fa808fcdec5e776d8a7e3ecacd1960e6bfa4d6/kite-go/lang/python/pythonresource/cmd/build/returntypes/main.go).
 
@@ -42,7 +42,7 @@ This pipeline results in a number of files per package::version, with the follow
 -   Kwargs
 -   ReturnTypes
 
-I'm attaching the final resource build for numpy here as "resource-manager-numpy.zip". You can download the 800MB zip file with all the Python open-source packages [here](https://drive.google.com/file/d/1iObSIPzzJ-OSlaWBkh3vXr-LgQ5Fjood/view?usp=sharing).
+I'm attaching (see the `readme_assets` folder) the final resource build for numpy here as "resource-manager-numpy.zip". You can download the 800MB zip file with all the Python open-source packages [here](https://drive.google.com/file/d/1iObSIPzzJ-OSlaWBkh3vXr-LgQ5Fjood/view?usp=sharing).
 
 The bullet list of resources above is from the code [here](https://github.com/kiteco/kiteco-public/blob/master/kite-go/lang/python/pythonresource/internal/resources/resources.go#L25). You can "find references" to see how these files get loaded from disk. In the Kite client the resource manager's main entry point is [here](https://github.com/kiteco/kiteco-public/blob/master/kite-go/lang/python/pythonresource/manager.go). Note this class includes code for dynamically loading and unloading packages' data into memory to conserve end-user memory.
 
@@ -87,7 +87,7 @@ In terms of the infrastructure and code:
 
 Btw we also trained a simple model to mix lexical/GPT-2 and other completions. (short product spec attached as "Product Spec_ Multi-provider Completions.pdf")
 
-(Bonus: I'm attaching our product spec for lexical completions here as "Product Spec_ Lexical Completions.pdf")
+(Bonus: I'm attaching (see the `readme_assets` folder) our product spec for lexical completions here as "Product Spec_ Lexical Completions.pdf")
 
 
 **Q: Did you implement your own parsers or reuse existing ones?**
@@ -107,14 +107,14 @@ We did not try to do this very much. We did some experimentation with linting, b
 Yes we did some experimentation on a number of different ideas in late 2020 / early 2021.
 
 - [Synthesizing status summaries](https://docs.google.com/presentation/d/1gyUe8TlqWsT2isfYpO4pbZtmtBwnesnFR5yURkk0q_s/edit?usp=sharing): From an ML perspective, the idea is to use Github PR titles to train a model that can generate "PR titles" from code changes, thus enabling us to make it easy for developers to share descriptions of the work they've been doing more easily.
-- ML-enhanced code search and navigation (see attached "Code search product analysis and roadmap.pdf"): one of the key ideas being using ML to annotate a graph of relationships between code entities, so you could e.g. right-click on a string referring to a file and see "See three references to this file". (see the image below.) There was also a playbook for using a presence on developer desktops to get widespread adoption across teams.
+- ML-enhanced code search and navigation (see attached (see the `readme_assets` folder) "Code search product analysis and roadmap.pdf"): one of the key ideas being using ML to annotate a graph of relationships between code entities, so you could e.g. right-click on a string referring to a file and see "See three references to this file". (see the image below.) There was also a playbook for using a presence on developer desktops to get widespread adoption across teams.
 > ![Screen Shot 2022-01-09 at 9.41.13 PM.png](readme_assets/unnamed1.png?raw=true)
 
 - We built some prototype tech for mapping between code, issues, and wiki content. These models performed pretty well.
 
 > ![Screen Shot 2022-01-09 at 9.48.13 PM.png](readme_assets/unnamed2.png?raw=true)
 
-- We went on a long product strategy process wherein we spoke with something like ~50 individual developers, eng managers, etc. You can see some of the ideas that made it the furthest in the attached "Kite - Wave 5 - Product concepts for Engineering.pdf". They included smart error reporting, dynamic logs, log debugging helper, code nav/search (mentioned above), and semantic/keyword code search.
+- We went on a long product strategy process wherein we spoke with something like ~50 individual developers, eng managers, etc. You can see some of the ideas that made it the furthest in the attached (see the `readme_assets` folder) "Kite - Wave 5 - Product concepts for Engineering.pdf". They included smart error reporting, dynamic logs, log debugging helper, code nav/search (mentioned above), and semantic/keyword code search.
 
 - In case either of these resonate, here are another couple lenses on some subset of the ideas we brainstormed:
 
